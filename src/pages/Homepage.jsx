@@ -23,8 +23,14 @@ const Homepage = () => {
     justifyContent: "center",
   };
 
+  const layout = {
+    padding: 2,
+    width: "412px",
+    margin: "0 auto",
+  };
+
   return (
-    <Box sx={{ padding: 2 }}>
+    <Box sx={layout}>
       {/* usercard 컴포넌트로 대체 */}
       <Card sx={{ mb: 2 }}>
         <CardContent>
