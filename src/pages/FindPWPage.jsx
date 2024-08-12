@@ -19,28 +19,20 @@ export const MobileLayout = () => {
       <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
+
+      <SelectUi />
       <InputUi
         id={"id"}
         label={"아이디"}
         placeholder={"elice1234"}
         error={"error"}
       />
-      <SelectUi />
-
-      <InputUi
-        id={"password"}
-        label={"비밀번호"}
-        placeholder={"********"}
-        error={"error"}
-      />
-      <InputUi
-        id={"password"}
-        label={"비밀번호 확인"}
-        placeholder={"********"}
-        error={"error"}
-      />
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
+        <Typography>로그인 정보 기억하기</Typography>
+      </Box>
       <Button variant="contained" fullWidth>
-        Sign Up
+        비밀번호 찾기
       </Button>
       <Box
         sx={{
@@ -49,10 +41,10 @@ export const MobileLayout = () => {
           justifyContent: "space-between",
         }}
       >
-        <Link>가입 안내 문구</Link>
+        <Link>아이디/비밀번호 찾기</Link>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-          <Typography>로그인 하러 가기</Typography>
+          <Typography>가입하러 가기</Typography>
         </Box>
       </Box>
     </Box>
@@ -86,28 +78,20 @@ export const DesktopLayout = () => {
         <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
           <img alt="이미지" />
         </Box>
+
+        <SelectUi />
         <InputUi
           id={"id"}
           label={"아이디"}
           placeholder={"elice1234"}
           error={"error"}
         />
-        <SelectUi />
-
-        <InputUi
-          id={"password"}
-          label={"비밀번호"}
-          placeholder={"********"}
-          error={"error"}
-        />
-        <InputUi
-          id={"password"}
-          label={"비밀번호 확인"}
-          placeholder={"********"}
-          error={"error"}
-        />
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
+          <Typography>로그인 정보 기억하기</Typography>
+        </Box>
         <Button variant="contained" fullWidth>
-          Sign Up
+          비밀번호 찾기
         </Button>
         <Box
           sx={{
@@ -116,10 +100,10 @@ export const DesktopLayout = () => {
             justifyContent: "space-between",
           }}
         >
-          <Link>가입 안내 문구</Link>
+          <Link>아이디/비밀번호 찾기</Link>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-            <Typography>로그인 하러 가기</Typography>
+            <Typography>가입하러 가기</Typography>
           </Box>
         </Box>
       </Box>
@@ -127,10 +111,10 @@ export const DesktopLayout = () => {
   );
 };
 
-const SignUpPage = () => {
+const FindPWPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
 
   return isDesktop ? <DesktopLayout /> : <MobileLayout />;
 };
 
-export default SignUpPage;
+export default FindPWPage;
