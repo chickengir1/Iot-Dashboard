@@ -10,7 +10,7 @@ export const MobileLayout = () => {
   const mobileLayout = {
     padding: 2,
     margin: "0 auto",
-    border: "solid 1px red",
+    border: "solid 1px #ddd",
     display: "flex",
     flexDirection: "column",
     gap: 2,
@@ -18,7 +18,7 @@ export const MobileLayout = () => {
 
   return (
     <Box sx={mobileLayout}>
-      <Box sx={{ border: "solid 1px red", height: "250px" }}>
+      <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
       <InputUi
@@ -89,11 +89,12 @@ export const DesktopLayout = () => {
   const desktopLayout = {
     width: "600px",
     margin: "0 auto",
-    border: "solid 1px red",
+    border: "solid 1px #ddd",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     borderRadius: 3,
+    padding: 2,
   };
 
   const desktopInnerLayout = {
@@ -106,10 +107,10 @@ export const DesktopLayout = () => {
   return (
     <Box sx={desktopLayout}>
       <Box sx={desktopInnerLayout}>
-        <Box sx={{ border: "solid 1px red", height: "50px" }}>
+        <Box sx={{ border: "solid 1px #ddd", height: "50px" }}>
           <img alt="로고" />
         </Box>
-        <Box sx={{ border: "solid 1px red", height: "250px" }}>
+        <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
           <img alt="이미지" />
         </Box>
         <InputUi
