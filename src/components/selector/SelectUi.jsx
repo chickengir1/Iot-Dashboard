@@ -1,4 +1,5 @@
 import {
+  Box,
   FormControl,
   InputBase,
   InputLabel,
@@ -9,27 +10,49 @@ import {
 import React from "react";
 
 const SelectUi = () => {
-  return (
-    <FormControl fullWidth>
-      <InputLabel shrink htmlFor={"email"}>
-        {"이메일"}
-      </InputLabel>
-      <InputBase
-        placeholder={"google@google.com"}
-        id={"email"}
-        // sx={inputStyle}
-      />
-      <Typography>@</Typography>
+  const inputStyle = {
+    "label + &": {
+      marginTop: 2,
+    },
+    borderRadius: 2,
+    padding: "4px 12px",
+    backgroundColor: "#fff",
+    border: "1px solid #d9d9d9",
+    "&:hover": {
+      borderColor: "gray",
+    },
+    "&.Mui-focused": {
+      borderColor: "#525252",
+    },
+  };
 
-      <Select value={10} sx={{ height: "40px" }}>
-        <MenuItem value="None">
-          <em>123</em>
-        </MenuItem>
-        <MenuItem value={10}>naver.com</MenuItem>
-        <MenuItem value={20}>google.com</MenuItem>
-      </Select>
+  return (
+    <Box>
+      <FormControl
+        fullWidth
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "flex-end",
+          justifyContent: "space-between",
+        }}
+      >
+        <InputLabel shrink htmlFor={"email"}>
+          {"이메일"}
+        </InputLabel>
+        <InputBase placeholder={"email"} id={"email"} sx={inputStyle} />
+        <Typography>@</Typography>
+
+        <Select value={10} sx={{ height: "40px", minWidth: "150px" }}>
+          <MenuItem value="None">
+            <em>123</em>
+          </MenuItem>
+          <MenuItem value={10}>naver.com</MenuItem>
+          <MenuItem value={20}>google.com</MenuItem>
+        </Select>
+      </FormControl>
       <Typography sx={{ color: "#9ACD32" }}>{"233"}</Typography>
-    </FormControl>
+    </Box>
   );
 };
 

@@ -16,6 +16,7 @@ import {
   LanguageOutlined,
 } from "@mui/icons-material";
 import InputUi from "../components/input/InputUi";
+import SelectUi from "../components/selector/SelectUi";
 
 export const MobileLayout = () => {
   const mobileLayout = {
@@ -38,12 +39,7 @@ export const MobileLayout = () => {
         placeholder={"elice1234"}
         error={"error"}
       />
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      ></Box>
+      <SelectUi />
 
       <InputUi
         id={"password"}
