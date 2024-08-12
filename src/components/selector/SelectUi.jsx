@@ -26,6 +26,9 @@ const SelectUi = () => {
 
   return (
     <Box>
+      <InputLabel shrink htmlFor={"email"}>
+        {"이메일"}
+      </InputLabel>
       <Box
         fullWidth
         sx={{
@@ -35,9 +38,6 @@ const SelectUi = () => {
           justifyContent: "space-between",
         }}
       >
-        {/* <InputLabel shrink htmlFor={"email"}>
-          {"이메일"}
-        </InputLabel> */}
         <TextField
           placeholder={"email"}
           id={"email"}
