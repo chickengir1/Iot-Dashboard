@@ -42,7 +42,6 @@ const MobileSidebar = () => {
       {menuItems.map((item, index) => (
         <BottomNavigationAction
           key={index}
-          label={item.text}
           icon={item.icon}
           sx={{ minWidth: 0 }}
         />
