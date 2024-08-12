@@ -178,7 +178,7 @@ export const DesktopLayout = () => {
 };
 
 const LoginPage = () => {
-  const isDesktop = useMediaQuery("(min-width: 1280px)");
+  const isDesktop = useMediaQuery("(min-width:600px)");
 
   return isDesktop ? <DesktopLayout /> : <MobileLayout />;
 };
