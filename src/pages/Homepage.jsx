@@ -30,7 +30,7 @@ const MobileLayout = () => {
       </Card>
       <TodoList />
       <Newsletter />
-      <Box>{/*사이드바 임포트 해오기 */}</Box>
+      <Sidebar />
     </Box>
   );
 };
@@ -49,6 +49,7 @@ const DesktopLayout = () => {
     marginLeft: "16px",
     flexDirection: "column",
     border: "1px solid #ddd",
+    borderRadius: "8px",
   };
 
   const serveContentStyle = {
@@ -56,6 +57,7 @@ const DesktopLayout = () => {
     marginLeft: "16px",
     border: "1px solid #ddd",
     padding: 2,
+    borderRadius: "8px",
   };
 
   return (

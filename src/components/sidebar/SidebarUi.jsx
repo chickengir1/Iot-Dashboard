@@ -7,6 +7,8 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
+  BottomNavigation,
+  BottomNavigationAction,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -14,8 +16,42 @@ import PersonIcon from "@mui/icons-material/Person";
 import DescriptionIcon from "@mui/icons-material/Description";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { useMediaQuery } from "@mui/material";
 
-const sidebarUi = () => {
+const menuItems = [
+  { text: "Home", icon: <HomeIcon />, selected: true },
+  { text: "Device", icon: <SettingsIcon />, selected: false },
+  { text: "Profile", icon: <PersonIcon />, selected: false },
+  { text: "News", icon: <DescriptionIcon />, selected: false },
+  { text: "Todo list", icon: <CheckBoxIcon />, selected: false },
+];
+
+const MobileSidebar = () => {
+  return (
+    <BottomNavigation
+      sx={{
+        width: "100%",
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        boxShadow: "0 -2px 10px rgba(0,0,0,0.1)",
+      }}
+      showLabels
+    >
+      {menuItems.map((item, index) => (
+        <BottomNavigationAction
+          key={index}
+          label={item.text}
+          icon={item.icon}
+          sx={{ minWidth: 0 }}
+        />
+      ))}
+    </BottomNavigation>
+  );
+};
+
+const DesktopSidebar = () => {
   const sidebarStyle = {
     width: "250px",
     display: "flex",
@@ -23,6 +59,7 @@ const sidebarUi = () => {
     justifyContent: "space-between",
     padding: "16px 8px",
     border: "1px solid #ddd",
+    borderRadius: "8px",
   };
 
   const logoStyle = {
@@ -32,7 +69,6 @@ const sidebarUi = () => {
     color: "#d23f57",
   };
 
-  //호버 애니메이션임.
   const listItemStyle = {
     borderRadius: "8px",
     "&:hover": {
@@ -43,14 +79,6 @@ const sidebarUi = () => {
   const selectedItemStyle = {
     backgroundColor: "#eef2f6",
   };
-
-  const menuItems = [
-    { text: "Home", icon: <HomeIcon />, selected: true },
-    { text: "Device", icon: <SettingsIcon />, selected: false },
-    { text: "Profile", icon: <PersonIcon />, selected: false },
-    { text: "News", icon: <DescriptionIcon />, selected: false },
-    { text: "Todo list", icon: <CheckBoxIcon />, selected: false },
-  ];
 
   return (
     <Box sx={sidebarStyle}>
@@ -78,4 +106,10 @@ const sidebarUi = () => {
   );
 };
 
-export default sidebarUi;
+const SidebarUi = () => {
+  const isMobile = useMediaQuery("(max-width:412px)");
+
+  return isMobile ? <MobileSidebar /> : <DesktopSidebar />;
+};
+
+export default SidebarUi;
