@@ -15,7 +15,6 @@ import Sidebar from "../components/sidebar/sidebarcontainer";
 const MobileLayout = () => {
   const mobileLayout = {
     padding: 2,
-    width: "100%",
     margin: "0 auto",
   };
 
