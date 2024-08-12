@@ -14,13 +14,24 @@ export const MobileLayout = () => {
     gap: 2,
   };
 
+  const buttonStyle = {
+    borderColor: "#000",
+    color: "#000",
+    height: "150px",
+    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+  };
+
   return (
     <Box sx={mobileLayout}>
       <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
-      <Button variant="outlined">아이디 찾기</Button>
-      <Button variant="outlined">비밀번호 찾기</Button>
+      <Button variant="outlined" sx={buttonStyle}>
+        아이디 찾기
+      </Button>
+      <Button variant="outlined" sx={buttonStyle}>
+        비밀번호 찾기
+      </Button>
       <Box
         sx={{
           display: "flex",
@@ -56,6 +67,14 @@ export const DesktopLayout = () => {
     flexDirection: "column",
     gap: 2,
   };
+
+  const buttonStyle = {
+    borderColor: "#000",
+    color: "#000",
+    height: "150px",
+    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+  };
+
   return (
     <Box sx={desktopLayout}>
       <Box sx={desktopInnerLayout}>
@@ -65,8 +84,12 @@ export const DesktopLayout = () => {
         <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
           <img alt="이미지" />
         </Box>
-        <Button variant="outlined">아이디 찾기</Button>
-        <Button variant="outlined">비밀번호 찾기</Button>
+        <Button variant="outlined" sx={buttonStyle}>
+          아이디 찾기
+        </Button>
+        <Button variant="outlined" sx={buttonStyle}>
+          비밀번호 찾기
+        </Button>
         <Box
           sx={{
             display: "flex",
