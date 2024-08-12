@@ -14,7 +14,7 @@ const UserCardUi = () => {
   };
 
   const badgeContainerStyle = {
-    border: "1px solid #aaa",
+    border: "1px solid #ddd",
     padding: 1,
     borderRadius: "50%",
     display: "flex",
@@ -28,7 +28,7 @@ const UserCardUi = () => {
         <CardContent>
           <Box sx={userCardLayout}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Avatar>icon</Avatar>
+              <Avatar sx={{ padding: "4px" }}>icon</Avatar>
               <Box sx={{ ml: 2 }}>
                 <Typography variant="body1">유저 ID</Typography>
                 <Typography variant="body2">good morning!</Typography>
