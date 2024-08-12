@@ -13,9 +13,14 @@ import Newsletter from "../components/newsletter/NewsletterContainer";
 import Sidebar from "../components/sidebar/sidebarcontainer";
 
 const MobileLayout = () => {
+  /*모바일 레이아웃도 테마로 뺄 수 있는데 회의 해봐야함*/
   const mobileLayout = {
     padding: 2,
     margin: "0 auto",
+    maxWidth: "412px",
+    display: "flex",
+    flexDirection: "column",
+    gap: 1,
   };
 
   return (
