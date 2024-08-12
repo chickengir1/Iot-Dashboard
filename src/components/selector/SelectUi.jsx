@@ -5,19 +5,17 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  TextField,
   Typography,
 } from "@mui/material";
 import React from "react";
 
 const SelectUi = () => {
   const inputStyle = {
-    "label + &": {
-      marginTop: 2,
-    },
-    borderRadius: 2,
-    padding: "4px 12px",
     backgroundColor: "#fff",
-    border: "1px solid #d9d9d9",
+    borderColor: "#d9d9d9",
+    borderRadius: 1,
+    height: "40px",
     "&:hover": {
       borderColor: "gray",
     },
@@ -28,7 +26,7 @@ const SelectUi = () => {
 
   return (
     <Box>
-      <FormControl
+      <Box
         fullWidth
         sx={{
           display: "flex",
@@ -37,13 +35,15 @@ const SelectUi = () => {
           justifyContent: "space-between",
         }}
       >
-        <InputLabel shrink htmlFor={"email"}>
+        {/* <InputLabel shrink htmlFor={"email"}>
           {"이메일"}
-        </InputLabel>
-        <InputBase
+        </InputLabel> */}
+        <TextField
           placeholder={"email"}
           id={"email"}
-          sx={inputStyle}
+          InputProps={{
+            sx: inputStyle,
+          }}
           fullWidth
         />
         <Typography>@</Typography>
@@ -55,7 +55,7 @@ const SelectUi = () => {
           <MenuItem value={10}>naver.com</MenuItem>
           <MenuItem value={20}>google.com</MenuItem>
         </Select>
-      </FormControl>
+      </Box>
       <Typography sx={{ color: "#9ACD32" }}>{"233"}</Typography>
     </Box>
   );

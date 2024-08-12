@@ -1,15 +1,12 @@
-import { FormControl, InputBase, InputLabel, Typography } from "@mui/material";
+import { Box, InputLabel, TextField, Typography } from "@mui/material";
 import React from "react";
 
 const InputUi = ({ id, label, placeholder, error }) => {
   const inputStyle = {
-    "label + &": {
-      marginTop: 2,
-    },
-    borderRadius: 2,
-    padding: "4px 12px",
     backgroundColor: "#fff",
-    border: "1px solid #d9d9d9",
+    borderColor: "#d9d9d9",
+    borderRadius: 1,
+    height: "40px",
     "&:hover": {
       borderColor: "gray",
     },
@@ -19,13 +16,17 @@ const InputUi = ({ id, label, placeholder, error }) => {
   };
 
   return (
-    <FormControl fullWidth>
+    <Box sx={{ display: "flex", width: "100%", flexDirection: "column" }}>
       <InputLabel shrink htmlFor={id}>
         {label}
       </InputLabel>
-      <InputBase placeholder={placeholder} id={id} sx={inputStyle} />
+      <TextField
+        placeholder={placeholder}
+        id={id}
+        InputProps={{ sx: inputStyle }}
+      />
       <Typography sx={{ color: "#9ACD32" }}>{error}</Typography>
-    </FormControl>
+    </Box>
   );
 };
 
