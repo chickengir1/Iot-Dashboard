@@ -7,7 +7,7 @@ const InputUi = ({ id, label, placeholder, error }) => {
       marginTop: 2,
     },
     borderRadius: 2,
-    padding: "10px 12px",
+    padding: "4px 12px",
     backgroundColor: "#fff",
     border: "1px solid #d9d9d9",
     "&:hover": {
