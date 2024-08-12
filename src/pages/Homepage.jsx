@@ -45,18 +45,18 @@ const DesktopLayout = () => {
     flexGrow: 1,
     padding: 2,
     display: "flex",
-    marginLeft: "16px",
+    marginLeft: 2,
     flexDirection: "column",
     border: "1px solid #ddd",
-    borderRadius: "8px",
+    borderRadius: 2,
   };
 
   const serveContentStyle = {
     width: "400px",
-    marginLeft: "16px",
+    marginLeft: 2,
     border: "1px solid #ddd",
     padding: 2,
-    borderRadius: "8px",
+    borderRadius: 2,
   };
 
   return (
