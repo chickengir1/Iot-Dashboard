@@ -53,7 +53,7 @@ const buttonComponents = () => (
       startIcon={<LogoutIcon />}
       sx={buttonStyle}
     >
-      로그아웃 하기
+      로그아웃
     </Button>
     <Button
       variant="contained"
@@ -61,7 +61,7 @@ const buttonComponents = () => (
       startIcon={<DeleteIcon />}
       sx={buttonStyle}
     >
-      회원 탈퇴하기
+      회원 탈퇴
     </Button>
   </Box>
 );
