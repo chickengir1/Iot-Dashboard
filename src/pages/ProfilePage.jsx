@@ -82,6 +82,15 @@ const MobileProfile = () => {
         회원 정보
       </Typography>
       <UserCard />
+      <Box
+        sx={{
+          border: "1px solid #ddd",
+          borderRadius: 1,
+          height: "100px",
+        }}
+      >
+        {/*팀 이미지*/}
+      </Box>
       <Typography variant="h6" sx={{ mb: 1 }}>
         계정 설정
       </Typography>
