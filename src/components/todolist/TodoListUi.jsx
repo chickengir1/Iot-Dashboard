@@ -15,6 +15,7 @@ const TodoListUi = () => {
     alignItems: "center",
     justifyContent: "center",
   };
+
   return (
     <Box sx={{ mb: 2 }}>
       <Typography variant="subtitle1">To do list</Typography>
