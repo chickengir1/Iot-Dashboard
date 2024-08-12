@@ -44,9 +44,18 @@ const DesktopLayout = () => {
 
   const mainContentStyle = {
     flexGrow: 1,
+    padding: 2,
     display: "flex",
     marginLeft: "16px",
     flexDirection: "column",
+    border: "1px solid #ddd",
+  };
+
+  const serveContentStyle = {
+    width: "400px",
+    marginLeft: "16px",
+    border: "1px solid #ddd",
+    padding: 2,
   };
 
   return (
@@ -62,7 +71,7 @@ const DesktopLayout = () => {
         <Weather />
         <TodoList />
       </Box>
-      <Box sx={{ width: "400px", ml: 2 }}>
+      <Box sx={serveContentStyle}>
         <Weather />
         <Newsletter />
       </Box>
