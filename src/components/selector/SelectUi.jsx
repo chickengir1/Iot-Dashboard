@@ -40,10 +40,15 @@ const SelectUi = () => {
         <InputLabel shrink htmlFor={"email"}>
           {"이메일"}
         </InputLabel>
-        <InputBase placeholder={"email"} id={"email"} sx={inputStyle} />
+        <InputBase
+          placeholder={"email"}
+          id={"email"}
+          sx={inputStyle}
+          fullWidth
+        />
         <Typography>@</Typography>
 
-        <Select value={10} sx={{ height: "40px", minWidth: "150px" }}>
+        <Select value={10} sx={{ height: "40px" }} fullWidth>
           <MenuItem value="None">
             <em>123</em>
           </MenuItem>
