@@ -73,31 +73,25 @@ const MobileProfile = () => {
     maxWidth: "412px",
     display: "flex",
     flexDirection: "column",
+    paddingBottom: "80px",
     gap: 1,
   };
 
   return (
-    <Box sx={mobileLayout}>
-      <Typography variant="h6" sx={{ mb: 1 }}>
-        회원 정보
-      </Typography>
-      <UserCard />
-      <Box
-        sx={{
-          border: "1px solid #ddd",
-          borderRadius: 1,
-          height: "100px",
-        }}
-      >
-        {/*팀 이미지*/}
+    <>
+      <Box sx={mobileLayout}>
+        <Typography variant="h6" sx={{ mb: 1 }}>
+          회원 정보
+        </Typography>
+        <UserCard />
+        <Typography variant="h6" sx={{ mb: 1 }}>
+          계정 설정
+        </Typography>
+        <List>{listComponents()}</List>
+        {buttonComponents()}
       </Box>
-      <Typography variant="h6" sx={{ mb: 1 }}>
-        계정 설정
-      </Typography>
-      <List>{listComponents()}</List>
-      {buttonComponents()}
       <Sidebar />
-    </Box>
+    </>
   );
 };
 

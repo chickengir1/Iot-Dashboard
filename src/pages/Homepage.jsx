@@ -20,6 +20,7 @@ const MobileLayout = () => {
     maxWidth: "412px",
     display: "flex",
     flexDirection: "column",
+    paddingBottom: "80px",
     gap: 1,
   };
 
