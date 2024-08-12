@@ -4,13 +4,13 @@ import {
   Typography,
   Card,
   CardContent,
-  Drawer,
   useMediaQuery,
 } from "@mui/material";
 import Usercard from "../components/usercard/UserCardContainer";
 import Weather from "../components/weather/WeatherContainer";
 import TodoList from "../components/todolist/TodoListContainer";
 import Newsletter from "../components/newsletter/NewsletterContainer";
+import Sidebar from "../components/sidebar/sidebarcontainer";
 
 const MobileLayout = () => {
   const mobileLayout = {
@@ -38,39 +38,20 @@ const MobileLayout = () => {
 const DesktopLayout = () => {
   const desktopLayout = {
     padding: 2,
-    width: "1280px",
     margin: "0 auto",
     display: "flex",
-  };
-
-  const sidebarStyle = {
-    width: "240px",
-    flexShrink: 0,
   };
 
   const mainContentStyle = {
     flexGrow: 1,
     display: "flex",
+    marginLeft: "16px",
     flexDirection: "column",
   };
 
   return (
     <Box sx={desktopLayout}>
-      {/* 임시 사이드바 나중에 컴포넌트로 분리 */}
-      <Drawer
-        sx={sidebarStyle}
-        variant="permanent"
-        anchor="left"
-        PaperProps={{
-          sx: { width: "240px", boxSizing: "border-box" },
-        }}
-      >
-        <Box>
-          <Typography variant="h6" sx={{ p: 2 }}>
-            임시 사이드바
-          </Typography>
-        </Box>
-      </Drawer>
+      <Sidebar />
       <Box sx={mainContentStyle}>
         <Usercard />
         <Card sx={{ mb: 2 }}>
@@ -81,7 +62,7 @@ const DesktopLayout = () => {
         <Weather />
         <TodoList />
       </Box>
-      <Box sx={{ width: "300px", ml: 2 }}>
+      <Box sx={{ width: "400px", ml: 2 }}>
         <Weather />
         <Newsletter />
       </Box>
