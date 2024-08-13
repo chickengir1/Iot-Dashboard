@@ -227,6 +227,7 @@ export const DesktopNewsList = () => {
     </Box>
   );
 };
+
 const NewsListPage = () => {
   const isDesktop = useMediaQuery("(min-width:1280px)");
   return isDesktop ? <DesktopNewsList /> : <MobileNewsList />;
