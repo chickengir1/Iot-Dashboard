@@ -111,7 +111,37 @@ export const MobileDeviceList = () => {
           />
         ))}
       </Box>
-
+      <Typography align="center" variant="h5">
+        데일리 소식
+      </Typography>
+      <Card
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          padding: 1,
+          borderRadius: 2,
+          boxShadow: 1,
+          maxWidth: 345,
+          minWidth: 345,
+        }}
+      >
+        <CardMedia
+          component="img"
+          height="140"
+          width="140"
+          sx={{ border: "solid 1px #d9d9d9" }}
+          image={"image"}
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {"title"}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {"content"}
+          </Typography>
+        </CardContent>
+      </Card>
       <Sidebar />
     </Box>
   );
