@@ -1,14 +1,11 @@
 import {
   Box,
-  FormControl,
-  InputBase,
   InputLabel,
   MenuItem,
   Select,
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
 
 const SelectUi = () => {
   const inputStyle = {

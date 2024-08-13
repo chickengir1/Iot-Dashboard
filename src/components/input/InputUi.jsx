@@ -1,5 +1,4 @@
 import { Box, InputLabel, TextField, Typography } from "@mui/material";
-import React from "react";
 
 const InputUi = ({ id, label, placeholder, error }) => {
   const inputStyle = {

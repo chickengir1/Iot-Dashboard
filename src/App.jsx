@@ -15,12 +15,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/findpw" element={<FindPW />} />
-          <Route path="/findid" element={<FindID />} />
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/forgot-password" element={<FindPW />} />
+          <Route path="/find-userid" element={<FindID />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/findaccount" element={<FindAccount />} />
+          <Route path="/find-account" element={<FindAccount />} />
         </Routes>
       </Router>
     </ErrorBoundary>
