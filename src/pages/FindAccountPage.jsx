@@ -1,8 +1,6 @@
 import React from "react";
 import { Box, Button, Link, Typography, useMediaQuery } from "@mui/material";
 import { CheckCircleOutlineOutlined } from "@mui/icons-material";
-import InputUi from "../components/input/InputUi";
-import SelectUi from "../components/selector/SelectUi";
 
 export const MobileLayout = () => {
   const mobileLayout = {
