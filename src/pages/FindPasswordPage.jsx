@@ -111,10 +111,10 @@ export const DesktopLayout = () => {
   );
 };
 
-const FindPWPage = () => {
+const FindPasswordPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
 
   return isDesktop ? <DesktopLayout /> : <MobileLayout />;
 };
 
-export default FindPWPage;
+export default FindPasswordPage;

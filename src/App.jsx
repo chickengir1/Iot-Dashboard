@@ -5,7 +5,7 @@ import ErrorBoundary from "./error/ErrorBoundary";
 import Login from "./pages/Loginpage";
 import SignUp from "./pages/SignUpPage";
 import Profile from "./pages/ProfilePage";
-import FindPW from "./pages/FindPWPage";
+import FindPW from "./pages/FindPasswordPage";
 import FindID from "./pages/FindIDPage";
 import FindAccount from "./pages/FindAccountPage";
 

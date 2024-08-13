@@ -1,10 +1,21 @@
 import React from "react";
 import { Box, Button, Link, Typography, useMediaQuery } from "@mui/material";
-import {
-  CheckCircleOutlineOutlined,
-  LanguageOutlined,
-} from "@mui/icons-material";
+import { CheckCircleOutlineOutlined } from "@mui/icons-material";
 import InputUi from "../components/input/InputUi";
+import googleLogo from "../assets/google-logo.svg";
+import appleLogo from "../assets/apple-logo.svg";
+
+export const GoogleIcon = () => {
+  return (
+    <img src={googleLogo} alt="Apple Logo" style={{ width: 24, height: 24 }} />
+  );
+};
+
+export const AppleIcon = () => {
+  return (
+    <img src={appleLogo} alt="Apple Logo" style={{ width: 24, height: 24 }} />
+  );
+};
 
 export const MobileLayout = () => {
   const mobileLayout = {
@@ -51,7 +62,7 @@ export const MobileLayout = () => {
         }}
       >
         <Button
-          startIcon={<LanguageOutlined />}
+          startIcon={<GoogleIcon />}
           variant="contained"
           fullWidth
           sx={{ backgroundColor: "#fff", color: "#000" }}
@@ -59,7 +70,7 @@ export const MobileLayout = () => {
           Google
         </Button>
         <Button
-          startIcon={<LanguageOutlined />}
+          startIcon={<AppleIcon />}
           variant="contained"
           fullWidth
           sx={{ backgroundColor: "#fff", color: "#000" }}
@@ -142,7 +153,7 @@ export const DesktopLayout = () => {
           }}
         >
           <Button
-            startIcon={<LanguageOutlined />}
+            startIcon={<GoogleIcon />}
             variant="contained"
             fullWidth
             sx={{ backgroundColor: "#fff", color: "#000" }}
@@ -150,7 +161,7 @@ export const DesktopLayout = () => {
             Google
           </Button>
           <Button
-            startIcon={<LanguageOutlined />}
+            startIcon={<AppleIcon />}
             variant="contained"
             fullWidth
             sx={{ backgroundColor: "#fff", color: "#000" }}
