@@ -8,6 +8,7 @@ import Profile from "./pages/ProfilePage";
 import FindPW from "./pages/FindPWPage";
 import FindID from "./pages/FindIDPage";
 import FindAccount from "./pages/FindAccountPage";
+import DeviceList from "./pages/DeviceList";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/findaccount" element={<FindAccount />} />
+          <Route path="/profile/:userid/devices" element={<DeviceList />} />
         </Routes>
       </Router>
     </ErrorBoundary>

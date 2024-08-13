@@ -113,7 +113,8 @@ const DesktopProfile = () => {
   };
 
   const serveContentStyle = {
-    width: "400px",
+    minWidth: "220px",
+    maxWidth: "220px",
     marginLeft: 2,
     border: "1px solid #ddd",
     padding: 2,

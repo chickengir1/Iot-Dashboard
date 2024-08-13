@@ -52,7 +52,8 @@ const MobileSidebar = () => {
 
 const DesktopSidebar = () => {
   const sidebarStyle = {
-    width: "250px",
+    minWidth: "220px",
+    maxWidth: "220px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
