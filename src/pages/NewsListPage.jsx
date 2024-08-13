@@ -38,6 +38,66 @@ const datas = [
   },
 ];
 
+const SuperBigNewsCard = ({ image, title, content }) => {
+  const superBigCardStyle = {
+    display: "flex",
+    flexDirection: "row",
+    padding: 1,
+    borderRadius: 2,
+    boxShadow: 1,
+    width: "100%",
+  };
+
+  const titleStyle = {
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    height: 30,
+  };
+
+  const contentStyle = {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    WebkitLineClamp: 8,
+    WebkitBoxOrient: "vertical",
+    height: 160,
+  };
+
+  return (
+    <Card sx={superBigCardStyle}>
+      <CardActionArea sx={{ display: "flex", alignItems: "center" }}>
+        <CardMedia
+          component="img"
+          sx={{
+            width: 200,
+            height: 200,
+            border: "solid 1px #d9d9d9",
+            objectFit: "cover",
+            borderRadius: 2,
+          }}
+          image={image}
+          alt="green iguana"
+        />
+
+        <CardContent
+          sx={{
+            flex: 1,
+          }}
+        >
+          <Typography gutterBottom variant="h5" component="div" sx={titleStyle}>
+            {title}
+          </Typography>
+
+          <Typography variant="body2" color="text.secondary" sx={contentStyle}>
+            {content}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
+};
+
 const BigNewsCard = ({ image, title, content }) => {
   // 카드 작명 구림. 카드 내부 배치 비율 조절
   const bigCardStyle = {
@@ -46,8 +106,8 @@ const BigNewsCard = ({ image, title, content }) => {
     padding: 1,
     borderRadius: 2,
     boxShadow: 1,
-    maxWidth: 345,
-    minWidth: 345,
+    maxWidth: 360,
+    minWidth: 360,
   };
 
   const titleStyle = {
@@ -221,9 +281,49 @@ export const MobileNewsList = () => {
 };
 
 export const DesktopNewsList = () => {
+  const desktopLayout = {
+    padding: 2,
+    margin: "0 auto",
+    display: "flex",
+  };
+
+  const mainContentStyle = {
+    flexGrow: 1,
+    padding: 2,
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    marginLeft: 2,
+    flexDirection: "column",
+    border: "1px solid #ddd",
+    borderRadius: 2,
+    gap: 2,
+  };
+
+  const serveContentStyle = {
+    minWidth: "220px",
+    maxWidth: "220px",
+    marginLeft: 2,
+    border: "1px solid #ddd",
+    padding: 2,
+    borderRadius: 2,
+  };
+
   return (
-    <Box>
+    <Box sx={desktopLayout}>
       <Sidebar />
+      <Box sx={mainContentStyle}>
+        <SuperBigNewsCard image={"."} title={"title"} content={`content`} />
+        {datas.map((item, index) => (
+          <SmallNewsCard
+            key={index}
+            image={item.image}
+            title={item.title}
+            content={item.content}
+          />
+        ))}
+      </Box>
+      <Box sx={serveContentStyle}>{/* 광고 이미지 */}</Box>
     </Box>
   );
 };
