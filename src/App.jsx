@@ -11,6 +11,7 @@ import FindAccount from "./pages/FindAccountPage";
 import DeviceList from "./pages/DeviceList";
 import NewsList from "./pages/NewsListPage";
 import DeviceAdd from "./pages/DeviceAddPage";
+import TodoList from "./pages/TodoListPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/profile/:userid/adddevices" element={<DeviceAdd />} />
           <Route path="/find-account" element={<FindAccount />} />
           <Route path="/newslist" element={<NewsList />} />
+          <Route path="/todolist" element={<TodoList />} />
         </Routes>
       </Router>
     </ErrorBoundary>
