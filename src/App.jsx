@@ -10,6 +10,7 @@ import FindID from "./pages/FindIDPage";
 import FindAccount from "./pages/FindAccountPage";
 import DeviceList from "./pages/DeviceList";
 import NewsList from "./pages/NewsListPage";
+import DeviceAdd from "./pages/DeviceAddPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:userid/devices" element={<DeviceList />} />
+          <Route path="/profile/:userid/adddevices" element={<DeviceAdd />} />
           <Route path="/find-account" element={<FindAccount />} />
           <Route path="/newslist" element={<NewsList />} />
         </Routes>
