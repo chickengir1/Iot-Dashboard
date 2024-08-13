@@ -46,7 +46,15 @@ const SelectUi = () => {
           }}
           fullWidth
         />
-        <Typography>@</Typography>
+        <Box
+          sx={{
+            width: "30px",
+            height: "24px",
+            margin: "8px",
+          }}
+        >
+          @
+        </Box>
 
         <Select value={10} sx={{ height: "40px" }} fullWidth>
           <MenuItem value="None">
