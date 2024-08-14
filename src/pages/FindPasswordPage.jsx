@@ -4,18 +4,35 @@ import { CheckCircleOutlineOutlined } from "@mui/icons-material";
 import InputUi from "../components/input/InputUi";
 import SelectUi from "../components/selector/SelectUi";
 
-export const MobileLayout = () => {
-  const mobileLayout = {
+const styles = {
+  mobileLayout: {
     padding: 2,
     margin: "0 auto",
     border: "solid 1px #ddd",
     display: "flex",
     flexDirection: "column",
     gap: 2,
-  };
-
+  },
+  desktopLayout: {
+    width: "600px",
+    margin: "0 auto",
+    border: "solid 1px #ddd",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    borderRadius: 3,
+    padding: 2,
+  },
+  desktopInnerLayout: {
+    width: "500px",
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+  },
+};
+export const MobileLayout = () => {
   return (
-    <Box sx={mobileLayout}>
+    <Box sx={styles.mobileLayout}>
       <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
@@ -52,26 +69,9 @@ export const MobileLayout = () => {
 };
 
 export const DesktopLayout = () => {
-  const desktopLayout = {
-    width: "600px",
-    margin: "0 auto",
-    border: "solid 1px #ddd",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    borderRadius: 3,
-    padding: 2,
-  };
-
-  const desktopInnerLayout = {
-    width: "500px",
-    display: "flex",
-    flexDirection: "column",
-    gap: 2,
-  };
   return (
-    <Box sx={desktopLayout}>
-      <Box sx={desktopInnerLayout}>
+    <Box sx={styles.desktopLayout}>
+      <Box sx={styles.desktopInnerLayout}>
         <Box sx={{ border: "solid 1px #ddd", height: "50px" }}>
           <img alt="로고" />
         </Box>
