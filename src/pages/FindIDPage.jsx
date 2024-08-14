@@ -52,11 +52,16 @@ export const MobileLayout = () => {
       <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
-      <SelectUi />
       <InputUi
-        id={"password"}
-        label={"비밀번호"}
-        placeholder={"********"}
+        id={"username"}
+        label={"이름"}
+        placeholder={"홍길동"}
+        error={"error"}
+      />
+      <InputUi
+        id={"phoneNumber"}
+        label={"전화번호"}
+        placeholder={"01012341234"}
         error={"error"}
       />
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -87,11 +92,16 @@ export const DesktopLayout = () => {
         <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
           <img alt="이미지" />
         </Box>
-        <SelectUi />
         <InputUi
-          id={"password"}
-          label={"비밀번호"}
-          placeholder={"********"}
+          id={"username"}
+          label={"이름"}
+          placeholder={"홍길동"}
+          error={"error"}
+        />
+        <InputUi
+          id={"phoneNumber"}
+          label={"전화번호"}
+          placeholder={"01012341234"}
           error={"error"}
         />
         <Box sx={{ display: "flex", alignItems: "center" }}>
