@@ -15,6 +15,7 @@ import {
   RedRoundedButton,
   ServeContent,
   MobileLayout,
+  MainLayout,
 } from "../styles/index";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -23,17 +24,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ArrowForward } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/sidebarcontainer";
-
-// 페이지 고유 스타일
-const mainContentStyle = {
-  flexGrow: 1,
-  padding: 2,
-  display: "flex",
-  marginLeft: 2,
-  flexDirection: "column",
-  border: "1px solid #ddd",
-  borderRadius: 2,
-};
 
 const listItems = [
   { text: "프로필 정보 수정", icon: <EditIcon /> },
@@ -83,7 +73,7 @@ const MobileProfile = () => (
 const DesktopProfile = () => (
   <DesktopLayout>
     <Sidebar />
-    <Box sx={mainContentStyle}>
+    <MainLayout>
       <Typography variant="h5" sx={{ mb: 1 }}>
         회원 정보
       </Typography>
@@ -95,7 +85,7 @@ const DesktopProfile = () => (
         <ListComponents />
       </List>
       <ButtonComponents />
-    </Box>
+    </MainLayout>
     <ServeContent />
   </DesktopLayout>
 );

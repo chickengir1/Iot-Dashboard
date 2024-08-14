@@ -12,6 +12,7 @@ import {
   BlueRoundedButton,
   ServeContent,
   MobileLayout,
+  MainLayout,
 } from "../styles/index";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -31,15 +32,6 @@ const devices = [
 ];
 
 const styles = {
-  mainContentStyle: {
-    flexGrow: 1,
-    padding: 2,
-    display: "flex",
-    marginLeft: 2,
-    flexDirection: "column",
-    border: "1px solid #ddd",
-    borderRadius: 2,
-  },
   deviceStyled: {
     display: "flex",
     alignItems: "center",
@@ -98,7 +90,7 @@ const MobileDeviceList = () => (
 const DesktopDeviceList = () => (
   <DesktopLayout>
     <Sidebar />
-    <Box sx={styles.mainContentStyle}>
+    <MainLayout>
       <UserCard />
       <Typography textAlign="center" variant="h6" gutterBottom>
         {mainTitle}
@@ -117,7 +109,7 @@ const DesktopDeviceList = () => (
       >
         디바이스 추가하기
       </BlueRoundedButton>
-    </Box>
+    </MainLayout>
     <ServeContent />
   </DesktopLayout>
 );

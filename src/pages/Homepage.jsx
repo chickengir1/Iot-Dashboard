@@ -6,24 +6,14 @@ import {
   CardContent,
   useMediaQuery,
 } from "@mui/material";
-import { DesktopLayout, MobileLayout } from "../styles/index";
+import { DesktopLayout, MobileLayout, MainLayout } from "../styles/index";
 import Usercard from "../components/usercard/UserCardContainer";
 import Weather from "../components/weather/WeatherContainer";
 import TodoList from "../components/todolist/TodoListContainer";
 import Newsletter from "../components/newsletter/NewsletterContainer";
 import Sidebar from "../components/sidebar/sidebarcontainer";
 
-// 페이지 고유 스타일
 const styles = {
-  mainContentStyle: {
-    flexGrow: 1,
-    padding: 2,
-    display: "flex",
-    marginLeft: 2,
-    flexDirection: "column",
-    border: "1px solid #ddd",
-    borderRadius: 2,
-  },
   serveContentStyle: {
     width: "400px",
     marginLeft: 2,
@@ -57,9 +47,9 @@ const MobileHomeLayout = () => (
 const DesktopHomeLayout = () => (
   <DesktopLayout>
     <Sidebar />
-    <Box sx={styles.mainContentStyle}>
+    <MainLayout>
       <MainComponent />
-    </Box>
+    </MainLayout>
     <Box sx={styles.serveContentStyle}>
       <Typography variant="subtitle1">Today Weather</Typography>
       <Weather />

@@ -14,6 +14,7 @@ import {
   BlueRoundedButton,
   ServeContent,
   MobileLayout,
+  MainLayout,
 } from "../styles/index";
 import UserCard from "../components/usercard/UserCardContainer";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -38,20 +39,14 @@ const styles = {
     borderRadius: "50%",
     padding: 1,
   },
-
-  mainContent: {
-    flexGrow: 1,
-    padding: 4,
-    marginLeft: 2,
+  inputUiStyle: {
     display: "flex",
     flexDirection: "column",
     gap: 2,
-    border: "1px solid #ddd",
-    borderRadius: 2,
   },
   addButtonStyle: {
     minHeight: "75px",
-    marginBottom: 2,
+    marginTop: 2,
   },
 };
 
@@ -78,13 +73,6 @@ const AddDeviceSection = () => (
       </Badge>
       <Typography variant="body1">장치 이미지 등록하기</Typography>
     </Box>
-    <BlueRoundedButton
-      sx={styles.addButtonStyle}
-      fullWidth
-      endIcon={<AddCircleOutlineIcon />}
-    >
-      디바이스 추가하기
-    </BlueRoundedButton>
   </>
 );
 
@@ -92,13 +80,20 @@ const ContentSection = () => (
   <>
     <UserCard />
     <AddDeviceSection />
-    <InputUi label="장치 이름 등록하기" placeholder="name" />
-    <InputUi label="장치 설명 등록하기" placeholder="description" />
-    <Card>
-      <CardContent>
-        <Typography variant="body2">장치등록 주의 사항</Typography>
-      </CardContent>
+    <Box sx={styles.inputUiStyle}>
+      <InputUi label="장치 이름 등록하기" placeholder="name" />
+      <InputUi label="장치 설명 등록하기" placeholder="description" />
+    </Box>
+    <Card sx={styles.addButtonStyle}>
+      <CardContent>장치 등록 주의사항</CardContent>
     </Card>
+    <BlueRoundedButton
+      sx={styles.addButtonStyle}
+      fullWidth
+      endIcon={<AddCircleOutlineIcon />}
+    >
+      디바이스 추가하기
+    </BlueRoundedButton>
   </>
 );
 
@@ -115,9 +110,9 @@ const MobileDeviceAdd = () => (
 const DesktopDeviceAdd = () => (
   <DesktopLayout>
     <Sidebar />
-    <Box sx={styles.mainContent}>
+    <MainLayout>
       <ContentSection />
-    </Box>
+    </MainLayout>
     <ServeContent />
   </DesktopLayout>
 );
