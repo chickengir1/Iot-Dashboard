@@ -1,5 +1,6 @@
 import React from "react";
 import { useMediaQuery, Box, Typography, Grid } from "@mui/material";
+import { DesktopLayout, ServeContent, MobileLayout } from "../styles/index";
 import Sidebar from "../components/sidebar/sidebarcontainer";
 
 const datas = [
@@ -25,6 +26,7 @@ const datas = [
   },
 ];
 
+// 페이지 고유 스타일
 const styles = {
   newsCard: {
     padding: 1,
@@ -33,16 +35,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     minWidth: "200px",
-  },
-  layout: {
-    padding: 2,
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "column",
-    paddingBottom: "80px",
-    gap: 2,
-    overflow: "auto",
-    height: "auto",
   },
   carouselLayout: {
     display: "flex",
@@ -57,15 +49,8 @@ const styles = {
     gap: 3,
     padding: 2,
     alignItems: "center",
-    overflowY: "auto",
   },
-  desktopLayout: {
-    padding: 2,
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "row",
-    height: "100vh",
-  },
+
   mainContent: {
     flexGrow: 1,
     padding: 2,
@@ -78,14 +63,6 @@ const styles = {
     borderRadius: 2,
     gap: 2,
     overflowY: "auto",
-  },
-  serveContent: {
-    minWidth: "220px",
-    maxWidth: "220px",
-    marginLeft: 2,
-    border: "1px solid #ddd",
-    padding: 2,
-    borderRadius: 2,
   },
 };
 
@@ -107,48 +84,49 @@ const NewsCard = ({ image, title }) => (
   </Box>
 );
 
-// 이 컴포넌트는 없어도 됨
-const NewsList = ({ layoutStyle, children }) => (
-  <Box sx={layoutStyle}>
-    <Sidebar />
-    {children}
-  </Box>
+const NewsSection = ({ title, layoutStyle, items }) => (
+  <>
+    <Typography align="center" variant="h5">
+      {title}
+    </Typography>
+    <Box sx={layoutStyle}>
+      {items.map((item, index) => (
+        <NewsCard key={index} image={item.image} title={item.title} />
+      ))}
+    </Box>
+  </>
 );
 
 const MobileNewsList = () => (
-  <NewsList layoutStyle={styles.layout}>
-    <Typography align="center" variant="h5">
-      핫 토픽!
-    </Typography>
-    <Box sx={styles.carouselLayout}>
-      {datas.map((item, index) => (
-        <NewsCard key={index} image={item.image} title={item.title} />
-      ))}
-    </Box>
-    <Typography align="center" variant="h5">
-      데일리 소식
-    </Typography>
-    <Box sx={styles.columnLayout}>
-      {datas.map((item, index) => (
-        <NewsCard key={index} image={item.image} title={item.title} />
-      ))}
-    </Box>
-  </NewsList>
+  <MobileLayout>
+    <Sidebar />
+    <NewsSection
+      title="핫 토픽!"
+      layoutStyle={styles.carouselLayout}
+      items={datas}
+    />
+    <NewsSection
+      title="데일리 소식"
+      layoutStyle={styles.columnLayout}
+      items={datas}
+    />
+  </MobileLayout>
 );
 
 const DesktopNewsList = () => (
-  <NewsList layoutStyle={styles.desktopLayout}>
+  <DesktopLayout>
+    <Sidebar />
     <Box sx={styles.mainContent}>
       <Grid container spacing={2}>
         {datas.map((item, index) => (
-          <Grid item key={index} xs={index % 3 === 0 ? 12 : 6}>
+          <Grid item key={index} xs={12} sm={6} md={index % 3 === 0 ? 12 : 6}>
             <NewsCard image={item.image} title={item.title} />
           </Grid>
         ))}
       </Grid>
     </Box>
-    <Box sx={styles.serveContent}>{/* 이미지 아무거나 */}</Box>
-  </NewsList>
+    <ServeContent />
+  </DesktopLayout>
 );
 
 const NewsListPage = () => {

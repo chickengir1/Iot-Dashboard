@@ -3,7 +3,6 @@ import UserCard from "../components/usercard/UserCardContainer";
 import {
   Box,
   Typography,
-  Button,
   Card,
   List,
   ListItem,
@@ -11,6 +10,12 @@ import {
   ListItemText,
   useMediaQuery,
 } from "@mui/material";
+import {
+  DesktopLayout,
+  RedRoundedButton,
+  ServeContent,
+  MobileLayout,
+} from "../styles/index";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -19,48 +24,15 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { ArrowForward } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/sidebarcontainer";
 
-const styles = {
-  buttonStyle: {
-    backgroundColor: "#FF8A8A",
-    border: "2px solid #fff",
-    borderRadius: 2,
-    "&:hover": {
-      backgroundColor: "#FF6F6F",
-    },
-  },
-  mobileLayout: {
-    padding: 2,
-    margin: "0 auto",
-    maxWidth: "412px",
-    display: "flex",
-    flexDirection: "column",
-    paddingBottom: "80px",
-    gap: 1,
-  },
-  desktopLayout: {
-    padding: 2,
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "row",
-    height: "96vh",
-  },
-  mainContentStyle: {
-    flexGrow: 1,
-    padding: 2,
-    display: "flex",
-    marginLeft: 2,
-    flexDirection: "column",
-    border: "1px solid #ddd",
-    borderRadius: 2,
-  },
-  serveContentStyle: {
-    minWidth: "220px",
-    maxWidth: "220px",
-    marginLeft: 2,
-    border: "1px solid #ddd",
-    padding: 2,
-    borderRadius: 2,
-  },
+// 페이지 고유 스타일
+const mainContentStyle = {
+  flexGrow: 1,
+  padding: 2,
+  display: "flex",
+  marginLeft: 2,
+  flexDirection: "column",
+  border: "1px solid #ddd",
+  borderRadius: 2,
 };
 
 const listItems = [
@@ -69,7 +41,7 @@ const listItems = [
   { text: "알람 설정", icon: <NotificationsIcon /> },
 ];
 
-const listComponents = () =>
+const ListComponents = () =>
   listItems.map((item, index) => (
     <Card sx={{ mb: 4 }} key={index}>
       <ListItem button>
@@ -80,65 +52,53 @@ const listComponents = () =>
     </Card>
   ));
 
-const buttonComponents = () => (
+const ButtonComponents = () => (
   <Box sx={{ display: "flex", gap: 2 }}>
-    <Button
-      variant="contained"
-      fullWidth
-      startIcon={<LogoutIcon />}
-      sx={styles.buttonStyle}
-    >
+    <RedRoundedButton variant="contained" fullWidth startIcon={<LogoutIcon />}>
       로그아웃
-    </Button>
-    <Button
-      variant="contained"
-      fullWidth
-      startIcon={<DeleteIcon />}
-      sx={styles.buttonStyle}
-    >
+    </RedRoundedButton>
+    <RedRoundedButton variant="contained" fullWidth startIcon={<DeleteIcon />}>
       회원 탈퇴
-    </Button>
+    </RedRoundedButton>
   </Box>
 );
 
-const MobileProfile = () => {
-  return (
-    <>
-      <Box sx={styles.mobileLayout}>
-        <Typography variant="h6" sx={{ mb: 1 }}>
-          회원 정보
-        </Typography>
-        <UserCard />
-        <Typography variant="h6" sx={{ mb: 1 }}>
-          계정 설정
-        </Typography>
-        <List>{listComponents()}</List>
-        {buttonComponents()}
-      </Box>
-      <Sidebar />
-    </>
-  );
-};
+const MobileProfile = () => (
+  <MobileLayout>
+    <Typography variant="h6" sx={{ mb: 1 }}>
+      회원 정보
+    </Typography>
+    <UserCard />
+    <Typography variant="h6" sx={{ mb: 1 }}>
+      계정 설정
+    </Typography>
+    <List>
+      <ListComponents />
+    </List>
+    <ButtonComponents />
+    <Sidebar />
+  </MobileLayout>
+);
 
-const DesktopProfile = () => {
-  return (
-    <Box sx={styles.desktopLayout}>
-      <Sidebar />
-      <Box sx={styles.mainContentStyle}>
-        <Typography variant="h5" sx={{ mb: 1 }}>
-          회원 정보
-        </Typography>
-        <UserCard />
-        <Typography variant="h5" sx={{ mb: 1 }}>
-          계정 설정
-        </Typography>
-        <List>{listComponents()}</List>
-        {buttonComponents()}
-      </Box>
-      <Box sx={styles.serveContentStyle}>{/*이미지 아무거나*/}</Box>
+const DesktopProfile = () => (
+  <DesktopLayout>
+    <Sidebar />
+    <Box sx={mainContentStyle}>
+      <Typography variant="h5" sx={{ mb: 1 }}>
+        회원 정보
+      </Typography>
+      <UserCard />
+      <Typography variant="h5" sx={{ mb: 1 }}>
+        계정 설정
+      </Typography>
+      <List>
+        <ListComponents />
+      </List>
+      <ButtonComponents />
     </Box>
-  );
-};
+    <ServeContent />
+  </DesktopLayout>
+);
 
 const ProfilePage = () => {
   const isDesktop = useMediaQuery("(min-width: 1280px)");

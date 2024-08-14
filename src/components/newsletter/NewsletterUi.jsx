@@ -4,7 +4,6 @@ import { Box, Typography, Card, CardContent } from "@mui/material";
 const NewsletterUi = () => {
   return (
     <Box sx={{ mb: 2 }}>
-      <Typography variant="subtitle1">News Letter</Typography>
       <Card sx={{ mb: 1 }}>
         <CardContent>
           <Typography variant="body2">Title</Typography>

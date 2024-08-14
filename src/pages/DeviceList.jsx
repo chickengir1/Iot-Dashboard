@@ -5,9 +5,14 @@ import {
   Typography,
   IconButton,
   Avatar,
-  Button,
   Grid,
 } from "@mui/material";
+import {
+  DesktopLayout,
+  BlueRoundedButton,
+  ServeContent,
+  MobileLayout,
+} from "../styles/index";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import UserCard from "../components/usercard/UserCardContainer";
@@ -26,14 +31,14 @@ const devices = [
 ];
 
 const styles = {
-  mobileLayout: {
+  mainContentStyle: {
+    flexGrow: 1,
     padding: 2,
-    margin: "0 auto",
-    maxWidth: "412px",
     display: "flex",
+    marginLeft: 2,
     flexDirection: "column",
-    paddingBottom: "80px",
-    gap: 1,
+    border: "1px solid #ddd",
+    borderRadius: 2,
   },
   deviceStyled: {
     display: "flex",
@@ -42,25 +47,22 @@ const styles = {
     borderRadius: 2,
     boxShadow: 1,
     bgcolor: "background.paper",
+    gap: 2,
   },
-  buttonStyle: {
-    backgroundColor: "#64B8FF",
-    color: "#fff",
-    borderRadius: 3,
-    padding: "10px 16px",
-    border: "2px solid #fff",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+  avatarStyle: {
+    width: 56,
+    height: 56,
+    bgcolor: "grey.300",
+  },
+  addButtonStyle: {
+    mt: 3,
+    minHeight: "75px",
   },
 };
 
 const DeviceItem = ({ name, description }) => (
   <Box sx={styles.deviceStyled}>
-    <Avatar
-      variant="rounded"
-      sx={{ width: 56, height: 56, bgcolor: "grey.300", marginRight: 2 }}
-    />
+    <Avatar variant="rounded" sx={styles.avatarStyle} />
     <Box flexGrow={1}>
       <Typography variant="body1" fontWeight="bold">
         {name}
@@ -76,7 +78,7 @@ const DeviceItem = ({ name, description }) => (
 );
 
 const MobileDeviceList = () => (
-  <Box sx={styles.mobileLayout}>
+  <MobileLayout>
     <UserCard />
     <Typography textAlign="center">{mainTitle}</Typography>
     {devices.map((device, index) => (
@@ -86,79 +88,43 @@ const MobileDeviceList = () => (
         description={device.description}
       />
     ))}
-    <Button
-      variant="contained"
+    <BlueRoundedButton
+      sx={styles.addButtonStyle}
       fullWidth
       endIcon={<AddCircleOutlineIcon />}
-      sx={styles.buttonStyle}
     >
       디바이스 추가하기
-    </Button>
+    </BlueRoundedButton>
     <Sidebar />
-  </Box>
+  </MobileLayout>
 );
 
-const DesktopDeviceList = () => {
-  const desktopLayout = {
-    padding: 2,
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "row",
-    height: "96vh",
-  };
-
-  const mainContentStyle = {
-    flexGrow: 1,
-    padding: 2,
-    display: "flex",
-    marginLeft: 2,
-    flexDirection: "column",
-    border: "1px solid #ddd",
-    borderRadius: 2,
-  };
-  const serveContentStyle = {
-    minWidth: "220px",
-    maxWidth: "220px",
-    marginLeft: 2,
-    border: "1px solid #ddd",
-    padding: 2,
-    borderRadius: 2,
-  };
-
-  const gridContainerStyle = {
-    padding: 2,
-  };
-
-  return (
-    <Box sx={desktopLayout}>
-      <Sidebar />
-      <Box sx={mainContentStyle}>
-        <UserCard />
-        <Typography textAlign="center" variant="h6" gutterBottom>
-          {mainTitle}
-        </Typography>
-        <Grid container spacing={3} sx={gridContainerStyle}>
-          {devices.map((device, index) => (
-            <Grid item key={index} xs={12} sm={6} md={6} lg={6}>
-              <DeviceItem name={device.name} description={device.description} />
-            </Grid>
-          ))}
-          <Grid item xs={12} sm={6} md={6} lg={4}>
-            <Button
-              variant="contained"
-              fullWidth
-              endIcon={<AddCircleOutlineIcon />}
-              sx={styles.buttonStyle}
-            >
-              디바이스 추가하기
-            </Button>
+const DesktopDeviceList = () => (
+  <DesktopLayout>
+    <Sidebar />
+    <Box sx={styles.mainContentStyle}>
+      <UserCard />
+      <Typography textAlign="center" variant="h6" gutterBottom>
+        {mainTitle}
+      </Typography>
+      <Grid container spacing={3}>
+        {devices.map((device, index) => (
+          <Grid item key={index} xs={12} sm={6} md={6} lg={6}>
+            <DeviceItem name={device.name} description={device.description} />
           </Grid>
-        </Grid>
-      </Box>
-      <Box sx={serveContentStyle}>{/*이미지 아무거나*/}</Box>
+        ))}
+      </Grid>
+      <BlueRoundedButton
+        sx={styles.addButtonStyle}
+        fullWidth
+        endIcon={<AddCircleOutlineIcon />}
+      >
+        디바이스 추가하기
+      </BlueRoundedButton>
     </Box>
-  );
-};
+    <ServeContent />
+  </DesktopLayout>
+);
 
 const DeviceList = () => {
   const isDesktop = useMediaQuery("(min-width:1280px)");

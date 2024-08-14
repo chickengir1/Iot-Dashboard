@@ -6,10 +6,15 @@ import {
   IconButton,
   Badge,
   Avatar,
-  Button,
   Card,
   CardContent,
 } from "@mui/material";
+import {
+  DesktopLayout,
+  BlueRoundedButton,
+  ServeContent,
+  MobileLayout,
+} from "../styles/index";
 import UserCard from "../components/usercard/UserCardContainer";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import WifiIcon from "@mui/icons-material/Wifi";
@@ -17,31 +22,15 @@ import Sidebar from "../components/sidebar/sidebarcontainer";
 import InputUi from "../components/input/InputUi";
 
 const styles = {
-  layout: {
-    padding: 2,
-    margin: "0 auto",
-    maxWidth: "412px",
-    display: "flex",
-    flexDirection: "column",
-    gap: 2,
-    paddingBottom: "80px",
-  },
   addDeviceContainer: {
     display: "flex",
-    flexDirection: "column",
+    minHeight: "100px",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 2,
     boxShadow: 2,
     marginBottom: 2,
-  },
-  badgeContainer: {
-    display: "flex",
-    alignItems: "center",
-    padding: 2,
-    borderRadius: 2,
-    boxShadow: 2,
-    gap: 3,
+    gap: 2,
   },
   circleIcon: {
     color: "#64B8FF",
@@ -49,30 +38,7 @@ const styles = {
     borderRadius: "50%",
     padding: 1,
   },
-  avatar: {
-    width: 60,
-    height: 60,
-  },
-  cardStyle: {
-    marginTop: 2,
-  },
-  buttonStyle: {
-    backgroundColor: "#64B8FF",
-    color: "#fff",
-    borderRadius: 3,
-    padding: "10px 16px",
-    border: "2px solid #fff",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  desktopLayout: {
-    padding: 2,
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "row",
-    height: "96vh",
-  },
+
   mainContent: {
     flexGrow: 1,
     padding: 4,
@@ -83,14 +49,6 @@ const styles = {
     border: "1px solid #ddd",
     borderRadius: 2,
   },
-  serveContentStyle: {
-    minWidth: "220px",
-    maxWidth: "220px",
-    marginLeft: 2,
-    border: "1px solid #ddd",
-    padding: 2,
-    borderRadius: 2,
-  },
 };
 
 const AddDeviceSection = () => (
@@ -99,12 +57,10 @@ const AddDeviceSection = () => (
       <WifiIcon style={{ fontSize: 50, ...styles.circleIcon }} />
       <Typography variant="body1">
         장치 찾기
-        <IconButton color="primary">
-          <AddCircleOutlineIcon style={styles.circleIcon} />
-        </IconButton>
+        <IconButton color="primary"></IconButton>
       </Typography>
     </Box>
-    <Box sx={styles.badgeContainer}>
+    <Box sx={styles.addDeviceContainer}>
       <Badge
         overlap="circular"
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -114,55 +70,48 @@ const AddDeviceSection = () => (
           </IconButton>
         }
       >
-        <Avatar sx={styles.avatar} src="" alt="Device Image" />
+        <Avatar sx={{ width: 50, height: 50 }} alt="Device icon" />
       </Badge>
       <Typography variant="body1">장치 이미지 등록하기</Typography>
     </Box>
-    <Button
-      variant="contained"
-      fullWidth
-      endIcon={<AddCircleOutlineIcon />}
-      sx={styles.buttonStyle}
-    >
+    <BlueRoundedButton fullWidth endIcon={<AddCircleOutlineIcon />}>
       디바이스 추가하기
-    </Button>
+    </BlueRoundedButton>
   </>
 );
 
-const MobileDeviceAdd = () => (
-  <Box sx={styles.layout}>
+const ContentSection = () => (
+  <>
     <UserCard />
-    <Typography variant="body1" textAlign="center">
-      디바이스 등록
-    </Typography>
     <AddDeviceSection />
     <InputUi label="장치 이름 등록하기" placeholder="name" />
     <InputUi label="장치 설명 등록하기" placeholder="description" />
-    <Card sx={styles.cardStyle}>
+    <Card>
       <CardContent>
         <Typography variant="body2">장치등록 주의 사항</Typography>
       </CardContent>
     </Card>
+  </>
+);
+
+const MobileDeviceAdd = () => (
+  <MobileLayout>
+    <Typography variant="body1" textAlign="center">
+      디바이스 등록
+    </Typography>
+    <ContentSection />
     <Sidebar />
-  </Box>
+  </MobileLayout>
 );
 
 const DesktopDeviceAdd = () => (
-  <Box sx={styles.desktopLayout}>
+  <DesktopLayout>
     <Sidebar />
     <Box sx={styles.mainContent}>
-      <UserCard />
-      <AddDeviceSection />
-      <InputUi label="장치 이름 등록하기" placeholder="name" />
-      <InputUi label="장치 설명 등록하기" placeholder="description" />
-      <Card sx={styles.cardStyle}>
-        <CardContent>
-          <Typography variant="body2">장치등록 주의 사항</Typography>
-        </CardContent>
-      </Card>
+      <ContentSection />
     </Box>
-    <Box sx={styles.serveContentStyle}>{/*이미지 아무거나*/}</Box>
-  </Box>
+    <ServeContent />
+  </DesktopLayout>
 );
 
 const DeviceAddPage = () => {

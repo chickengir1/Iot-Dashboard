@@ -6,7 +6,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 const TodoListUi = () => {
   const todoStyled = {
     flexGrow: 1,
-    p: 1,
+    padding: 1,
     border: "1px solid #ccc",
     borderRadius: 1,
     width: "40px",
@@ -17,9 +17,9 @@ const TodoListUi = () => {
   };
 
   return (
-    <Box sx={{ mb: 2 }}>
+    <Box sx={{ marginBottom: 2 }}>
       <Typography variant="subtitle1">To do list</Typography>
-      <Box sx={{ display: "flex", alignItems: "center", mt: 2, gap: "5px" }}>
+      <Box sx={{ display: "flex", alignItems: "center", marginTop: 2, gap: 1 }}>
         <Box sx={todoStyled}>
           <Typography variant="body2">todo title</Typography>
         </Box>
