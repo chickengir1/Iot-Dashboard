@@ -24,7 +24,7 @@ import InputUi from "../components/input/InputUi";
 const styles = {
   addDeviceContainer: {
     display: "flex",
-    minHeight: "100px",
+    minHeight: "75px",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 2,
@@ -48,6 +48,10 @@ const styles = {
     gap: 2,
     border: "1px solid #ddd",
     borderRadius: 2,
+  },
+  addButtonStyle: {
+    minHeight: "75px",
+    marginBottom: 2,
   },
 };
 
@@ -74,7 +78,11 @@ const AddDeviceSection = () => (
       </Badge>
       <Typography variant="body1">장치 이미지 등록하기</Typography>
     </Box>
-    <BlueRoundedButton fullWidth endIcon={<AddCircleOutlineIcon />}>
+    <BlueRoundedButton
+      sx={styles.addButtonStyle}
+      fullWidth
+      endIcon={<AddCircleOutlineIcon />}
+    >
       디바이스 추가하기
     </BlueRoundedButton>
   </>

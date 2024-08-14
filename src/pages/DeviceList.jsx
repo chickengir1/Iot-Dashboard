@@ -88,11 +88,7 @@ const MobileDeviceList = () => (
         description={device.description}
       />
     ))}
-    <BlueRoundedButton
-      sx={styles.addButtonStyle}
-      fullWidth
-      endIcon={<AddCircleOutlineIcon />}
-    >
+    <BlueRoundedButton fullWidth endIcon={<AddCircleOutlineIcon />}>
       디바이스 추가하기
     </BlueRoundedButton>
     <Sidebar />
