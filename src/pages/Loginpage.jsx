@@ -2,8 +2,14 @@ import React from "react";
 import { Box, Button, Link, Typography, useMediaQuery } from "@mui/material";
 import { CheckCircleOutlineOutlined } from "@mui/icons-material";
 import InputUi from "../components/input/InputUi";
+import {
+  MobileLayout,
+  DesktopEntryLayout,
+  DesktopEntryMainLayout,
+  BlueRoundedButton,
+} from "../styles/index";
 
-export const GoogleIcon = () => {
+const GoogleIcon = () => {
   return (
     <img
       src={`/icons/google-logo.svg`}
@@ -13,7 +19,7 @@ export const GoogleIcon = () => {
   );
 };
 
-export const AppleIcon = () => {
+const AppleIcon = () => {
   return (
     <img
       src={`/icons/apple-logo.svg`}
@@ -24,39 +30,17 @@ export const AppleIcon = () => {
 };
 
 const styles = {
-  mobileLayout: {
-    padding: 2,
-    margin: "0 auto",
-    border: "solid 1px #ddd",
+  // ㅇㅣ름 바꿔, 테스트
+  buttonWrapper: {
     display: "flex",
+    alignItems: "center",
     flexDirection: "column",
     gap: 2,
   },
-  desktopLayout: {
-    width: "600px",
-    margin: "0 auto",
-    border: "solid 1px #ddd",
+  desktopButtonWrapper: {
     display: "flex",
-    flexDirection: "column",
     alignItems: "center",
-    borderRadius: 3,
-    padding: 2,
-  },
-  desktopInnerLayout: {
-    width: "500px",
-    display: "flex",
-    flexDirection: "column",
     gap: 2,
-  },
-  buttonStyle: {
-    backgroundColor: "#64B8FF",
-    color: "#fff",
-    borderRadius: 3,
-    padding: "10px 16px",
-    border: "2px solid #fff",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
   brandButtonStyle: {
     backgroundColor: "#fff",
@@ -64,17 +48,64 @@ const styles = {
     borderRadius: 3,
     padding: "10px 16px",
   },
-  bottomBoxLayout: {
+  // 레이아웃으로 빼내기보단 컴포넌트 분리가 좋을 것 같음. 하단 3개
+  footerLayout: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
   },
+  logoLayout: { border: "solid 1px #ddd", height: "50px" },
+  imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
 
-export const MobileLayout = () => {
+const SaveLogin = () => {
   return (
-    <Box sx={styles.mobileLayout}>
-      <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
+      <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
+      <Typography>로그인 정보 기억하기</Typography>
+    </Box>
+  );
+};
+
+const FooterLinks = () => {
+  return (
+    <Box sx={styles.footerLayout}>
+      <Link>아이디/비밀번호 찾기</Link>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
+        <Typography>가입하러 가기</Typography>
+      </Box>
+    </Box>
+  );
+};
+
+const ButtonComponent = ({ style }) => {
+  return (
+    <Box sx={style}>
+      <Button
+        startIcon={<GoogleIcon />}
+        variant="contained"
+        fullWidth
+        sx={styles.brandButtonStyle}
+      >
+        Google
+      </Button>
+      <Button
+        startIcon={<AppleIcon />}
+        variant="contained"
+        fullWidth
+        sx={styles.brandButtonStyle}
+      >
+        Apple
+      </Button>
+    </Box>
+  );
+};
+
+export const MobileLogin = () => {
+  return (
+    <MobileLayout>
+      <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
       <InputUi
@@ -89,60 +120,23 @@ export const MobileLayout = () => {
         placeholder={"********"}
         error={"error"}
       />
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-        <Typography>로그인 정보 기억하기</Typography>
-      </Box>
-
-      <Button variant="contained" sx={styles.buttonStyle}>
-        Sign In
-      </Button>
+      <SaveLogin />
+      <BlueRoundedButton>Sign In</BlueRoundedButton>
       <Typography align="center">or Sign in with</Typography>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: 2,
-        }}
-      >
-        <Button
-          startIcon={<GoogleIcon />}
-          variant="contained"
-          fullWidth
-          sx={styles.brandButtonStyle}
-        >
-          Google
-        </Button>
-        <Button
-          startIcon={<AppleIcon />}
-          variant="contained"
-          fullWidth
-          sx={styles.brandButtonStyle}
-        >
-          Apple
-        </Button>
-      </Box>
-
-      <Box sx={styles.bottomBoxLayout}>
-        <Link>아이디/비밀번호 찾기</Link>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-          <Typography>가입하러 가기</Typography>
-        </Box>
-      </Box>
-    </Box>
+      <ButtonComponent style={styles.buttonWrapper} />
+      <FooterLinks />
+    </MobileLayout>
   );
 };
 
-export const DesktopLayout = () => {
+export const DesktopLogin = () => {
   return (
-    <Box sx={styles.desktopLayout}>
-      <Box sx={styles.desktopInnerLayout}>
-        <Box sx={{ border: "solid 1px #ddd", height: "50px" }}>
+    <DesktopEntryLayout>
+      <DesktopEntryMainLayout>
+        <Box sx={styles.logoLayout}>
           <img alt="로고" />
         </Box>
-        <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+        <Box sx={styles.imageLayout}>
           <img alt="이미지" />
         </Box>
         <InputUi
@@ -157,56 +151,20 @@ export const DesktopLayout = () => {
           placeholder={"********"}
           error={"error"}
         />
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-          <Typography>로그인 정보 기억하기</Typography>
-        </Box>
-
-        <Button variant="contained" sx={styles.buttonStyle}>
-          Sign In
-        </Button>
+        <SaveLogin />
+        <BlueRoundedButton>Sign In</BlueRoundedButton>
         <Typography align="center">or Sign in with</Typography>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 2,
-          }}
-        >
-          <Button
-            startIcon={<GoogleIcon />}
-            variant="contained"
-            fullWidth
-            sx={styles.brandButtonStyle}
-          >
-            Google
-          </Button>
-          <Button
-            startIcon={<AppleIcon />}
-            variant="contained"
-            fullWidth
-            sx={styles.brandButtonStyle}
-          >
-            Apple
-          </Button>
-        </Box>
-
-        <Box sx={styles.bottomBoxLayout}>
-          <Link>아이디/비밀번호 찾기</Link>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-            <Typography>가입하러 가기</Typography>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+        <ButtonComponent style={styles.desktopButtonWrapper} />
+        <FooterLinks />
+      </DesktopEntryMainLayout>
+    </DesktopEntryLayout>
   );
 };
 
 const LoginPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
 
-  return isDesktop ? <DesktopLayout /> : <MobileLayout />;
+  return isDesktop ? <DesktopLogin /> : <MobileLogin />;
 };
 
 export default LoginPage;
