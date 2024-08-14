@@ -52,14 +52,19 @@ export const MobileLayout = () => {
       <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
-
-      <SelectUi />
       <InputUi
-        id={"id"}
-        label={"아이디"}
-        placeholder={"elice1234"}
+        id={"username"}
+        label={"이름"}
+        placeholder={"홍길동"}
         error={"error"}
       />
+      <InputUi
+        id={"phoneNumber"}
+        label={"전화번호"}
+        placeholder={"01012341234"}
+        error={"error"}
+      />
+      <SelectUi />
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
         <Typography>로그인 정보 기억하기</Typography>
@@ -89,13 +94,19 @@ export const DesktopLayout = () => {
           <img alt="이미지" />
         </Box>
 
-        <SelectUi />
         <InputUi
-          id={"id"}
-          label={"아이디"}
-          placeholder={"elice1234"}
+          id={"username"}
+          label={"이름"}
+          placeholder={"홍길동"}
           error={"error"}
         />
+        <InputUi
+          id={"phoneNumber"}
+          label={"전화번호"}
+          placeholder={"01012341234"}
+          error={"error"}
+        />
+        <SelectUi />
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
           <Typography>로그인 정보 기억하기</Typography>
