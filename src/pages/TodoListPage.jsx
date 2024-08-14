@@ -19,7 +19,7 @@ const todos = [
   {
     date: "2024-08-13",
     description: "꽃에 물주기",
-    isFinish: false,
+    isFinish: true,
   },
   {
     date: "2024-08-13",
@@ -64,6 +64,8 @@ const styles = {
     padding: 2,
     margin: "0 auto",
     display: "flex",
+    flexDirection: "row",
+    height: "100vh",
   },
   mainContentStyle: {
     padding: 2,

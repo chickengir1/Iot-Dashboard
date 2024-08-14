@@ -26,7 +26,6 @@ export const MobileLayout = () => {
         error={"error"}
       />
       <SelectUi />
-
       <InputUi
         id={"password"}
         label={"비밀번호"}
@@ -93,7 +92,6 @@ export const DesktopLayout = () => {
           error={"error"}
         />
         <SelectUi />
-
         <InputUi
           id={"password"}
           label={"비밀번호"}

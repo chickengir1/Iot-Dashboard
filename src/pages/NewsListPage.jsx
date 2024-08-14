@@ -60,10 +60,11 @@ const styles = {
     overflowY: "auto",
   },
   desktopLayout: {
+    padding: 2,
+    margin: "0 auto",
     display: "flex",
     flexDirection: "row",
-    padding: 4,
-    height: "92vh",
+    height: "100vh",
   },
   mainContent: {
     flexGrow: 1,
