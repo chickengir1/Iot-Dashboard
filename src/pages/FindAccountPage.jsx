@@ -27,11 +27,18 @@ const styles = {
     flexDirection: "column",
     gap: 2,
   },
-  buttonStyle: {
-    borderColor: "#000",
+  findButtonStyle: {
+    border: "1px solid #000",
+    backgroundColor: "#fff",
     color: "#000",
+    borderRadius: 3,
     height: "150px",
-    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+    padding: "10px 16px",
+  },
+  bottomBoxLayout: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 };
 
@@ -41,19 +48,13 @@ export const MobileLayout = () => {
       <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
-      <Button variant="outlined" sx={styles.buttonStyle}>
+      <Button variant="contained" sx={styles.findButtonStyle}>
         아이디 찾기
       </Button>
-      <Button variant="outlined" sx={styles.buttonStyle}>
+      <Button variant="contained" sx={styles.findButtonStyle}>
         비밀번호 찾기
       </Button>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <Box sx={styles.bottomBoxLayout}>
         <Link>아이디/비밀번호 찾기</Link>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
@@ -74,19 +75,13 @@ export const DesktopLayout = () => {
         <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
           <img alt="이미지" />
         </Box>
-        <Button variant="outlined" sx={styles.buttonStyle}>
+        <Button variant="contained" sx={styles.findButtonStyle}>
           아이디 찾기
         </Button>
-        <Button variant="outlined" sx={styles.buttonStyle}>
+        <Button variant="contained" sx={styles.findButtonStyle}>
           비밀번호 찾기
         </Button>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
+        <Box sx={styles.bottomBoxLayout}>
           <Link>아이디/비밀번호 찾기</Link>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />

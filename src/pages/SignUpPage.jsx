@@ -29,6 +29,21 @@ const styles = {
     flexDirection: "column",
     gap: 2,
   },
+  buttonStyle: {
+    backgroundColor: "#64B8FF",
+    color: "#fff",
+    borderRadius: 3,
+    padding: "10px 16px",
+    border: "2px solid #fff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bottomBoxLayout: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 };
 
 export const MobileLayout = () => {
@@ -56,16 +71,10 @@ export const MobileLayout = () => {
         placeholder={"********"}
         error={"error"}
       />
-      <Button variant="contained" fullWidth>
+      <Button variant="contained" sx={styles.buttonStyle}>
         Sign Up
       </Button>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <Box sx={styles.bottomBoxLayout}>
         <Link>가입 안내 문구</Link>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
@@ -105,16 +114,10 @@ export const DesktopLayout = () => {
           placeholder={"********"}
           error={"error"}
         />
-        <Button variant="contained" fullWidth>
+        <Button variant="contained" sx={styles.buttonStyle}>
           Sign Up
         </Button>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
+        <Box sx={styles.bottomBoxLayout}>
           <Link>가입 안내 문구</Link>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />

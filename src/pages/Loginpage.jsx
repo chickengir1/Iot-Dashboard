@@ -48,6 +48,27 @@ const styles = {
     flexDirection: "column",
     gap: 2,
   },
+  buttonStyle: {
+    backgroundColor: "#64B8FF",
+    color: "#fff",
+    borderRadius: 3,
+    padding: "10px 16px",
+    border: "2px solid #fff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  brandButtonStyle: {
+    backgroundColor: "#fff",
+    color: "#000",
+    borderRadius: 3,
+    padding: "10px 16px",
+  },
+  bottomBoxLayout: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 };
 
 export const MobileLayout = () => {
@@ -73,7 +94,7 @@ export const MobileLayout = () => {
         <Typography>로그인 정보 기억하기</Typography>
       </Box>
 
-      <Button variant="contained" fullWidth>
+      <Button variant="contained" sx={styles.buttonStyle}>
         Sign In
       </Button>
       <Typography align="center">or Sign in with</Typography>
@@ -89,7 +110,7 @@ export const MobileLayout = () => {
           startIcon={<GoogleIcon />}
           variant="contained"
           fullWidth
-          sx={{ backgroundColor: "#fff", color: "#000" }}
+          sx={styles.brandButtonStyle}
         >
           Google
         </Button>
@@ -97,19 +118,13 @@ export const MobileLayout = () => {
           startIcon={<AppleIcon />}
           variant="contained"
           fullWidth
-          sx={{ backgroundColor: "#fff", color: "#000" }}
+          sx={styles.brandButtonStyle}
         >
           Apple
         </Button>
       </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <Box sx={styles.bottomBoxLayout}>
         <Link>아이디/비밀번호 찾기</Link>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
@@ -147,7 +162,7 @@ export const DesktopLayout = () => {
           <Typography>로그인 정보 기억하기</Typography>
         </Box>
 
-        <Button variant="contained" fullWidth>
+        <Button variant="contained" sx={styles.buttonStyle}>
           Sign In
         </Button>
         <Typography align="center">or Sign in with</Typography>
@@ -162,7 +177,7 @@ export const DesktopLayout = () => {
             startIcon={<GoogleIcon />}
             variant="contained"
             fullWidth
-            sx={{ backgroundColor: "#fff", color: "#000" }}
+            sx={styles.brandButtonStyle}
           >
             Google
           </Button>
@@ -170,19 +185,13 @@ export const DesktopLayout = () => {
             startIcon={<AppleIcon />}
             variant="contained"
             fullWidth
-            sx={{ backgroundColor: "#fff", color: "#000" }}
+            sx={styles.brandButtonStyle}
           >
             Apple
           </Button>
         </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
+        <Box sx={styles.bottomBoxLayout}>
           <Link>아이디/비밀번호 찾기</Link>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
