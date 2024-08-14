@@ -2,18 +2,24 @@ import React from "react";
 import { Box, Button, Link, Typography, useMediaQuery } from "@mui/material";
 import { CheckCircleOutlineOutlined } from "@mui/icons-material";
 import InputUi from "../components/input/InputUi";
-import googleLogo from "../assets/google-logo.svg";
-import appleLogo from "../assets/apple-logo.svg";
 
 export const GoogleIcon = () => {
   return (
-    <img src={googleLogo} alt="Apple Logo" style={{ width: 24, height: 24 }} />
+    <img
+      src={`/icons/google-logo.svg`}
+      alt="Apple Logo"
+      style={{ width: 24, height: 24 }}
+    />
   );
 };
 
 export const AppleIcon = () => {
   return (
-    <img src={appleLogo} alt="Apple Logo" style={{ width: 24, height: 24 }} />
+    <img
+      src={`/icons/apple-logo.svg`}
+      alt="Apple Logo"
+      style={{ width: 24, height: 24 }}
+    />
   );
 };
 
