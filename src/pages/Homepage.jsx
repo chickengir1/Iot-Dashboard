@@ -45,6 +45,8 @@ const DesktopLayout = () => {
     padding: 2,
     margin: "0 auto",
     display: "flex",
+    flexDirection: "row",
+    height: "96vh",
   };
 
   const mainContentStyle = {

@@ -65,7 +65,7 @@ const styles = {
     margin: "0 auto",
     display: "flex",
     flexDirection: "row",
-    height: "100vh",
+    height: "96vh",
   },
   mainContentStyle: {
     padding: 2,

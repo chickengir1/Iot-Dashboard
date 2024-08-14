@@ -107,6 +107,7 @@ const NewsCard = ({ image, title }) => (
   </Box>
 );
 
+// 이 컴포넌트는 없어도 됨
 const NewsList = ({ layoutStyle, children }) => (
   <Box sx={layoutStyle}>
     <Sidebar />

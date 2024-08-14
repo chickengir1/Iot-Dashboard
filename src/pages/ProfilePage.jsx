@@ -19,20 +19,55 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { ArrowForward } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/sidebarcontainer";
 
+const styles = {
+  buttonStyle: {
+    backgroundColor: "#FF8A8A",
+    border: "2px solid #fff",
+    borderRadius: 2,
+    "&:hover": {
+      backgroundColor: "#FF6F6F",
+    },
+  },
+  mobileLayout: {
+    padding: 2,
+    margin: "0 auto",
+    maxWidth: "412px",
+    display: "flex",
+    flexDirection: "column",
+    paddingBottom: "80px",
+    gap: 1,
+  },
+  desktopLayout: {
+    padding: 2,
+    margin: "0 auto",
+    display: "flex",
+    flexDirection: "row",
+    height: "96vh",
+  },
+  mainContentStyle: {
+    flexGrow: 1,
+    padding: 2,
+    display: "flex",
+    marginLeft: 2,
+    flexDirection: "column",
+    border: "1px solid #ddd",
+    borderRadius: 2,
+  },
+  serveContentStyle: {
+    minWidth: "220px",
+    maxWidth: "220px",
+    marginLeft: 2,
+    border: "1px solid #ddd",
+    padding: 2,
+    borderRadius: 2,
+  },
+};
+
 const listItems = [
   { text: "프로필 정보 수정", icon: <EditIcon /> },
   { text: "더 많은 제품 보기", icon: <VisibilityIcon /> },
   { text: "알람 설정", icon: <NotificationsIcon /> },
 ];
-
-const buttonStyle = {
-  backgroundColor: "#FF8A8A",
-  border: "2px solid #fff",
-  borderRadius: 2,
-  "&:hover": {
-    backgroundColor: "#FF6F6F",
-  },
-};
 
 const listComponents = () =>
   listItems.map((item, index) => (
@@ -51,7 +86,7 @@ const buttonComponents = () => (
       variant="contained"
       fullWidth
       startIcon={<LogoutIcon />}
-      sx={buttonStyle}
+      sx={styles.buttonStyle}
     >
       로그아웃
     </Button>
@@ -59,7 +94,7 @@ const buttonComponents = () => (
       variant="contained"
       fullWidth
       startIcon={<DeleteIcon />}
-      sx={buttonStyle}
+      sx={styles.buttonStyle}
     >
       회원 탈퇴
     </Button>
@@ -67,19 +102,9 @@ const buttonComponents = () => (
 );
 
 const MobileProfile = () => {
-  const mobileLayout = {
-    padding: 2,
-    margin: "0 auto",
-    maxWidth: "412px",
-    display: "flex",
-    flexDirection: "column",
-    paddingBottom: "80px",
-    gap: 1,
-  };
-
   return (
     <>
-      <Box sx={mobileLayout}>
+      <Box sx={styles.mobileLayout}>
         <Typography variant="h6" sx={{ mb: 1 }}>
           회원 정보
         </Typography>
@@ -96,35 +121,10 @@ const MobileProfile = () => {
 };
 
 const DesktopProfile = () => {
-  /* 비슷한 레이아웃 한번 더 사용되면 테마로 빼놓기*/
-  const desktopLayout = {
-    padding: 2,
-    margin: "0 auto",
-    display: "flex",
-  };
-  const mainContentStyle = {
-    flexGrow: 1,
-    padding: 2,
-    display: "flex",
-    marginLeft: 2,
-    flexDirection: "column",
-    border: "1px solid #ddd",
-    borderRadius: 2,
-  };
-
-  const serveContentStyle = {
-    minWidth: "220px",
-    maxWidth: "220px",
-    marginLeft: 2,
-    border: "1px solid #ddd",
-    padding: 2,
-    borderRadius: 2,
-  };
-
   return (
-    <Box sx={desktopLayout}>
+    <Box sx={styles.desktopLayout}>
       <Sidebar />
-      <Box sx={mainContentStyle}>
+      <Box sx={styles.mainContentStyle}>
         <Typography variant="h5" sx={{ mb: 1 }}>
           회원 정보
         </Typography>
@@ -135,7 +135,7 @@ const DesktopProfile = () => {
         <List>{listComponents()}</List>
         {buttonComponents()}
       </Box>
-      <Box sx={serveContentStyle}>{/*이미지 아무거나*/}</Box>
+      <Box sx={styles.serveContentStyle}>{/*이미지 아무거나*/}</Box>
     </Box>
   );
 };

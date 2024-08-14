@@ -67,10 +67,11 @@ const styles = {
     justifyContent: "center",
   },
   desktopLayout: {
+    padding: 2,
+    margin: "0 auto",
     display: "flex",
     flexDirection: "row",
-    padding: 4,
-    height: "100vh",
+    height: "96vh",
   },
   mainContent: {
     flexGrow: 1,
