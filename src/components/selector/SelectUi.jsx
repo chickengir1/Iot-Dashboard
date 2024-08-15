@@ -9,15 +9,32 @@ import {
 
 const SelectUi = () => {
   const inputStyle = {
+    "& .MuiOutlinedInput-root": {
+      backgroundColor: "#fff",
+      borderRadius: 1,
+      height: "40px",
+      "& fieldset": {
+        borderColor: "#d9d9d9",
+      },
+      "&:hover fieldset": {
+        borderColor: "gray",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "gray",
+      },
+    },
+  };
+
+  const selectStyle = {
     backgroundColor: "#fff",
     borderColor: "#d9d9d9",
     borderRadius: 1,
     height: "40px",
-    "&:hover": {
+    "&:hover .MuiOutlinedInput-notchedOutline": {
       borderColor: "gray",
     },
-    "&.Mui-focused": {
-      borderColor: "#525252",
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "gray",
     },
   };
 
@@ -38,9 +55,7 @@ const SelectUi = () => {
         <TextField
           placeholder={"email"}
           id={"email"}
-          InputProps={{
-            sx: inputStyle,
-          }}
+          sx={inputStyle}
           fullWidth
         />
         <Box
@@ -53,7 +68,7 @@ const SelectUi = () => {
           @
         </Box>
 
-        <Select value={10} sx={{ height: "40px" }} fullWidth>
+        <Select value={10} sx={selectStyle} fullWidth>
           <MenuItem value="None">
             <em>123</em>
           </MenuItem>
