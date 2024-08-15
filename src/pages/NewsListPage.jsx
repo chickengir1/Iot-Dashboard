@@ -50,8 +50,6 @@ const styles = {
     padding: 2,
     alignItems: "center",
   },
-
-  // 고유 레이아웃
   mainContent: {
     flexGrow: 1,
     padding: 2,

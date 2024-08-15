@@ -10,6 +10,7 @@ import {
 } from "../styles/index";
 import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
 
+// 이건 굳이 안빼도 될 것 같아요
 const GoogleIcon = () => {
   return (
     <img

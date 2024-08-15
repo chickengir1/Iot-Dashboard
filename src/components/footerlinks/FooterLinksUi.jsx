@@ -9,6 +9,7 @@ const styles = {
   },
 };
 
+// use navigation으로 바꿔주세용
 const FooterLinksUi = ({ text1, href1, text2, href2 }) => (
   <Box sx={styles.footerLayout}>
     <Link href={href1}>{text1}</Link>
