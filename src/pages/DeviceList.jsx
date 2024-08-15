@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  useMediaQuery,
-  Box,
-  Typography,
-  IconButton,
-  Avatar,
-  Grid,
-} from "@mui/material";
+import { useMediaQuery, Typography, Grid } from "@mui/material";
 import {
   DesktopLayout,
   BlueRoundedButton,
@@ -18,6 +11,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import UserCard from "../components/usercard/UserCardContainer";
 import Sidebar from "../components/sidebar/sidebarcontainer";
+import ListItemUi from "../components/listitem/ListItemUi";
 
 const mainTitle = "디바이스 목록";
 
@@ -32,20 +26,6 @@ const devices = [
 ];
 
 const styles = {
-  deviceStyled: {
-    display: "flex",
-    alignItems: "center",
-    padding: 2,
-    borderRadius: 2,
-    boxShadow: 1,
-    bgcolor: "background.paper",
-    gap: 2,
-  },
-  avatarStyle: {
-    width: 56,
-    height: 56,
-    bgcolor: "grey.300",
-  },
   addButtonStyle: {
     mt: 3,
     minHeight: "75px",
@@ -53,20 +33,12 @@ const styles = {
 };
 
 const DeviceItem = ({ name, description }) => (
-  <Box sx={styles.deviceStyled}>
-    <Avatar variant="rounded" sx={styles.avatarStyle} />
-    <Box flexGrow={1}>
-      <Typography variant="body1" fontWeight="bold">
-        {name}
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {description}
-      </Typography>
-    </Box>
-    <IconButton edge="end" aria-label="settings">
-      <SettingsIcon />
-    </IconButton>
-  </Box>
+  <ListItemUi
+    title={name}
+    description={description}
+    icon={<SettingsIcon />}
+    avatar={true}
+  />
 );
 
 const MobileDeviceList = () => (

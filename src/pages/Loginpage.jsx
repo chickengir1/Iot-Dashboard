@@ -3,7 +3,7 @@ import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import { CheckCircleOutlineOutlined } from "@mui/icons-material";
 import InputUi from "../components/input/InputUi";
 import {
-  MobileLayout,
+  MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
   BlueRoundedButton,
@@ -47,8 +47,10 @@ const styles = {
     color: "#000",
     borderRadius: 3,
     padding: "10px 16px",
+    "&:hover": {
+      backgroundColor: "#F8FAFB",
+    },
   },
-  // 레이아웃으로 빼내기보단 컴포넌트 분리가 좋을 것 같음. 하단 3개
   logoLayout: { border: "solid 1px #ddd", height: "50px" },
   imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
@@ -87,7 +89,7 @@ const ButtonComponent = ({ style }) => {
 
 export const MobileLogin = () => {
   return (
-    <MobileLayout>
+    <MobileEntryLayout>
       <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
@@ -109,10 +111,11 @@ export const MobileLogin = () => {
       <ButtonComponent style={styles.buttonWrapper} />
       <FooterLinksUi
         text1={"아이디/비밀번호 찾기"}
-        href1={"/find-account"}
+        link1={"/find-account"}
         text2={"가입하러 가기"}
+        link2={"/register"}
       />
-    </MobileLayout>
+    </MobileEntryLayout>
   );
 };
 
@@ -144,8 +147,9 @@ export const DesktopLogin = () => {
         <ButtonComponent style={styles.desktopButtonWrapper} />
         <FooterLinksUi
           text1={"아이디/비밀번호 찾기"}
-          href1={"/find-account"}
+          link1={"/find-account"}
           text2={"가입하러 가기"}
+          link2={"/register"}
         />
       </DesktopEntryMainLayout>
     </DesktopEntryLayout>

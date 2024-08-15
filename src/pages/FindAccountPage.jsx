@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, useMediaQuery } from "@mui/material";
 import {
-  MobileLayout,
+  MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
 } from "../styles/index";
@@ -18,7 +18,6 @@ const styles = {
       backgroundColor: "#F8FAFB",
     },
   },
-  // 레이아웃으로 빼내기보단 컴포넌트 분리가 좋을 것 같음.
   logoLayout: { border: "solid 1px #ddd", height: "50px" },
   imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
@@ -38,17 +37,18 @@ const LookupButtonComponent = () => {
 
 export const MobileLookup = () => {
   return (
-    <MobileLayout>
+    <MobileEntryLayout>
       <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
       <LookupButtonComponent />
       <FooterLinksUi
         text1={"아이디/비밀번호 찾기"}
-        href1={"/find-account"}
+        link1={"/find-account"}
         text2={"가입하러 가기"}
+        link2={"/register"}
       />
-    </MobileLayout>
+    </MobileEntryLayout>
   );
 };
 
@@ -65,8 +65,9 @@ export const DesktopLookup = () => {
         <LookupButtonComponent />
         <FooterLinksUi
           text1={"아이디/비밀번호 찾기"}
-          href1={"/find-account"}
+          link1={"/find-account"}
           text2={"가입하러 가기"}
+          link2={"/register"}
         />
       </DesktopEntryMainLayout>
     </DesktopEntryLayout>
