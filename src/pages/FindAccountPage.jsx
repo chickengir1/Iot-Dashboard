@@ -1,11 +1,11 @@
 import React from "react";
-import { Box, Button, Link, Typography, useMediaQuery } from "@mui/material";
-import { CheckCircleOutlineOutlined } from "@mui/icons-material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import {
   MobileLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
 } from "../styles/index";
+import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
 
 const styles = {
   findButtonStyle: {
@@ -19,11 +19,6 @@ const styles = {
     },
   },
   // 레이아웃으로 빼내기보단 컴포넌트 분리가 좋을 것 같음.
-  footerLayout: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
   logoLayout: { border: "solid 1px #ddd", height: "50px" },
   imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
@@ -41,18 +36,6 @@ const LookupButtonComponent = () => {
   );
 };
 
-const FooterLinks = () => {
-  return (
-    <Box sx={styles.footerLayout}>
-      <Link>아이디/비밀번호 찾기</Link>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-        <Typography>가입하러 가기</Typography>
-      </Box>
-    </Box>
-  );
-};
-
 export const MobileLookup = () => {
   return (
     <MobileLayout>
@@ -60,7 +43,11 @@ export const MobileLookup = () => {
         <img alt="이미지" />
       </Box>
       <LookupButtonComponent />
-      <FooterLinks />
+      <FooterLinksUi
+        text1={"아이디/비밀번호 찾기"}
+        href1={"/find-account"}
+        text2={"가입하러 가기"}
+      />
     </MobileLayout>
   );
 };
@@ -76,7 +63,11 @@ export const DesktopLookup = () => {
           <img alt="이미지" />
         </Box>
         <LookupButtonComponent />
-        <FooterLinks />
+        <FooterLinksUi
+          text1={"아이디/비밀번호 찾기"}
+          href1={"/find-account"}
+          text2={"가입하러 가기"}
+        />
       </DesktopEntryMainLayout>
     </DesktopEntryLayout>
   );

@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, Link, Typography, useMediaQuery } from "@mui/material";
-import { CheckCircleOutlineOutlined } from "@mui/icons-material";
+import { Box, useMediaQuery } from "@mui/material";
 import InputUi from "../components/input/InputUi";
 import SelectUi from "../components/selector/SelectUi";
+import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
 import {
   MobileLayout,
   DesktopEntryLayout,
@@ -12,34 +12,8 @@ import {
 
 const styles = {
   // 레이아웃으로 빼내기보단 컴포넌트 분리가 좋을 것 같음. 하단 3개
-  footerLayout: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
   logoLayout: { border: "solid 1px #ddd", height: "50px" },
   imageLayout: { border: "solid 1px #ddd", height: "250px" },
-};
-
-const SaveLogin = () => {
-  return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-      <Typography>로그인 정보 기억하기</Typography>
-    </Box>
-  );
-};
-
-const FooterLinks = () => {
-  return (
-    <Box sx={styles.footerLayout}>
-      <Link>아이디/비밀번호 찾기</Link>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-        <Typography>가입하러 가기</Typography>
-      </Box>
-    </Box>
-  );
 };
 
 export const MobileFindPassword = () => {
@@ -49,22 +23,18 @@ export const MobileFindPassword = () => {
         <img alt="이미지" />
       </Box>
       <InputUi
-        id={"username"}
-        label={"이름"}
-        placeholder={"홍길동"}
-        error={"error"}
-      />
-      <InputUi
-        id={"phoneNumber"}
-        label={"전화번호"}
-        placeholder={"01012341234"}
+        id={"id"}
+        label={"아이디"}
+        placeholder={"elice1234"}
         error={"error"}
       />
       <SelectUi />
-      {/* 여기서 savelogin이 필요 없음. findidpage에서도 동일.. */}
-      <SaveLogin />
       <BlueRoundedButton>비밀번호 찾기</BlueRoundedButton>
-      <FooterLinks />
+      <FooterLinksUi
+        text1={"아이디/비밀번호 찾기"}
+        href1={"/find-account"}
+        text2={"가입하러 가기"}
+      />
     </MobileLayout>
   );
 };
@@ -81,21 +51,18 @@ export const DesktopFindPassword = () => {
         </Box>
 
         <InputUi
-          id={"username"}
-          label={"이름"}
-          placeholder={"홍길동"}
-          error={"error"}
-        />
-        <InputUi
-          id={"phoneNumber"}
-          label={"전화번호"}
-          placeholder={"01012341234"}
+          id={"id"}
+          label={"아이디"}
+          placeholder={"elice1234"}
           error={"error"}
         />
         <SelectUi />
-        <SaveLogin />
         <BlueRoundedButton>비밀번호 찾기</BlueRoundedButton>
-        <FooterLinks />
+        <FooterLinksUi
+          text1={"아이디/비밀번호 찾기"}
+          href1={"/find-account"}
+          text2={"가입하러 가기"}
+        />
       </DesktopEntryMainLayout>
     </DesktopEntryLayout>
   );
