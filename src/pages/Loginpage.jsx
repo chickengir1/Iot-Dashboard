@@ -10,27 +10,6 @@ import {
 } from "../styles/index";
 import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
 
-// 이건 굳이 안빼도 될 것 같아요
-const GoogleIcon = () => {
-  return (
-    <img
-      src={`/icons/google-logo.svg`}
-      alt="Apple Logo"
-      style={{ width: 24, height: 24 }}
-    />
-  );
-};
-
-const AppleIcon = () => {
-  return (
-    <img
-      src={`/icons/apple-logo.svg`}
-      alt="Apple Logo"
-      style={{ width: 24, height: 24 }}
-    />
-  );
-};
-
 const styles = {
   buttonWrapper: {
     display: "flex",
@@ -69,7 +48,13 @@ const ButtonComponent = ({ style }) => {
   return (
     <Box sx={style}>
       <Button
-        startIcon={<GoogleIcon />}
+        startIcon={
+          <img
+            src={`/icons/google-logo.svg`}
+            alt="Apple Logo"
+            style={{ width: 24, height: 24 }}
+          />
+        }
         variant="contained"
         fullWidth
         sx={styles.brandButtonStyle}
@@ -77,7 +62,13 @@ const ButtonComponent = ({ style }) => {
         Google
       </Button>
       <Button
-        startIcon={<AppleIcon />}
+        startIcon={
+          <img
+            src={`/icons/apple-logo.svg`}
+            alt="Apple Logo"
+            style={{ width: 24, height: 24 }}
+          />
+        }
         variant="contained"
         fullWidth
         sx={styles.brandButtonStyle}
