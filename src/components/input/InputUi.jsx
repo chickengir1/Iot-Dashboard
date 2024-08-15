@@ -3,15 +3,10 @@ import { Box, InputLabel, TextField, Typography } from "@mui/material";
 const InputUi = ({ id, label, placeholder, error }) => {
   const inputStyle = {
     backgroundColor: "#fff",
-    borderColor: "#d9d9d9",
+    borderColor: "pink",
     borderRadius: 1,
     height: "40px",
-    "&:hover": {
-      borderColor: "gray",
-    },
-    "&.Mui-focused": {
-      borderColor: "#525252",
-    },
+    // hover,focus 했을 때 색상 변화 적용 안 됨. 전체적으로 textfield bordercolor 안 바뀜.
   };
 
   return (

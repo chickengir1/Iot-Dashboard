@@ -4,21 +4,20 @@ import InputUi from "../components/input/InputUi";
 import SelectUi from "../components/selector/SelectUi";
 import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
 import {
-  MobileLayout,
+  MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
   BlueRoundedButton,
 } from "../styles/index";
 
 const styles = {
-  // 레이아웃으로 빼내기보단 컴포넌트 분리가 좋을 것 같음. 하단 3개
   logoLayout: { border: "solid 1px #ddd", height: "50px" },
   imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
 
 export const MobileFindPassword = () => {
   return (
-    <MobileLayout>
+    <MobileEntryLayout>
       <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
@@ -32,10 +31,11 @@ export const MobileFindPassword = () => {
       <BlueRoundedButton>비밀번호 찾기</BlueRoundedButton>
       <FooterLinksUi
         text1={"아이디/비밀번호 찾기"}
-        href1={"/find-account"}
+        link1={"/find-account"}
         text2={"가입하러 가기"}
+        link2={"/register"}
       />
-    </MobileLayout>
+    </MobileEntryLayout>
   );
 };
 
@@ -60,8 +60,9 @@ export const DesktopFindPassword = () => {
         <BlueRoundedButton>비밀번호 찾기</BlueRoundedButton>
         <FooterLinksUi
           text1={"아이디/비밀번호 찾기"}
-          href1={"/find-account"}
+          link1={"/find-account"}
           text2={"가입하러 가기"}
+          link2={"/register"}
         />
       </DesktopEntryMainLayout>
     </DesktopEntryLayout>

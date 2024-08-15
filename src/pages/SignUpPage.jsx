@@ -4,21 +4,20 @@ import InputUi from "../components/input/InputUi";
 import SelectUi from "../components/selector/SelectUi";
 import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
 import {
-  MobileLayout,
+  MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
   BlueRoundedButton,
 } from "../styles/index";
 
 const styles = {
-  // 레이아웃으로 빼내기보단 컴포넌트 분리가 좋을 것 같음. 하단 3개
   logoLayout: { border: "solid 1px #ddd", height: "50px" },
   imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
 
 export const MobileRegister = () => {
   return (
-    <MobileLayout>
+    <MobileEntryLayout>
       <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
@@ -44,10 +43,11 @@ export const MobileRegister = () => {
       <BlueRoundedButton>Sign Up</BlueRoundedButton>
       <FooterLinksUi
         text1={"가입 안내 문구"}
-        href1={""}
+        link1={"/"}
         text2={"로그인 하러 가기"}
+        link2={"/"}
       />
-    </MobileLayout>
+    </MobileEntryLayout>
   );
 };
 
@@ -83,8 +83,9 @@ export const DesktopRegister = () => {
         <BlueRoundedButton>Sign Up</BlueRoundedButton>
         <FooterLinksUi
           text1={"가입 안내 문구"}
-          href1={""}
+          link1={"/"}
           text2={"로그인 하러 가기"}
+          link2={"/"}
         />
       </DesktopEntryMainLayout>
     </DesktopEntryLayout>

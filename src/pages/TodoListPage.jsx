@@ -1,15 +1,10 @@
-import {
-  Box,
-  Grid,
-  IconButton,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import {
   DesktopLayout,
   BlueRoundedButton,
   ServeContent,
   MobileLayout,
+  MainLayout,
 } from "../styles/index";
 import React from "react";
 import UserCard from "../components/usercard/UserCardUi";
@@ -19,6 +14,7 @@ import {
   CheckBoxOutlined,
 } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/sidebarUi";
+import ListItemUi from "../components/listitem/ListItemUi";
 
 const todos = [
   {
@@ -51,28 +47,11 @@ const mainContentStyle = {
 };
 
 const TodoComponent = ({ date, description, isFinish }) => (
-  <Box
-    sx={{
-      display: "flex",
-      alignItems: "center",
-      padding: 2,
-      borderRadius: 2,
-      boxShadow: 1,
-      bgcolor: "background.paper",
-    }}
-  >
-    <Box flexGrow={1}>
-      <Typography variant="body1" fontWeight="bold">
-        {date}
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {description}
-      </Typography>
-    </Box>
-    <IconButton>
-      {isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}
-    </IconButton>
-  </Box>
+  <ListItemUi
+    title={date}
+    description={description}
+    icon={isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}
+  />
 );
 
 const AddTodoButton = () => (
