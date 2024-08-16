@@ -7,6 +7,8 @@ import {
   findIdReducer,
   findPasswordReducer,
 } from "./reducers/formReducer";
+import profileReducer from "./reducers/profileReducer";
+import notificationReducer from "./reducers/notificationReducer";
 
 const rootReducer = combineReducers({
   navigation: navigateReducer,
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   profileUpdate: profileUpdateReducer,
   findId: findIdReducer,
   findPassword: findPasswordReducer,
+  profile: profileReducer,
+  notification: notificationReducer,
 });
 
 export default rootReducer;
