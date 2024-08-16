@@ -129,7 +129,7 @@ const DesktopNewsList = () => (
 );
 
 const NewsListPage = () => {
-  const isDesktop = useMediaQuery("(min-width:1280px)");
+  const isDesktop = useMediaQuery("(min-width:800px)");
   return isDesktop ? <DesktopNewsList /> : <MobileNewsList />;
 };
 
