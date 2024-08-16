@@ -7,66 +7,66 @@ import {
   Typography,
 } from "@mui/material";
 
-const styles = {
-  inputStyle: {
-    "& .MuiOutlinedInput-root": {
+const SelectUi = ({ id, label, placeholder, error, selectValue }) => {
+  const styles = {
+    inputStyle: {
+      "& .MuiOutlinedInput-root": {
+        backgroundColor: "#fff",
+        borderRadius: 1,
+        height: "40px",
+        "& fieldset": {
+          borderColor: "#d9d9d9",
+        },
+        "&:hover fieldset": {
+          borderColor: "gray",
+        },
+        "&.Mui-focused fieldset": {
+          borderColor: "gray",
+        },
+      },
+    },
+    selectStyle: {
       backgroundColor: "#fff",
+      borderColor: "#d9d9d9",
       borderRadius: 1,
       height: "40px",
-      "& fieldset": {
-        borderColor: "#d9d9d9",
-      },
-      "&:hover fieldset": {
+      "&:hover .MuiOutlinedInput-notchedOutline": {
         borderColor: "gray",
       },
-      "&.Mui-focused fieldset": {
+      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
         borderColor: "gray",
       },
     },
-  },
-  selectStyle: {
-    backgroundColor: "#fff",
-    borderColor: "#d9d9d9",
-    borderRadius: 1,
-    height: "40px",
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "gray",
+    container: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      gap: "8px",
     },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "gray",
+    alphaSymbol: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "40px",
     },
-  },
-  container: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: "8px",
-  },
-  alphaSymbol: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "40px",
-  },
-};
+  };
 
-const SelectUi = () => {
   return (
     <Box sx={{ justifyContent: "center", alignItems: "center" }}>
-      <InputLabel shrink htmlFor={"email"}>
-        {"이메일"}
+      <InputLabel shrink htmlFor={id}>
+        {label}
       </InputLabel>
       <Box sx={styles.container}>
         <TextField
-          placeholder={"email"}
-          id={"email"}
+          placeholder={placeholder}
+          id={id}
           sx={styles.inputStyle}
           fullWidth
         />
         <Box sx={styles.alphaSymbol}>
           <Typography>@</Typography>
         </Box>
-        <Select value={10} sx={styles.selectStyle} fullWidth>
+        <Select value={selectValue} sx={styles.selectStyle} fullWidth>
           <MenuItem value="None">
             <em>123</em>
           </MenuItem>
@@ -74,7 +74,7 @@ const SelectUi = () => {
           <MenuItem value={20}>google.com</MenuItem>
         </Select>
       </Box>
-      <Typography sx={{ color: "#9ACD32" }}>{"233"}</Typography>
+      <Typography sx={{ color: "#9ACD32" }}>{error}</Typography>
     </Box>
   );
 };

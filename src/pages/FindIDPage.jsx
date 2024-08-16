@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, useMediaQuery } from "@mui/material";
-import SelectUi from "../components/selector/SelectUi";
+import Select from "../components/selector/SelectContainer";
 import {
   MobileEntryLayout,
   DesktopEntryLayout,
@@ -20,7 +20,13 @@ export const MobileFindId = () => {
       <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
-      <SelectUi />
+      <Select
+        id={"id"}
+        label={"아이디"}
+        placeholder={"elice1234"}
+        error={"error"}
+        selectValue={10}
+      />
       <BlueRoundedButton>아이디 찾기</BlueRoundedButton>
       <FooterLinks
         text1={"아이디/비밀번호 찾기"}
@@ -42,7 +48,13 @@ export const DesktopFindId = () => {
         <Box sx={styles.imageLayout}>
           <img alt="이미지" />
         </Box>
-        <SelectUi />
+        <Select
+          id={"id"}
+          label={"아이디"}
+          placeholder={"elice1234"}
+          error={"error"}
+          selectValue={10}
+        />
         <BlueRoundedButton>아이디 찾기</BlueRoundedButton>
         <FooterLinks
           text1={"아이디/비밀번호 찾기"}

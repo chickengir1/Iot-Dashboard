@@ -1,7 +1,12 @@
-import React from "react";
+import ListItemUi from "./ListItemUi";
 
-const ListItemContainer = () => {
-  return <div></div>;
-};
+const ListItemContainer = ({ title, description, icon, avatar = false }) => (
+  <ListItemUi
+    title={title}
+    description={description}
+    icon={icon}
+    avatar={avatar}
+  />
+);
 
 export default ListItemContainer;
