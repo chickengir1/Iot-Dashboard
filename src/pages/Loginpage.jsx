@@ -39,21 +39,6 @@ const SaveLogin = () => (
   </Box>
 );
 
-const LoginForm = ({ onSubmit, register, errors }) => (
-  <Box component="form" onSubmit={onSubmit}>
-    {loginFormFields.map((field) => utilsFormField(field, register, errors))}
-    <SaveLogin />
-    <BlueRoundedButton
-      type="submit"
-      variant="contained"
-      fullWidth
-      sx={{ marginTop: "12px" }}
-    >
-      LOGIN
-    </BlueRoundedButton>
-  </Box>
-);
-
 // 나중에 유틸로 따로 뺍시다 지호님
 const ButtonComponent = ({ style }) => (
   <Box sx={style}>
@@ -85,6 +70,22 @@ const ButtonComponent = ({ style }) => (
     >
       Apple
     </Button>
+  </Box>
+);
+
+// 여기서부터가 로그인 페이지 메인 로직이고 위에 적힌 컴포넌트들은 사실상 따로 관리해야 할듯해요 지호님
+const LoginForm = ({ onSubmit, register, errors }) => (
+  <Box component="form" onSubmit={onSubmit}>
+    {loginFormFields.map((field) => utilsFormField(field, register, errors))}
+    <SaveLogin />
+    <BlueRoundedButton
+      type="submit"
+      variant="contained"
+      fullWidth
+      sx={{ marginTop: "12px" }}
+    >
+      LOGIN
+    </BlueRoundedButton>
   </Box>
 );
 
