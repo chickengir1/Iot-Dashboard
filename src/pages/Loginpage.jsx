@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import { CheckCircleOutlineOutlined } from "@mui/icons-material";
-import InputUi from "../components/input/InputUi";
+import Input from "../components/input/InputContainer";
 import {
   MobileEntryLayout,
   DesktopEntryLayout,
@@ -85,13 +85,13 @@ export const MobileLogin = () => {
       <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
-      <InputUi
+      <Input
         id={"id"}
         label={"아이디"}
         placeholder={"elice1234"}
         error={"error"}
       />
-      <InputUi
+      <Input
         id={"password"}
         label={"비밀번호"}
         placeholder={"********"}
@@ -121,13 +121,13 @@ export const DesktopLogin = () => {
         <Box sx={styles.imageLayout}>
           <img alt="이미지" />
         </Box>
-        <InputUi
+        <Input
           id={"id"}
           label={"아이디"}
           placeholder={"elice1234"}
           error={"error"}
         />
-        <InputUi
+        <Input
           id={"password"}
           label={"비밀번호"}
           placeholder={"********"}

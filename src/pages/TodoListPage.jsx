@@ -13,7 +13,7 @@ import {
   CheckBoxOutlined,
 } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/sidebarUi";
-import ListItemUi from "../components/listitem/ListItemUi";
+import ListItem from "../components/listitem/ListItemContainer";
 
 const todos = [
   {
@@ -46,7 +46,7 @@ const mainContentStyle = {
 };
 
 const TodoComponent = ({ date, description, isFinish }) => (
-  <ListItemUi
+  <ListItem
     title={date}
     description={description}
     icon={isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}

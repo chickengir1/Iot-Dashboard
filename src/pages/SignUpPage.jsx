@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, useMediaQuery } from "@mui/material";
-import InputUi from "../components/input/InputUi";
-import SelectUi from "../components/selector/SelectUi";
+import Input from "../components/input/InputContainer";
+import Select from "../components/selector/SelectContainer";
 import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
 import {
   MobileEntryLayout,
@@ -21,20 +21,26 @@ export const MobileRegister = () => {
       <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
-      <InputUi
+      <Input
         id={"id"}
         label={"아이디"}
         placeholder={"elice1234"}
         error={"error"}
       />
-      <SelectUi />
-      <InputUi
+      <Select
+        id={"id"}
+        label={"아이디"}
+        placeholder={"elice1234"}
+        error={"error"}
+        selectValue={10}
+      />
+      <Input
         id={"password"}
         label={"비밀번호"}
         placeholder={"********"}
         error={"error"}
       />
-      <InputUi
+      <Input
         id={"password"}
         label={"비밀번호 확인"}
         placeholder={"********"}
@@ -61,20 +67,26 @@ export const DesktopRegister = () => {
         <Box sx={styles.imageLayout}>
           <img alt="이미지" />
         </Box>
-        <InputUi
+        <Input
           id={"id"}
           label={"아이디"}
           placeholder={"elice1234"}
           error={"error"}
         />
-        <SelectUi />
-        <InputUi
+        <Select
+          id={"id"}
+          label={"아이디"}
+          placeholder={"elice1234"}
+          error={"error"}
+          selectValue={10}
+        />
+        <Input
           id={"password"}
           label={"비밀번호"}
           placeholder={"********"}
           error={"error"}
         />
-        <InputUi
+        <Input
           id={"password"}
           label={"비밀번호 확인"}
           placeholder={"********"}

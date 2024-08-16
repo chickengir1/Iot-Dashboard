@@ -11,7 +11,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import UserCard from "../components/usercard/UserCardContainer";
 import Sidebar from "../components/sidebar/sidebarcontainer";
-import ListItemUi from "../components/listitem/ListItemUi";
+import ListItem from "../components/listitem/ListItemContainer";
 
 const mainTitle = "디바이스 목록";
 
@@ -33,7 +33,7 @@ const styles = {
 };
 
 const DeviceItem = ({ name, description }) => (
-  <ListItemUi
+  <ListItem
     title={name}
     description={description}
     icon={<SettingsIcon />}

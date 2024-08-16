@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const SelectUi = () => {
+const SelectUi = ({ id, label, placeholder, error, selectValue }) => {
   const inputStyle = {
     "& .MuiOutlinedInput-root": {
       backgroundColor: "#fff",
@@ -40,8 +40,8 @@ const SelectUi = () => {
 
   return (
     <Box>
-      <InputLabel shrink htmlFor={"email"}>
-        {"이메일"}
+      <InputLabel shrink htmlFor={id}>
+        {label}
       </InputLabel>
       <Box
         fullWidth
@@ -53,8 +53,8 @@ const SelectUi = () => {
         }}
       >
         <TextField
-          placeholder={"email"}
-          id={"email"}
+          placeholder={placeholder}
+          id={id}
           sx={inputStyle}
           fullWidth
         />
@@ -68,7 +68,7 @@ const SelectUi = () => {
           @
         </Box>
 
-        <Select value={10} sx={selectStyle} fullWidth>
+        <Select value={selectValue} sx={selectStyle} fullWidth>
           <MenuItem value="None">
             <em>123</em>
           </MenuItem>
@@ -76,7 +76,7 @@ const SelectUi = () => {
           <MenuItem value={20}>google.com</MenuItem>
         </Select>
       </Box>
-      <Typography sx={{ color: "#9ACD32" }}>{"233"}</Typography>
+      <Typography sx={{ color: "#9ACD32" }}>{error}</Typography>
     </Box>
   );
 };

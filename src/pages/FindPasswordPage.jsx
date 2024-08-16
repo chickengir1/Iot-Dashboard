@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, useMediaQuery } from "@mui/material";
-import InputUi from "../components/input/InputUi";
-import SelectUi from "../components/selector/SelectUi";
+import Input from "../components/input/InputContainer";
+import Select from "../components/selector/SelectContainer";
 import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
 import {
   MobileEntryLayout,
@@ -21,13 +21,19 @@ export const MobileFindPassword = () => {
       <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
-      <InputUi
+      <Input
         id={"id"}
         label={"아이디"}
         placeholder={"elice1234"}
         error={"error"}
       />
-      <SelectUi />
+      <Select
+        id={"id"}
+        label={"아이디"}
+        placeholder={"elice1234"}
+        error={"error"}
+        selectValue={10}
+      />
       <BlueRoundedButton>비밀번호 찾기</BlueRoundedButton>
       <FooterLinksUi
         text1={"아이디/비밀번호 찾기"}
@@ -50,13 +56,19 @@ export const DesktopFindPassword = () => {
           <img alt="이미지" />
         </Box>
 
-        <InputUi
+        <Input
           id={"id"}
           label={"아이디"}
           placeholder={"elice1234"}
           error={"error"}
         />
-        <SelectUi />
+        <Select
+          id={"id"}
+          label={"아이디"}
+          placeholder={"elice1234"}
+          error={"error"}
+          selectValue={10}
+        />
         <BlueRoundedButton>비밀번호 찾기</BlueRoundedButton>
         <FooterLinksUi
           text1={"아이디/비밀번호 찾기"}
