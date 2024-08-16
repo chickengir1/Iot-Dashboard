@@ -23,7 +23,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ArrowForward } from "@mui/icons-material";
-import Sidebar from "../components/sidebar/sidebarcontainer";
+import Sidebar from "../components/sidebar/SidebarContainer";
 
 const listItems = [
   { text: "프로필 정보 수정", icon: <EditIcon /> },

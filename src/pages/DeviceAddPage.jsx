@@ -19,7 +19,7 @@ import {
 import UserCard from "../components/usercard/UserCardContainer";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import WifiIcon from "@mui/icons-material/Wifi";
-import Sidebar from "../components/sidebar/sidebarcontainer";
+import Sidebar from "../components/sidebar/SidebarContainer";
 import InputUi from "../components/input/InputUi";
 
 const styles = {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useMediaQuery, Box, Typography, Grid } from "@mui/material";
 import { DesktopLayout, ServeContent, MobileLayout } from "../styles/index";
-import Sidebar from "../components/sidebar/sidebarcontainer";
+import Sidebar from "../components/sidebar/SidebarContainer";
 
 const datas = [
   {

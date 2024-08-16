@@ -11,7 +11,7 @@ import Usercard from "../components/usercard/UserCardContainer";
 import Weather from "../components/weather/WeatherContainer";
 import TodoList from "../components/todolist/TodoListContainer";
 import Newsletter from "../components/newsletter/NewsletterContainer";
-import Sidebar from "../components/sidebar/sidebarcontainer";
+import Sidebar from "../components/sidebar/SidebarContainer";
 
 const styles = {
   serveContentStyle: {

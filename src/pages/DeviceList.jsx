@@ -10,7 +10,7 @@ import {
 import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import UserCard from "../components/usercard/UserCardContainer";
-import Sidebar from "../components/sidebar/sidebarcontainer";
+import Sidebar from "../components/sidebar/SidebarContainer";
 import ListItemUi from "../components/listitem/ListItemUi";
 
 const mainTitle = "디바이스 목록";
