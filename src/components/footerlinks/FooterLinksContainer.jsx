@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 const FooterLinksContainer = ({ text1, link1, text2, link2 }) => {
   const navigate = useNavigate();
 
-  console.log(text1, link1, text2, link2);
-
   const handleLink1Click = () => {
     navigate(link1);
   };
