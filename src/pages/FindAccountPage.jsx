@@ -18,7 +18,7 @@ const styles = {
       backgroundColor: "#F8FAFB",
     },
   },
-  logoLayout: { border: "solid 1px #ddd", height: "50px" },
+
   imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
 
@@ -56,9 +56,6 @@ export const DesktopLookup = () => {
   return (
     <DesktopEntryLayout>
       <DesktopEntryMainLayout>
-        <Box sx={styles.logoLayout}>
-          <img alt="로고" />
-        </Box>
         <Box sx={styles.imageLayout}>
           <img alt="이미지" />
         </Box>
