@@ -23,7 +23,6 @@ export const SET_FIND_PASSWORD_EMAIL = "SET_FIND_PASSWORD_EMAIL";
 export const SET_FIND_PASSWORD_EMAIL_DOMAIN = "SET_FIND_PASSWORD_EMAIL_DOMAIN";
 
 export const formControl = (field, value) => {
-  console.log(`Action - Field: ${field}, Value: ${value}`);
   switch (field) {
     // 로그인
     case "id":
