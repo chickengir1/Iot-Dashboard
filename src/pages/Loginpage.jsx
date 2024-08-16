@@ -1,7 +1,14 @@
 import React from "react";
-import { Box, Button, Typography, useMediaQuery } from "@mui/material";
-import { CheckCircleOutlineOutlined } from "@mui/icons-material";
-import Input from "../components/input/InputContainer";
+import {
+  Box,
+  Typography,
+  useMediaQuery,
+  Checkbox,
+  Button,
+} from "@mui/material";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { formControl } from "../redux/actions/formAction";
 import {
   MobileEntryLayout,
   DesktopEntryLayout,
@@ -9,19 +16,10 @@ import {
   BlueRoundedButton,
 } from "../styles/index";
 import FooterLinks from "../components/footerlinks/FooterLinksContainer";
+import { loginFormFields } from "../utils/formFields";
+import { utilsFormField } from "../utils/formUtils";
 
 const styles = {
-  buttonWrapper: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    gap: 2,
-  },
-  desktopButtonWrapper: {
-    display: "flex",
-    alignItems: "center",
-    gap: 2,
-  },
   brandButtonStyle: {
     backgroundColor: "#fff",
     color: "#000",
@@ -31,124 +29,136 @@ const styles = {
       backgroundColor: "#F8FAFB",
     },
   },
-
-  imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
 
-const SaveLogin = () => {
-  return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <CheckCircleOutlineOutlined sx={{ color: "#14AE5C", mr: 1 }} />
-      <Typography>로그인 정보 기억하기</Typography>
+// 이것도 나중에 서버에 상태 저장해야함
+const SaveLogin = () => (
+  <Box sx={{ display: "flex", alignItems: "center", marginTop: "12px" }}>
+    <Checkbox sx={{ padding: 0 }} />
+    <Typography>로그인 정보 기억하기</Typography>
+  </Box>
+);
+
+const LoginForm = ({ onSubmit, register, errors }) => (
+  <Box component="form" onSubmit={onSubmit}>
+    {loginFormFields.map((field) => utilsFormField(field, register, errors))}
+    <SaveLogin />
+    <BlueRoundedButton
+      type="submit"
+      variant="contained"
+      fullWidth
+      sx={{ marginTop: "12px" }}
+    >
+      LOGIN
+    </BlueRoundedButton>
+  </Box>
+);
+
+// 나중에 유틸로 따로 뺍시다 지호님
+const ButtonComponent = ({ style }) => (
+  <Box sx={style}>
+    <Button
+      startIcon={
+        <img
+          src={`/icons/google-logo.svg`}
+          alt="Google Logo"
+          style={{ width: 24, height: 24 }}
+        />
+      }
+      variant="contained"
+      fullWidth
+      sx={styles.brandButtonStyle}
+    >
+      Google
+    </Button>
+    <Button
+      startIcon={
+        <img
+          src={`/icons/apple-logo.svg`}
+          alt="Apple Logo"
+          style={{ width: 24, height: 24 }}
+        />
+      }
+      variant="contained"
+      fullWidth
+      sx={styles.brandButtonStyle}
+    >
+      Apple
+    </Button>
+  </Box>
+);
+
+const MobileLogin = ({ onSubmit, register, errors }) => (
+  <MobileEntryLayout>
+    <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+      <img alt="이미지" />
     </Box>
-  );
-};
+    <LoginForm onSubmit={onSubmit} register={register} errors={errors} />
+    <Typography align="center" sx={{ marginY: "12px" }}>
+      다른 방법으로 로그인
+    </Typography>
+    <ButtonComponent style={{ display: "flex", gap: "12px" }} />
+    <FooterLinks
+      text1={"아이디/비밀번호 찾기"}
+      link1={"/find-account"}
+      text2={"가입하러 가기"}
+      link2={"/register"}
+    />
+  </MobileEntryLayout>
+);
 
-const ButtonComponent = ({ style }) => {
-  return (
-    <Box sx={style}>
-      <Button
-        startIcon={
-          <img
-            src={`/icons/google-logo.svg`}
-            alt="Apple Logo"
-            style={{ width: 24, height: 24 }}
-          />
-        }
-        variant="contained"
-        fullWidth
-        sx={styles.brandButtonStyle}
-      >
-        Google
-      </Button>
-      <Button
-        startIcon={
-          <img
-            src={`/icons/apple-logo.svg`}
-            alt="Apple Logo"
-            style={{ width: 24, height: 24 }}
-          />
-        }
-        variant="contained"
-        fullWidth
-        sx={styles.brandButtonStyle}
-      >
-        Apple
-      </Button>
-    </Box>
-  );
-};
-
-export const MobileLogin = () => {
-  return (
-    <MobileEntryLayout>
-      <Box sx={styles.imageLayout}>
+const DesktopLogin = ({ onSubmit, register, errors }) => (
+  <DesktopEntryLayout>
+    <DesktopEntryMainLayout>
+      <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
-      <Input
-        id={"id"}
-        label={"아이디"}
-        placeholder={"elice1234"}
-        error={"error"}
-      />
-      <Input
-        id={"password"}
-        label={"비밀번호"}
-        placeholder={"********"}
-        error={"error"}
-      />
-      <SaveLogin />
-      <BlueRoundedButton>Sign In</BlueRoundedButton>
-      <Typography align="center">or Sign in with</Typography>
-      <ButtonComponent style={styles.buttonWrapper} />
+      <LoginForm onSubmit={onSubmit} register={register} errors={errors} />
+      <Typography align="center" sx={{ marginY: "12px" }}>
+        다른 방법으로 로그인
+      </Typography>
+      <ButtonComponent style={{ display: "flex", gap: "12px" }} />
       <FooterLinks
         text1={"아이디/비밀번호 찾기"}
         link1={"/find-account"}
         text2={"가입하러 가기"}
         link2={"/register"}
       />
-    </MobileEntryLayout>
-  );
-};
-
-export const DesktopLogin = () => {
-  return (
-    <DesktopEntryLayout>
-      <DesktopEntryMainLayout>
-        <Box sx={styles.imageLayout}>
-          <img alt="이미지" />
-        </Box>
-        <Input
-          id={"id"}
-          label={"아이디"}
-          placeholder={"elice1234"}
-          error={"error"}
-        />
-        <Input
-          id={"password"}
-          label={"비밀번호"}
-          placeholder={"********"}
-          error={"error"}
-        />
-        <SaveLogin />
-        <BlueRoundedButton>Sign In</BlueRoundedButton>
-        <Typography align="center">or Sign in with</Typography>
-        <ButtonComponent style={styles.desktopButtonWrapper} />
-        <FooterLinks
-          text1={"아이디/비밀번호 찾기"}
-          link1={"/find-account"}
-          text2={"가입하러 가기"}
-          link2={"/register"}
-        />
-      </DesktopEntryMainLayout>
-    </DesktopEntryLayout>
-  );
-};
+    </DesktopEntryMainLayout>
+  </DesktopEntryLayout>
+);
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const formData = useSelector((state) => state.login);
+  console.log(formData); // 나중에 서버 api 통신할때 필요함 절대 지우지마시오
+
   const isDesktop = useMediaQuery("(min-width:600px)");
 
-  return isDesktop ? <DesktopLogin /> : <MobileLogin />;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    dispatch(formControl("id", data.id));
+    dispatch(formControl("password", data.password));
+  };
+
+  return isDesktop ? (
+    <DesktopLogin
+      onSubmit={handleSubmit(onSubmit)}
+      register={register}
+      errors={errors}
+    />
+  ) : (
+    <MobileLogin
+      onSubmit={handleSubmit(onSubmit)}
+      register={register}
+      errors={errors}
+    />
+  );
 };
 
 export default LoginPage;

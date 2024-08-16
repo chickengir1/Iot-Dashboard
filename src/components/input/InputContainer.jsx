@@ -1,7 +1,16 @@
+import React, { forwardRef } from "react";
 import InputUi from "./InputUi";
 
-const InputContainer = ({ id, label, placeholder, error }) => (
-  <InputUi id={id} label={label} placeholder={placeholder} error={error} />
-);
+const InputContainer = forwardRef(({ id, label, placeholder, error }, ref) => (
+  <InputUi
+    id={id}
+    label={label}
+    placeholder={placeholder}
+    error={error}
+    ref={ref}
+  />
+));
+
+InputContainer.displayName = "InputContainer";
 
 export default InputContainer;

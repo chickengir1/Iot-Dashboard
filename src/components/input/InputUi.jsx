@@ -1,6 +1,7 @@
+import React, { forwardRef } from "react";
 import { Box, InputLabel, TextField, Typography } from "@mui/material";
 
-const InputUi = ({ id, label, placeholder, error }) => {
+const InputUi = forwardRef(({ id, label, placeholder, error }, ref) => {
   const inputStyle = {
     "& .MuiOutlinedInput-root": {
       backgroundColor: "#fff",
@@ -28,10 +29,13 @@ const InputUi = ({ id, label, placeholder, error }) => {
         id={id}
         variant="outlined"
         sx={inputStyle}
+        inputRef={ref}
       />
-      <Typography sx={{ color: "#9ACD32" }}>{error}</Typography>
+      {error && <Typography sx={{ color: "#9ACD32" }}>{error}</Typography>}
     </Box>
   );
-};
+});
+
+InputUi.displayName = "InputUi";
 
 export default InputUi;
