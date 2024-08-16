@@ -41,12 +41,7 @@ export const MobileRegister = () => {
         error={"error"}
       />
       <BlueRoundedButton>Sign Up</BlueRoundedButton>
-      <FooterLinks
-        text1={"가입 안내 문구"}
-        link1={"/"}
-        text2={"로그인 하러 가기"}
-        link2={"/"}
-      />
+      <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
     </MobileEntryLayout>
   );
 };
@@ -81,12 +76,7 @@ export const DesktopRegister = () => {
           error={"error"}
         />
         <BlueRoundedButton>Sign Up</BlueRoundedButton>
-        <FooterLinks
-          text1={"가입 안내 문구"}
-          link1={"/"}
-          text2={"로그인 하러 가기"}
-          link2={"/"}
-        />
+        <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
       </DesktopEntryMainLayout>
     </DesktopEntryLayout>
   );

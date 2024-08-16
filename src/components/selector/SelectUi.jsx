@@ -7,8 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 
-const SelectUi = () => {
-  const inputStyle = {
+const styles = {
+  inputStyle: {
     "& .MuiOutlinedInput-root": {
       backgroundColor: "#fff",
       borderRadius: 1,
@@ -23,9 +23,8 @@ const SelectUi = () => {
         borderColor: "gray",
       },
     },
-  };
-
-  const selectStyle = {
+  },
+  selectStyle: {
     backgroundColor: "#fff",
     borderColor: "#d9d9d9",
     borderRadius: 1,
@@ -36,39 +35,38 @@ const SelectUi = () => {
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
       borderColor: "gray",
     },
-  };
+  },
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: "8px",
+  },
+  alphaSymbol: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "40px",
+  },
+};
 
+const SelectUi = () => {
   return (
-    <Box>
+    <Box sx={{ justifyContent: "center", alignItems: "center" }}>
       <InputLabel shrink htmlFor={"email"}>
         {"이메일"}
       </InputLabel>
-      <Box
-        fullWidth
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-end",
-          justifyContent: "space-between",
-        }}
-      >
+      <Box sx={styles.container}>
         <TextField
           placeholder={"email"}
           id={"email"}
-          sx={inputStyle}
+          sx={styles.inputStyle}
           fullWidth
         />
-        <Box
-          sx={{
-            width: "30px",
-            height: "24px",
-            margin: "8px",
-          }}
-        >
-          @
+        <Box sx={styles.alphaSymbol}>
+          <Typography>@</Typography>
         </Box>
-
-        <Select value={10} sx={selectStyle} fullWidth>
+        <Select value={10} sx={styles.selectStyle} fullWidth>
           <MenuItem value="None">
             <em>123</em>
           </MenuItem>
