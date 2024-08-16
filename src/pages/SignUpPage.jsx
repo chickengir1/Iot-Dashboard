@@ -2,7 +2,7 @@ import React from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import InputUi from "../components/input/InputUi";
 import SelectUi from "../components/selector/SelectUi";
-import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
+import FooterLinks from "../components/footerlinks/FooterLinksContainer";
 import {
   MobileEntryLayout,
   DesktopEntryLayout,
@@ -41,7 +41,7 @@ export const MobileRegister = () => {
         error={"error"}
       />
       <BlueRoundedButton>Sign Up</BlueRoundedButton>
-      <FooterLinksUi
+      <FooterLinks
         text1={"가입 안내 문구"}
         link1={"/"}
         text2={"로그인 하러 가기"}
@@ -81,7 +81,7 @@ export const DesktopRegister = () => {
           error={"error"}
         />
         <BlueRoundedButton>Sign Up</BlueRoundedButton>
-        <FooterLinksUi
+        <FooterLinks
           text1={"가입 안내 문구"}
           link1={"/"}
           text2={"로그인 하러 가기"}

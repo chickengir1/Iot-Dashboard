@@ -7,7 +7,7 @@ import {
   DesktopEntryMainLayout,
   BlueRoundedButton,
 } from "../styles/index";
-import FooterLinksUi from "../components/footerlinks/FooterLinksUi";
+import FooterLinks from "../components/footerlinks/FooterLinksContainer";
 
 const styles = {
   logoLayout: { border: "solid 1px #ddd", height: "50px" },
@@ -22,7 +22,7 @@ export const MobileFindId = () => {
       </Box>
       <SelectUi />
       <BlueRoundedButton>아이디 찾기</BlueRoundedButton>
-      <FooterLinksUi
+      <FooterLinks
         text1={"아이디/비밀번호 찾기"}
         link1={"/find-account"}
         text2={"가입하러 가기"}
@@ -44,7 +44,7 @@ export const DesktopFindId = () => {
         </Box>
         <SelectUi />
         <BlueRoundedButton>아이디 찾기</BlueRoundedButton>
-        <FooterLinksUi
+        <FooterLinks
           text1={"아이디/비밀번호 찾기"}
           link1={"/find-account"}
           text2={"가입하러 가기"}
