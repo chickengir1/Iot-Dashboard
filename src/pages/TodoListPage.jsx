@@ -4,7 +4,6 @@ import {
   BlueRoundedButton,
   ServeContent,
   MobileLayout,
-  MainLayout,
 } from "../styles/index";
 import React from "react";
 import UserCard from "../components/usercard/UserCardUi";
