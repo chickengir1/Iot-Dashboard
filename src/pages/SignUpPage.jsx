@@ -54,7 +54,7 @@ export const DesktopRegister = ({ onSubmit, register, errors }) => (
 const SignUpPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
   const dispatch = useDispatch();
-  const methods = useForm();
+  const combined = useForm();
 
   const onSubmit = (data) => {
     const completeEmail = `${data.email}@${data.domain}`;
@@ -72,18 +72,18 @@ const SignUpPage = () => {
   };
 
   return (
-    <FormProvider {...methods}>
+    <FormProvider {...combined}>
       {isDesktop ? (
         <DesktopRegister
-          onSubmit={methods.handleSubmit(onSubmit)}
-          register={methods.register}
-          errors={methods.formState.errors}
+          onSubmit={combined.handleSubmit(onSubmit)}
+          register={combined.register}
+          errors={combined.formState.errors}
         />
       ) : (
         <MobileRegister
-          onSubmit={methods.handleSubmit(onSubmit)}
-          register={methods.register}
-          errors={methods.formState.errors}
+          onSubmit={combined.handleSubmit(onSubmit)}
+          register={combined.register}
+          errors={combined.formState.errors}
         />
       )}
     </FormProvider>
