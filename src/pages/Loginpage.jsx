@@ -132,7 +132,7 @@ const DesktopLogin = ({ onSubmit, register, errors }) => (
 const LoginPage = () => {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.login);
-  console.log(formData); // 나중에 서버 api 통신할때 필요함 절대 지우지마시오
+  console.log(JSON.stringify(formData)); // 나중에 서버 api 통신할때 필요함 절대 지우지마시오
 
   /* 엑시오스 포스트 요청 보내는 훅 완성되면  에러 잡히면 쓰로우 에러 던져서
   에러 바운더리에 넘겨주고
