@@ -4,18 +4,15 @@ import {
   SET_SIGNUP_ID,
   SET_SIGNUP_PASSWORD,
   SET_SIGNUP_EMAIL,
-  SET_SIGNUP_EMAIL_DOMAIN,
   SET_SIGNUP_CONFIRM_PASSWORD,
   SET_PROFILE_UPDATE_ID,
   SET_PROFILE_UPDATE_PASSWORD,
   SET_FIND_ID_EMAIL,
-  SET_FIND_ID_EMAIL_DOMAIN,
   SET_FIND_PASSWORD_ID,
   SET_FIND_PASSWORD_EMAIL,
-  SET_FIND_PASSWORD_EMAIL_DOMAIN,
 } from "../actions/formAction";
 
-// 로그인
+// 로그인 리듀서
 const loginInitialState = {
   id: "",
   password: "",
@@ -32,16 +29,16 @@ export const loginReducer = (state = loginInitialState, action) => {
   }
 };
 
-// 회원가입
+// 회원가입 리듀서
 const signupInitialState = {
   id: "",
   password: "",
   email: "",
-  emailDomain: "",
   confirmPassword: "",
 };
 
 export const signupReducer = (state = signupInitialState, action) => {
+  console.log("최종적으로 합쳐진 폼 데이터", JSON.stringify(action, null, 2));
   switch (action.type) {
     case SET_SIGNUP_ID:
       return { ...state, id: action.payload };
@@ -49,8 +46,6 @@ export const signupReducer = (state = signupInitialState, action) => {
       return { ...state, password: action.payload };
     case SET_SIGNUP_EMAIL:
       return { ...state, email: action.payload };
-    case SET_SIGNUP_EMAIL_DOMAIN:
-      return { ...state, emailDomain: action.payload };
     case SET_SIGNUP_CONFIRM_PASSWORD:
       return { ...state, confirmPassword: action.payload };
     default:
@@ -58,7 +53,7 @@ export const signupReducer = (state = signupInitialState, action) => {
   }
 };
 
-// 프로필 업데이트
+// 프로필 업데이트 리듀서
 const profileUpdateInitialState = {
   id: "",
   password: "",
@@ -78,28 +73,24 @@ export const profileUpdateReducer = (
   }
 };
 
-// 아이디 찾기
+// 아이디 찾기 리듀서
 const findIdInitialState = {
   email: "",
-  emailDomain: "",
 };
 
 export const findIdReducer = (state = findIdInitialState, action) => {
   switch (action.type) {
     case SET_FIND_ID_EMAIL:
       return { ...state, email: action.payload };
-    case SET_FIND_ID_EMAIL_DOMAIN:
-      return { ...state, emailDomain: action.payload };
     default:
       return state;
   }
 };
 
-// 비밀번호 찾기
+// 비밀번호 찾기 리듀서
 const findPasswordInitialState = {
   id: "",
   email: "",
-  emailDomain: "",
 };
 
 export const findPasswordReducer = (
@@ -111,8 +102,6 @@ export const findPasswordReducer = (
       return { ...state, id: action.payload };
     case SET_FIND_PASSWORD_EMAIL:
       return { ...state, email: action.payload };
-    case SET_FIND_PASSWORD_EMAIL_DOMAIN:
-      return { ...state, emailDomain: action.payload };
     default:
       return state;
   }

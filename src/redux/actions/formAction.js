@@ -6,7 +6,6 @@ export const SET_LOGIN_PASSWORD = "SET_LOGIN_PASSWORD";
 export const SET_SIGNUP_ID = "SET_SIGNUP_ID";
 export const SET_SIGNUP_PASSWORD = "SET_SIGNUP_PASSWORD";
 export const SET_SIGNUP_EMAIL = "SET_SIGNUP_EMAIL";
-export const SET_SIGNUP_EMAIL_DOMAIN = "SET_SIGNUP_EMAIL_DOMAIN";
 export const SET_SIGNUP_CONFIRM_PASSWORD = "SET_SIGNUP_CONFIRM_PASSWORD";
 
 // 프로필 업데이트
@@ -37,8 +36,6 @@ export const formControl = (field, value) => {
       return { type: SET_SIGNUP_PASSWORD, payload: value };
     case "email":
       return { type: SET_SIGNUP_EMAIL, payload: value };
-    case "emailDomain":
-      return { type: SET_SIGNUP_EMAIL_DOMAIN, payload: value };
     case "confirmPassword":
       return { type: SET_SIGNUP_CONFIRM_PASSWORD, payload: value };
 
