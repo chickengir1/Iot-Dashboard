@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
+import navigateReducer from "./reducers/navigateReducer";
 
 const rootReducer = combineReducers({
-  // 리듀서 추가
+  navigation: navigateReducer,
 });
 
 export default rootReducer;

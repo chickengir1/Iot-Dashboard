@@ -9,49 +9,12 @@ import {
   Divider,
   BottomNavigation,
   BottomNavigationAction,
+  useMediaQuery,
 } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import SettingsIcon from "@mui/icons-material/Settings";
-import PersonIcon from "@mui/icons-material/Person";
-import DescriptionIcon from "@mui/icons-material/Description";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { useMediaQuery } from "@mui/material";
+import { ExitToApp as ExitToAppIcon } from "@mui/icons-material";
 
-const menuItems = [
-  { text: "Home", icon: <HomeIcon />, selected: true },
-  { text: "Device", icon: <SettingsIcon />, selected: false },
-  { text: "Profile", icon: <PersonIcon />, selected: false },
-  { text: "News", icon: <DescriptionIcon />, selected: false },
-  { text: "Todo list", icon: <CheckBoxIcon />, selected: false },
-];
-
-const MobileSidebar = () => {
-  return (
-    <BottomNavigation
-      sx={{
-        width: "100%",
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        boxShadow: "0 -2px 10px rgba(0,0,0,0.1)",
-      }}
-      showLabels
-    >
-      {menuItems.map((item, index) => (
-        <BottomNavigationAction
-          key={index}
-          icon={item.icon}
-          sx={{ minWidth: 0 }}
-        />
-      ))}
-    </BottomNavigation>
-  );
-};
-
-const DesktopSidebar = () => {
-  const sidebarStyle = {
+const styles = {
+  sidebar: {
     minWidth: "220px",
     maxWidth: "220px",
     display: "flex",
@@ -60,56 +23,96 @@ const DesktopSidebar = () => {
     padding: "16px 8px",
     border: "1px solid #ddd",
     borderRadius: "8px",
-  };
-
-  const logoStyle = {
+  },
+  logo: {
     marginBottom: "32px",
     textAlign: "start",
     fontSize: "24px",
     color: "#d23f57",
-  };
-
-  const listItemStyle = {
+  },
+  listItem: {
     borderRadius: "8px",
     "&:hover": {
       backgroundColor: "#eef2f6",
     },
-  };
-
-  const selectedItemStyle = {
+  },
+  selectedItem: {
     backgroundColor: "#eef2f6",
-  };
-
-  return (
-    <Box sx={sidebarStyle}>
-      <Typography sx={logoStyle}>로고</Typography>
-      <List>
-        {menuItems.map((item, index) => (
-          <ListItem
-            button
-            key={index}
-            sx={{ ...listItemStyle, ...(item.selected && selectedItemStyle) }}
-          >
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <ListItem button sx={listItemStyle}>
-        <ListItemIcon>
-          <ExitToAppIcon />
-        </ListItemIcon>
-        <ListItemText primary="Logout" />
-      </ListItem>
-    </Box>
-  );
+  },
+  bottomNav: {
+    width: "100%",
+    position: "fixed",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    boxShadow: "0 -2px 10px rgba(0,0,0,0.1)",
+  },
+  iconWrapper: { minWidth: 0 },
 };
 
-const SidebarUi = () => {
+const MenuList = ({ items, currentRoute, onMenuClick, isMobile }) => (
+  <List>
+    {items.map((item, index) => (
+      <ListItem
+        button
+        key={index}
+        onClick={() => onMenuClick(item.route)}
+        sx={{
+          ...styles.listItem,
+          ...(item.route === currentRoute && styles.selectedItem),
+        }}
+      >
+        <ListItemIcon>{item.icon}</ListItemIcon>
+        {isMobile ? null : <ListItemText primary={item.text} />}
+      </ListItem>
+    ))}
+  </List>
+);
+
+const MobileSidebar = ({ menuItems, onMenuClick }) => (
+  <BottomNavigation sx={styles.bottomNav} showLabels>
+    {menuItems.map((item, index) => (
+      <BottomNavigationAction
+        key={index}
+        icon={item.icon}
+        onClick={() => onMenuClick(item.route)}
+        sx={styles.iconWrapper}
+      />
+    ))}
+  </BottomNavigation>
+);
+
+const DesktopSidebar = ({ menuItems, currentRoute, onMenuClick }) => (
+  <Box sx={styles.sidebar}>
+    <Typography sx={styles.logo}>로고</Typography>
+    <MenuList
+      items={menuItems}
+      currentRoute={currentRoute}
+      onMenuClick={onMenuClick}
+      isMobile={false}
+    />
+    <Divider />
+    <ListItem button sx={styles.listItem}>
+      <ListItemIcon>
+        <ExitToAppIcon />
+      </ListItemIcon>
+      <ListItemText primary="Logout" />
+    </ListItem>
+  </Box>
+);
+
+const SidebarUi = ({ menuItems, currentRoute, onMenuClick }) => {
   const isMobile = useMediaQuery("(max-width:1279px)");
 
-  return isMobile ? <MobileSidebar /> : <DesktopSidebar />;
+  return isMobile ? (
+    <MobileSidebar menuItems={menuItems} onMenuClick={onMenuClick} />
+  ) : (
+    <DesktopSidebar
+      menuItems={menuItems}
+      currentRoute={currentRoute}
+      onMenuClick={onMenuClick}
+    />
+  );
 };
 
 export default SidebarUi;

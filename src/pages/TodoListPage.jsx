@@ -12,7 +12,7 @@ import {
   CheckBoxOutlineBlank,
   CheckBoxOutlined,
 } from "@mui/icons-material";
-import Sidebar from "../components/sidebar/sidebarUi";
+import Sidebar from "../components/sidebar/SidebarContainer";
 import ListItemUi from "../components/listitem/ListItemUi";
 
 const todos = [
