@@ -1,9 +1,9 @@
 import { SET_USER_INFO } from "../actions/profileActions";
 
 const initialState = {
-  userId: "",
+  userId: "유저 아이디",
   message: "good morning!",
-  icon: "",
+  icon: "profile1",
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -17,3 +17,5 @@ const profileReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export default profileReducer;

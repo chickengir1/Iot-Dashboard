@@ -6,7 +6,7 @@ import {
   MobileLayout,
 } from "../styles/index";
 import React from "react";
-import UserCard from "../components/usercard/UserCardUi";
+import UserCard from "../components/usercard/UserCardContainer";
 import {
   AddCircleOutlineOutlined,
   CheckBoxOutlineBlank,

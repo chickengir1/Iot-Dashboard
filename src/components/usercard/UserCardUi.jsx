@@ -3,7 +3,7 @@ import { Box, Typography, Avatar, Card, CardContent } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import MailIcon from "@mui/icons-material/Mail";
 
-const UserCardUi = () => {
+const UserCardUi = ({ userId, message, icon, badgeCount }) => {
   // 나중에 서버에서 온 데이터로 대체
   const index = 4;
 
@@ -28,14 +28,14 @@ const UserCardUi = () => {
         <CardContent>
           <Box sx={userCardLayout}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Avatar sx={{ padding: "4px" }}>icon</Avatar>
+              <Avatar sx={{ padding: "4px" }}>{icon}</Avatar>
               <Box sx={{ ml: 2 }}>
-                <Typography variant="body1">유저 ID</Typography>
-                <Typography variant="body2">good morning!</Typography>
+                <Typography variant="body1">{userId}</Typography>
+                <Typography variant="body2">{message}</Typography>
               </Box>
             </Box>
             <Box sx={badgeContainerStyle}>
-              <Badge badgeContent={index} color="primary">
+              <Badge badgeContent={badgeCount} color="primary">
                 <MailIcon color="action" />
               </Badge>
             </Box>
