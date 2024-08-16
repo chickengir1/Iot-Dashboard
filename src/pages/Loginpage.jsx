@@ -134,6 +134,11 @@ const LoginPage = () => {
   const formData = useSelector((state) => state.login);
   console.log(formData); // 나중에 서버 api 통신할때 필요함 절대 지우지마시오
 
+  /* 엑시오스 포스트 요청 보내는 훅 완성되면  에러 잡히면 쓰로우 에러 던져서
+  에러 바운더리에 넘겨주고
+  로딩은 컴포넌트 만들어서 공용으로 사용하고
+  폼 데이터는 엑시오스 커스텀 훅에 보내는걸로 합시다*/
+
   const isDesktop = useMediaQuery("(min-width:600px)");
 
   const {
