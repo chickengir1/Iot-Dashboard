@@ -14,24 +14,7 @@ import {
 } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/SidebarContainer";
 import ListItem from "../components/listitem/ListItemContainer";
-
-const todos = [
-  {
-    date: "2024-08-13",
-    description: "꽃에 물주기",
-    isFinish: true,
-  },
-  {
-    date: "2024-08-13",
-    description: "씨앗 심기",
-    isFinish: true,
-  },
-  {
-    date: "2024-08-13",
-    description: "칭찬 해주기",
-    isFinish: false,
-  },
-];
+import { useSelector } from "react-redux";
 
 // 페이지 고유 스타일
 const mainContentStyle = {
@@ -63,7 +46,7 @@ const AddTodoButton = () => (
   </BlueRoundedButton>
 );
 
-const MobileTodoList = () => (
+const MobileTodoList = ({ todos }) => (
   <MobileLayout>
     <UserCard />
     <Typography textAlign="center">투두 리스트</Typography>
@@ -80,7 +63,7 @@ const MobileTodoList = () => (
   </MobileLayout>
 );
 
-const DesktopTodoList = () => (
+const DesktopTodoList = ({ todos }) => (
   <DesktopLayout>
     <Sidebar />
     <Box sx={mainContentStyle}>
@@ -109,8 +92,14 @@ const DesktopTodoList = () => (
 );
 
 const TodoListPage = () => {
+  const todos = useSelector((state) => state.todo.todos);
   const isDesktop = useMediaQuery("(min-width:1280px)");
-  return isDesktop ? <DesktopTodoList /> : <MobileTodoList />;
+
+  return isDesktop ? (
+    <DesktopTodoList todos={todos} />
+  ) : (
+    <MobileTodoList todos={todos} />
+  );
 };
 
 export default TodoListPage;

@@ -9,6 +9,7 @@ import {
 } from "./reducers/formReducer";
 import profileReducer from "./reducers/profileReducer";
 import notificationReducer from "./reducers/notificationReducer";
+import todoReducer from "./reducers/todoReducer";
 
 const rootReducer = combineReducers({
   navigation: navigateReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   findPassword: findPasswordReducer,
   profile: profileReducer,
   notification: notificationReducer,
+  todo: todoReducer,
 });
 
 export default rootReducer;
