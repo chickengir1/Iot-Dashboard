@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setFormData } from "../redux/actions/formAction";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery, Snackbar, Alert } from "@mui/material";
 import FooterLinks from "../components/footerlinks/FooterLinksContainer";
 import {
   MobileEntryLayout,
@@ -12,6 +12,7 @@ import {
 import { signupFormFields } from "../utils/formFields";
 import { generateFields } from "../utils/generateFields";
 import usePostRequest from "../hooks/usePostRequest";
+import { getResponseMessage } from "../error/getResponseMessage";
 
 export const MobileRegister = ({
   onSubmit,
@@ -49,13 +50,18 @@ export const DesktopRegister = ({
 
 const SignUpPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
+  // 노티 관련 부분 컴포넌트로 추출
+  const [alertMessage, setAlertMessage] = useState(null);
+  const [alertType, setAlertType] = useState("success");
+  const [open, setOpen] = useState(false);
+  // 노티 관련 부분 컴포넌트로 추출
   const dispatch = useDispatch();
   const combined = useForm();
   const { watch } = combined;
 
-  const { postData, data } = usePostRequest("/api/auth/register");
+  const { postData } = usePostRequest("/api/auth/register");
 
-  const onSubmit = (formValues) => {
+  const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
 
     const formData = {
@@ -67,54 +73,53 @@ const SignUpPage = () => {
 
     dispatch(setFormData("signup", formData));
 
-    postData(formData)
-      .then((response) => {
-        if (response && typeof response === "object" && response.message) {
-          console.log("서버 응답:", response.message);
-        }
-      })
-      .catch((error) => {
-        if (
-          error.response &&
-          error.response.data &&
-          typeof error.response.data === "object"
-        ) {
-          console.error("서버 에러 메시지:", error.response.data.error);
-        }
-      });
+    try {
+      const response = await postData(formData);
+      const successMessage = getResponseMessage(response);
+      setAlertMessage(successMessage);
+      setAlertType("success");
+      setOpen(true);
+    } catch (error) {
+      const errorMessage = getResponseMessage(null, error);
+      setAlertMessage(errorMessage);
+      setAlertType("error");
+      setOpen(true);
+    }
   };
 
   return (
     <FormProvider {...combined}>
-      {data ? (
-        <Box sx={{ display: "flex", justifyContent: "center", margin: "20px" }}>
-          <h4>성공 {/*임시로 처리한거에요*/}</h4>
-        </Box>
+      {/*나중에 스낵바도 추출*/}
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+      >
+        <Alert severity={alertType} sx={{ width: "100%" }}>
+          {alertMessage}
+        </Alert>
+      </Snackbar>
+      {/*나중에 스낵바도 추출*/}
+      {isDesktop ? (
+        <DesktopRegister
+          formFields={signupFormFields}
+          onSubmit={combined.handleSubmit(onSubmit)}
+          register={combined.register}
+          errors={combined.formState.errors}
+          watch={watch}
+        />
       ) : (
-        <>
-          {isDesktop ? (
-            <DesktopRegister
-              formFields={signupFormFields}
-              onSubmit={combined.handleSubmit(onSubmit)}
-              register={combined.register}
-              errors={combined.formState.errors}
-              watch={watch}
-            />
-          ) : (
-            <MobileRegister
-              formFields={signupFormFields}
-              onSubmit={combined.handleSubmit(onSubmit)}
-              register={combined.register}
-              errors={combined.formState.errors}
-              watch={watch}
-            />
-          )}
-        </>
+        <MobileRegister
+          formFields={signupFormFields}
+          onSubmit={combined.handleSubmit(onSubmit)}
+          register={combined.register}
+          errors={combined.formState.errors}
+          watch={watch}
+        />
       )}
     </FormProvider>
   );
 };
 
 export default SignUpPage;
-
 // 각 페이지별로 로직 / UI 분리 해야함 수요일날 회의
