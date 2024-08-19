@@ -1,7 +1,7 @@
 import { SET_FORM_DATA } from "../actions/formAction";
 
 const initialState = {
-  login: { id: "", password: "" },
+  login: { email: "", id: "", password: "" },
   signup: { id: "", password: "", email: "", confirmPassword: "" },
   profileUpdate: { id: "", password: "" },
   findId: { email: "" },

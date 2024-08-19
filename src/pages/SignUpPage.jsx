@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setFormData } from "../redux/actions/formAction";
-import { Box, useMediaQuery, Snackbar, Alert } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import FooterLinks from "../components/footerlinks/FooterLinksContainer";
 import {
   MobileEntryLayout,
@@ -13,6 +12,8 @@ import { signupFormFields } from "../utils/formFields";
 import { generateFields } from "../utils/generateFields";
 import usePostRequest from "../hooks/usePostRequest";
 import { getResponseMessage } from "../error/getResponseMessage";
+import Notification from "../components/notification/NotificationContainer";
+import { handleFormSubmit } from "../utils/handleSubmit";
 
 export const MobileRegister = ({
   onSubmit,
@@ -39,7 +40,7 @@ export const DesktopRegister = ({
 }) => (
   <DesktopEntryLayout>
     <DesktopEntryMainLayout>
-      <Box sx={{ border: "solid 1px #ddd", minHeight: "250px" }}>
+      <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
         <img alt="이미지" />
       </Box>
       {generateFields({ formFields, onSubmit, register, errors, watch })}
@@ -71,48 +72,23 @@ const SignUpPage = () => {
       email: completeEmail,
     };
 
-    dispatch(setFormData("signup", formData));
-
-    try {
-      const response = await postData(formData);
-      const successMessage = getResponseMessage(response);
-      setNotification({ message: successMessage, type: "success", open: true });
-    } catch (error) {
-      const errorMessage = getResponseMessage(null, error);
-      setNotification({ message: errorMessage, type: "success", open: true });
-    }
+    await handleFormSubmit({
+      formData,
+      postData,
+      setNotification,
+      dispatch,
+      actionType: "signup",
+      successMessageHandler: getResponseMessage,
+      errorMessageHandler: (error) => getResponseMessage(null, error),
+    });
   };
-  const handleClose = () => {
-    setNotification((prev) => ({ ...prev, open: false }));
-  };
-
-  /*
-const [notification, setNotification] = useState({
-    message: null,
-    type: "success",
-    open: false,
-  });
-  이 부분 포함해서 모두 추출하기
- */
 
   return (
     <FormProvider {...combined}>
-      {/*나중에 한번에 추출*/}
-      <Snackbar
-        open={notification.open}
-        autoHideDuration={3000}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        onClose={handleClose}
-      >
-        <Alert
-          severity={notification.type}
-          sx={{ width: "100%" }}
-          onClose={handleClose}
-        >
-          {notification.message}
-        </Alert>
-      </Snackbar>
-      {/*나중에 한번에 추출*/}
+      <Notification
+        notification={notification}
+        setNotification={setNotification}
+      />
       {isDesktop ? (
         <DesktopRegister
           formFields={signupFormFields}

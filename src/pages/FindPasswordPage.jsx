@@ -13,7 +13,7 @@ import { findPasswordFormFields } from "../utils/formFields";
 import { generateFields } from "../utils/generateFields";
 
 const styles = {
-  imageLayout: { border: "solid 1px #ddd", height: "250px" },
+  imageLayout: { border: "solid 1px #ddd", minHeight: "150px" },
 };
 
 export const MobileFindPassword = ({

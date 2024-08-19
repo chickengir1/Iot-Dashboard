@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Box, useMediaQuery } from "@mui/material";
-import { setFormData } from "../redux/actions/formAction";
 import FooterLinks from "../components/footerlinks/FooterLinksContainer";
 import {
   MobileEntryLayout,
@@ -11,6 +10,10 @@ import {
   BlueRoundedButton,
 } from "../styles/index";
 import EmailSelectorContainer from "../components/emailSelector/EmailSelectorContainer";
+import usePostRequest from "../hooks/usePostRequest";
+import { getResponseMessage } from "../error/getResponseMessage";
+import Notification from "../components/notification/NotificationContainer";
+import { handleFormSubmit } from "../utils/handleSubmit";
 
 const FindIdForm = ({ onSubmit }) => (
   <Box component="form" onSubmit={onSubmit}>
@@ -28,7 +31,7 @@ const FindIdForm = ({ onSubmit }) => (
 
 export const MobileFindId = ({ onSubmit }) => (
   <MobileEntryLayout>
-    <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+    <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
       <img alt="이미지" />
     </Box>
     <FindIdForm onSubmit={onSubmit} />
@@ -42,9 +45,6 @@ export const DesktopFindId = ({ onSubmit }) => (
       <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
-      <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
-        <h4>일단 보류</h4>
-      </Box>
       <FindIdForm onSubmit={onSubmit} />
       <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
     </DesktopEntryMainLayout>
@@ -55,20 +55,38 @@ const FindIDPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
   const dispatch = useDispatch();
   const combined = useForm();
+  const [notification, setNotification] = useState({
+    message: null,
+    type: "success",
+    open: false,
+  });
 
-  const onSubmit = (data) => {
-    const completeEmail = `${data.email}@${data.domain}`;
+  const { postData } = usePostRequest("/api/auth/find-id");
+
+  const onSubmit = async (formValues) => {
+    const completeEmail = `${formValues.email}@${formValues.domain}`;
 
     const formData = {
       email: completeEmail,
     };
 
-    dispatch(setFormData("findId", formData));
-    console.log(formData);
+    await handleFormSubmit({
+      formData,
+      postData,
+      setNotification,
+      dispatch,
+      actionType: "findId",
+      successMessageHandler: getResponseMessage,
+      errorMessageHandler: (error) => getResponseMessage(null, error),
+    });
   };
 
   return (
     <FormProvider {...combined}>
+      <Notification
+        notification={notification}
+        setNotification={setNotification}
+      />
       {isDesktop ? (
         <DesktopFindId onSubmit={combined.handleSubmit(onSubmit)} />
       ) : (

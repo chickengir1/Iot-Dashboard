@@ -5,23 +5,21 @@ import {
   useMediaQuery,
   Checkbox,
   Button,
-  Snackbar,
-  Alert,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setFormData } from "../redux/actions/formAction";
 import {
   MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
-  BlueRoundedButton,
 } from "../styles/index";
 import FooterLinks from "../components/footerlinks/FooterLinksContainer";
 import { loginFormFields } from "../utils/formFields";
-import { generateFormFields } from "../utils/formUtils";
 import usePostRequest from "../hooks/usePostRequest";
 import { getResponseMessage } from "../error/getResponseMessage";
+import Notification from "../components/notification/NotificationContainer";
+import { handleFormSubmit } from "../utils/handleSubmit";
+import { generateFields } from "../utils/generateFields";
 
 const styles = {
   brandButtonStyle: {
@@ -77,30 +75,13 @@ const ButtonComponent = ({ style }) => (
   </Box>
 );
 
-// 얘는 따로 못 뺄 것 같습니다
-const LoginForm = ({ onSubmit, register, errors }) => (
-  <Box component="form" onSubmit={onSubmit}>
-    {loginFormFields.map((field) =>
-      generateFormFields(field, register, errors)
-    )}
-    <SaveLogin />
-    <BlueRoundedButton
-      type="submit"
-      variant="contained"
-      fullWidth
-      sx={{ marginTop: "12px" }}
-    >
-      LOGIN
-    </BlueRoundedButton>
-  </Box>
-);
-
-const MobileLogin = ({ onSubmit, register, errors }) => (
+const MobileLogin = ({ onSubmit, register, errors, watch, formFields }) => (
   <MobileEntryLayout>
-    <Box sx={{ border: "solid 1px #ddd", minHeight: "250px" }}>
+    <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
       <img alt="이미지" />
     </Box>
-    <LoginForm onSubmit={onSubmit} register={register} errors={errors} />
+    {generateFields({ formFields, onSubmit, register, errors, watch })}
+    <SaveLogin />
     <Typography align="center" sx={{ marginY: "12px" }}>
       다른 방법으로 로그인
     </Typography>
@@ -114,13 +95,14 @@ const MobileLogin = ({ onSubmit, register, errors }) => (
   </MobileEntryLayout>
 );
 
-const DesktopLogin = ({ onSubmit, register, errors }) => (
+const DesktopLogin = ({ onSubmit, register, errors, watch, formFields }) => (
   <DesktopEntryLayout>
     <DesktopEntryMainLayout>
-      <Box sx={{ border: "solid 1px #ddd", minHeight: "250px" }}>
+      <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
         <img alt="이미지" />
       </Box>
-      <LoginForm onSubmit={onSubmit} register={register} errors={errors} />
+      {generateFields({ formFields, onSubmit, register, errors, watch })}
+      <SaveLogin />
       <Typography align="center" sx={{ marginY: "12px" }}>
         다른 방법으로 로그인
       </Typography>
@@ -137,6 +119,8 @@ const DesktopLogin = ({ onSubmit, register, errors }) => (
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const combined = useForm();
+  const { watch } = combined;
   const isDesktop = useMediaQuery("(min-width:600px)");
   const [notification, setNotification] = useState({
     message: null,
@@ -144,68 +128,53 @@ const LoginPage = () => {
     open: false,
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
   const { postData } = usePostRequest("/api/auth/login");
 
   const onSubmit = async (formValues) => {
+    const completeEmail = `${formValues.email}@${formValues.domain}`;
     const formData = {
       id: formValues.id,
       password: formValues.password,
+      email: completeEmail,
     };
 
-    dispatch(setFormData("login", formData));
     console.log(formData);
 
-    try {
-      const response = await postData(formData);
-      const successMessage = getResponseMessage(response);
-      setNotification({ message: successMessage, type: "success", open: true });
-    } catch (error) {
-      const errorMessage = getResponseMessage(null, error);
-      setNotification({ message: errorMessage, type: "success", open: true });
-    }
-    console.log(formData.id);
-  };
-
-  const handleClose = () => {
-    setNotification((prev) => ({ ...prev, open: false }));
+    await handleFormSubmit({
+      formData,
+      postData,
+      setNotification,
+      dispatch,
+      actionType: "login",
+      successMessageHandler: getResponseMessage,
+      errorMessageHandler: (error) => getResponseMessage(null, error),
+    });
   };
 
   return (
-    <>
-      <Snackbar
-        open={notification.open}
-        autoHideDuration={3000}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        onClose={handleClose}
-      >
-        <Alert
-          severity={notification.type}
-          sx={{ width: "100%" }}
-          onClose={handleClose}
-        >
-          {notification.message}
-        </Alert>
-      </Snackbar>
+    <FormProvider {...combined}>
+      <Notification
+        notification={notification}
+        setNotification={setNotification}
+      />
       {isDesktop ? (
         <DesktopLogin
-          onSubmit={handleSubmit(onSubmit)}
-          register={register}
-          errors={errors}
+          formFields={loginFormFields}
+          onSubmit={combined.handleSubmit(onSubmit)}
+          register={combined.register}
+          errors={combined.formState.errors}
+          watch={watch}
         />
       ) : (
         <MobileLogin
-          onSubmit={handleSubmit(onSubmit)}
-          register={register}
-          errors={errors}
+          formFields={loginFormFields}
+          onSubmit={combined.handleSubmit(onSubmit)}
+          register={combined.register}
+          errors={combined.formState.errors}
+          watch={watch}
         />
       )}
-    </>
+    </FormProvider>
   );
 };
 
