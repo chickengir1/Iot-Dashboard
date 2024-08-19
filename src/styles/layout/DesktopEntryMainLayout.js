@@ -5,5 +5,7 @@ export const DesktopEntryMainLayout = styled(Box)({
   display: "flex",
   flexDirection: "column",
   maxHeight: "700px",
-  gap: 16,
+  minHeight: "700px",
+  justifyContent: "space-between",
+  gap: 12,
 });

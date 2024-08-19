@@ -1,72 +1,81 @@
 import React from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Box, useMediaQuery } from "@mui/material";
-import Select from "../components/selector/SelectContainer";
+import { setFormData } from "../redux/actions/formAction";
+import FooterLinks from "../components/footerlinks/FooterLinksContainer";
 import {
   MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
   BlueRoundedButton,
 } from "../styles/index";
-import FooterLinks from "../components/footerlinks/FooterLinksContainer";
+import EmailSelectorContainer from "../components/emailSelector/EmailSelectorContainer";
 
-const styles = {
-  imageLayout: { border: "solid 1px #ddd", height: "250px" },
-};
+const FindIdForm = ({ onSubmit }) => (
+  <Box component="form" onSubmit={onSubmit}>
+    <EmailSelectorContainer />
+    <BlueRoundedButton
+      type="submit"
+      variant="contained"
+      fullWidth
+      sx={{ marginTop: "12px" }}
+    >
+      아이디 찾기
+    </BlueRoundedButton>
+  </Box>
+);
 
-export const MobileFindId = () => {
-  return (
-    <MobileEntryLayout>
-      <Box sx={styles.imageLayout}>
+export const MobileFindId = ({ onSubmit }) => (
+  <MobileEntryLayout>
+    <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+      <img alt="이미지" />
+    </Box>
+    <FindIdForm onSubmit={onSubmit} />
+    <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
+  </MobileEntryLayout>
+);
+
+export const DesktopFindId = ({ onSubmit }) => (
+  <DesktopEntryLayout>
+    <DesktopEntryMainLayout>
+      <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
         <img alt="이미지" />
       </Box>
-      <Select
-        id={"id"}
-        label={"아이디"}
-        placeholder={"elice1234"}
-        error={"error"}
-        selectValue={10}
-      />
-      <BlueRoundedButton>아이디 찾기</BlueRoundedButton>
-      <FooterLinks
-        text1={"아이디/비밀번호 찾기"}
-        link1={"/find-account"}
-        text2={"가입하러 가기"}
-        link2={"/register"}
-      />
-    </MobileEntryLayout>
-  );
-};
-
-export const DesktopFindId = () => {
-  return (
-    <DesktopEntryLayout>
-      <DesktopEntryMainLayout>
-        <Box sx={styles.imageLayout}>
-          <img alt="이미지" />
-        </Box>
-        <Select
-          id={"id"}
-          label={"아이디"}
-          placeholder={"elice1234"}
-          error={"error"}
-          selectValue={10}
-        />
-        <BlueRoundedButton>아이디 찾기</BlueRoundedButton>
-        <FooterLinks
-          text1={"아이디/비밀번호 찾기"}
-          link1={"/find-account"}
-          text2={"가입하러 가기"}
-          link2={"/register"}
-        />
-      </DesktopEntryMainLayout>
-    </DesktopEntryLayout>
-  );
-};
+      <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+        <h4>일단 보류</h4>
+      </Box>
+      <FindIdForm onSubmit={onSubmit} />
+      <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
+    </DesktopEntryMainLayout>
+  </DesktopEntryLayout>
+);
 
 const FindIDPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
+  const dispatch = useDispatch();
+  const combined = useForm();
 
-  return isDesktop ? <DesktopFindId /> : <MobileFindId />;
+  const onSubmit = (data) => {
+    const completeEmail = `${data.email}@${data.domain}`;
+
+    const formData = {
+      email: completeEmail,
+    };
+
+    dispatch(setFormData("findId", formData));
+    console.log(formData);
+  };
+
+  return (
+    <FormProvider {...combined}>
+      {isDesktop ? (
+        <DesktopFindId onSubmit={combined.handleSubmit(onSubmit)} />
+      ) : (
+        <MobileFindId onSubmit={combined.handleSubmit(onSubmit)} />
+      )}
+    </FormProvider>
+  );
 };
 
 export default FindIDPage;

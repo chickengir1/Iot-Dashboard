@@ -73,7 +73,6 @@ const ButtonComponent = ({ style }) => (
   </Box>
 );
 
-// 여기서부터가 로그인 페이지 메인 로직이고 위에 적힌 컴포넌트들은 사실상 따로 관리해야 할듯해요 지호님
 const LoginForm = ({ onSubmit, register, errors }) => (
   <Box component="form" onSubmit={onSubmit}>
     {loginFormFields.map((field) => utilsFormField(field, register, errors))}
@@ -91,7 +90,7 @@ const LoginForm = ({ onSubmit, register, errors }) => (
 
 const MobileLogin = ({ onSubmit, register, errors }) => (
   <MobileEntryLayout>
-    <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+    <Box sx={{ border: "solid 1px #ddd", minHeight: "250px" }}>
       <img alt="이미지" />
     </Box>
     <LoginForm onSubmit={onSubmit} register={register} errors={errors} />
@@ -111,7 +110,7 @@ const MobileLogin = ({ onSubmit, register, errors }) => (
 const DesktopLogin = ({ onSubmit, register, errors }) => (
   <DesktopEntryLayout>
     <DesktopEntryMainLayout>
-      <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+      <Box sx={{ border: "solid 1px #ddd", minHeight: "250px" }}>
         <img alt="이미지" />
       </Box>
       <LoginForm onSubmit={onSubmit} register={register} errors={errors} />

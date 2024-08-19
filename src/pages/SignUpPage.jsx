@@ -33,7 +33,7 @@ const RegisterForm = ({ onSubmit, register, errors, watch }) => (
 
 export const MobileRegister = ({ onSubmit, register, errors, watch }) => (
   <MobileEntryLayout>
-    <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+    <Box sx={{ border: "solid 1px #ddd", minHeight: "250px" }}>
       <img alt="이미지" />
     </Box>
     <RegisterForm
@@ -49,7 +49,7 @@ export const MobileRegister = ({ onSubmit, register, errors, watch }) => (
 export const DesktopRegister = ({ onSubmit, register, errors, watch }) => (
   <DesktopEntryLayout>
     <DesktopEntryMainLayout>
-      <Box sx={{ border: "solid 1px #ddd", height: "250px" }}>
+      <Box sx={{ border: "solid 1px #ddd", minHeight: "250px" }}>
         <img alt="이미지" />
       </Box>
       <RegisterForm

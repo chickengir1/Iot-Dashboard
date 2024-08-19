@@ -1,6 +1,6 @@
 import { Box, TextField } from "@mui/material";
 
-// 폼 필드를 동적으로 생성하는 유틸 함수
+// 폼 필드를 동적으로 생성하는 유틸 함수 generateFormFields 로 변경 예정
 export const utilsFormField = (field, register, errors, watch) => {
   let validation = {};
 
