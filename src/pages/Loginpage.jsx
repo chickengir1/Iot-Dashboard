@@ -129,7 +129,7 @@ const LoginPage = () => {
     open: false,
   });
 
-  const { postData } = usePostRequest("/api/auth/login");
+  const { postData, data: serverData } = usePostRequest("/api/auth/login");
 
   const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
@@ -151,6 +151,7 @@ const LoginPage = () => {
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
   };
+  console.log("백엔드 데이터", serverData);
 
   return (
     <FormProvider {...combined}>
