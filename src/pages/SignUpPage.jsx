@@ -11,6 +11,7 @@ import {
 } from "../styles/index";
 import { signupFormFields } from "../utils/formFields";
 import { generateFields } from "../utils/generateFields";
+import usePostRequest from "../hooks/usePostRequest";
 
 export const MobileRegister = ({
   onSubmit,
@@ -52,41 +53,68 @@ const SignUpPage = () => {
   const combined = useForm();
   const { watch } = combined;
 
-  const onSubmit = (data) => {
-    const completeEmail = `${data.email}@${data.domain}`;
+  const { postData, data } = usePostRequest("/api/auth/register");
+
+  const onSubmit = (formValues) => {
+    const completeEmail = `${formValues.email}@${formValues.domain}`;
 
     const formData = {
-      id: data.id,
-      password: data.password,
-      confirmPassword: data.confirmPassword,
+      id: formValues.id,
+      password: formValues.password,
+      confirmPassword: formValues.confirmPassword,
       email: completeEmail,
     };
 
     dispatch(setFormData("signup", formData));
-    console.log("데이터", formData);
+
+    postData(formData)
+      .then((response) => {
+        if (response && typeof response === "object" && response.message) {
+          console.log("서버 응답:", response.message);
+        }
+      })
+      .catch((error) => {
+        if (
+          error.response &&
+          error.response.data &&
+          typeof error.response.data === "object"
+        ) {
+          console.error("서버 에러 메시지:", error.response.data.error);
+        }
+      });
   };
 
   return (
     <FormProvider {...combined}>
-      {isDesktop ? (
-        <DesktopRegister
-          formFields={signupFormFields}
-          onSubmit={combined.handleSubmit(onSubmit)}
-          register={combined.register}
-          errors={combined.formState.errors}
-          watch={watch}
-        />
+      {data ? (
+        <Box sx={{ display: "flex", justifyContent: "center", margin: "20px" }}>
+          <h4>성공 {/*임시로 처리한거에요*/}</h4>
+        </Box>
       ) : (
-        <MobileRegister
-          formFields={signupFormFields}
-          onSubmit={combined.handleSubmit(onSubmit)}
-          register={combined.register}
-          errors={combined.formState.errors}
-          watch={watch}
-        />
+        <>
+          {isDesktop ? (
+            <DesktopRegister
+              formFields={signupFormFields}
+              onSubmit={combined.handleSubmit(onSubmit)}
+              register={combined.register}
+              errors={combined.formState.errors}
+              watch={watch}
+            />
+          ) : (
+            <MobileRegister
+              formFields={signupFormFields}
+              onSubmit={combined.handleSubmit(onSubmit)}
+              register={combined.register}
+              errors={combined.formState.errors}
+              watch={watch}
+            />
+          )}
+        </>
       )}
     </FormProvider>
   );
 };
 
 export default SignUpPage;
+
+// 각 페이지별로 로직 / UI 분리 해야함 수요일날 회의
