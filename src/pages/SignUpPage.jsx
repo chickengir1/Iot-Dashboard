@@ -66,8 +66,8 @@ export const DesktopRegister = ({ onSubmit, register, errors, watch }) => (
 const SignUpPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
   const dispatch = useDispatch();
-  const combined = useForm(); // 'combined'을 watch와 함께 사용
-  const { watch } = combined; // watch 함수 추출
+  const combined = useForm();
+  const { watch } = combined;
 
   const onSubmit = (data) => {
     const completeEmail = `${data.email}@${data.domain}`;
@@ -90,14 +90,14 @@ const SignUpPage = () => {
           onSubmit={combined.handleSubmit(onSubmit)}
           register={combined.register}
           errors={combined.formState.errors}
-          watch={watch} // watch 전달
+          watch={watch}
         />
       ) : (
         <MobileRegister
           onSubmit={combined.handleSubmit(onSubmit)}
           register={combined.register}
           errors={combined.formState.errors}
-          watch={watch} // watch 전달
+          watch={watch}
         />
       )}
     </FormProvider>
