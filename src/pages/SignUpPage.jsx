@@ -50,11 +50,11 @@ export const DesktopRegister = ({
 
 const SignUpPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
-  // 노티 관련 부분 컴포넌트로 추출
-  const [alertMessage, setAlertMessage] = useState(null);
-  const [alertType, setAlertType] = useState("success");
-  const [open, setOpen] = useState(false);
-  // 노티 관련 부분 컴포넌트로 추출
+  const [notification, setNotification] = useState({
+    message: null,
+    type: "success",
+    open: false,
+  });
   const dispatch = useDispatch();
   const combined = useForm();
   const { watch } = combined;
@@ -76,30 +76,43 @@ const SignUpPage = () => {
     try {
       const response = await postData(formData);
       const successMessage = getResponseMessage(response);
-      setAlertMessage(successMessage);
-      setAlertType("success");
-      setOpen(true);
+      setNotification({ message: successMessage, type: "success", open: true });
     } catch (error) {
       const errorMessage = getResponseMessage(null, error);
-      setAlertMessage(errorMessage);
-      setAlertType("error");
-      setOpen(true);
+      setNotification({ message: errorMessage, type: "success", open: true });
     }
   };
+  const handleClose = () => {
+    setNotification((prev) => ({ ...prev, open: false }));
+  };
+
+  /*
+const [notification, setNotification] = useState({
+    message: null,
+    type: "success",
+    open: false,
+  });
+  이 부분 포함해서 모두 추출하기
+ */
 
   return (
     <FormProvider {...combined}>
-      {/*나중에 스낵바도 추출*/}
+      {/*나중에 한번에 추출*/}
       <Snackbar
-        open={open}
+        open={notification.open}
         autoHideDuration={3000}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        onClose={handleClose}
       >
-        <Alert severity={alertType} sx={{ width: "100%" }}>
-          {alertMessage}
+        <Alert
+          severity={notification.type}
+          sx={{ width: "100%" }}
+          onClose={handleClose}
+        >
+          {notification.message}
         </Alert>
       </Snackbar>
-      {/*나중에 스낵바도 추출*/}
+      {/*나중에 한번에 추출*/}
       {isDesktop ? (
         <DesktopRegister
           formFields={signupFormFields}

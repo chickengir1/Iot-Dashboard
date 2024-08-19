@@ -138,9 +138,12 @@ const DesktopLogin = ({ onSubmit, register, errors }) => (
 const LoginPage = () => {
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width:600px)");
-  const [alertMessage, setAlertMessage] = useState(null);
-  const [alertType, setAlertType] = useState("success");
-  const [open, setOpen] = useState(false);
+  const [notification, setNotification] = useState({
+    message: null,
+    type: "success",
+    open: false,
+  });
+
   const {
     register,
     handleSubmit,
@@ -161,26 +164,32 @@ const LoginPage = () => {
     try {
       const response = await postData(formData);
       const successMessage = getResponseMessage(response);
-      setAlertMessage(successMessage);
-      setAlertType("success");
-      setOpen(true);
+      setNotification({ message: successMessage, type: "success", open: true });
     } catch (error) {
       const errorMessage = getResponseMessage(null, error);
-      setAlertMessage(errorMessage);
-      setAlertType("error");
-      setOpen(true);
+      setNotification({ message: errorMessage, type: "success", open: true });
     }
+    console.log(formData.id);
+  };
+
+  const handleClose = () => {
+    setNotification((prev) => ({ ...prev, open: false }));
   };
 
   return (
     <>
       <Snackbar
-        open={open}
+        open={notification.open}
         autoHideDuration={3000}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        onClose={handleClose}
       >
-        <Alert severity={alertType} sx={{ width: "100%" }}>
-          {alertMessage}
+        <Alert
+          severity={notification.type}
+          sx={{ width: "100%" }}
+          onClose={handleClose}
+        >
+          {notification.message}
         </Alert>
       </Snackbar>
       {isDesktop ? (
