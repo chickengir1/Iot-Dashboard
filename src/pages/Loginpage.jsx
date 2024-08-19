@@ -7,8 +7,8 @@ import {
   Button,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { formControl } from "../redux/actions/formAction";
+import { useDispatch } from "react-redux";
+import { setFormData } from "../redux/actions/formAction";
 import {
   MobileEntryLayout,
   DesktopEntryLayout,
@@ -131,20 +131,7 @@ const DesktopLogin = ({ onSubmit, register, errors }) => (
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const formData = useSelector((state) => state.login);
-  console.log(JSON.stringify(formData)); // 나중에 서버 api 통신할때 필요함 절대 지우지마시오
-
-  /* 엑시오스 포스트 요청 보내는 훅 완성되면  에러 잡히면 쓰로우 에러 던져서
-  에러 바운더리에 넘겨주고
-  로딩은 컴포넌트 만들어서 공용으로 사용하고
-  폼 데이터는 엑시오스 커스텀 훅에 보내는걸로 합시다*/
-
-  // 추가로 ui 잡을때 썼던 인풋 컴포넌트는 이제 필요없고 텍스트필드로 대체 가능해요 유틸 폴더에 폼필드 관련된 로직 작성해놨는데
-  //보고 참고해서 응용해서 사용하시면 됩니다
-  // 추가로 폼 유틸과 폼 필드 둘 다 가져와서 사용하는 페이지에 맞는 방법대로 정의하고 작성하면 될듯 해요
-
   const isDesktop = useMediaQuery("(min-width:600px)");
-
   const {
     register,
     handleSubmit,
@@ -152,8 +139,13 @@ const LoginPage = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(formControl("id", data.id));
-    dispatch(formControl("password", data.password));
+    const formData = {
+      id: data.id,
+      password: data.password,
+    };
+
+    dispatch(setFormData("login", formData));
+    console.log(formData);
   };
 
   return isDesktop ? (

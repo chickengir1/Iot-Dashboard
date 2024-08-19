@@ -42,8 +42,14 @@ const EmailSelectorUI = ({
       value={email}
       onChange={onEmailChange}
       error={!!errors.email}
-      helperText={errors.email ? "이메일을 입력하세요." : " "}
-      {...register("email", { required: true })}
+      helperText={errors.email ? errors.email.message : " "}
+      {...register("email", {
+        required: "이메일을 입력하세요.",
+        pattern: {
+          value: /^[A-Za-z0-9._%+-]+$/,
+          message: "유효한 이메일 형식을 입력하세요.",
+        },
+      })}
       sx={styles.textField}
     />
     <Typography>@</Typography>
@@ -54,8 +60,8 @@ const EmailSelectorUI = ({
         error={!!errors.domain}
         {...register("domain", { required: true })}
       >
-        {emailDomains.map((domain, idx) => (
-          <MenuItem key={idx} value={domain}>
+        {emailDomains.map((domain) => (
+          <MenuItem key={domain} value={domain}>
             {domain}
           </MenuItem>
         ))}
