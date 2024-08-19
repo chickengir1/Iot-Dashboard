@@ -8,44 +8,26 @@ import {
   MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
-  BlueRoundedButton,
 } from "../styles/index";
 import { findPasswordFormFields } from "../utils/formFields";
-import { utilsFormField } from "../utils/formUtils";
-import EmailSelectorContainer from "../components/emailSelector/EmailSelectorContainer";
+import { generateFields } from "../utils/generateFields";
 
 const styles = {
   imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
 
-const FindPasswordForm = ({ onSubmit, register, errors, watch }) => (
-  <Box component="form" onSubmit={onSubmit}>
-    <EmailSelectorContainer />
-    {findPasswordFormFields.map((field) =>
-      utilsFormField(field, register, errors, watch)
-    )}
-    <BlueRoundedButton
-      type="submit"
-      variant="contained"
-      fullWidth
-      sx={{ marginTop: "12px" }}
-    >
-      비밀번호 찾기
-    </BlueRoundedButton>
-  </Box>
-);
-
-export const MobileFindPassword = ({ onSubmit, register, errors, watch }) => (
+export const MobileFindPassword = ({
+  onSubmit,
+  register,
+  errors,
+  watch,
+  formFields,
+}) => (
   <MobileEntryLayout>
     <Box sx={styles.imageLayout}>
       <img alt="이미지" />
     </Box>
-    <FindPasswordForm
-      onSubmit={onSubmit}
-      register={register}
-      errors={errors}
-      watch={watch}
-    />
+    {generateFields({ formFields, onSubmit, register, errors, watch })}
     <FooterLinks
       text1={"아이디/비밀번호 찾기"}
       link1={"/find-account"}
@@ -55,18 +37,19 @@ export const MobileFindPassword = ({ onSubmit, register, errors, watch }) => (
   </MobileEntryLayout>
 );
 
-export const DesktopFindPassword = ({ onSubmit, register, errors, watch }) => (
+export const DesktopFindPassword = ({
+  onSubmit,
+  register,
+  errors,
+  watch,
+  formFields,
+}) => (
   <DesktopEntryLayout>
     <DesktopEntryMainLayout>
       <Box sx={styles.imageLayout}>
         <img alt="이미지" />
       </Box>
-      <FindPasswordForm
-        onSubmit={onSubmit}
-        register={register}
-        errors={errors}
-        watch={watch}
-      />
+      {generateFields({ formFields, onSubmit, register, errors, watch })}
       <FooterLinks
         text1={"아이디/비밀번호 찾기"}
         link1={"/find-account"}
@@ -98,6 +81,7 @@ const FindPasswordPage = () => {
     <FormProvider {...combined}>
       {isDesktop ? (
         <DesktopFindPassword
+          formFields={findPasswordFormFields}
           onSubmit={combined.handleSubmit(onSubmit)}
           register={combined.register}
           errors={combined.formState.errors}
@@ -105,6 +89,7 @@ const FindPasswordPage = () => {
         />
       ) : (
         <MobileFindPassword
+          formFields={findPasswordFormFields}
           onSubmit={combined.handleSubmit(onSubmit)}
           register={combined.register}
           errors={combined.formState.errors}

@@ -17,7 +17,7 @@ import {
 } from "../styles/index";
 import FooterLinks from "../components/footerlinks/FooterLinksContainer";
 import { loginFormFields } from "../utils/formFields";
-import { utilsFormField } from "../utils/formUtils";
+import { generateFormFields } from "../utils/formUtils";
 
 const styles = {
   brandButtonStyle: {
@@ -73,9 +73,12 @@ const ButtonComponent = ({ style }) => (
   </Box>
 );
 
+// 얘는 따로 못 뺄 것 같습니다
 const LoginForm = ({ onSubmit, register, errors }) => (
   <Box component="form" onSubmit={onSubmit}>
-    {loginFormFields.map((field) => utilsFormField(field, register, errors))}
+    {loginFormFields.map((field) =>
+      generateFormFields(field, register, errors)
+    )}
     <SaveLogin />
     <BlueRoundedButton
       type="submit"

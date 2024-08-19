@@ -8,56 +8,39 @@ import {
   MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
-  BlueRoundedButton,
 } from "../styles/index";
 import { signupFormFields } from "../utils/formFields";
-import { utilsFormField } from "../utils/formUtils";
-import EmailSelectorContainer from "../components/emailSelector/EmailSelectorContainer";
+import { generateFields } from "../utils/generateFields";
 
-const RegisterForm = ({ onSubmit, register, errors, watch }) => (
-  <Box component="form" onSubmit={onSubmit}>
-    <EmailSelectorContainer />
-    {signupFormFields.map((field) =>
-      utilsFormField(field, register, errors, watch)
-    )}
-    <BlueRoundedButton
-      type="submit"
-      variant="contained"
-      fullWidth
-      sx={{ marginTop: "12px" }}
-    >
-      회원가입
-    </BlueRoundedButton>
-  </Box>
-);
-
-export const MobileRegister = ({ onSubmit, register, errors, watch }) => (
+export const MobileRegister = ({
+  onSubmit,
+  register,
+  errors,
+  watch,
+  formFields,
+}) => (
   <MobileEntryLayout>
     <Box sx={{ border: "solid 1px #ddd", minHeight: "250px" }}>
       <img alt="이미지" />
     </Box>
-    <RegisterForm
-      onSubmit={onSubmit}
-      register={register}
-      errors={errors}
-      watch={watch}
-    />
+    {generateFields({ formFields, onSubmit, register, errors, watch })}
     <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
   </MobileEntryLayout>
 );
 
-export const DesktopRegister = ({ onSubmit, register, errors, watch }) => (
+export const DesktopRegister = ({
+  onSubmit,
+  register,
+  errors,
+  watch,
+  formFields,
+}) => (
   <DesktopEntryLayout>
     <DesktopEntryMainLayout>
       <Box sx={{ border: "solid 1px #ddd", minHeight: "250px" }}>
         <img alt="이미지" />
       </Box>
-      <RegisterForm
-        onSubmit={onSubmit}
-        register={register}
-        errors={errors}
-        watch={watch}
-      />
+      {generateFields({ formFields, onSubmit, register, errors, watch })}
       <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
     </DesktopEntryMainLayout>
   </DesktopEntryLayout>
@@ -87,6 +70,7 @@ const SignUpPage = () => {
     <FormProvider {...combined}>
       {isDesktop ? (
         <DesktopRegister
+          formFields={signupFormFields}
           onSubmit={combined.handleSubmit(onSubmit)}
           register={combined.register}
           errors={combined.formState.errors}
@@ -94,6 +78,7 @@ const SignUpPage = () => {
         />
       ) : (
         <MobileRegister
+          formFields={signupFormFields}
           onSubmit={combined.handleSubmit(onSubmit)}
           register={combined.register}
           errors={combined.formState.errors}
