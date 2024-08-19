@@ -1,9 +1,8 @@
 import React from "react";
 import { Box, Typography, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import SettingsIcon from "@mui/icons-material/Settings";
 
-const TodoListUi = () => {
+const TodoListUi = ({ todos }) => {
   const todoStyled = {
     flexGrow: 1,
     padding: 1,
@@ -20,24 +19,23 @@ const TodoListUi = () => {
     <Box sx={{ marginBottom: 2 }}>
       <Typography variant="subtitle1">To do list</Typography>
       <Box sx={{ display: "flex", alignItems: "center", marginTop: 2, gap: 1 }}>
-        <Box sx={todoStyled}>
-          <Typography variant="body2">todo title</Typography>
-        </Box>
-        <Box sx={todoStyled}>
-          <IconButton>
-            <AddIcon />
-          </IconButton>
-        </Box>
-        <Box sx={todoStyled}>
-          <IconButton>
-            <AddIcon />
-          </IconButton>
-        </Box>
-        <Box sx={todoStyled}>
+        {todos.map((todo, index) => (
+          <Box sx={todoStyled} key={index}>
+            {todo ? (
+              <Typography variant="body2">{todo.description}</Typography>
+            ) : (
+              <IconButton>
+                <AddIcon />
+              </IconButton>
+            )}
+          </Box>
+        ))}
+        {/* 세팅은 넣지 말고, To do list(title)누르면 todopage로 이동하도록*/}
+        {/* <Box sx={todoStyled}>
           <IconButton>
             <SettingsIcon />
           </IconButton>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );
