@@ -4,9 +4,7 @@ import Badge from "@mui/material/Badge";
 import MailIcon from "@mui/icons-material/Mail";
 
 const UserCardUi = ({ userId, message, icon, badgeCount }) => {
-  // 나중에 서버에서 온 데이터로 대체
-  const index = 4;
-
+  // 레이아웃 스타일
   const userCardLayout = {
     display: "flex",
     alignItems: "center",
@@ -23,26 +21,24 @@ const UserCardUi = ({ userId, message, icon, badgeCount }) => {
   };
 
   return (
-    <>
-      <Card sx={{ mb: 2 }}>
-        <CardContent>
-          <Box sx={userCardLayout}>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Avatar sx={{ padding: "4px" }}>{icon}</Avatar>
-              <Box sx={{ ml: 2 }}>
-                <Typography variant="body1">{userId}</Typography>
-                <Typography variant="body2">{message}</Typography>
-              </Box>
-            </Box>
-            <Box sx={badgeContainerStyle}>
-              <Badge badgeContent={badgeCount} color="primary">
-                <MailIcon color="action" />
-              </Badge>
+    <Card sx={{ mb: 2 }}>
+      <CardContent>
+        <Box sx={userCardLayout}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Avatar sx={{ padding: "4px" }}>{icon}</Avatar>
+            <Box sx={{ ml: 2 }}>
+              <Typography variant="body1">{userId}</Typography>
+              <Typography variant="body2">{message}</Typography>
             </Box>
           </Box>
-        </CardContent>
-      </Card>
-    </>
+          <Box sx={badgeContainerStyle}>
+            <Badge badgeContent={badgeCount} color="primary">
+              <MailIcon color="action" />
+            </Badge>
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

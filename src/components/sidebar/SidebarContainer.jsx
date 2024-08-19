@@ -1,7 +1,9 @@
 import React from "react";
-import SidebarUi from "./sidebarUi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import SidebarDesktop from "./SidebarDesktop";
+import SidebarMobile from "./SidebarMobile";
+import { useMediaQuery } from "@mui/material";
 import { navigateTo } from "../../redux/actions/navigateAction";
 import {
   Home as HomeIcon,
@@ -33,8 +35,12 @@ const SidebarContainer = () => {
     { text: "Todo list", icon: <CheckBoxIcon />, route: "/todolist" },
   ];
 
-  return (
-    <SidebarUi
+  const isMobile = useMediaQuery("(max-width:1279px)");
+
+  return isMobile ? (
+    <SidebarMobile menuItems={menuItems} onMenuClick={handleNavigate} />
+  ) : (
+    <SidebarDesktop
       menuItems={menuItems}
       currentRoute={currentRoute}
       onMenuClick={handleNavigate}

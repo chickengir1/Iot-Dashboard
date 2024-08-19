@@ -21,6 +21,10 @@ const iconMap = {
 };
 
 const UserCardContainer = () => {
+  const userState = useSelector((state) => state.profile, shallowEqual);
+
+  console.log(userState);
+
   const { userId, message, iconKey, notificationCount } = useSelector(
     (state) => ({
       userId: state.profile.userId,
@@ -30,6 +34,8 @@ const UserCardContainer = () => {
     }),
     shallowEqual
   );
+
+  console.log(userId);
 
   return (
     <UserCardUi
