@@ -22,11 +22,12 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ArrowForward } from "@mui/icons-material";
+import { ArrowForward, LockReset } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/SidebarContainer";
 
 const listItems = [
   { text: "프로필 정보 수정", icon: <EditIcon /> },
+  { text: "비밀번호 초기화", icon: <LockReset /> },
   { text: "더 많은 제품 보기", icon: <VisibilityIcon /> },
   { text: "알람 설정", icon: <NotificationsIcon /> },
 ];
