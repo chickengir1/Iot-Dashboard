@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
   useMediaQuery,
   Checkbox,
   Button,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -18,6 +20,8 @@ import {
 import FooterLinks from "../components/footerlinks/FooterLinksContainer";
 import { loginFormFields } from "../utils/formFields";
 import { generateFormFields } from "../utils/formUtils";
+import usePostRequest from "../hooks/usePostRequest";
+import { getResponseMessage } from "../error/getResponseMessage";
 
 const styles = {
   brandButtonStyle: {
@@ -134,34 +138,65 @@ const DesktopLogin = ({ onSubmit, register, errors }) => (
 const LoginPage = () => {
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width:600px)");
+  const [alertMessage, setAlertMessage] = useState(null);
+  const [alertType, setAlertType] = useState("success");
+  const [open, setOpen] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const { postData } = usePostRequest("/api/auth/login");
+
+  const onSubmit = async (formValues) => {
     const formData = {
-      id: data.id,
-      password: data.password,
+      id: formValues.id,
+      password: formValues.password,
     };
 
     dispatch(setFormData("login", formData));
     console.log(formData);
+
+    try {
+      const response = await postData(formData);
+      const successMessage = getResponseMessage(response);
+      setAlertMessage(successMessage);
+      setAlertType("success");
+      setOpen(true);
+    } catch (error) {
+      const errorMessage = getResponseMessage(null, error);
+      setAlertMessage(errorMessage);
+      setAlertType("error");
+      setOpen(true);
+    }
   };
 
-  return isDesktop ? (
-    <DesktopLogin
-      onSubmit={handleSubmit(onSubmit)}
-      register={register}
-      errors={errors}
-    />
-  ) : (
-    <MobileLogin
-      onSubmit={handleSubmit(onSubmit)}
-      register={register}
-      errors={errors}
-    />
+  return (
+    <>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+      >
+        <Alert severity={alertType} sx={{ width: "100%" }}>
+          {alertMessage}
+        </Alert>
+      </Snackbar>
+      {isDesktop ? (
+        <DesktopLogin
+          onSubmit={handleSubmit(onSubmit)}
+          register={register}
+          errors={errors}
+        />
+      ) : (
+        <MobileLogin
+          onSubmit={handleSubmit(onSubmit)}
+          register={register}
+          errors={errors}
+        />
+      )}
+    </>
   );
 };
 
