@@ -14,7 +14,8 @@ import {
 } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/SidebarContainer";
 import ListItem from "../components/listitem/ListItemContainer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal, setModalType } from "../redux/actions/modalAction";
 
 // 페이지 고유 스타일
 const mainContentStyle = {
@@ -41,6 +42,7 @@ const AddTodoButton = () => (
     variant="contained"
     fullWidth
     endIcon={<AddCircleOutlineOutlined />}
+    // onClick={}
   >
     할 일 추가하기
   </BlueRoundedButton>
@@ -94,11 +96,28 @@ const DesktopTodoList = ({ todos }) => (
 const TodoListPage = () => {
   const todos = useSelector((state) => state.todo.todos);
   const isDesktop = useMediaQuery("(min-width:1280px)");
+  const dispatch = useDispatch();
+
+  const handleAddToDo = () => {
+    dispatch(setModalType("todo"));
+  };
+
+  const handleClose = () => {
+    dispatch(closeModal());
+  };
 
   return isDesktop ? (
-    <DesktopTodoList todos={todos} />
+    <DesktopTodoList
+      todos={todos}
+      onAddToDo={handleAddToDo}
+      onClose={handleClose}
+    />
   ) : (
-    <MobileTodoList todos={todos} />
+    <MobileTodoList
+      todos={todos}
+      onAddToDo={handleAddToDo}
+      onClose={handleClose}
+    />
   );
 };
 
