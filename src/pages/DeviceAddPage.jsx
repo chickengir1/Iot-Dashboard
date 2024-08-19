@@ -8,6 +8,7 @@ import {
   Avatar,
   Card,
   CardContent,
+  TextField,
 } from "@mui/material";
 import {
   DesktopLayout,
@@ -20,7 +21,6 @@ import UserCard from "../components/usercard/UserCardContainer";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import WifiIcon from "@mui/icons-material/Wifi";
 import Sidebar from "../components/sidebar/SidebarContainer";
-import InputUi from "../components/input/InputUi";
 
 const styles = {
   addDeviceContainer: {
@@ -81,8 +81,16 @@ const ContentSection = () => (
     <UserCard />
     <AddDeviceSection />
     <Box sx={styles.inputUiStyle}>
-      <InputUi label="장치 이름 등록하기" placeholder="name" />
-      <InputUi label="장치 설명 등록하기" placeholder="description" />
+      <TextField
+        label="장치 이름 등록하기"
+        placeholder="name"
+        variant="outlined"
+      />
+      <TextField
+        label="장치 설명 등록하기"
+        placeholder="description"
+        variant="outlined"
+      />
     </Box>
     <Card sx={styles.addButtonStyle}>
       <CardContent>장치 등록 주의사항</CardContent>
