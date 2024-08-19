@@ -75,6 +75,7 @@ const ButtonComponent = ({ style }) => (
   </Box>
 );
 
+// 여기서부터 로그인 페이지
 const MobileLogin = ({ onSubmit, register, errors, watch, formFields }) => (
   <MobileEntryLayout>
     <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
