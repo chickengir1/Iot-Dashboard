@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,16 +10,36 @@ import { handleFormSubmit } from "../../utils/handleSubmit";
 import { getResponseMessage } from "../../error/getResponseMessage";
 import LoginUi from "./LoginUi";
 
+const getEmail = (email) => email.split("@")[0];
+
 const LoginPageContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const combined = useForm();
-  const isDesktop = useMediaQuery("(min-width:600px)"); // 얘 나중에 상수로 추출
+
+  const isDesktop = useMediaQuery("(min-width:600px)");
+
   const [notification, setNotification] = useState({
     message: null,
     type: "",
     open: false,
   });
+
+  const [rememberLogin, setRememberLogin] = useState(false);
+
+  useEffect(() => {
+    const savedLogin = localStorage.getItem("rememberLogin");
+    if (savedLogin !== null) {
+      setRememberLogin(JSON.parse(savedLogin));
+    }
+
+    const savedUserProfile = localStorage.getItem("userProfile");
+    if (savedUserProfile) {
+      const user = JSON.parse(savedUserProfile);
+      combined.setValue("id", user.userId);
+      combined.setValue("email", getEmail(user.email));
+    }
+  }, [combined]);
 
   const { postData } = usePostRequest("/api/auth/login");
 
@@ -50,6 +70,10 @@ const LoginPageContainer = () => {
 
       await dispatch(setProfileData(profileData));
 
+      if (rememberLogin) {
+        localStorage.setItem("userProfile", JSON.stringify(response.user));
+      }
+
       setTimeout(() => {
         navigate("/home");
       }, 1000);
@@ -61,10 +85,11 @@ const LoginPageContainer = () => {
       onSubmit={combined.handleSubmit(onSubmit)}
       combined={combined}
       formFields={loginFormFields}
-      // 아랫 부분은 미디어 쿼리 및 노티 상태
       notification={notification}
       setNotification={setNotification}
       isDesktop={isDesktop}
+      rememberLogin={rememberLogin}
+      setRememberLogin={setRememberLogin}
     />
   );
 };

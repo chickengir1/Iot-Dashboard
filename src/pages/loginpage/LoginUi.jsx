@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Checkbox, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { FormProvider } from "react-hook-form";
 import {
   MobileEntryLayout,
@@ -9,17 +9,10 @@ import {
 import FooterLinks from "../../components/footerlinks/FooterLinksContainer";
 import { generateFields } from "../../utils/generateFields";
 import Notification from "../../components/notification/NotificationContainer";
-
-// 이 부분 컴포넌트로 추출
-const SaveLogin = () => (
-  <Box sx={{ display: "flex", alignItems: "center", marginTop: "12px" }}>
-    <Checkbox sx={{ padding: 0 }} />
-    <Typography>로그인 정보 기억하기</Typography>
-  </Box>
-);
+import SaveLogin from "../../components/savelogin/SaveLoginContainer";
 
 // 이 부분 OAuth2 파일 만들어서 서비스 폴더로 추출
-const ButtonComponent = ({ style }) => (
+const OAuth = ({ style }) => (
   <Box sx={style}>
     <Button
       startIcon={
@@ -68,17 +61,28 @@ const ButtonComponent = ({ style }) => (
   </Box>
 );
 
-const MobileLogin = ({ onSubmit, register, errors, watch, formFields }) => (
+const MobileLogin = ({
+  onSubmit,
+  register,
+  errors,
+  watch,
+  formFields,
+  rememberLogin,
+  setRememberLogin,
+}) => (
   <MobileEntryLayout>
     <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
       <img alt="이미지" />
     </Box>
     {generateFields({ formFields, onSubmit, register, errors, watch })}
-    <SaveLogin />
+    <SaveLogin
+      rememberLogin={rememberLogin}
+      setRememberLogin={setRememberLogin}
+    />
     <Typography align="center" sx={{ marginY: "12px" }}>
       다른 방법으로 로그인
     </Typography>
-    <ButtonComponent style={{ display: "flex", gap: "12px" }} />
+    <OAuth style={{ display: "flex", gap: "12px" }} />
     <FooterLinks
       text1={"아이디/비밀번호 찾기"}
       link1={"/find-account"}
@@ -88,18 +92,29 @@ const MobileLogin = ({ onSubmit, register, errors, watch, formFields }) => (
   </MobileEntryLayout>
 );
 
-const DesktopLogin = ({ onSubmit, register, errors, watch, formFields }) => (
+const DesktopLogin = ({
+  onSubmit,
+  register,
+  errors,
+  watch,
+  formFields,
+  rememberLogin,
+  setRememberLogin,
+}) => (
   <DesktopEntryLayout>
     <DesktopEntryMainLayout>
       <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
         <img alt="이미지" />
       </Box>
       {generateFields({ formFields, onSubmit, register, errors, watch })}
-      <SaveLogin />
+      <SaveLogin
+        rememberLogin={rememberLogin}
+        setRememberLogin={setRememberLogin}
+      />
       <Typography align="center" sx={{ marginY: "12px" }}>
         다른 방법으로 로그인
       </Typography>
-      <ButtonComponent style={{ display: "flex", gap: "12px" }} />
+      <OAuth style={{ display: "flex", gap: "12px" }} />
       <FooterLinks
         text1={"아이디/비밀번호 찾기"}
         link1={"/find-account"}
@@ -117,6 +132,8 @@ const LoginUi = ({
   isDesktop,
   notification,
   setNotification,
+  rememberLogin,
+  setRememberLogin,
 }) => (
   <FormProvider {...combined}>
     <Notification
@@ -130,6 +147,8 @@ const LoginUi = ({
         register={combined.register}
         errors={combined.formState.errors}
         watch={combined.watch}
+        rememberLogin={rememberLogin}
+        setRememberLogin={setRememberLogin}
       />
     ) : (
       <MobileLogin
@@ -138,6 +157,8 @@ const LoginUi = ({
         register={combined.register}
         errors={combined.formState.errors}
         watch={combined.watch}
+        rememberLogin={rememberLogin}
+        setRememberLogin={setRememberLogin}
       />
     )}
   </FormProvider>
