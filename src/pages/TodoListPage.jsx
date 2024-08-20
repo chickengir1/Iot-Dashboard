@@ -16,6 +16,7 @@ import Sidebar from "../components/sidebar/SidebarContainer";
 import ListItem from "../components/listitem/ListItemContainer";
 import { useDispatch, useSelector } from "react-redux";
 import ModalContainer from "../components/modal/ModalContainer";
+import { loadTodos } from "../utils/todoStorage";
 
 // 페이지 고유 스타일
 const mainContentStyle = {
@@ -80,9 +81,9 @@ const DesktopTodoList = ({ todos, onAddToDo }) => (
       <Typography textAlign="center" variant="h6" gutterBottom>
         투두 리스트
       </Typography>
-      {todos.map((todo, index) => (
+      {todos.map((todo) => (
         <TodoComponent
-          key={index}
+          key={todo.id}
           date={todo.date}
           description={todo.description}
           isFinish={todo.isFinish}
@@ -94,7 +95,7 @@ const DesktopTodoList = ({ todos, onAddToDo }) => (
 );
 
 const TodoListPage = () => {
-  const todos = useSelector((state) => state.todo.todos);
+  const todos = loadTodos();
   const isDesktop = useMediaQuery("(min-width:1280px)");
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);

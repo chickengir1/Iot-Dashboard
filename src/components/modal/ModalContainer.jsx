@@ -9,10 +9,19 @@ const ModalContainer = ({ open, onClose }) => {
     setTodoText(e.target.value);
   };
 
+  const getFormattedDate = () => {
+    const date = new Date();
+
+    const koreanDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+
+    return koreanDate.toISOString().split("T")[0];
+  };
+
   const handleSubmit = () => {
     const todos = loadTodos();
     const newTodo = {
-      date: Date.now(),
+      id: Date.now(),
+      date: getFormattedDate(),
       description: todoText,
       isFinish: false,
     };
