@@ -8,7 +8,7 @@ import { handleFormSubmit } from "../../utils/handleSubmit";
 import { getResponseMessage } from "../../error/getResponseMessage";
 import { signupFormFields } from "../../utils/formFields";
 import SignUpUi from "./SignUpUi";
-import { delay } from "../../utils/commonUtils";
+import { delay, breakpoints } from "../../utils/commonUtils";
 import Notification from "../../components/notification/NotificationContainer";
 
 const SignUpContainer = () => {
@@ -18,7 +18,7 @@ const SignUpContainer = () => {
     open: false,
   });
 
-  const isDesktop = useMediaQuery("(min-width:600px)");
+  const isDesktop = useMediaQuery(breakpoints.Account);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const combined = useForm();

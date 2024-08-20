@@ -6,7 +6,8 @@ import {
   CardContent,
   useMediaQuery,
 } from "@mui/material";
-import { DesktopLayout, MobileLayout, MainLayout } from "../styles/index";
+import { breakpoints } from "../utils/commonUtils"; // breakpoints 적용
+import { mainContentConfig } from "../styles/layoutConfig"; // layoutConfig 적용
 import Usercard from "../components/usercard/UserCardContainer";
 import Weather from "../components/weather/WeatherContainer";
 import TodoList from "../components/todolist/TodoListContainer";
@@ -36,16 +37,16 @@ const MainComponent = () => (
   </>
 );
 
-const MobileHomeLayout = () => (
-  <MobileLayout>
+const MobileHomeLayout = ({ Layout }) => (
+  <Layout>
     <MainComponent />
     <Newsletter />
     <Sidebar />
-  </MobileLayout>
+  </Layout>
 );
 
-const DesktopHomeLayout = () => (
-  <DesktopLayout>
+const DesktopHomeLayout = ({ Layout, MainLayout }) => (
+  <Layout>
     <Sidebar />
     <MainLayout>
       <MainComponent />
@@ -56,13 +57,18 @@ const DesktopHomeLayout = () => (
       <Typography variant="subtitle1">News Letter</Typography>
       <Newsletter />
     </Box>
-  </DesktopLayout>
+  </Layout>
 );
 
 const Homepage = () => {
-  const isDesktop = useMediaQuery("(min-width: 1280px)");
+  const isDesktop = useMediaQuery(breakpoints.mainContent);
+  const { Layout, MainLayout } = mainContentConfig(isDesktop);
 
-  return isDesktop ? <DesktopHomeLayout /> : <MobileHomeLayout />;
+  return isDesktop ? (
+    <DesktopHomeLayout Layout={Layout} MainLayout={MainLayout} />
+  ) : (
+    <MobileHomeLayout Layout={Layout} />
+  );
 };
 
 export default Homepage;
