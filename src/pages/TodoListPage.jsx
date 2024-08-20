@@ -5,7 +5,7 @@ import {
   ServeContent,
   MobileLayout,
 } from "../styles/index";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserCard from "../components/usercard/UserCardContainer";
 import {
   AddCircleOutlineOutlined,
@@ -15,7 +15,7 @@ import {
 import Sidebar from "../components/sidebar/SidebarContainer";
 import ListItem from "../components/listitem/ListItemContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, setModalType } from "../redux/actions/modalAction";
+import ModalContainer from "../components/modal/ModalContainer";
 
 // 페이지 고유 스타일
 const mainContentStyle = {
@@ -37,18 +37,18 @@ const TodoComponent = ({ date, description, isFinish }) => (
   />
 );
 
-const AddTodoButton = () => (
+const AddTodoButton = ({ onClick }) => (
   <BlueRoundedButton
     variant="contained"
     fullWidth
     endIcon={<AddCircleOutlineOutlined />}
-    // onClick={}
+    onClick={onClick}
   >
     할 일 추가하기
   </BlueRoundedButton>
 );
 
-const MobileTodoList = ({ todos }) => (
+const MobileTodoList = ({ todos, onAddToDo }) => (
   <MobileLayout>
     <UserCard />
     <Typography textAlign="center">투두 리스트</Typography>
@@ -60,12 +60,12 @@ const MobileTodoList = ({ todos }) => (
         isFinish={todo.isFinish}
       />
     ))}
-    <AddTodoButton />
+    <AddTodoButton onClick={onAddToDo} />
     <Sidebar />
   </MobileLayout>
 );
 
-const DesktopTodoList = ({ todos }) => (
+const DesktopTodoList = ({ todos, onAddToDo }) => (
   <DesktopLayout>
     <Sidebar />
     <Box sx={mainContentStyle}>
@@ -74,7 +74,7 @@ const DesktopTodoList = ({ todos }) => (
           <UserCard />
         </Grid>
         <Grid item xs={6} sx={{ display: "flex", mb: 2 }}>
-          <AddTodoButton />
+          <AddTodoButton onClick={onAddToDo} />
         </Grid>
       </Grid>
       <Typography textAlign="center" variant="h6" gutterBottom>
@@ -97,27 +97,29 @@ const TodoListPage = () => {
   const todos = useSelector((state) => state.todo.todos);
   const isDesktop = useMediaQuery("(min-width:1280px)");
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    console.log("Modal open state:", open);
+  }, [open]);
 
   const handleAddToDo = () => {
-    dispatch(setModalType("todo"));
+    setOpen(true);
   };
 
   const handleClose = () => {
-    dispatch(closeModal());
+    setOpen(false);
   };
 
-  return isDesktop ? (
-    <DesktopTodoList
-      todos={todos}
-      onAddToDo={handleAddToDo}
-      onClose={handleClose}
-    />
-  ) : (
-    <MobileTodoList
-      todos={todos}
-      onAddToDo={handleAddToDo}
-      onClose={handleClose}
-    />
+  return (
+    <>
+      {isDesktop ? (
+        <DesktopTodoList todos={todos} onAddToDo={handleAddToDo} />
+      ) : (
+        <MobileTodoList todos={todos} onAddToDo={handleAddToDo} />
+      )}
+      <ModalContainer open={open} onClose={handleClose} />
+    </>
   );
 };
 
