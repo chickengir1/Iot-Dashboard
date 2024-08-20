@@ -1,4 +1,13 @@
-import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Button,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import {
   DesktopLayout,
   BlueRoundedButton,
@@ -28,6 +37,50 @@ const mainContentStyle = {
   flexDirection: "column",
   width: "100%",
   gap: 2,
+};
+
+const ModalComponent = ({ open, onClose, setTodos }) => {
+  const [todoText, setTodoText] = useState("");
+
+  const handleInputChange = (e) => {
+    setTodoText(e.target.value);
+  };
+
+  const getFormattedDate = () => {
+    const date = new Date();
+    const koreanDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+    return koreanDate.toISOString().split("T")[0];
+  };
+
+  const handleSubmit = () => {
+    const todos = loadTodos();
+    const newTodo = {
+      id: Date.now(),
+      date: getFormattedDate(),
+      description: todoText,
+      isFinish: false,
+    };
+    const updatedTodos = [...todos, newTodo];
+    setTodos(updatedTodos);
+    saveTodos(updatedTodos);
+    setTodoText("");
+    onClose();
+  };
+
+  return (
+    <ModalContainer open={open} onClose={onClose}>
+      <DialogTitle>Todo List</DialogTitle>
+      <DialogContent>오늘 할 일을 입력해주세요.</DialogContent>
+      <TextField
+        value={todoText}
+        onChange={handleInputChange}
+        placeholder="할 일을 입력하세요"
+      />
+      <Button type="submit" onClick={handleSubmit}>
+        Submit
+      </Button>
+    </ModalContainer>
+  );
 };
 
 const TodoComponent = ({ date, description, isFinish, onDelete, onToggle }) => (
@@ -151,7 +204,7 @@ const TodoListPage = () => {
           onDelete={handleDelete}
         />
       )}
-      <ModalContainer open={open} onClose={handleClose} setTodos={setTodos} />
+      <ModalComponent open={open} onClose={handleClose} setTodos={setTodos} />
     </>
   );
 };

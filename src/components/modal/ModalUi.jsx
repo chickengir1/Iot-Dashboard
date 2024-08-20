@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const ModalUi = ({ open, onClose, todoText, onInputChange, onSubmit }) => {
+const ModalUi = ({ open, onClose, children }) => {
   const styles = {
     modalBackdrop: {
       display: "flex",
@@ -27,18 +27,7 @@ const ModalUi = ({ open, onClose, todoText, onInputChange, onSubmit }) => {
   };
   return (
     <Modal open={open} onClose={onClose} sx={styles.modalBackdrop}>
-      <Box sx={styles.modalLayout}>
-        <DialogTitle>Todo List</DialogTitle>
-        <DialogContent>오늘 할 일을 입력해주세요.</DialogContent>
-        <TextField
-          value={todoText}
-          onChange={onInputChange}
-          placeholder="할 일을 입력하세요"
-        />
-        <Button type="submit" onClick={onSubmit}>
-          Submit
-        </Button>
-      </Box>
+      <Box sx={styles.modalLayout}>{children}</Box>
     </Modal>
   );
 };
