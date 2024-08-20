@@ -2,7 +2,7 @@ import { useState } from "react";
 import ModalUi from "./ModalUi";
 import { loadTodos, saveTodos } from "../../utils/todoStorage";
 
-const ModalContainer = ({ open, onClose }) => {
+const ModalContainer = ({ open, onClose, setTodos }) => {
   const [todoText, setTodoText] = useState("");
 
   const handleInputChange = (e) => {
@@ -25,8 +25,9 @@ const ModalContainer = ({ open, onClose }) => {
       description: todoText,
       isFinish: false,
     };
-
-    saveTodos([...todos, newTodo]);
+    const updateTodos = [...todos, newTodo];
+    setTodos(updateTodos);
+    saveTodos(updateTodos);
     setTodoText("");
     onClose();
   };

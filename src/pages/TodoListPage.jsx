@@ -16,7 +16,7 @@ import Sidebar from "../components/sidebar/SidebarContainer";
 import ListItem from "../components/listitem/ListItemContainer";
 import { useDispatch, useSelector } from "react-redux";
 import ModalContainer from "../components/modal/ModalContainer";
-import { loadTodos } from "../utils/todoStorage";
+import { loadTodos, saveTodos } from "../utils/todoStorage";
 
 // 페이지 고유 스타일
 const mainContentStyle = {
@@ -30,12 +30,14 @@ const mainContentStyle = {
   gap: 2,
 };
 
-const TodoComponent = ({ date, description, isFinish }) => (
-  <ListItem
-    title={date}
-    description={description}
-    icon={isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}
-  />
+const TodoComponent = ({ date, description, isFinish, onDelete, onToggle }) => (
+  <Box onClick={onToggle} onContextMenu={onDelete}>
+    <ListItem
+      title={date}
+      description={description}
+      icon={isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}
+    />
+  </Box>
 );
 
 const AddTodoButton = ({ onClick }) => (
@@ -49,7 +51,7 @@ const AddTodoButton = ({ onClick }) => (
   </BlueRoundedButton>
 );
 
-const MobileTodoList = ({ todos, onAddToDo }) => (
+const MobileTodoList = ({ todos, onAddToDo, onDelete, onToggle }) => (
   <MobileLayout>
     <UserCard />
     <Typography textAlign="center">투두 리스트</Typography>
@@ -59,6 +61,8 @@ const MobileTodoList = ({ todos, onAddToDo }) => (
         date={todo.date}
         description={todo.description}
         isFinish={todo.isFinish}
+        onDelete={() => onDelete(todo.id)}
+        onToggle={() => onToggle(todo.id)}
       />
     ))}
     <AddTodoButton onClick={onAddToDo} />
@@ -66,7 +70,7 @@ const MobileTodoList = ({ todos, onAddToDo }) => (
   </MobileLayout>
 );
 
-const DesktopTodoList = ({ todos, onAddToDo }) => (
+const DesktopTodoList = ({ todos, onAddToDo, onDelete, onToggle }) => (
   <DesktopLayout>
     <Sidebar />
     <Box sx={mainContentStyle}>
@@ -87,6 +91,8 @@ const DesktopTodoList = ({ todos, onAddToDo }) => (
           date={todo.date}
           description={todo.description}
           isFinish={todo.isFinish}
+          onDelete={() => onDelete(todo.id)}
+          onToggle={() => onToggle(todo.id)}
         />
       ))}
     </Box>
@@ -95,10 +101,26 @@ const DesktopTodoList = ({ todos, onAddToDo }) => (
 );
 
 const TodoListPage = () => {
-  const todos = loadTodos();
+  const [todos, setTodos] = useState(loadTodos());
   const isDesktop = useMediaQuery("(min-width:1280px)");
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const handleToggle = (id) => {
+    console.log("toggle");
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, isFinish: !todo.isFinish } : todo
+    );
+    setTodos(updatedTodos);
+    saveTodos(updatedTodos);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("삭제하시겠습니까?")) {
+      const updatedTodos = todos.filter((todo) => todo.id !== id);
+      setTodos(updatedTodos);
+      saveTodos(updatedTodos);
+    }
+  };
 
   useEffect(() => {
     console.log("Modal open state:", open);
@@ -115,11 +137,21 @@ const TodoListPage = () => {
   return (
     <>
       {isDesktop ? (
-        <DesktopTodoList todos={todos} onAddToDo={handleAddToDo} />
+        <DesktopTodoList
+          todos={todos}
+          onAddToDo={handleAddToDo}
+          onToggle={handleToggle}
+          onDelete={handleDelete}
+        />
       ) : (
-        <MobileTodoList todos={todos} onAddToDo={handleAddToDo} />
+        <MobileTodoList
+          todos={todos}
+          onAddToDo={handleAddToDo}
+          onToggle={handleToggle}
+          onDelete={handleDelete}
+        />
       )}
-      <ModalContainer open={open} onClose={handleClose} />
+      <ModalContainer open={open} onClose={handleClose} setTodos={setTodos} />
     </>
   );
 };
