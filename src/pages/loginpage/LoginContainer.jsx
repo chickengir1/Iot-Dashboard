@@ -3,20 +3,20 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
-import { loginFormFields } from "../../utils/formFields";
+import { loginFormFields as fields } from "../../utils/formFields";
 import { setProfileData } from "../../redux/actions/profileActions";
 import usePostRequest from "../../hooks/usePostRequest";
 import { handleFormSubmit } from "../../utils/handleSubmit";
 import { getResponseMessage } from "../../error/getResponseMessage";
+import { save, get, remove } from "../../utils/localStorage";
 import LoginUi from "./LoginUi";
 
 const getEmail = (email) => email.split("@")[0];
 
-const LoginPageContainer = () => {
+const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const combined = useForm();
-
   const isDesktop = useMediaQuery("(min-width:600px)");
 
   const [notification, setNotification] = useState({
@@ -25,19 +25,19 @@ const LoginPageContainer = () => {
     open: false,
   });
 
-  const [rememberLogin, setRememberLogin] = useState(false);
+  const [remember, setRemember] = useState(false);
 
   useEffect(() => {
-    const savedLogin = localStorage.getItem("rememberLogin");
-    if (savedLogin !== null) {
-      setRememberLogin(JSON.parse(savedLogin));
+    const savedRemember = get("remember");
+    if (savedRemember !== null) {
+      setRemember(savedRemember);
     }
 
-    const savedUserProfile = localStorage.getItem("userProfile");
-    if (savedUserProfile) {
-      const user = JSON.parse(savedUserProfile);
-      combined.setValue("id", user.userId);
-      combined.setValue("email", getEmail(user.email));
+    const savedProfile = get("userProfile");
+    if (savedProfile) {
+      const { userId, email } = savedProfile;
+      combined.setValue("id", userId);
+      combined.setValue("email", getEmail(email));
     }
   }, [combined]);
 
@@ -70,8 +70,12 @@ const LoginPageContainer = () => {
 
       await dispatch(setProfileData(profileData));
 
-      if (rememberLogin) {
-        localStorage.setItem("userProfile", JSON.stringify(response.user));
+      if (remember) {
+        save("userProfile", response.user);
+        save("remember", remember);
+      } else {
+        remove("userProfile");
+        remove("remember");
       }
 
       setTimeout(() => {
@@ -84,14 +88,14 @@ const LoginPageContainer = () => {
     <LoginUi
       onSubmit={combined.handleSubmit(onSubmit)}
       combined={combined}
-      formFields={loginFormFields}
+      fields={fields}
       notification={notification}
       setNotification={setNotification}
       isDesktop={isDesktop}
-      rememberLogin={rememberLogin}
-      setRememberLogin={setRememberLogin}
+      remember={remember}
+      handleRemember={(e) => setRemember(e.target.checked)}
     />
   );
 };
 
-export default LoginPageContainer;
+export default LoginPage;
