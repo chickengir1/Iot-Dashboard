@@ -6,6 +6,7 @@ const initialState = {
   profileUpdate: { id: "", password: "" },
   findId: { email: "" },
   findPassword: { id: "", email: "" },
+  todo: { date: "", description: "", isFinish: "" },
 };
 
 export const formReducer = (state = initialState, action) => {

@@ -26,6 +26,9 @@ import ListItem from "../components/listitem/ListItemContainer";
 import { useDispatch, useSelector } from "react-redux";
 import ModalContainer from "../components/modal/ModalContainer";
 import { loadTodos, saveTodos } from "../utils/todoStorage";
+import { closeModal, setModalType } from "../redux/actions/modalAction";
+import { todoFields } from "../utils/formFields";
+import { generateFormFields } from "../utils/formUtils";
 
 // 페이지 고유 스타일
 const mainContentStyle = {
@@ -39,8 +42,9 @@ const mainContentStyle = {
   gap: 2,
 };
 
-const ModalComponent = ({ open, onClose, setTodos }) => {
+const TodoForm = ({ setTodos, onSubmit, register, errors }) => {
   const [todoText, setTodoText] = useState("");
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     setTodoText(e.target.value);
@@ -64,21 +68,22 @@ const ModalComponent = ({ open, onClose, setTodos }) => {
     setTodos(updatedTodos);
     saveTodos(updatedTodos);
     setTodoText("");
-    onClose();
+    dispatch(closeModal()); // 모달 닫기
   };
 
   return (
-    <ModalContainer open={open} onClose={onClose}>
+    <ModalContainer>
       <DialogTitle>Todo List</DialogTitle>
       <DialogContent>오늘 할 일을 입력해주세요.</DialogContent>
+      {/* {todoFields.map((field) => generateFormFields(field, register, errors))} */}
       <TextField
         value={todoText}
         onChange={handleInputChange}
         placeholder="할 일을 입력하세요"
       />
-      <Button type="submit" onClick={handleSubmit}>
+      <BlueRoundedButton type="submit" onClick={handleSubmit}>
         Submit
-      </Button>
+      </BlueRoundedButton>
     </ModalContainer>
   );
 };
@@ -157,9 +162,8 @@ const TodoListPage = () => {
   const [todos, setTodos] = useState(loadTodos());
   const isDesktop = useMediaQuery("(min-width:1280px)");
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
+
   const handleToggle = (id) => {
-    console.log("toggle");
     const updatedTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, isFinish: !todo.isFinish } : todo
     );
@@ -175,16 +179,12 @@ const TodoListPage = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("Modal open state:", open);
-  }, [open]);
-
   const handleAddToDo = () => {
-    setOpen(true);
+    dispatch(setModalType("todo"));
   };
 
   const handleClose = () => {
-    setOpen(false);
+    dispatch(closeModal());
   };
 
   return (
@@ -204,7 +204,7 @@ const TodoListPage = () => {
           onDelete={handleDelete}
         />
       )}
-      <ModalComponent open={open} onClose={handleClose} setTodos={setTodos} />
+      <TodoForm setTodos={setTodos} />
     </>
   );
 };

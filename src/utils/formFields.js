@@ -23,3 +23,6 @@ export const findPasswordFormFields = [
 ];
 
 export const emailDomains = ["gmail.com", "naver.com", "daum.net"];
+
+// 투두 입력하기
+export const todoFields = [{ label: "오늘 할 일", name: "todo", type: "text" }];

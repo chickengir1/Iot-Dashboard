@@ -1,8 +1,17 @@
+import { useDispatch, useSelector } from "react-redux";
 import ModalUi from "./ModalUi";
+import { closeModal } from "../../redux/actions/modalAction";
 
-const ModalContainer = ({ open, onClose, children }) => {
+const ModalContainer = ({ children }) => {
+  const dispatch = useDispatch();
+  const openModal = useSelector((state) => state.modal.openModal);
+
+  const handleClose = () => {
+    dispatch(closeModal());
+  };
+
   return (
-    <ModalUi open={open} onClose={onClose}>
+    <ModalUi open={!!openModal} onClose={handleClose}>
       {children}
     </ModalUi>
   );
