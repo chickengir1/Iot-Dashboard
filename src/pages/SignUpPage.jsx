@@ -53,7 +53,7 @@ const SignUpPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
   const [notification, setNotification] = useState({
     message: null,
-    type: "success",
+    type: "",
     open: false,
   });
   const dispatch = useDispatch();

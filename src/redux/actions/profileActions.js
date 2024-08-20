@@ -1,8 +1,6 @@
-export const SET_USER_INFO = "SET_USER_INFO";
+export const SET_PROFILE_DATA = "SET_PROFILE_DATA";
 
-export const setUserInfo = (userInfo) => {
-  return {
-    type: SET_USER_INFO,
-    payload: userInfo,
-  };
-};
+export const setProfileData = (userData) => ({
+  type: SET_PROFILE_DATA,
+  payload: userData,
+});

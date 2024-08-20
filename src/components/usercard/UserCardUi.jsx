@@ -27,7 +27,7 @@ const UserCardUi = ({ userId, message, icon, badgeCount }) => {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Avatar sx={{ padding: "4px" }}>{icon}</Avatar>
             <Box sx={{ ml: 2 }}>
-              <Typography variant="body1">{userId}</Typography>
+              <Typography variant="body1">{userId}님</Typography>
               <Typography variant="body2">{message}</Typography>
             </Box>
           </Box>

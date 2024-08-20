@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -20,6 +21,7 @@ import { getResponseMessage } from "../error/getResponseMessage";
 import Notification from "../components/notification/NotificationContainer";
 import { handleFormSubmit } from "../utils/handleSubmit";
 import { generateFields } from "../utils/generateFields";
+import { setProfileData } from "../redux/actions/profileActions";
 
 const styles = {
   brandButtonStyle: {
@@ -120,16 +122,17 @@ const DesktopLogin = ({ onSubmit, register, errors, watch, formFields }) => (
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const combined = useForm();
   const { watch } = combined;
   const isDesktop = useMediaQuery("(min-width:600px)");
   const [notification, setNotification] = useState({
     message: null,
-    type: "success",
+    type: "",
     open: false,
   });
 
-  const { postData, data: serverData } = usePostRequest("/api/auth/login");
+  const { postData } = usePostRequest("/api/auth/login");
 
   const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
@@ -139,9 +142,7 @@ const LoginPage = () => {
       email: completeEmail,
     };
 
-    console.log(formData);
-
-    await handleFormSubmit({
+    const response = await handleFormSubmit({
       formData,
       postData,
       setNotification,
@@ -150,8 +151,24 @@ const LoginPage = () => {
       successMessageHandler: getResponseMessage,
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
+
+    console.log("서버 데이터", response);
+
+    if (response && response.user) {
+      console.log("유저아이디", response.user.userId);
+      const profileData = {
+        userId: response.user.userId,
+        email: response.user.email,
+        createdAt: response.user.created_at,
+      };
+
+      await dispatch(setProfileData(profileData));
+
+      setTimeout(() => {
+        navigate("/home");
+      }, 1000);
+    }
   };
-  console.log("백엔드 데이터", serverData);
 
   return (
     <FormProvider {...combined}>

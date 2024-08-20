@@ -1,6 +1,6 @@
 import React from "react";
 import UserCardUi from "./UserCardUi";
-import { shallowEqual, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   AccountCircle,
   Face,
@@ -21,28 +21,14 @@ const iconMap = {
 };
 
 const UserCardContainer = () => {
-  const userState = useSelector((state) => state.profile, shallowEqual);
-
-  console.log(userState);
-
-  const { userId, message, iconKey, notificationCount } = useSelector(
-    (state) => ({
-      userId: state.profile.userId,
-      message: state.profile.message,
-      iconKey: state.profile.icon,
-      notificationCount: state.notification.unreadCount,
-    }),
-    shallowEqual
-  );
-
-  console.log(userId);
+  const profile = useSelector((state) => state.profile);
 
   return (
     <UserCardUi
-      userId={userId}
-      message={message}
-      icon={iconMap[iconKey] || <AccountCircle />}
-      badgeCount={notificationCount}
+      userId={profile.userId}
+      message={"Good Morning!"}
+      icon={iconMap[1] || <AccountCircle />}
+      badgeCount={1}
     />
   );
 };
