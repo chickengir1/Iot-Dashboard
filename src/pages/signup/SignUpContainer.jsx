@@ -6,7 +6,7 @@ import { useMediaQuery } from "@mui/material";
 import usePostRequest from "../../hooks/usePostRequest";
 import { handleFormSubmit } from "../../utils/handleSubmit";
 import { getResponseMessage } from "../../error/getResponseMessage";
-import { signupFormFields } from "../../utils/formFields";
+import { signupFormFields as fields } from "../../utils/formFields";
 import SignUpUi from "./SignUpUi";
 import { delay, breakpoints } from "../../utils/commonUtils";
 import Notification from "../../components/notification/NotificationContainer";
@@ -59,7 +59,7 @@ const SignUpContainer = () => {
       <SignUpUi
         combined={combined}
         isDesktop={isDesktop}
-        formFields={signupFormFields}
+        formFields={fields}
         onSubmit={combined.handleSubmit(onSubmit)}
       />
     </FormProvider>
