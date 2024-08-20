@@ -1,14 +1,19 @@
 import { SET_MODAL_TYPE, CLOSE_MODAL } from "../actions/modalAction";
 const initialModalState = {
-  modalType: null,
+  todo: { date: "", description: "", isFinish: "" },
 };
 
 function modalReducer(state = initialModalState, action) {
+  const { modalType, modalData } = action.payload || {};
+
   switch (action.type) {
     case SET_MODAL_TYPE:
       return {
         ...state,
-        modalType: action.payload,
+        [modalType]: {
+          ...state[modalType],
+          modalData,
+        },
       };
     case CLOSE_MODAL:
       return {
