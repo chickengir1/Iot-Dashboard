@@ -6,8 +6,8 @@ import {
   CardContent,
   useMediaQuery,
 } from "@mui/material";
-import { breakpoints } from "../utils/commonUtils"; // breakpoints 적용
-import { mainContentConfig } from "../styles/layoutConfig"; // layoutConfig 적용
+import { breakpoints } from "../utils/commonUtils";
+import { mainContentConfig } from "../styles/layoutConfig";
 import Usercard from "../components/usercard/UserCardContainer";
 import Weather from "../components/weather/WeatherContainer";
 import TodoList from "../components/todolist/TodoListContainer";

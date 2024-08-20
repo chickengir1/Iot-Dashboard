@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import { loginFormFields as fields } from "../../utils/formFields";
-import { setProfileData } from "../../redux/actions/profileActions";
 import usePostRequest from "../../hooks/usePostRequest";
 import { handleFormSubmit } from "../../utils/handleSubmit";
+import { updateProfileData } from "../../utils/saveProfile";
 import { getResponseMessage } from "../../error/getResponseMessage";
-import { save, get, remove } from "../../utils/localStorage";
+import { get } from "../../utils/localStorage";
 import LoginUi from "./LoginUi";
-import { getEmail, delay } from "../../utils/commonUtils";
+import { delay } from "../../utils/commonUtils";
 
 const LoginPage = () => {
   const [notification, setNotification] = useState({
@@ -35,7 +35,7 @@ const LoginPage = () => {
     if (savedProfile) {
       const { userId, email } = savedProfile;
       combined.setValue("id", userId);
-      combined.setValue("email", getEmail(email));
+      combined.setValue("email", email);
     }
   }, [combined]);
 
@@ -59,26 +59,10 @@ const LoginPage = () => {
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
 
-    if (response && response.user) {
-      const profileData = {
-        userId: response.user.userId,
-        email: response.user.email,
-        createdAt: response.user.created_at,
-      };
+    updateProfileData(response, remember, dispatch);
 
-      await dispatch(setProfileData(profileData));
-
-      if (remember) {
-        save("userProfile", response.user);
-        save("remember", remember);
-      } else {
-        remove("userProfile");
-        remove("remember");
-      }
-
-      await delay(1000);
-      navigate("/home");
-    }
+    await delay(1000);
+    navigate("/home");
   };
 
   return (
