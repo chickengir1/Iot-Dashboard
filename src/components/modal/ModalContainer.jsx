@@ -16,8 +16,8 @@ const ModalContainer = ({ open, onClose }) => {
       description: todoText,
       isFinish: false,
     };
-    const updateTodos = [...todos, newTodo];
-    saveTodos(updateTodos);
+
+    saveTodos([...todos, newTodo]);
     setTodoText("");
     onClose();
   };
