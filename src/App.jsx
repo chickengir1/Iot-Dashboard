@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Homepage";
 import ErrorBoundary from "./error/ErrorBoundary";
-import Login from "./pages/Loginpage";
 import SignUp from "./pages/SignUpPage";
 import Profile from "./pages/ProfilePage";
 import FindPW from "./pages/FindPasswordPage";
@@ -12,13 +11,14 @@ import DeviceList from "./pages/DeviceList";
 import NewsList from "./pages/NewsListPage";
 import DeviceAdd from "./pages/DeviceAddPage";
 import TodoList from "./pages/TodoListPage";
+import LoginContainer from "./pages/loginpage/LoginContainer";
 
 function App() {
   return (
     <ErrorBoundary>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<LoginContainer />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/forgot-password" element={<FindPW />} />
           <Route path="/find-userid" element={<FindID />} />
