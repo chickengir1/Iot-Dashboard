@@ -10,22 +10,20 @@ import { handleFormSubmit } from "../../utils/handleSubmit";
 import { getResponseMessage } from "../../error/getResponseMessage";
 import { save, get, remove } from "../../utils/localStorage";
 import LoginUi from "./LoginUi";
-
-const getEmail = (email) => email.split("@")[0];
+import { getEmail, delay } from "../../utils/commonUtils";
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const combined = useForm();
-  const isDesktop = useMediaQuery("(min-width:600px)");
-
   const [notification, setNotification] = useState({
     message: null,
     type: "",
     open: false,
   });
-
   const [remember, setRemember] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const combined = useForm();
+  const isDesktop = useMediaQuery("(min-width:600px)");
 
   useEffect(() => {
     const savedRemember = get("remember");
@@ -78,9 +76,8 @@ const LoginPage = () => {
         remove("remember");
       }
 
-      setTimeout(() => {
-        navigate("/home");
-      }, 1000);
+      await delay(1000);
+      navigate("/home");
     }
   };
 
