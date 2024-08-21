@@ -27,3 +27,28 @@ export const generateFields = ({
     </Box>
   );
 };
+
+// 이메일 셀렉터를 제외한 동적 텍스트필드 생성
+export const generateTextFields = ({
+  formFields,
+  onSubmit,
+  register,
+  errors,
+  watch,
+}) => {
+  return (
+    <Box component="form" onSubmit={onSubmit}>
+      {formFields.map((field) =>
+        generateFormFields(field, register, errors, watch)
+      )}
+      <BlueRoundedButton
+        type="submit"
+        variant="contained"
+        fullWidth
+        sx={{ marginTop: "12px" }}
+      >
+        제출
+      </BlueRoundedButton>
+    </Box>
+  );
+};
