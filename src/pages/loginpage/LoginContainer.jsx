@@ -62,8 +62,10 @@ const LoginPage = () => {
 
     updateProfileData(response, remember, dispatch);
 
-    await delay(1000);
-    navigate("/home");
+    if (response.message == "로그인 성공!") {
+      await delay(1000);
+      navigate("/home");
+    }
   };
 
   return (

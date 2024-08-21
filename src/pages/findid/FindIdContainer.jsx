@@ -40,9 +40,10 @@ const FindIDPage = () => {
       successMessageHandler: getResponseMessage,
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
-    if (response && response.success) {
+
+    if (response.message == "사용자 아이디가 이메일 주소로 전송되었습니다.") {
       await delay(1000);
-      navigate("/");
+      navigate("/home");
     }
   };
 

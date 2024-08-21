@@ -44,9 +44,9 @@ const SignUpContainer = () => {
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
 
-    if (response && response.success) {
+    if (response.message == "Success") {
       await delay(1000);
-      navigate("/");
+      navigate("/home");
     }
   };
 
