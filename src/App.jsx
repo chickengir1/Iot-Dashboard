@@ -4,7 +4,6 @@ import Home from "./pages/Homepage";
 import ErrorBoundary from "./error/ErrorBoundary";
 import Profile from "./pages/ProfilePage";
 import FindPW from "./pages/FindPasswordPage";
-import FindID from "./pages/FindIDPage";
 import FindAccount from "./pages/FindAccountPage";
 import DeviceList from "./pages/DeviceList";
 import NewsList from "./pages/NewsListPage";
@@ -12,6 +11,7 @@ import DeviceAdd from "./pages/DeviceAddPage";
 import TodoList from "./pages/TodoListPage";
 import LoginContainer from "./pages/loginpage/LoginContainer";
 import SignUpContainer from "./pages/signup/SignUpContainer";
+import FindIDPage from "./pages/findid/FindIdContainer";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<LoginContainer />} />
           <Route path="/register" element={<SignUpContainer />} />
           <Route path="/forgot-password" element={<FindPW />} />
-          <Route path="/find-userid" element={<FindID />} />
+          <Route path="/find-userid" element={<FindIDPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:userid/devices" element={<DeviceList />} />
