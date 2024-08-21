@@ -28,7 +28,8 @@ import { loadTodos, saveTodos } from "../utils/todoStorage";
 import { setModalType } from "../redux/actions/modalAction";
 import { todoFields } from "../utils/formFields";
 import { generateFormFields } from "../utils/formUtils";
-import { FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
+import { generateFields } from "../utils/generateFields";
 
 // 페이지 고유 스타일
 const mainContentStyle = {
@@ -57,12 +58,21 @@ const TodoForm = ({ onSubmit }) => {
     }
   };
 
+  const combined = useForm();
   return (
     <ModalContainer>
-      <FormProvider>
+      <FormProvider {...combined}>
         <DialogTitle>Todo List</DialogTitle>
-        <DialogContent>오늘 할 일을 입력해주세요.</DialogContent>
-        {generateFields({ formFields, onSubmit, register, errors, watch })}
+        <DialogContent>
+          {generateFields({
+            formFields: todoFields,
+            onSubmit: handleSubmit,
+            register: combined.register,
+            errors: combined.formState.errors,
+            watch: combined.watch,
+          })}
+        </DialogContent>
+
         <TextField
           value={todoText}
           onChange={handleInputChange}
