@@ -14,6 +14,8 @@ export const formReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_FORM_DATA:
+      // 스테이트 출력 정상확인
+      console.log(action.payload);
       return {
         ...state,
         [formType]: {

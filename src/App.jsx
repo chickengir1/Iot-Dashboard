@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Homepage";
 import ErrorBoundary from "./error/ErrorBoundary";
 import Profile from "./pages/ProfilePage";
-import FindPW from "./pages/FindPasswordPage";
 import FindAccount from "./pages/FindAccountPage";
 import DeviceList from "./pages/DeviceList";
 import NewsList from "./pages/NewsListPage";
@@ -12,6 +11,7 @@ import TodoList from "./pages/TodoListPage";
 import LoginContainer from "./pages/loginpage/LoginContainer";
 import SignUpContainer from "./pages/signup/SignUpContainer";
 import FindIDPage from "./pages/findid/FindIdContainer";
+import FindPasswordPage from "./pages/findpassword/FindPwContainer";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginContainer />} />
           <Route path="/register" element={<SignUpContainer />} />
-          <Route path="/forgot-password" element={<FindPW />} />
+          <Route path="/forgot-password" element={<FindPasswordPage />} />
           <Route path="/find-userid" element={<FindIDPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
