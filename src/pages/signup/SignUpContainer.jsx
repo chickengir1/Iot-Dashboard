@@ -46,7 +46,7 @@ const SignUpContainer = () => {
 
     if (response.message == "Success") {
       await delay(1000);
-      navigate("/home");
+      navigate("/");
     }
   };
 

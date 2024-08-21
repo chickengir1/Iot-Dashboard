@@ -45,7 +45,7 @@ const FindPasswordPage = () => {
 
     if (response.message == "비밀번호 재설정 메일이 발송되었습니다.") {
       await delay(1000);
-      navigate("/home");
+      navigate("/");
     }
   };
 
