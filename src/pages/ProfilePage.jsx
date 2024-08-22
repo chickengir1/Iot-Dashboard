@@ -105,6 +105,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const isDesktop = useMediaQuery("(min-width: 1280px)");
 
+  // 네트워크탭 페치 요청 보면 성공적으로 가는거 알 수 있음
   const handleLogout = async () => {
     try {
       await postData();
