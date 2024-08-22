@@ -8,11 +8,12 @@ import { todoFields as fields } from "../../utils/formFields";
 import Notification from "../../components/notification/NotificationContainer";
 import { setModalType } from "../../redux/actions/modalAction";
 import { get, save } from "../../utils/localStorage";
+import { getResponseMessage } from "../../error/getResponseMessage";
 
 const TodoContainer = () => {
   const [notification, setNotification] = useState({
     message: "success",
-    type: "success",
+    type: "",
     open: false,
   });
 
@@ -22,12 +23,10 @@ const TodoContainer = () => {
 
   const isDesktop = useMediaQuery(breakpoints.mainContent);
 
-  // 나중에 타입만 넘겨주면 되도록 함수 빼내면 좋을 듯.
   const handleAddToDo = () => {
     dispatch(setModalType("todo"));
   };
 
-  // 다른 함수 파일로 빼낼 지 고민 중(handleToggle,handleDelete,onSubmit)
   const handleToggle = (id) => {
     const updatedTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, isFinish: !todo.isFinish } : todo
@@ -58,26 +57,31 @@ const TodoContainer = () => {
       isFinish: false,
     };
 
-    // 여기 부분이 아직 이해가 잘 안됨.
+    const postData = async (data) => {
+      try {
+        const currentTodos = get("todos") || [];
+        const updatedTodos = [...currentTodos, data];
+        save("todos", updatedTodos);
+        return { message: "할일 추가 완료!" };
+      } catch (error) {
+        throw new Error(error);
+      }
+    };
+
     const todoresponse = handleFormSubmit({
       formData,
+      postData,
       setNotification,
       dispatch,
       actionType: "todo",
-      // successMessageHandler: (res) => "할 일이 성공적으로 추가되었습니다!",
-      // errorMessageHandler: (error) => `오류가 발생했습니다: ${error.message}`,
+      successMessageHandler: getResponseMessage,
+      errorMessageHandler: (error) => getResponseMessage(null, error),
     });
 
     if (todoresponse) {
       const updatedTodos = [...todos, formData];
       setTodos(updatedTodos);
       save("todos", updatedTodos);
-
-      setNotification({
-        message: "할 일이 성공적으로 추가되었습니다!",
-        type: "success",
-        open: true,
-      });
       dispatch(setModalType());
     }
   };
