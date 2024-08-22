@@ -64,8 +64,8 @@ const TodoContainer = () => {
       setNotification,
       dispatch,
       actionType: "todo",
-      successMessageHandler: (res) => "할 일이 성공적으로 추가되었습니다!",
-      errorMessageHandler: (error) => `오류가 발생했습니다: ${error.message}`,
+      // successMessageHandler: (res) => "할 일이 성공적으로 추가되었습니다!",
+      // errorMessageHandler: (error) => `오류가 발생했습니다: ${error.message}`,
     });
 
     if (todoresponse) {

@@ -65,6 +65,7 @@ const TodoComponent = ({
       e.preventDefault();
       onDelete(id);
     }}
+    marginBottom={2}
   >
     <ListItem
       title={date}
