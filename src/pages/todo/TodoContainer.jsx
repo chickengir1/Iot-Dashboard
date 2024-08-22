@@ -5,7 +5,6 @@ import { useMediaQuery, Box } from "@mui/material";
 import { breakpoints } from "../../utils/commonUtils";
 import { useDispatch } from "react-redux";
 import { todoFields as fields } from "../../utils/formFields";
-
 import Notification from "../../components/notification/NotificationContainer";
 import { setModalType } from "../../redux/actions/modalAction";
 import { get, save } from "../../utils/localStorage";
@@ -17,17 +16,18 @@ const TodoContainer = () => {
     open: false,
   });
 
-  const [todos, setTodos] = useState(() => get("todos") || []);
-  console.log(todos);
+  const [todos, setTodos] = useState(get("todos") || []);
 
   const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery(breakpoints.mainContent);
 
+  // 나중에 타입만 넘겨주면 되도록 함수 빼내면 좋을 듯.
   const handleAddToDo = () => {
     dispatch(setModalType("todo"));
   };
 
+  // 다른 함수 파일로 빼낼 지 고민 중(handleToggle,handleDelete,onSubmit)
   const handleToggle = (id) => {
     const updatedTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, isFinish: !todo.isFinish } : todo
@@ -58,6 +58,7 @@ const TodoContainer = () => {
       isFinish: false,
     };
 
+    // 여기 부분이 아직 이해가 잘 안됨.
     const todoresponse = handleFormSubmit({
       formData,
       setNotification,
@@ -72,7 +73,6 @@ const TodoContainer = () => {
       setTodos(updatedTodos);
       save("todos", updatedTodos);
 
-      // 성공적으로 저장된 후, 알림 및 모달 처리
       setNotification({
         message: "할 일이 성공적으로 추가되었습니다!",
         type: "success",

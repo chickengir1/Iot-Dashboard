@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form";
 import ListItem from "../../components/listitem/ListItemContainer";
 
 export const TodoForm = ({ formFields, onSubmit }) => {
+  // 이건 여기 있으면 안되는거 같은뎅..
   const {
     register,
     handleSubmit,
@@ -30,7 +31,9 @@ export const TodoForm = ({ formFields, onSubmit }) => {
       <DialogTitle>투두 리스트</DialogTitle>
       <DialogContent>
         <TextField
-          {...register("todo", { required: "할 일을 입력하세요." })}
+          {...register("todo", {
+            required: `${formFields.label}을 입력하세요. `,
+          })}
           label={formFields.label}
           placeholder={formFields.label}
           type={formFields.type}
@@ -40,18 +43,35 @@ export const TodoForm = ({ formFields, onSubmit }) => {
           error={!!errors.todo}
           helperText={errors.todo ? errors.todo.message : ""}
         />
-        <BlueRoundedButton type="submit">Submit</BlueRoundedButton>
+        <BlueRoundedButton type="submit" fullWidth>
+          Submit
+        </BlueRoundedButton>
       </DialogContent>
     </Box>
   );
 };
 
-const TodoComponent = ({ date, description, isFinish }) => (
-  <ListItem
-    title={date}
-    description={description}
-    icon={isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}
-  />
+const TodoComponent = ({
+  id,
+  date,
+  description,
+  isFinish,
+  onToggle,
+  onDelete,
+}) => (
+  <Box
+    onClick={() => onToggle(id)}
+    onContextMenu={(e) => {
+      e.preventDefault();
+      onDelete(id);
+    }}
+  >
+    <ListItem
+      title={date}
+      description={description}
+      icon={isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}
+    />
+  </Box>
 );
 
 const TodoUi = ({
@@ -76,21 +96,26 @@ const TodoUi = ({
         <MainLayout>
           <UserCard />
           <Typography textAlign="center">투두 리스트</Typography>
-          {todos.length > 0 &&
-            todos.map((todo) => (
-              <Box
-                onClick={() => onToggle(todo.id)}
-                onContextMenu={() => onDelete(todo.id)}
-                key={todo.id}
-              >
+          <Box
+            sx={{
+              height: "60vh",
+              overflowY: "auto",
+              marginBottom: 2,
+            }}
+          >
+            {todos.length > 0 &&
+              todos.map((todo) => (
                 <TodoComponent
+                  key={todo.id}
+                  id={todo.id}
                   date={todo.date}
                   description={todo.description}
                   isFinish={todo.isFinish}
+                  onToggle={onToggle}
+                  onDelete={onDelete}
                 />
-              </Box>
-            ))}
-
+              ))}
+          </Box>
           <BlueRoundedButton
             variant="contained"
             fullWidth
