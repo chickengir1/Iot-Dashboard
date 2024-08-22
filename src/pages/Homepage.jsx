@@ -10,7 +10,7 @@ import { breakpoints } from "../utils/commonUtils";
 import { mainContentConfig } from "../styles/layoutConfig";
 import Usercard from "../components/usercard/UserCardContainer";
 import Weather from "../components/weather/WeatherContainer";
-import TodoList from "../components/todolist/TodoListContainer";
+
 import Newsletter from "../components/newsletter/NewsletterContainer";
 import Sidebar from "../components/sidebar/SidebarContainer";
 
@@ -33,7 +33,7 @@ const MainComponent = () => (
       </CardContent>
     </Card>
     <Weather />
-    <TodoList />
+    <div>투두 컨텍스트 들어가야함</div>
   </>
 );
 
