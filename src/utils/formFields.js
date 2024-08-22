@@ -22,7 +22,7 @@ export const findPasswordFormFields = [
   { label: "아이디", name: "id", type: "text" },
 ];
 
-export const emailDomains = ["gmail.com", "naver.com", "daum.net"];
-
 // 투두 입력하기
-export const todoFields = [{ label: "오늘 할 일", name: "todo", type: "text" }];
+export const todoFields = { label: "오늘 할 일", name: "todo", type: "text" };
+
+export const emailDomains = ["gmail.com", "naver.com", "daum.net"];

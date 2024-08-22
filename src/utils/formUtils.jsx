@@ -31,6 +31,16 @@ export const generateFormFields = (field, register, errors, watch) => {
     };
   }
 
+  if (field.name === "todo") {
+    validation = {
+      required: `${field.label}을 입력하세요.`,
+      maxLength: {
+        value: 30,
+        message: "30글자 이하로 입력해주세요.",
+      },
+    };
+  }
+
   return (
     <Box key={field.name}>
       <TextField

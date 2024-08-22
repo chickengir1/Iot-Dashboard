@@ -59,7 +59,7 @@ const LoginPage = () => {
       successMessageHandler: getResponseMessage,
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
-
+    console.log(response);
     updateProfileData(response, remember, dispatch);
 
     if (response.message == "로그인 성공!") {
