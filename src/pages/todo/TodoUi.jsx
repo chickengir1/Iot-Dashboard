@@ -15,16 +15,14 @@ import {
 } from "@mui/icons-material";
 import Sidebar from "../../components/sidebar/SidebarContainer";
 import Modal from "../../components/modal/ModalContainer";
-import { useForm } from "react-hook-form";
 import ListItem from "../../components/listitem/ListItemContainer";
 
-export const TodoForm = ({ formFields, onSubmit }) => {
-  // 이건 여기 있으면 안되는거 같은뎅..
+export const TodoForm = ({ formFields, onSubmit, combined }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = combined;
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
@@ -32,7 +30,7 @@ export const TodoForm = ({ formFields, onSubmit }) => {
       <DialogContent>
         <TextField
           {...register("todo", {
-            required: `${formFields.label}을 입력하세요. `,
+            required: `${formFields.label}을 입력하세요.`,
           })}
           label={formFields.label}
           placeholder={formFields.label}
@@ -81,6 +79,7 @@ const TodoUi = ({
   onSubmit,
   onOpen,
   onClose,
+  combined,
   onDelete,
   onToggle,
   todos,
@@ -89,7 +88,11 @@ const TodoUi = ({
   return (
     <div>
       <Modal onClose={onClose}>
-        <TodoForm formFields={formFields} onSubmit={onSubmit} />
+        <TodoForm
+          formFields={formFields}
+          onSubmit={onSubmit}
+          combined={combined}
+        />
       </Modal>
 
       <Layout>

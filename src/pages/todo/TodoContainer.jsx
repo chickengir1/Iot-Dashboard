@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { handleFormSubmit } from "../../utils/handleSubmit";
 import TodoUi from "./TodoUi";
-import { useMediaQuery, Box } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import { breakpoints } from "../../utils/commonUtils";
 import { useDispatch } from "react-redux";
+import { FormProvider, useForm } from "react-hook-form";
 import { todoFields as fields } from "../../utils/formFields";
 import Notification from "../../components/notification/NotificationContainer";
 import { setModalType } from "../../redux/actions/modalAction";
@@ -20,7 +21,7 @@ const TodoContainer = () => {
   const [todos, setTodos] = useState(get("todos") || []);
 
   const dispatch = useDispatch();
-
+  const combined = useForm();
   const isDesktop = useMediaQuery(breakpoints.mainContent);
 
   const handleAddToDo = () => {
@@ -87,7 +88,7 @@ const TodoContainer = () => {
   };
 
   return (
-    <Box>
+    <FormProvider {...combined}>
       <Notification
         notification={notification}
         setNotification={setNotification}
@@ -99,9 +100,10 @@ const TodoContainer = () => {
         onOpen={handleAddToDo}
         onDelete={handleDelete}
         onToggle={handleToggle}
+        combined={combined}
         todos={todos}
       />
-    </Box>
+    </FormProvider>
   );
 };
 
