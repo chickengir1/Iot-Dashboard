@@ -1,5 +1,104 @@
+import React, { useState } from "react";
+import { handleFormSubmit } from "../../utils/handleSubmit";
+import TodoUi from "./TodoUi";
+import { useMediaQuery, Box } from "@mui/material";
+import { breakpoints } from "../../utils/commonUtils";
+import { useDispatch } from "react-redux";
+import { todoFields as fields } from "../../utils/formFields";
+
+import Notification from "../../components/notification/NotificationContainer";
+import { setModalType } from "../../redux/actions/modalAction";
+import { get, save } from "../../utils/localStorage";
+
 const TodoContainer = () => {
-  return <div></div>;
+  const [notification, setNotification] = useState({
+    message: "success",
+    type: "success",
+    open: false,
+  });
+
+  const [todos, setTodos] = useState(() => get("todos") || []);
+  console.log(todos);
+
+  const dispatch = useDispatch();
+
+  const isDesktop = useMediaQuery(breakpoints.mainContent);
+
+  const handleAddToDo = () => {
+    dispatch(setModalType("todo"));
+  };
+
+  const handleToggle = (id) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, isFinish: !todo.isFinish } : todo
+    );
+    setTodos(updatedTodos);
+    save("todos", updatedTodos);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("삭제하시겠습니까?")) {
+      const updatedTodos = todos.filter((todo) => todo.id !== id);
+      setTodos(updatedTodos);
+      save("todos", updatedTodos);
+    }
+  };
+
+  const getFormattedDate = () => {
+    const date = new Date();
+    const koreanDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+    return koreanDate.toISOString().split("T")[0];
+  };
+
+  const onSubmit = (formValues) => {
+    const formData = {
+      id: Date.now(),
+      date: getFormattedDate(),
+      description: formValues.todo,
+      isFinish: false,
+    };
+
+    const todoresponse = handleFormSubmit({
+      formData,
+      setNotification,
+      dispatch,
+      actionType: "todo",
+      successMessageHandler: (res) => "할 일이 성공적으로 추가되었습니다!",
+      errorMessageHandler: (error) => `오류가 발생했습니다: ${error.message}`,
+    });
+
+    if (todoresponse) {
+      const updatedTodos = [...todos, formData];
+      setTodos(updatedTodos);
+      save("todos", updatedTodos);
+
+      // 성공적으로 저장된 후, 알림 및 모달 처리
+      setNotification({
+        message: "할 일이 성공적으로 추가되었습니다!",
+        type: "success",
+        open: true,
+      });
+      dispatch(setModalType());
+    }
+  };
+
+  return (
+    <Box>
+      <Notification
+        notification={notification}
+        setNotification={setNotification}
+      />
+      <TodoUi
+        isDesktop={isDesktop}
+        formFields={fields}
+        onSubmit={onSubmit}
+        onOpen={handleAddToDo}
+        onDelete={handleDelete}
+        onToggle={handleToggle}
+        todos={todos}
+      />
+    </Box>
+  );
 };
 
 export default TodoContainer;

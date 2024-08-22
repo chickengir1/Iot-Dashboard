@@ -59,7 +59,7 @@ const LoginPage = () => {
       successMessageHandler: getResponseMessage,
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
-
+    console.log(response);
     updateProfileData(response, remember, dispatch);
 
     await delay(1000);

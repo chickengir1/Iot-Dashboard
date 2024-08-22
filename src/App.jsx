@@ -9,9 +9,9 @@ import FindAccount from "./pages/FindAccountPage";
 import DeviceList from "./pages/DeviceList";
 import NewsList from "./pages/NewsListPage";
 import DeviceAdd from "./pages/DeviceAddPage";
-import TodoList from "./pages/TodoListPage";
 import LoginContainer from "./pages/loginpage/LoginContainer";
 import SignUpContainer from "./pages/signup/SignUpContainer";
+import TodoContainer from "./pages/todo/TodoContainer";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           <Route path="/profile/:userid/adddevices" element={<DeviceAdd />} />
           <Route path="/find-account" element={<FindAccount />} />
           <Route path="/newslist" element={<NewsList />} />
-          <Route path="/todolist" element={<TodoList />} />
+          <Route path="/todolist" element={<TodoContainer />} />
         </Routes>
       </Router>
     </ErrorBoundary>
