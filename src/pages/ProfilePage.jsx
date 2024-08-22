@@ -3,12 +3,12 @@ import UserCard from "../components/usercard/UserCardContainer";
 import {
   Box,
   Typography,
-  Card,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   useMediaQuery,
+  Card,
 } from "@mui/material";
 import {
   DesktopLayout,
@@ -24,6 +24,10 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ArrowForward, LockReset } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/SidebarContainer";
+import usePostRequest from "../hooks/usePostRequest";
+import { useNavigate } from "react-router-dom";
+
+const api = "/api/auth/logout";
 
 const listItems = [
   { text: "프로필 정보 수정", icon: <EditIcon /> },
@@ -43,9 +47,14 @@ const ListComponents = () =>
     </Card>
   ));
 
-const ButtonComponents = () => (
+const ButtonComponents = ({ onLogout }) => (
   <Box sx={{ display: "flex", gap: 2 }}>
-    <RedRoundedButton variant="contained" fullWidth startIcon={<LogoutIcon />}>
+    <RedRoundedButton
+      variant="contained"
+      fullWidth
+      startIcon={<LogoutIcon />}
+      onClick={onLogout}
+    >
       로그아웃
     </RedRoundedButton>
     <RedRoundedButton variant="contained" fullWidth startIcon={<DeleteIcon />}>
@@ -54,7 +63,7 @@ const ButtonComponents = () => (
   </Box>
 );
 
-const MobileProfile = () => (
+const MobileProfile = ({ onLogout }) => (
   <MobileLayout>
     <Typography variant="h6" sx={{ mb: 1 }}>
       회원 정보
@@ -66,12 +75,12 @@ const MobileProfile = () => (
     <List>
       <ListComponents />
     </List>
-    <ButtonComponents />
+    <ButtonComponents onLogout={onLogout} />
     <Sidebar />
   </MobileLayout>
 );
 
-const DesktopProfile = () => (
+const DesktopProfile = ({ onLogout }) => (
   <DesktopLayout>
     <Sidebar />
     <MainLayout>
@@ -85,15 +94,31 @@ const DesktopProfile = () => (
       <List>
         <ListComponents />
       </List>
-      <ButtonComponents />
+      <ButtonComponents onLogout={onLogout} />
     </MainLayout>
     <ServeContent />
   </DesktopLayout>
 );
 
 const ProfilePage = () => {
+  const { postData } = usePostRequest(api);
+  const navigate = useNavigate();
   const isDesktop = useMediaQuery("(min-width: 1280px)");
-  return isDesktop ? <DesktopProfile /> : <MobileProfile />;
+
+  const handleLogout = async () => {
+    try {
+      await postData();
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return isDesktop ? (
+    <DesktopProfile onLogout={handleLogout} />
+  ) : (
+    <MobileProfile onLogout={handleLogout} />
+  );
 };
 
 export default ProfilePage;
