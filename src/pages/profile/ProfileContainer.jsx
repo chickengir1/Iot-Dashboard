@@ -35,7 +35,7 @@ const ProfilePage = () => {
       }
     } catch (error) {
       setNotification({
-        message: error.response?.data?.message || "Logout failed.",
+        message: error.response?.data?.message || "다시 시도해주세요",
         type: "error",
         open: true,
       });

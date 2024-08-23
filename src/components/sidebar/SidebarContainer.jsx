@@ -63,7 +63,7 @@ const SidebarContainer = () => {
       }
     } catch (error) {
       setNotification({
-        message: error.response?.data?.message,
+        message: error.response?.data?.message || "다시 시도해주세요",
         type: "error",
         open: true,
       });
