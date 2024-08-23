@@ -6,18 +6,9 @@ import EmailSelectorContainer from "../../components/emailSelector/EmailSelector
 import FooterLinks from "../../components/footerlinks/FooterLinksContainer";
 
 const FindIdForm = ({ Layout, MainLayout, onSubmit }) => (
-  <Layout>
-    <MainLayout>
-      <Box
-        component="form"
-        onSubmit={onSubmit}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          flexGrow: 1,
-        }}
-      >
+  <Box component="form" onSubmit={onSubmit}>
+    <Layout>
+      <MainLayout>
         <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
           <img alt="이미지" />
         </Box>
@@ -34,9 +25,9 @@ const FindIdForm = ({ Layout, MainLayout, onSubmit }) => (
           아이디 찾기
         </BlueRoundedButton>
         <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
-      </Box>
-    </MainLayout>
-  </Layout>
+      </MainLayout>
+    </Layout>
+  </Box>
 );
 
 const FindIdUi = ({ isDesktop, formFields, onSubmit, combined }) => {
