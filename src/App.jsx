@@ -12,6 +12,7 @@ import SignUpContainer from "./pages/signup/SignUpContainer";
 import FindIDPage from "./pages/findid/FindIdContainer";
 import FindPasswordPage from "./pages/findpassword/FindPwContainer";
 import TodoContainer from "./pages/todo/TodoContainer";
+import HomeContainer from "./pages/home/HomeContainer";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="/register" element={<SignUpContainer />} />
           <Route path="/forgot-password" element={<FindPasswordPage />} />
           <Route path="/find-userid" element={<FindIDPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<HomeContainer />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:userid/devices" element={<DeviceList />} />
           <Route path="/profile/:userid/adddevices" element={<DeviceAdd />} />
