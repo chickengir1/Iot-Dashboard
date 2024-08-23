@@ -8,30 +8,35 @@ import Notification from "../../components/notification/NotificationContainer";
 import { breakpoints } from "../../utils/commonUtils";
 
 const ProfilePage = () => {
-  const api = "/api/auth/logout";
+  const apiLogout = "/api/auth/logout";
+  const apiDeleteAccount = "/api/auth/delete";
+
+  const { postData: postLogout } = usePostRequest(apiLogout);
+  const { postData: postDeleteAccount } = usePostRequest(apiDeleteAccount);
+
   const [notification, setNotification] = useState({
     message: null,
     type: "",
     open: false,
   });
-  const { postData } = usePostRequest(api);
+
   const navigate = useNavigate();
   const isDesktop = useMediaQuery(breakpoints.mainContent);
 
-  const handleLogout = async () => {
+  const handleAction = async (actionType) => {
     try {
-      const response = await postData();
-      const { message } = response;
+      let response;
 
-      setNotification({
-        message: message,
-        type: "success",
-        open: true,
-      });
+      if (actionType === "logout") {
+        response = await postLogout();
+        handleSuccess(response.message, "/");
+        return;
+      }
 
-      if (message === "성공적으로 로그아웃되었습니다.") {
-        await delay(500);
-        navigate("/");
+      if (actionType === "deleteAccount") {
+        response = await postDeleteAccount();
+        handleSuccess(response.message, "/");
+        return;
       }
     } catch (error) {
       setNotification({
@@ -42,13 +47,34 @@ const ProfilePage = () => {
     }
   };
 
+  const handleSuccess = (message, redirectPath = null) => {
+    setNotification({
+      message: message,
+      type: "success",
+      open: true,
+    });
+
+    if (redirectPath) {
+      delay(500).then(() => navigate(redirectPath));
+    }
+  };
+
+  const anotherProduct = () => {
+    window.open("http://34.64.173.146/", "_blank");
+  };
+
   return (
     <>
       <Notification
         notification={notification}
         setNotification={setNotification}
       />
-      <ProfileUi onLogout={handleLogout} isDesktop={isDesktop} />
+      <ProfileUi
+        onLogout={() => handleAction("logout")}
+        onDeleteAccount={() => handleAction("deleteAccount")}
+        onPageMove={anotherProduct}
+        isDesktop={isDesktop}
+      />
     </>
   );
 };
