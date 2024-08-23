@@ -31,7 +31,12 @@ const styles = {
   },
 };
 
-const SidebarDesktop = ({ menuItems, currentRoute, onMenuClick }) => (
+const SidebarDesktop = ({
+  menuItems,
+  currentRoute,
+  onMenuClick,
+  handleLogout,
+}) => (
   <Box sx={styles.sidebar}>
     <Typography sx={styles.logo}>로고</Typography>
     <MenuList
@@ -41,7 +46,7 @@ const SidebarDesktop = ({ menuItems, currentRoute, onMenuClick }) => (
       isMobile={false}
     />
     <Divider />
-    <ListItem button sx={styles.listItem}>
+    <ListItem button sx={styles.listItem} onClick={handleLogout}>
       <ExitToAppIcon />
       <Typography>Logout</Typography>
     </ListItem>
