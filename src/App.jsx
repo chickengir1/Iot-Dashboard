@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ErrorBoundary from "./error/ErrorBoundary";
-import Profile from "./pages/ProfilePage";
 import FindAccount from "./pages/FindAccountPage";
 import DeviceList from "./pages/DeviceList";
 import DeviceAdd from "./pages/DeviceAddPage";
@@ -11,6 +10,7 @@ import FindIDPage from "./pages/findid/FindIdContainer";
 import FindPasswordPage from "./pages/findpassword/FindPwContainer";
 import TodoContainer from "./pages/todo/TodoContainer";
 import HomeContainer from "./pages/home/HomeContainer";
+import ProfilePage from "./pages/profile/ProfileContainer";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Route path="/forgot-password" element={<FindPasswordPage />} />
           <Route path="/find-userid" element={<FindIDPage />} />
           <Route path="/home" element={<HomeContainer />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/:userid/devices" element={<DeviceList />} />
           <Route path="/profile/:userid/adddevices" element={<DeviceAdd />} />
           <Route path="/find-account" element={<FindAccount />} />
