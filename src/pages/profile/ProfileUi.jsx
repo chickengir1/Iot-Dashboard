@@ -72,12 +72,14 @@ const ProfileUI = ({ onLogout, isDesktop, onPageMove, onDeleteAccount }) => {
       <Sidebar />
       <MainLayout>
         <UserCard />
-        <Typography variant="h6" sx={{ mb: 1 }}>
-          계정 설정
-        </Typography>
-        <List>
-          <ListComponents onPageMove={onPageMove} />
-        </List>
+        <Box sx={{ flex: "1 1 100px", aspectRatio: "1/1" }}>
+          <Typography variant="h6" sx={{ mb: 1 }}>
+            계정 설정
+          </Typography>
+          <List>
+            <ListComponents onPageMove={onPageMove} />
+          </List>
+        </Box>
         <ButtonComponents
           onLogout={onLogout}
           onDeleteAccount={onDeleteAccount}

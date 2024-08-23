@@ -1,5 +1,5 @@
 import React from "react";
-import { useMediaQuery, Typography, Grid } from "@mui/material";
+import { useMediaQuery, Typography, Grid, Box } from "@mui/material";
 import {
   DesktopLayout,
   BlueRoundedButton,
@@ -64,16 +64,18 @@ const DesktopDeviceList = () => (
     <Sidebar />
     <MainLayout>
       <UserCard />
-      <Typography textAlign="center" variant="h6" gutterBottom>
-        {mainTitle}
-      </Typography>
-      <Grid container spacing={3}>
-        {devices.map((device, index) => (
-          <Grid item key={index} xs={12} sm={6} md={6} lg={6}>
-            <DeviceItem name={device.name} description={device.description} />
-          </Grid>
-        ))}
-      </Grid>
+      <Box sx={{ flex: "1 1 100px", aspectRatio: "1/1" }}>
+        <Typography textAlign="center" variant="h6" gutterBottom>
+          {mainTitle}
+        </Typography>
+        <Grid container spacing={3}>
+          {devices.map((device, index) => (
+            <Grid item key={index} xs={12} sm={6} md={6} lg={6}>
+              <DeviceItem name={device.name} description={device.description} />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
       <BlueRoundedButton
         sx={styles.addButtonStyle}
         fullWidth
