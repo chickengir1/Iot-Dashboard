@@ -12,13 +12,13 @@ import { get, save } from "../../utils/localStorage";
 import { getResponseMessage } from "../../error/getResponseMessage";
 
 const TodoContainer = () => {
+  const [todos, setTodos] = useState(get("todos") || []);
+
   const [notification, setNotification] = useState({
     message: "success",
     type: "",
     open: false,
   });
-
-  const [todos, setTodos] = useState(get("todos") || []);
 
   const dispatch = useDispatch();
   const combined = useForm();
@@ -26,22 +26,6 @@ const TodoContainer = () => {
 
   const handleAddToDo = () => {
     dispatch(setModalType("todo"));
-  };
-
-  const handleToggle = (id) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, isFinish: !todo.isFinish } : todo
-    );
-    setTodos(updatedTodos);
-    save("todos", updatedTodos);
-  };
-
-  const handleDelete = (id) => {
-    if (window.confirm("삭제하시겠습니까?")) {
-      const updatedTodos = todos.filter((todo) => todo.id !== id);
-      setTodos(updatedTodos);
-      save("todos", updatedTodos);
-    }
   };
 
   const getFormattedDate = () => {
@@ -98,10 +82,11 @@ const TodoContainer = () => {
         formFields={fields}
         onSubmit={onSubmit}
         onOpen={handleAddToDo}
-        onDelete={handleDelete}
-        onToggle={handleToggle}
+        // onDelete={handleDelete}
+        // onToggle={handleToggle}
         combined={combined}
         todos={todos}
+        setTodos={setTodos}
       />
     </FormProvider>
   );

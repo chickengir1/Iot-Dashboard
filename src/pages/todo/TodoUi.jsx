@@ -8,14 +8,10 @@ import {
 } from "@mui/material";
 import { BlueRoundedButton, ServeContent } from "../../styles";
 import UserCard from "../../components/usercard/UserCardContainer";
-import {
-  AddCircleOutlineOutlined,
-  CheckBoxOutlineBlank,
-  CheckBoxOutlined,
-} from "@mui/icons-material";
+import { AddCircleOutlineOutlined } from "@mui/icons-material";
 import Sidebar from "../../components/sidebar/SidebarContainer";
 import Modal from "../../components/modal/ModalContainer";
-import ListItem from "../../components/listitem/ListItemContainer";
+import TodoListContainer from "../../components/todolist/TodoListContainer";
 
 export const TodoForm = ({ formFields, onSubmit, combined }) => {
   const {
@@ -49,30 +45,6 @@ export const TodoForm = ({ formFields, onSubmit, combined }) => {
   );
 };
 
-const TodoComponent = ({
-  id,
-  date,
-  description,
-  isFinish,
-  onToggle,
-  onDelete,
-}) => (
-  <Box
-    onClick={() => onToggle(id)}
-    onContextMenu={(e) => {
-      e.preventDefault();
-      onDelete(id);
-    }}
-    marginBottom={2}
-  >
-    <ListItem
-      title={date}
-      description={description}
-      icon={isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}
-    />
-  </Box>
-);
-
 const TodoUi = ({
   isDesktop,
   formFields,
@@ -80,9 +52,8 @@ const TodoUi = ({
   onOpen,
   onClose,
   combined,
-  onDelete,
-  onToggle,
   todos,
+  setTodos,
 }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
   return (
@@ -100,26 +71,7 @@ const TodoUi = ({
         <MainLayout>
           <UserCard />
           <Typography textAlign="center">투두 리스트</Typography>
-          <Box
-            sx={{
-              height: "60vh",
-              overflowY: "auto",
-              marginBottom: 2,
-            }}
-          >
-            {todos.length > 0 &&
-              todos.map((todo) => (
-                <TodoComponent
-                  key={todo.id}
-                  id={todo.id}
-                  date={todo.date}
-                  description={todo.description}
-                  isFinish={todo.isFinish}
-                  onToggle={onToggle}
-                  onDelete={onDelete}
-                />
-              ))}
-          </Box>
+          <TodoListContainer todos={todos} setTodos={setTodos} />
           <BlueRoundedButton
             variant="contained"
             fullWidth
