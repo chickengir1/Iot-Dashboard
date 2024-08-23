@@ -1,13 +1,70 @@
 {
-    "user": {
-      "id": 1,
-      "email": "user@example.com",
-      "password": "hashed_password",
-     "기타 들어갈것들 ..." : "..."
+  "user": {
+    "id": 1,
+    "email": "user@example.com",
+    "password": "hashed_password",
+    "기타_들어갈것들": "예시 데이터"
+  },
+  "devices": [
+    {
+      "name": "빅토리 농장",
+      "description": "Victory Farm",
+      "userEmail": "user@example.com",
+      "sensors": {
+        "조도": 85,
+        "습도": 45,
+        "온도": 22
+      }
     },
-    "디바이스" : {
-      "유저 이메일": "유저 스키마 레퍼런스 이메일",
-      "기타 디바이스 정보들..." : "..."
+    {
+      "name": "ABC 농장",
+      "description": "ABC Farm",
+      "userEmail": "user@example.com",
+      "sensors": {
+        "조도": 73,
+        "습도": 67,
+        "온도": 25
+      }
+    },
+    {
+      "name": "ff 농장",
+      "description": "ff Farm",
+      "userEmail": "user@example.com",
+      "sensors": {
+        "조도": 90,
+        "습도": 55,
+        "온도": 20
+      }
+    },
+    {
+      "name": "Pinking 농장",
+      "description": "Pinking Farm",
+      "userEmail": "user@example.com",
+      "sensors": {
+        "조도": 65,
+        "습도": 70,
+        "온도": 28
+      }
+    },
+    {
+      "name": "Victory Farm 2",
+      "description": "Second Victory Farm",
+      "userEmail": "user@example.com",
+      "sensors": {
+        "조도": 82,
+        "습도": 50,
+        "온도": 24
+      }
+    },
+    {
+      "name": "ABC Farm 2",
+      "description": "Second ABC Farm",
+      "userEmail": "user@example.com",
+      "sensors": {
+        "조도": 75,
+        "습도": 60,
+        "온도": 21
+      }
     }
-  }
-  
+  ]
+}

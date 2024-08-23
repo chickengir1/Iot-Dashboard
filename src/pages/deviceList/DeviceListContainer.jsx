@@ -6,12 +6,12 @@ import {
   ServeContent,
   MobileLayout,
   MainLayout,
-} from "../styles/index";
+} from "../../styles/index";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import UserCard from "../components/usercard/UserCardContainer";
-import Sidebar from "../components/sidebar/SidebarContainer";
-import ListItem from "../components/listitem/ListItemContainer";
+import UserCard from "../../components/usercard/UserCardContainer";
+import Sidebar from "../../components/sidebar/SidebarContainer";
+import ListItem from "../../components/listitem/ListItemContainer";
 
 const devices = [
   { name: "빅토리 농장", description: "Victory Farm" },
@@ -42,9 +42,9 @@ const MobileDeviceList = () => (
   <MobileLayout>
     <UserCard />
     <Typography textAlign="center">디바이스 목록</Typography>
-    {devices.map((device, index) => (
+    {devices.map((device) => (
       <DeviceItem
-        key={index}
+        key={device.name}
         name={device.name}
         description={device.description}
       />
@@ -64,8 +64,8 @@ const DesktopDeviceList = () => (
       <Box sx={{ flex: "1 1 100px", aspectRatio: "1/1" }}>
         <Typography textAlign="center">디바이스 목록</Typography>
         <Grid container spacing={3}>
-          {devices.map((device, index) => (
-            <Grid item key={index} xs={12} sm={6} md={6} lg={6}>
+          {devices.map((device) => (
+            <Grid item key={device.name} xs={12} sm={6} md={6} lg={6}>
               <DeviceItem name={device.name} description={device.description} />
             </Grid>
           ))}

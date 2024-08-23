@@ -11,6 +11,7 @@ import FindPasswordPage from "./pages/findpassword/FindPwContainer";
 import TodoContainer from "./pages/todo/TodoContainer";
 import HomeContainer from "./pages/home/HomeContainer";
 import ProfilePage from "./pages/profile/ProfileContainer";
+import DeviceListContainer from "./pages/deviceList/DeviceListContainer";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/profile/:userid/adddevices" element={<DeviceAdd />} />
           <Route path="/find-account" element={<FindAccount />} />
           <Route path="/todolist" element={<TodoContainer />} />
+          <Route path="/test" element={<DeviceListContainer />} />
         </Routes>
       </Router>
     </ErrorBoundary>
