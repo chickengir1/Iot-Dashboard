@@ -6,12 +6,7 @@ import SidebarMobile from "./SidebarMobile";
 import { useMediaQuery } from "@mui/material";
 import { navigateTo } from "../../redux/actions/navigateAction";
 import usePostRequest from "../../hooks/usePostRequest";
-import {
-  Home as HomeIcon,
-  Settings as SettingsIcon,
-  Person as PersonIcon,
-  CheckBox as CheckBoxIcon,
-} from "@mui/icons-material";
+import { Home, Settings, Person, CheckBox } from "@mui/icons-material";
 import Notification from "../notification/NotificationContainer";
 import { delay } from "../../utils/commonUtils";
 
@@ -26,14 +21,10 @@ const SidebarContainer = () => {
   };
 
   const menuItems = [
-    { text: "Home", icon: <HomeIcon />, route: "/home" },
-    {
-      text: "Device",
-      icon: <SettingsIcon />,
-      route: "/profile/:userid/devices",
-    },
-    { text: "Profile", icon: <PersonIcon />, route: "/profile" },
-    { text: "Todo list", icon: <CheckBoxIcon />, route: "/todolist" },
+    { text: "Home", icon: <Home />, route: "/home" },
+    { text: "Device", icon: <Settings />, route: "/devices" },
+    { text: "Profile", icon: <Person />, route: "/profile" },
+    { text: "Todo list", icon: <CheckBox />, route: "/todolist" },
   ];
 
   const isMobile = useMediaQuery("(max-width:1279px)");
