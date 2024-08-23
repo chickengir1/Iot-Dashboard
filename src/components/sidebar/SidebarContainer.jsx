@@ -10,7 +10,6 @@ import {
   Home as HomeIcon,
   Settings as SettingsIcon,
   Person as PersonIcon,
-  Description as DescriptionIcon,
   CheckBox as CheckBoxIcon,
 } from "@mui/icons-material";
 import Notification from "../notification/NotificationContainer";
@@ -34,7 +33,6 @@ const SidebarContainer = () => {
       route: "/profile/:userid/devices",
     },
     { text: "Profile", icon: <PersonIcon />, route: "/profile" },
-    { text: "News", icon: <DescriptionIcon />, route: "/newslist" },
     { text: "Todo list", icon: <CheckBoxIcon />, route: "/todolist" },
   ];
 
