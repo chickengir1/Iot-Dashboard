@@ -1,12 +1,45 @@
 import HomeUi from "./HomeUi";
 import { useMediaQuery } from "@mui/material";
 import { breakpoints } from "../../utils/commonUtils";
-import { get, save } from "../../utils/localStorage";
-import { getResponseMessage } from "../../error/getResponseMessage";
+import { FormProvider, useForm } from "react-hook-form";
+import { setModalType } from "../../redux/actions/modalAction";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { get } from "../../utils/localStorage";
+import Notification from "../../components/notification/NotificationContainer";
 
 const HomeContainer = () => {
+  const [notification, setNotification] = useState({
+    message: "success",
+    type: "",
+    open: false,
+  });
+  const [todos, setTodos] = useState(get("todos") || []);
+
   const isDesktop = useMediaQuery(breakpoints.mainContent);
-  return <HomeUi isDesktop={isDesktop} />;
+  const combined = useForm();
+  const dispatch = useDispatch();
+
+  const handleAddToDo = () => {
+    dispatch(setModalType("todo"));
+  };
+
+  return (
+    <FormProvider {...combined}>
+      <Notification
+        notification={notification}
+        setNotification={setNotification}
+      />
+      <HomeUi
+        todos={todos}
+        setTodos={setTodos}
+        isDesktop={isDesktop}
+        onOpen={handleAddToDo}
+        combined={combined}
+        setNotification={setNotification}
+      />
+    </FormProvider>
+  );
 };
 
 export default HomeContainer;

@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Typography, IconButton } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { Box } from "@mui/material";
 import ListItem from "../listitem/ListItemContainer";
 import { CheckBoxOutlineBlank, CheckBoxOutlined } from "@mui/icons-material";
 
@@ -28,11 +27,11 @@ const TodoComponent = ({
   </Box>
 );
 
-const TodoListUi = ({ todos, onToggle, onDelete }) => {
+const TodoListUi = ({ todos, onToggle, onDelete, height = "60vh" }) => {
   return (
     <Box
       sx={{
-        height: "60vh",
+        height: height,
         overflowY: "auto",
         marginBottom: 2,
       }}
