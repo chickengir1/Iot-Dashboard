@@ -28,7 +28,11 @@ export const DeviceItem = ({ name, description }) => (
   />
 );
 
-export const MobileDeviceList = ({ devices = [], userName }) => (
+export const MobileDeviceList = ({
+  devices = [],
+  userName,
+  handleNavigate,
+}) => (
   <MobileLayout>
     <UserCard />
     <Typography textAlign="center" sx={{ mb: 2 }}>
@@ -41,14 +45,22 @@ export const MobileDeviceList = ({ devices = [], userName }) => (
         description={device.description}
       />
     ))}
-    <BlueRoundedButton fullWidth endIcon={<AddCircleOutlineIcon />}>
+    <BlueRoundedButton
+      fullWidth
+      endIcon={<AddCircleOutlineIcon />}
+      onClick={handleNavigate}
+    >
       디바이스 추가하기
     </BlueRoundedButton>
     <Sidebar />
   </MobileLayout>
 );
 
-export const DesktopDeviceList = ({ devices = [], userName }) => (
+export const DesktopDeviceList = ({
+  devices = [],
+  userName,
+  handleNavigate,
+}) => (
   <DesktopLayout>
     <Sidebar />
     <MainLayout>
@@ -69,6 +81,7 @@ export const DesktopDeviceList = ({ devices = [], userName }) => (
         sx={styles.addButtonStyle}
         fullWidth
         endIcon={<AddCircleOutlineIcon />}
+        onClick={handleNavigate}
       >
         디바이스 추가하기
       </BlueRoundedButton>
@@ -77,11 +90,19 @@ export const DesktopDeviceList = ({ devices = [], userName }) => (
   </DesktopLayout>
 );
 
-const DeviceUi = ({ isDesktop, devices, userName }) => {
+const DeviceUi = ({ isDesktop, devices, userName, handleNavigate }) => {
   return isDesktop ? (
-    <DesktopDeviceList devices={devices} userName={userName} />
+    <DesktopDeviceList
+      devices={devices}
+      userName={userName}
+      handleNavigate={handleNavigate}
+    />
   ) : (
-    <MobileDeviceList devices={devices} userName={userName} />
+    <MobileDeviceList
+      devices={devices}
+      userName={userName}
+      handleNavigate={handleNavigate}
+    />
   );
 };
 
