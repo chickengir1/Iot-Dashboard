@@ -30,7 +30,6 @@ const UserCardContainer = () => {
       userId={profile.userId}
       message={"Good Morning!"}
       icon={iconMap[1] || <AccountCircle />}
-      badgeCount={1}
     />
   );
 };

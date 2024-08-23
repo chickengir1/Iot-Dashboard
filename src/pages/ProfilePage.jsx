@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import UserCard from "../components/usercard/UserCardContainer";
 import {
   Box,
@@ -10,6 +10,7 @@ import {
   useMediaQuery,
   Card,
 } from "@mui/material";
+import { delay } from "../utils/commonUtils";
 import {
   DesktopLayout,
   RedRoundedButton,
@@ -26,8 +27,7 @@ import { ArrowForward, LockReset } from "@mui/icons-material";
 import Sidebar from "../components/sidebar/SidebarContainer";
 import usePostRequest from "../hooks/usePostRequest";
 import { useNavigate } from "react-router-dom";
-
-const api = "/api/auth/logout";
+import Notification from "../components/notification/NotificationContainer";
 
 const listItems = [
   { text: "프로필 정보 수정", icon: <EditIcon /> },
@@ -101,24 +101,52 @@ const DesktopProfile = ({ onLogout }) => (
 );
 
 const ProfilePage = () => {
+  const api = "/api/auth/logout";
+  const [notification, setNotification] = useState({
+    message: null,
+    type: "",
+    open: false,
+  });
   const { postData } = usePostRequest(api);
   const navigate = useNavigate();
   const isDesktop = useMediaQuery("(min-width: 1280px)");
 
-  // 네트워크탭 페치 요청 보면 성공적으로 가는거 알 수 있음
   const handleLogout = async () => {
     try {
-      await postData();
-      navigate("/");
+      const response = await postData();
+      const { message } = response;
+
+      setNotification({
+        message: message,
+        type: "success",
+        open: true,
+      });
+      if (response.message == "성공적으로 로그아웃되었습니다.") {
+        await delay(500);
+        navigate("/");
+      }
     } catch (error) {
-      console.error(error);
+      setNotification({
+        message: error.response?.data?.message,
+        type: "error",
+        open: true,
+      });
     }
   };
 
-  return isDesktop ? (
-    <DesktopProfile onLogout={handleLogout} />
-  ) : (
-    <MobileProfile onLogout={handleLogout} />
+  return (
+    <>
+      <Notification
+        notification={notification}
+        setNotification={setNotification}
+      />
+      {isDesktop ? (
+        <DesktopProfile onLogout={handleLogout} />
+      ) : (
+        <MobileProfile onLogout={handleLogout} />
+      )}
+      ;
+    </>
   );
 };
 
