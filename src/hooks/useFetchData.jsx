@@ -4,7 +4,7 @@ import axios from "axios";
 // 이메일 파라미터로 넣고 로그인 포스트 요청 보낼때 세션에 이메일 정보 저장하니까
 //  그거 토대로 가져와서 페치 요청 보낼때 넣어서 던져주면 디바이스 스키마에서 유저 이메일 레퍼런스 중인 디바이스 가져올 수 있음
 
-const useFetchData = (url, userEmail) => {
+const useFetchData = (baseUrl, userEmail = null) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -12,6 +12,9 @@ const useFetchData = (url, userEmail) => {
     const fetchData = async () => {
       try {
         setLoading(true);
+        const url = userEmail
+          ? `${baseUrl}?email=${encodeURIComponent(userEmail)}`
+          : baseUrl;
         const response = await axios.get(url);
         setData(response.data);
       } catch (err) {
@@ -22,7 +25,7 @@ const useFetchData = (url, userEmail) => {
     };
 
     fetchData();
-  }, [url, userEmail]);
+  }, [baseUrl, userEmail]);
 
   return { data, loading };
 };
