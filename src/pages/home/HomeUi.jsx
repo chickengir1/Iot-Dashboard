@@ -5,8 +5,13 @@ import UserCard from "../../components/usercard/UserCardContainer";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import Weather from "../../components/weather/WeatherContainer";
 import Newsletter from "../../components/newsletter/NewsletterContainer";
+import TodoList from "../../components/todolist/TodoListContainer";
+import { BlueRoundedButton } from "../../styles";
+import { AddCircleOutlineOutlined } from "@mui/icons-material";
+import Modal from "../../components/modal/ModalContainer";
+import TodoModal from "../../components/todoModal/todoModalContainer";
 
-const HomeUi = ({ isDesktop }) => {
+const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
   const styles = {
     serveContentStyle: {
       width: "400px",
@@ -20,6 +25,14 @@ const HomeUi = ({ isDesktop }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
   return (
     <>
+      <Modal>
+        <TodoModal
+          todos={todos}
+          setTodos={setTodos}
+          setNotification={setNotification}
+        />
+      </Modal>
+
       <Layout>
         <Sidebar />
         <MainLayout>
@@ -32,6 +45,26 @@ const HomeUi = ({ isDesktop }) => {
             </CardContent>
           </Card>
           <Weather />
+          <Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: 2,
+              }}
+            >
+              <Typography>Todo list</Typography>
+              <BlueRoundedButton
+                variant="contained"
+                endIcon={<AddCircleOutlineOutlined />}
+                onClick={onOpen}
+              >
+                할 일 추가하기
+              </BlueRoundedButton>
+            </Box>
+            <TodoList todos={todos} setTodos={setTodos} height="40vh" />
+          </Box>
         </MainLayout>
         {isDesktop && (
           <Box sx={styles.serveContentStyle}>
