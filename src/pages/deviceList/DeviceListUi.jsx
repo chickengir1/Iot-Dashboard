@@ -13,12 +13,6 @@ import UserCard from "../../components/usercard/UserCardContainer";
 import Sidebar from "../../components/sidebar/SidebarContainer";
 import ListItem from "../../components/listitem/ListItemContainer";
 
-const styles = {
-  addButtonStyle: {
-    minHeight: "75px",
-  },
-};
-
 export const DeviceItem = ({ name, description }) => (
   <ListItem
     title={name}
@@ -78,7 +72,6 @@ export const DesktopDeviceList = ({
         </Grid>
       </Box>
       <BlueRoundedButton
-        sx={styles.addButtonStyle}
         fullWidth
         endIcon={<AddCircleOutlineIcon />}
         onClick={handleNavigate}

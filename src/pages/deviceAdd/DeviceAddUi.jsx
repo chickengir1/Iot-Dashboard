@@ -91,11 +91,7 @@ const ContentSection = () => (
         <CardContent>장치 등록 주의사항</CardContent>
       </Card>
     </Box>
-    <BlueRoundedButton
-      sx={styles.addButtonStyle}
-      fullWidth
-      endIcon={<AddCircleOutlineIcon />}
-    >
+    <BlueRoundedButton fullWidth endIcon={<AddCircleOutlineIcon />}>
       디바이스 추가하기
     </BlueRoundedButton>
   </>
