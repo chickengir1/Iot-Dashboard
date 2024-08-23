@@ -1,7 +1,7 @@
 import TodoListUi from "./TodoListUi";
 import { save } from "../../utils/localStorage";
 
-const TodoListContainer = ({ todos, setTodos }) => {
+const TodoListContainer = ({ todos, setTodos, height }) => {
   const handleToggle = (id) => {
     const updatedTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, isFinish: !todo.isFinish } : todo
@@ -19,7 +19,12 @@ const TodoListContainer = ({ todos, setTodos }) => {
   };
 
   return (
-    <TodoListUi todos={todos} onToggle={handleToggle} onDelete={handleDelete} />
+    <TodoListUi
+      todos={todos}
+      onToggle={handleToggle}
+      onDelete={handleDelete}
+      height={height}
+    />
   );
 };
 
