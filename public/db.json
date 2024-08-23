@@ -3,27 +3,11 @@
       "id": 1,
       "email": "user@example.com",
       "password": "hashed_password",
-      "devices": [
-        {
-          "device_id": 101,
-          "name": "장미꽃",
-          "description": "장미 꽃 키우기",
-          "sensors": {
-            "light_sensor": 300,
-            "temperature_sensor": 22.5,
-            "humidity_sensor": 45.0
-          }
-        },
-        {
-          "device_id": 102,
-          "name": "해바라기",
-          "description": "해바라기 키우기",
-          "sensors": {
-            "light_sensor": 150,
-            "temperature_sensor": 21.0,
-            "humidity_sensor": 50.0
-          }
-        }
-      ]
+     "기타 들어갈것들 ..." : "..."
+    },
+    "디바이스" : {
+      "유저 이메일": "유저 스키마 레퍼런스 이메일",
+      "기타 디바이스 정보들..." : "..."
     }
   }
+  
