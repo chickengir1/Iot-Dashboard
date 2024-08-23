@@ -2,7 +2,6 @@ import React from "react";
 import { mainContentConfig } from "../../styles/layoutConfig";
 import Sidebar from "../../components/sidebar/SidebarContainer";
 import UserCard from "../../components/usercard/UserCardContainer";
-import { ServeContent } from "../../styles";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import Weather from "../../components/weather/WeatherContainer";
 import Newsletter from "../../components/newsletter/NewsletterContainer";
