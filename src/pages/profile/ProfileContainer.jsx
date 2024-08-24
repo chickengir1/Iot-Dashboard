@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
-import usePostRequest from "../../hooks/usePostRequest";
-import { delay } from "../../utils/commonUtils";
+import usePostRequest from "@hooks/usePostRequest";
+import { delay } from "@utils/commonUtils";
 import ProfileUi from "./ProfileUi";
-import Notification from "../../components/notification/NotificationContainer";
-import { breakpoints } from "../../utils/commonUtils";
+import Notification from "@components/notification/NotificationContainer";
+import { breakpoints } from "@utils/commonUtils";
 
 const ProfilePage = () => {
   const apiLogout = "/api/auth/logout";

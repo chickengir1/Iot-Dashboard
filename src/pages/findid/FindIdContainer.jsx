@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import FindIdUi from "./FindIdUi";
-import usePostRequest from "../../hooks/usePostRequest";
-import { getResponseMessage } from "../../error/getResponseMessage";
-import { handleFormSubmit } from "../../utils/handleSubmit";
-import { delay, breakpoints } from "../../utils/commonUtils";
-import Notification from "../../components/notification/NotificationContainer";
+import usePostRequest from "@hooks/usePostRequest";
+import { getResponseMessage } from "@error/getResponseMessage";
+import { handleFormSubmit } from "@utils/handleSubmit";
+import { delay, breakpoints } from "@utils/commonUtils";
+import Notification from "@components/notification/NotificationContainer";
 
 const FindIDPage = () => {
   const [notification, setNotification] = useState({

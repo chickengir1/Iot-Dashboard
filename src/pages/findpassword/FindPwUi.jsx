@@ -1,8 +1,7 @@
-import React from "react";
 import { Box } from "@mui/material";
-import FooterLinks from "../../components/footerlinks/FooterLinksContainer";
-import { generateFields } from "../../utils/generateFields";
-import { layoutConfig } from "../../styles/layoutConfig";
+import FooterLinks from "@components/footerlinks/FooterLinksContainer";
+import { generateFields } from "@utils/generateFields";
+import { layoutConfig } from "@styles/layoutConfig";
 
 const styles = {
   imageLayout: { border: "solid 1px #ddd", minHeight: "150px" },

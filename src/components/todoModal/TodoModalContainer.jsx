@@ -1,12 +1,12 @@
 import TodoModalUi from "./todoModalUi";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setModalType } from "../../redux/actions/modalAction";
-import { get, save } from "../../utils/localStorage";
-import { todoFields as fields } from "../../utils/formFields";
-import { getResponseMessage } from "../../error/getResponseMessage";
-import { handleFormSubmit } from "../../utils/handleSubmit";
-import { getFormattedDate } from "../../utils/dateUtils";
+import { setModalType } from "@redux/actions/modalAction";
+import { get, save } from "@utils/localStorage";
+import { todoFields as fields } from "@utils/formFields";
+import { getResponseMessage } from "@error/getResponseMessage";
+import { handleFormSubmit } from "@utils/handleSubmit";
+import { getFormattedDate } from "@utils/dateUtils";
 
 const TodoModalContainer = ({ setNotification, todos, setTodos }) => {
   const dispatch = useDispatch();

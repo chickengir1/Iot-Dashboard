@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  DialogContent,
-  DialogTitle,
-  Modal,
-  TextField,
-} from "@mui/material";
-import React from "react";
+import { Box, Modal } from "@mui/material";
 
 const ModalUi = ({ open, onClose, children }) => {
   const styles = {

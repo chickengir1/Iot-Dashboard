@@ -1,12 +1,12 @@
 import HomeUi from "./HomeUi";
 import { useMediaQuery } from "@mui/material";
-import { breakpoints } from "../../utils/commonUtils";
+import { breakpoints } from "@utils/commonUtils";
 import { FormProvider, useForm } from "react-hook-form";
-import { setModalType } from "../../redux/actions/modalAction";
+import { setModalType } from "@redux/actions/modalAction";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { get } from "../../utils/localStorage";
-import Notification from "../../components/notification/NotificationContainer";
+import { get } from "@utils/localStorage";
+import Notification from "@components/notification/NotificationContainer";
 
 const HomeContainer = () => {
   const [notification, setNotification] = useState({

@@ -1,5 +1,5 @@
 import { Box, DialogContent, DialogTitle, TextField } from "@mui/material";
-import { BlueRoundedButton } from "../../styles";
+import { BlueRoundedButton } from "@styles/index";
 
 const TodoModalUi = ({ formFields, onSubmit, combined }) => {
   const {

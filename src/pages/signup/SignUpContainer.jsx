@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from "@mui/material";
-import usePostRequest from "../../hooks/usePostRequest";
-import { handleFormSubmit } from "../../utils/handleSubmit";
-import { getResponseMessage } from "../../error/getResponseMessage";
-import { signupFormFields as fields } from "../../utils/formFields";
+import usePostRequest from "@hooks/usePostRequest";
+import { handleFormSubmit } from "@utils/handleSubmit";
+import { getResponseMessage } from "@error/getResponseMessage";
+import { signupFormFields as fields } from "@utils/formFields";
 import SignUpUi from "./SignUpUi";
-import { delay, breakpoints } from "../../utils/commonUtils";
-import Notification from "../../components/notification/NotificationContainer";
+import { delay, breakpoints } from "@utils/commonUtils";
+import Notification from "@components/notification/NotificationContainer";
 
 const SignUpContainer = () => {
   const [notification, setNotification] = useState({

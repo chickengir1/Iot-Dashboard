@@ -1,12 +1,12 @@
-import { mainContentConfig } from "../../styles/layoutConfig";
+import { mainContentConfig } from "@styles/layoutConfig";
 import { Box, Typography } from "@mui/material";
-import { BlueRoundedButton, ServeContent } from "../../styles";
-import UserCard from "../../components/usercard/UserCardContainer";
+import { BlueRoundedButton, ServeContent } from "@styles";
+import UserCard from "@components/usercard/UserCardContainer";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import Sidebar from "../../components/sidebar/SidebarContainer";
-import Modal from "../../components/modal/ModalContainer";
-import TodoListContainer from "../../components/todolist/TodoListContainer";
-import TodoModal from "../../components/todoModal/todoModalContainer";
+import Sidebar from "@components/sidebar/SidebarContainer";
+import Modal from "@components/modal/ModalContainer";
+import TodoListContainer from "@components/todolist/TodoListContainer";
+import TodoModal from "@components/todoModal/todoModalContainer";
 
 const TodoUi = ({
   isDesktop,

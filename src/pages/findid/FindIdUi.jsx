@@ -1,9 +1,9 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { BlueRoundedButton } from "../../styles/index";
-import { layoutConfig } from "../../styles/layoutConfig";
-import EmailSelectorContainer from "../../components/emailSelector/EmailSelectorContainer";
-import FooterLinks from "../../components/footerlinks/FooterLinksContainer";
+import { BlueRoundedButton } from "@styles/index";
+import { layoutConfig } from "@styles/layoutConfig";
+import EmailSelectorContainer from "@components/emailSelector/EmailSelectorContainer";
+import FooterLinks from "@components/footerlinks/FooterLinksContainer";
 
 const FindIdForm = ({ Layout, MainLayout, onSubmit }) => (
   <Box component="form" onSubmit={onSubmit}>

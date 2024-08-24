@@ -1,15 +1,14 @@
-import React from "react";
-import { mainContentConfig } from "../../styles/layoutConfig";
-import Sidebar from "../../components/sidebar/SidebarContainer";
-import UserCard from "../../components/usercard/UserCardContainer";
+import { mainContentConfig } from "@styles/layoutConfig";
+import Sidebar from "@components/sidebar/SidebarContainer";
+import UserCard from "@components/usercard/UserCardContainer";
 import { Box, Card, CardContent, Typography } from "@mui/material";
-import Weather from "../../components/weather/WeatherContainer";
-import Newsletter from "../../components/newsletter/NewsletterContainer";
-import TodoList from "../../components/todolist/TodoListContainer";
-import { BlueRoundedButton } from "../../styles";
+import Weather from "@components/weather/WeatherContainer";
+import Newsletter from "@components/newsletter/NewsletterContainer";
+import TodoList from "@components/todolist/TodoListContainer";
+import { BlueRoundedButton } from "@styles";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import Modal from "../../components/modal/ModalContainer";
-import TodoModal from "../../components/todoModal/todoModalContainer";
+import Modal from "@components/modal/ModalContainer";
+import TodoModal from "@components/todoModal/todoModalContainer";
 
 const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
   const styles = {

@@ -1,5 +1,5 @@
 import TodoListUi from "./TodoListUi";
-import { save } from "../../utils/localStorage";
+import { save } from "@utils/localStorage";
 
 const TodoListContainer = ({ todos, setTodos, height }) => {
   const handleToggle = (id) => {

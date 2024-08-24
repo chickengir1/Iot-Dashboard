@@ -1,4 +1,3 @@
-import React from "react";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 
 const styles = {

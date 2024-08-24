@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import EmailSelectorContainer from "../components/emailSelector/EmailSelectorContainer";
-import { generateFormFields } from "../utils/formUtils";
-import { BlueRoundedButton } from "../styles";
+import EmailSelectorContainer from "@components/emailSelector/EmailSelectorContainer";
+import { generateFormFields } from "@utils/formUtils";
+import { BlueRoundedButton } from "@styles";
 
 export const generateFields = ({
   formFields,

@@ -1,6 +1,5 @@
-import React from "react";
 import { Box } from "@mui/material";
-import ListItem from "../listitem/ListItemContainer";
+import ListItem from "@components/listitem/ListItemContainer";
 import { CheckBoxOutlineBlank, CheckBoxOutlined } from "@mui/icons-material";
 
 const TodoComponent = ({

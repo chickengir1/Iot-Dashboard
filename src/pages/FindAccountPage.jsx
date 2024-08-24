@@ -4,8 +4,8 @@ import {
   MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
-} from "../styles/index";
-import FooterLinks from "../components/footerlinks/FooterLinksContainer";
+} from "@styles/index";
+import FooterLinks from "@components/footerlinks/FooterLinksContainer";
 import { useNavigate } from "react-router-dom";
 
 const styles = {

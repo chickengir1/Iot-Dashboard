@@ -1,7 +1,7 @@
 import React from "react";
-import { mainContentConfig } from "../../styles/layoutConfig";
-import Sidebar from "../../components/sidebar/SidebarContainer";
-import { BlueRoundedButton, ServeContent } from "../../styles";
+import { mainContentConfig } from "@styles/layoutConfig";
+import Sidebar from "@components/sidebar/SidebarContainer";
+import { BlueRoundedButton, ServeContent } from "@styles";
 import {
   Avatar,
   Badge,
@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import WifiIcon from "@mui/icons-material/Wifi";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import UserCard from "../../components/usercard/UserCardContainer";
+import UserCard from "@components/usercard/UserCardContainer";
 
 const styles = {
   addDeviceContainer: {

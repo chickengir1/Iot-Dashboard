@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import DeviceAddUi from "./DeviceAddUi";
 import { useMediaQuery } from "@mui/material";
-import { breakpoints } from "../../utils/commonUtils";
+import { breakpoints } from "@utils/commonUtils";
 import { FormProvider, useForm } from "react-hook-form";
-import Notification from "../../components/notification/NotificationContainer";
+import Notification from "@components/notification/NotificationContainer";
 
 const DeviceAddContainer = () => {
   const [notification, setNotification] = useState({

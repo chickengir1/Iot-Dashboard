@@ -1,4 +1,3 @@
-import React from "react";
 import UserCardUi from "./UserCardUi";
 import { useSelector } from "react-redux";
 import {

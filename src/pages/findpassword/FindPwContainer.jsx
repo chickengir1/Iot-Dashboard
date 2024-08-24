@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import { useDispatch } from "react-redux";
-import usePostRequest from "../../hooks/usePostRequest";
-import { delay, breakpoints } from "../../utils/commonUtils";
-import { getResponseMessage } from "../../error/getResponseMessage";
-import Notification from "../../components/notification/NotificationContainer";
-import { findPasswordFormFields as fields } from "../../utils/formFields";
+import usePostRequest from "@hooks/usePostRequest";
+import { delay, breakpoints } from "@utils/commonUtils";
+import { getResponseMessage } from "@error/getResponseMessage";
+import Notification from "@components/notification/NotificationContainer";
+import { findPasswordFormFields as fields } from "@utils/formFields";
 import FindPwUi from "./FindPwUi";
-import { handleFormSubmit } from "../../utils/handleSubmit";
+import { handleFormSubmit } from "@utils/handleSubmit";
 
 const FindPasswordPage = () => {
   const [notification, setNotification] = useState({

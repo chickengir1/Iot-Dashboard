@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import ModalUi from "./ModalUi";
-import { closeModal } from "../../redux/actions/modalAction";
+import { closeModal } from "@redux/actions/modalAction";
 
 const ModalContainer = ({ children }) => {
   const dispatch = useDispatch();

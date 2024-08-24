@@ -3,14 +3,14 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
-import { loginFormFields as fields } from "../../utils/formFields";
-import usePostRequest from "../../hooks/usePostRequest";
-import { handleFormSubmit } from "../../utils/handleSubmit";
-import { updateProfileData } from "../../utils/saveProfile";
-import { getResponseMessage } from "../../error/getResponseMessage";
-import { get } from "../../utils/localStorage";
+import { loginFormFields as fields } from "@utils/formFields";
+import usePostRequest from "@hooks/usePostRequest";
+import { handleFormSubmit } from "@utils/handleSubmit";
+import { updateProfileData } from "@utils/saveProfile";
+import { getResponseMessage } from "@error/getResponseMessage";
+import { get } from "@utils/localStorage";
 import LoginUi from "./LoginUi";
-import { delay } from "../../utils/commonUtils";
+import { delay } from "@utils/commonUtils";
 
 const LoginPage = () => {
   const [notification, setNotification] = useState({

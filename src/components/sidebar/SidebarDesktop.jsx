@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, ListItem, Divider } from "@mui/material";
 import MenuList from "./MenuList";
 import { ExitToApp as ExitToAppIcon } from "@mui/icons-material";

@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SidebarDesktop from "./SidebarDesktop";
 import SidebarMobile from "./SidebarMobile";
 import { useMediaQuery } from "@mui/material";
-import { navigateTo } from "../../redux/actions/navigateAction";
-import usePostRequest from "../../hooks/usePostRequest";
+import { navigateTo } from "@redux/actions/navigateAction";
+import usePostRequest from "@hooks/usePostRequest";
 import { Home, Settings, Person, CheckBox } from "@mui/icons-material";
-import Notification from "../notification/NotificationContainer";
-import { delay } from "../../utils/commonUtils";
+import Notification from "@components/notification/NotificationContainer";
+import { delay } from "@utils/commonUtils";
 
 const SidebarContainer = () => {
   const dispatch = useDispatch();

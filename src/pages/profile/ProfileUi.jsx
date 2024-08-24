@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Typography,
   List,
@@ -15,11 +14,11 @@ import {
   Logout as LogoutIcon,
   Delete as DeleteIcon,
 } from "@mui/icons-material";
-import { RedRoundedButton } from "../../styles";
-import { mainContentConfig } from "../../styles/layoutConfig";
-import { ServeContent } from "../../styles";
-import Sidebar from "../../components/sidebar/SidebarContainer";
-import UserCard from "../../components/usercard/UserCardContainer";
+import { RedRoundedButton } from "@styles";
+import { mainContentConfig } from "@styles/layoutConfig";
+import { ServeContent } from "@styles";
+import Sidebar from "@components/sidebar/SidebarContainer";
+import UserCard from "@components/usercard/UserCardContainer";
 
 const listItems = [
   { text: "프로필 정보 수정", icon: <EditIcon />, action: null },

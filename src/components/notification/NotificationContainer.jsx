@@ -1,4 +1,3 @@
-import React from "react";
 import NotificationUi from "./NotificationUi";
 
 const NotificationContainer = ({ notification, setNotification }) => {

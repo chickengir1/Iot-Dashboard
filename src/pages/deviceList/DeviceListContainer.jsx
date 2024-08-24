@@ -1,7 +1,6 @@
-import React from "react";
 import { useMediaQuery } from "@mui/material";
-import useFetchData from "../../hooks/useFetchData";
-import { getEmail } from "../../utils/commonUtils";
+import useFetchData from "@hooks/useFetchData";
+import { getEmail } from "@utils/commonUtils";
 import DeviceUi from "./DeviceListUi";
 import { useNavigate } from "react-router-dom";
 

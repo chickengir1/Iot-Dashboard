@@ -1,16 +1,15 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ErrorBoundary from "./error/ErrorBoundary";
-import FindAccount from "./pages/FindAccountPage";
-import DeviceAdd from "./pages/deviceAdd/DeviceAddContainer";
-import LoginContainer from "./pages/loginpage/LoginContainer";
-import SignUpContainer from "./pages/signup/SignUpContainer";
-import FindIDPage from "./pages/findid/FindIdContainer";
-import FindPasswordPage from "./pages/findpassword/FindPwContainer";
-import TodoContainer from "./pages/todo/TodoContainer";
-import HomeContainer from "./pages/home/HomeContainer";
-import ProfilePage from "./pages/profile/ProfileContainer";
-import DeviceList from "./pages/deviceList/DeviceListContainer";
+import ErrorBoundary from "@error/ErrorBoundary";
+import FindAccount from "@pages/FindAccountPage";
+import DeviceAdd from "@pages/deviceAdd/DeviceAddContainer";
+import LoginContainer from "@pages/loginpage/LoginContainer";
+import SignUpContainer from "@pages/signup/SignUpContainer";
+import FindIDPage from "@pages/findid/FindIdContainer";
+import FindPasswordPage from "@pages/findpassword/FindPwContainer";
+import TodoContainer from "@pages/todo/TodoContainer";
+import HomeContainer from "@pages/home/HomeContainer";
+import ProfilePage from "@pages/profile/ProfileContainer";
+import DeviceList from "@pages/deviceList/DeviceListContainer";
 
 function App() {
   return (

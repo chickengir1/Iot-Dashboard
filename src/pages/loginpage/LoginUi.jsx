@@ -1,11 +1,10 @@
-import React from "react";
 import { Box, Typography, Checkbox } from "@mui/material";
 import { FormProvider } from "react-hook-form";
-import { layoutConfig } from "../../styles/layoutConfig";
-import FooterLinks from "../../components/footerlinks/FooterLinksContainer";
-import { generateFields } from "../../utils/generateFields";
-import { OAuth } from "../../components/OAuth";
-import Notification from "../../components/notification/NotificationContainer";
+import { layoutConfig } from "@styles/layoutConfig";
+import FooterLinks from "@components/footerlinks/FooterLinksContainer";
+import { generateFields } from "@utils/generateFields";
+import { OAuth } from "@components/OAuth";
+import Notification from "@components/notification/NotificationContainer";
 
 const RememberMe = ({ checked, onChange }) => (
   <Box sx={{ display: "flex", alignItems: "center", marginTop: "12px" }}>

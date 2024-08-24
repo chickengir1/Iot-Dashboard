@@ -1,13 +1,13 @@
 import { useState } from "react";
 import TodoUi from "./TodoUi";
 import { useMediaQuery } from "@mui/material";
-import { breakpoints } from "../../utils/commonUtils";
+import { breakpoints } from "@utils/commonUtils";
 import { useDispatch } from "react-redux";
 import { FormProvider, useForm } from "react-hook-form";
-import { todoFields as fields } from "../../utils/formFields";
-import Notification from "../../components/notification/NotificationContainer";
-import { setModalType } from "../../redux/actions/modalAction";
-import { get } from "../../utils/localStorage";
+import { todoFields as fields } from "@utils/formFields";
+import Notification from "@components/notification/NotificationContainer";
+import { setModalType } from "@redux/actions/modalAction";
+import { get } from "@utils/localStorage";
 
 const TodoContainer = () => {
   const [notification, setNotification] = useState({

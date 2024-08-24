@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Avatar, Card, CardContent } from "@mui/material";
 
 const UserCardUi = ({ userId, message, icon }) => {
