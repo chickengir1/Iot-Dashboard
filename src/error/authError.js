@@ -1,30 +1,15 @@
-/*
-import { jwtDecode } from "jwt-decode";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
-export const getCookie = (name) => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  
-  if (parts.length === 2) return parts.pop().split(";").shift();
-  return null;
+export const useAuth = () => {
+  const profile = useSelector((state) => state.profile);
+
+  useEffect(() => {
+    if (!profile || !profile.userId) {
+      console.error("인증되지 않았습니다. 사용자 정보가 없습니다.");
+      throw new Error("인증되지 않았습니다.");
+    }
+  }, [profile]);
+
+  return profile && profile.userId;
 };
-
-export const verifyToken = () => {
-  const token = getCookie("userCookie");
-
-  if (!token) {
-    throw new Error("인증 토큰이 존재하지 않습니다.");
-  }
-
-  const decoded = jwtDecode(token);
-  const currentTime = Date.now() / 1000;
-
-  if (decoded.exp < currentTime) {
-    throw new Error("인증 토큰이 만료되었습니다.");
-  }
-
-  return decoded;
-};
-*/
-
-// 나중에 만들기

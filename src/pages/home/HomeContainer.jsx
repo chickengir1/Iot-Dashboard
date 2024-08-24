@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { get } from "@utils/localStorage";
 import Notification from "@components/notification/NotificationContainer";
+import { useAuth } from "@error/authError";
 
 const HomeContainer = () => {
   const [notification, setNotification] = useState({
@@ -19,6 +20,7 @@ const HomeContainer = () => {
   const isDesktop = useMediaQuery(breakpoints.mainContent);
   const combined = useForm();
   const dispatch = useDispatch();
+  useAuth();
 
   const handleAddToDo = () => {
     dispatch(setModalType("todo"));

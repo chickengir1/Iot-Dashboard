@@ -8,8 +8,10 @@ import { todoFields as fields } from "@utils/formFields";
 import Notification from "@components/notification/NotificationContainer";
 import { setModalType } from "@redux/actions/modalAction";
 import { get } from "@utils/localStorage";
+import { useAuth } from "@error/authError";
 
 const TodoContainer = () => {
+  useAuth();
   const [notification, setNotification] = useState({
     message: "success",
     type: "",

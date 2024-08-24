@@ -6,8 +6,10 @@ import { delay } from "@utils/commonUtils";
 import ProfileUi from "./ProfileUi";
 import Notification from "@components/notification/NotificationContainer";
 import { breakpoints } from "@utils/commonUtils";
+import { useAuth } from "@error/authError";
 
 const ProfilePage = () => {
+  useAuth();
   const apiLogout = "/api/auth/logout";
   const apiDeleteAccount = "/api/auth/delete";
 
