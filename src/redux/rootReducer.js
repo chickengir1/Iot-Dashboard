@@ -5,6 +5,7 @@ import navigateReducer from "./reducers/navigateReducer";
 import { formReducer } from "./reducers/formReducer";
 import profileReducer from "./reducers/profileReducer";
 import modalReducer from "./reducers/modalReducer";
+import loadingReducer from "./reducers/loadingReducer";
 
 const profilePersistConfig = {
   key: "profile",
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   profile: persistReducer(profilePersistConfig, profileReducer),
   modal: modalReducer,
+  loading: loadingReducer,
 });
 
 export default rootReducer;

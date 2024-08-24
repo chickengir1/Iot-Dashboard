@@ -1,31 +1,52 @@
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "@mui/material";
+import { useDispatch } from "react-redux";
 import useFetchData from "@hooks/useFetchData";
 import { getEmail } from "@utils/commonUtils";
 import DeviceUi from "./DeviceListUi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@error/authError";
+import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 
 const DeviceList = () => {
   useAuth();
   const isDesktop = useMediaQuery("(min-width:1280px)");
   const navigate = useNavigate();
   const userEmail = "user@example.com";
-  // 나중에 써야됨
-  // const { data: deviceData } = useFetchData(
-  //   `/api/devices?email=${userEmail}`,
-  //   userEmail
-  // );
-  const { data: deviceData } = useFetchData("./db.json");
+  const dispatch = useDispatch();
 
-  const devices = deviceData?.devices || [];
-  const userData = deviceData?.userEmail || userEmail;
+  const { deviceList } = useFetchData("./db.json");
 
-  console.log(JSON.stringify(devices));
-  const userName = getEmail(userData);
+  const [devices, setDevices] = useState([]);
+
+  const userName = getEmail(userEmail);
 
   const handleNavigate = () => {
-    navigate("/adddevices");
+    navigate(`/adddevices`);
   };
+
+  useEffect(() => {
+    const deviceListData = async () => {
+      dispatch(startLoading());
+      try {
+        if (deviceList) {
+          const deviceArray = await deviceList.devices.map((device) => ({
+            ...device,
+          }));
+          setDevices(deviceArray);
+        }
+      } catch (error) {
+        console.error(error.cause);
+      } finally {
+        dispatch(stopLoading());
+      }
+    };
+
+    deviceListData();
+  }, [deviceList, dispatch]);
+
+  console.log(devices);
+
   return (
     <DeviceUi
       isDesktop={isDesktop}

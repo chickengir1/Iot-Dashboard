@@ -2,12 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 
 const usePostRequest = (url) => {
-  const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
 
   const postData = async (postData) => {
-    setLoading(true);
-
     try {
       const response = await axios.post(url, postData, {
         headers: {
@@ -16,12 +13,12 @@ const usePostRequest = (url) => {
       });
       setData(response.data);
       return response.data;
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      console.error(error.cause);
     }
   };
 
-  return { loading, data, postData };
+  return { data, postData };
 };
 
 export default usePostRequest;

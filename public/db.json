@@ -10,6 +10,7 @@
       "name": "빅토리 농장",
       "description": "Victory Farm",
       "userEmail": "user@example.com",
+      "deviceId" : 1,
       "sensors": {
         "조도": 85,
         "습도": 45,
@@ -21,6 +22,7 @@
       "name": "ABC 농장",
       "description": "ABC Farm",
       "userEmail": "user@example.com",
+      "deviceId" : 2,
       "sensors": {
         "조도": 73,
         "습도": 67,
@@ -32,6 +34,7 @@
       "name": "ff 농장",
       "description": "ff Farm",
       "userEmail": "user@example.com",
+      "deviceId" : 3,
       "sensors": {
         "조도": 90,
         "습도": 55,
@@ -43,6 +46,7 @@
       "name": "Pinking 농장",
       "description": "Pinking Farm",
       "userEmail": "user@example.com",
+      "deviceId" : 4,
       "sensors": {
         "조도": 65,
         "습도": 70,
@@ -54,6 +58,7 @@
       "name": "Victory Farm 2",
       "description": "Second Victory Farm",
       "userEmail": "user@example.com",
+      "deviceId" : 5,
       "sensors": {
         "조도": 82,
         "습도": 50,
@@ -65,6 +70,7 @@
       "name": "ABC Farm 2",
       "description": "Second ABC Farm",
       "userEmail": "user@example.com",
+      "deviceId" : 6,
       "sensors": {
         "조도": 75,
         "습도": 60,

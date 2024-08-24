@@ -6,6 +6,7 @@ import SidebarDesktop from "./SidebarDesktop";
 import SidebarMobile from "./SidebarMobile";
 import Notification from "@components/notification/NotificationContainer";
 import { navigateTo } from "@redux/actions/navigateAction";
+import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 import usePostRequest from "@hooks/usePostRequest";
 import useNotification from "@hooks/useNotification";
 import { API_PATHS } from "@utils/apiMap";
@@ -33,6 +34,7 @@ const SidebarContainer = () => {
   };
 
   const handleLogout = async () => {
+    dispatch(startLoading());
     try {
       const response = await postData();
       const { message } = response;
@@ -54,6 +56,8 @@ const SidebarContainer = () => {
         type: "error",
         open: true,
       });
+    } finally {
+      dispatch(stopLoading());
     }
   };
 

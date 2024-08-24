@@ -11,6 +11,7 @@ import { signupFormFields as fields } from "@utils/formFields";
 import SignUpUi from "./SignUpUi";
 import { delay, breakpoints } from "@utils/commonUtils";
 import Notification from "@components/notification/NotificationContainer";
+import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 
 const SignUpContainer = () => {
   const { notification, setNotification } = useNotification();
@@ -29,19 +30,27 @@ const SignUpContainer = () => {
       email: completeEmail,
     };
 
-    const response = await handleFormSubmit({
-      formData,
-      postData,
-      setNotification,
-      dispatch,
-      actionType: "signup",
-      successMessageHandler: getResponseMessage,
-      errorMessageHandler: (error) => getResponseMessage(null, error),
-    });
+    dispatch(startLoading());
 
-    if (response.message === "Success") {
-      await delay(1000);
-      navigate("/");
+    try {
+      const response = await handleFormSubmit({
+        formData,
+        postData,
+        setNotification,
+        dispatch,
+        actionType: "signup",
+        successMessageHandler: getResponseMessage,
+        errorMessageHandler: (error) => getResponseMessage(null, error),
+      });
+
+      if (response.message === "Success") {
+        await delay(1000);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error(error.cause);
+    } finally {
+      dispatch(stopLoading());
     }
   };
 

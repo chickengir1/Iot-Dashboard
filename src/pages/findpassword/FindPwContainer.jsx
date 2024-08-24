@@ -11,6 +11,7 @@ import Notification from "@components/notification/NotificationContainer";
 import { findPasswordFormFields as fields } from "@utils/formFields";
 import FindPwUi from "./FindPwUi";
 import { handleFormSubmit } from "@utils/handleSubmit";
+import { startLoading, stopLoading } from "@redux/actions/loadingActions"; // 전역 로딩 액션
 
 const FindPasswordPage = () => {
   const { notification, setNotification } = useNotification();
@@ -18,7 +19,7 @@ const FindPasswordPage = () => {
   const dispatch = useDispatch();
   const combined = useForm();
   const navigate = useNavigate();
-  const { postData } = usePostRequest(API_PATHS.FINDPW);
+  const { postData } = usePostRequest(API_PATHS.FINDPW); // 로딩 상태 제거
 
   const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
@@ -27,19 +28,28 @@ const FindPasswordPage = () => {
       email: completeEmail,
     };
 
-    const response = handleFormSubmit({
-      formData,
-      postData,
-      setNotification,
-      dispatch,
-      actionType: "findPassword",
-      successMessageHandler: getResponseMessage,
-      errorMessageHandler: (error) => getResponseMessage(null, error),
-    });
+    // 전역 로딩 상태 시작
+    dispatch(startLoading());
 
-    if (response.message === "비밀번호 재설정 메일이 발송되었습니다.") {
-      await delay(1000);
-      navigate("/");
+    try {
+      const response = await handleFormSubmit({
+        formData,
+        postData,
+        setNotification,
+        dispatch,
+        actionType: "findPassword",
+        successMessageHandler: getResponseMessage,
+        errorMessageHandler: (error) => getResponseMessage(null, error),
+      });
+
+      if (response.message === "비밀번호 재설정 메일이 발송되었습니다.") {
+        await delay(1000);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error(error.cause);
+    } finally {
+      dispatch(stopLoading());
     }
   };
 

@@ -10,11 +10,13 @@ import TodoContainer from "@pages/todo/TodoContainer";
 import HomeContainer from "@pages/home/HomeContainer";
 import ProfilePage from "@pages/profile/ProfileContainer";
 import DeviceList from "@pages/deviceList/DeviceListContainer";
+import LoadingSpinner from "@utils/Loading";
 
 function App() {
   return (
     <ErrorBoundary>
       <Router>
+        <LoadingSpinner />
         <Routes>
           <Route path="/" element={<LoginContainer />} />
           <Route path="/register" element={<SignUpContainer />} />

@@ -13,6 +13,7 @@ import { get } from "@utils/localStorage";
 import LoginUi from "./LoginUi";
 import { delay } from "@utils/commonUtils";
 import useNotification from "@hooks/useNotification";
+import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 
 const LoginPage = () => {
   const { notification, setNotification } = useNotification();
@@ -47,21 +48,29 @@ const LoginPage = () => {
       email: completeEmail,
     };
 
-    const response = await handleFormSubmit({
-      formData,
-      postData,
-      setNotification,
-      dispatch,
-      actionType: "login",
-      successMessageHandler: getResponseMessage,
-      errorMessageHandler: (error) => getResponseMessage(null, error),
-    });
+    dispatch(startLoading());
 
-    updateProfileData(response, remember, dispatch);
+    try {
+      const response = await handleFormSubmit({
+        formData,
+        postData,
+        setNotification,
+        dispatch,
+        actionType: "login",
+        successMessageHandler: getResponseMessage,
+        errorMessageHandler: (error) => getResponseMessage(null, error),
+      });
 
-    if (response.message === "로그인 성공!") {
-      await delay(1000);
-      navigate("/home");
+      updateProfileData(response, remember, dispatch);
+
+      if (response.message === "로그인 성공!") {
+        await delay(1000);
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error(error.cause);
+    } finally {
+      dispatch(stopLoading());
     }
   };
 
