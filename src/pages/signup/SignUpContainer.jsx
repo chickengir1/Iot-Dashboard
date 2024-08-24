@@ -1,4 +1,4 @@
-import { useState } from "react";
+import useNotification from "@hooks/useNotification";
 import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -12,11 +12,7 @@ import { delay, breakpoints } from "@utils/commonUtils";
 import Notification from "@components/notification/NotificationContainer";
 
 const SignUpContainer = () => {
-  const [notification, setNotification] = useState({
-    message: null,
-    type: "",
-    open: false,
-  });
+  const { notification, setNotification } = useNotification();
 
   const isDesktop = useMediaQuery(breakpoints.Account);
   const navigate = useNavigate();

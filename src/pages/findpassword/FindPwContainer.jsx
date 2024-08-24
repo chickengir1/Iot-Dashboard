@@ -1,4 +1,4 @@
-import { useState } from "react";
+import useNotification from "@hooks/useNotification";
 import { useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
@@ -12,11 +12,7 @@ import FindPwUi from "./FindPwUi";
 import { handleFormSubmit } from "@utils/handleSubmit";
 
 const FindPasswordPage = () => {
-  const [notification, setNotification] = useState({
-    message: null,
-    type: "",
-    open: false,
-  });
+  const { notification, setNotification } = useNotification();
 
   const isDesktop = useMediaQuery(breakpoints.Account);
   const dispatch = useDispatch();

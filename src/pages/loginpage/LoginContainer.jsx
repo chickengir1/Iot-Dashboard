@@ -11,13 +11,10 @@ import { getResponseMessage } from "@error/getResponseMessage";
 import { get } from "@utils/localStorage";
 import LoginUi from "./LoginUi";
 import { delay } from "@utils/commonUtils";
+import useNotification from "@hooks/useNotification";
 
 const LoginPage = () => {
-  const [notification, setNotification] = useState({
-    message: null,
-    type: "",
-    open: false,
-  });
+  const { notification, setNotification } = useNotification();
   const [remember, setRemember] = useState(false);
 
   const dispatch = useDispatch();
@@ -58,15 +55,8 @@ const LoginPage = () => {
       successMessageHandler: getResponseMessage,
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
-    const token = response.token;
-    updateProfileData(response, remember, dispatch);
 
-    if (token) {
-      const expires = new Date();
-      expires.setTime(expires.getTime() + 10 * 60 * 1000);
-      const expiresString = `expires=${expires.toUTCString()}`;
-      document.cookie = `token=${token}; ${expiresString}; path=/;`;
-    }
+    updateProfileData(response, remember, dispatch);
 
     if (response.message == "로그인 성공!") {
       await delay(1000);

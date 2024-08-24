@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SidebarDesktop from "./SidebarDesktop";
@@ -9,11 +8,13 @@ import usePostRequest from "@hooks/usePostRequest";
 import { Home, Settings, Person, CheckBox } from "@mui/icons-material";
 import Notification from "@components/notification/NotificationContainer";
 import { delay } from "@utils/commonUtils";
+import useNotification from "@hooks/useNotification";
 
 const SidebarContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentRoute = useSelector((state) => state.navigation.currentRoute);
+  const { notification, setNotification } = useNotification();
 
   const handleNavigate = (route) => {
     dispatch(navigateTo(route));
@@ -30,11 +31,6 @@ const SidebarContainer = () => {
   const isMobile = useMediaQuery("(max-width:1279px)");
 
   const api = "/api/auth/logout";
-  const [notification, setNotification] = useState({
-    message: null,
-    type: "",
-    open: false,
-  });
 
   const { postData } = usePostRequest(api);
 

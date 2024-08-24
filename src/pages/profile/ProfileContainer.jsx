@@ -1,4 +1,4 @@
-import { useState } from "react";
+import useNotification from "@hooks/useNotification";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import usePostRequest from "@hooks/usePostRequest";
@@ -16,12 +16,7 @@ const ProfilePage = () => {
 
   const { postData: postLogout } = usePostRequest(apiLogout);
   const { deleteData: deleteAccount } = useDeleteRequest(apiDeleteAccount);
-
-  const [notification, setNotification] = useState({
-    message: null,
-    type: "",
-    open: false,
-  });
+  const { notification, setNotification } = useNotification();
 
   const navigate = useNavigate();
   const isDesktop = useMediaQuery(breakpoints.mainContent);

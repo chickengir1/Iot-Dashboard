@@ -9,14 +9,12 @@ import Notification from "@components/notification/NotificationContainer";
 import { setModalType } from "@redux/actions/modalAction";
 import { get } from "@utils/localStorage";
 import { useAuth } from "@error/authError";
+import useNotification from "@hooks/useNotification";
 
 const TodoContainer = () => {
   useAuth();
-  const [notification, setNotification] = useState({
-    message: "success",
-    type: "",
-    open: false,
-  });
+  const { notification, setNotification } = useNotification();
+
   const [todos, setTodos] = useState(get("todos") || []);
 
   const isDesktop = useMediaQuery(breakpoints.mainContent);
