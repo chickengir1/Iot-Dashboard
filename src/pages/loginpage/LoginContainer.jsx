@@ -38,7 +38,6 @@ const LoginPage = () => {
       combined.setValue("email", email);
     }
   }, [combined]);
-  // 빈배열이여도 상관 없음
 
   const { postData } = usePostRequest("/api/auth/login");
 
