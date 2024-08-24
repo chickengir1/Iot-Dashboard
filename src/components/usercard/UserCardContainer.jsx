@@ -22,8 +22,6 @@ const iconMap = {
 const UserCardContainer = () => {
   const profile = useSelector((state) => state.profile);
 
-  console.log(profile.userId);
-
   return (
     <UserCardUi
       userId={profile.userId}

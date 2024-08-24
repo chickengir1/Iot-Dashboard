@@ -8,13 +8,10 @@ import { useState } from "react";
 import { get } from "@utils/localStorage";
 import Notification from "@components/notification/NotificationContainer";
 import { useAuth } from "@error/authError";
+import useNotification from "@hooks/useNotification";
 
 const HomeContainer = () => {
-  const [notification, setNotification] = useState({
-    message: "success",
-    type: "",
-    open: false,
-  });
+  const { notification, setNotification } = useNotification();
   const [todos, setTodos] = useState(get("todos") || []);
 
   const isDesktop = useMediaQuery(breakpoints.mainContent);
