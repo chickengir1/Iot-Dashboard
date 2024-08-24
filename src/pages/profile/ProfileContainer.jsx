@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import usePostRequest from "@hooks/usePostRequest";
+import useDeleteRequest from "@hooks/useDeleteRequest";
 import { delay } from "@utils/commonUtils";
 import ProfileUi from "./ProfileUi";
 import Notification from "@components/notification/NotificationContainer";
@@ -11,10 +12,10 @@ import { useAuth } from "@error/authError";
 const ProfilePage = () => {
   useAuth();
   const apiLogout = "/api/auth/logout";
-  const apiDeleteAccount = "/api/auth/delete";
+  const apiDeleteAccount = "/api/me/";
 
   const { postData: postLogout } = usePostRequest(apiLogout);
-  const { postData: postDeleteAccount } = usePostRequest(apiDeleteAccount);
+  const { deleteData: deleteAccount } = useDeleteRequest(apiDeleteAccount);
 
   const [notification, setNotification] = useState({
     message: null,
@@ -37,7 +38,7 @@ const ProfilePage = () => {
       }
 
       if (actionType === "deleteAccount") {
-        response = await postDeleteAccount();
+        response = await deleteAccount();
         handleSuccess(response.message, "/");
         return;
       }

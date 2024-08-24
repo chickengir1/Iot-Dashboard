@@ -58,8 +58,15 @@ const LoginPage = () => {
       successMessageHandler: getResponseMessage,
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
-    console.log(response);
+    const token = response.token;
     updateProfileData(response, remember, dispatch);
+
+    if (token) {
+      const expires = new Date();
+      expires.setTime(expires.getTime() + 10 * 60 * 1000);
+      const expiresString = `expires=${expires.toUTCString()}`;
+      document.cookie = `token=${token}; ${expiresString}; path=/;`;
+    }
 
     if (response.message == "로그인 성공!") {
       await delay(1000);
