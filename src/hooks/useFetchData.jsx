@@ -24,6 +24,7 @@ const useFetchData = (url) => {
     fetchData();
   }, [url]);
 
+  // 데이터 키 여기서 부여한건 내 실수
   return { deviceList: data };
 };
 
