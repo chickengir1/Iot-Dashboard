@@ -8,24 +8,20 @@ import usePostRequest from "@hooks/usePostRequest";
 import { getResponseMessage } from "@error/getResponseMessage";
 import { handleFormSubmit } from "@utils/handleSubmit";
 import { delay, breakpoints } from "@utils/commonUtils";
+import { API_PATHS } from "@utils/apiMap";
 import Notification from "@components/notification/NotificationContainer";
 
 const FindIDPage = () => {
   const { notification, setNotification } = useNotification();
-
   const isDesktop = useMediaQuery(breakpoints.Account);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const combined = useForm();
-
-  const { postData } = usePostRequest("/api/auth/find-id");
+  const { postData } = usePostRequest(API_PATHS.FINDID);
 
   const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
-
-    const formData = {
-      email: completeEmail,
-    };
+    const formData = { email: completeEmail };
 
     const response = await handleFormSubmit({
       formData,
@@ -37,7 +33,7 @@ const FindIDPage = () => {
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
 
-    if (response.message == "사용자 아이디가 이메일 주소로 전송되었습니다.") {
+    if (response.message === "사용자 아이디가 이메일 주소로 전송되었습니다.") {
       await delay(1000);
       navigate("/");
     }

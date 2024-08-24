@@ -1,4 +1,5 @@
 import useNotification from "@hooks/useNotification";
+import { API_PATHS } from "@utils/apiMap";
 import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -13,13 +14,11 @@ import Notification from "@components/notification/NotificationContainer";
 
 const SignUpContainer = () => {
   const { notification, setNotification } = useNotification();
-
   const isDesktop = useMediaQuery(breakpoints.Account);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const combined = useForm();
-
-  const { postData } = usePostRequest("/api/auth/register");
+  const { postData } = usePostRequest(API_PATHS.REGISTER);
 
   const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
@@ -40,7 +39,7 @@ const SignUpContainer = () => {
       errorMessageHandler: (error) => getResponseMessage(null, error),
     });
 
-    if (response.message == "Success") {
+    if (response.message === "Success") {
       await delay(1000);
       navigate("/");
     }

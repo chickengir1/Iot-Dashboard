@@ -1,25 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
+import { Home, Settings, Person, CheckBox } from "@mui/icons-material";
 import SidebarDesktop from "./SidebarDesktop";
 import SidebarMobile from "./SidebarMobile";
-import { useMediaQuery } from "@mui/material";
+import Notification from "@components/notification/NotificationContainer";
 import { navigateTo } from "@redux/actions/navigateAction";
 import usePostRequest from "@hooks/usePostRequest";
-import { Home, Settings, Person, CheckBox } from "@mui/icons-material";
-import Notification from "@components/notification/NotificationContainer";
-import { delay } from "@utils/commonUtils";
 import useNotification from "@hooks/useNotification";
+import { API_PATHS } from "@utils/apiMap";
+import { delay } from "@utils/commonUtils";
 
 const SidebarContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentRoute = useSelector((state) => state.navigation.currentRoute);
-  const { notification, setNotification } = useNotification();
+  const isMobile = useMediaQuery("(max-width:1279px)");
 
-  const handleNavigate = (route) => {
-    dispatch(navigateTo(route));
-    navigate(route);
-  };
+  const { notification, setNotification } = useNotification();
+  const { postData } = usePostRequest(API_PATHS.LOGOUT);
 
   const menuItems = [
     { text: "Home", icon: <Home />, route: "/home" },
@@ -28,11 +27,10 @@ const SidebarContainer = () => {
     { text: "Todo list", icon: <CheckBox />, route: "/todolist" },
   ];
 
-  const isMobile = useMediaQuery("(max-width:1279px)");
-
-  const api = "/api/auth/logout";
-
-  const { postData } = usePostRequest(api);
+  const handleNavigate = (route) => {
+    dispatch(navigateTo(route));
+    navigate(route);
+  };
 
   const handleLogout = async () => {
     try {
@@ -44,7 +42,8 @@ const SidebarContainer = () => {
         type: "success",
         open: true,
       });
-      if (response.message == "성공적으로 로그아웃되었습니다.") {
+
+      if (message === "성공적으로 로그아웃되었습니다.") {
         await delay(500);
         sessionStorage.clear();
         navigate("/");

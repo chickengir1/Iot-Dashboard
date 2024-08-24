@@ -3,19 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import usePostRequest from "@hooks/usePostRequest";
 import useDeleteRequest from "@hooks/useDeleteRequest";
-import { delay } from "@utils/commonUtils";
+import { delay, breakpoints } from "@utils/commonUtils";
 import ProfileUi from "./ProfileUi";
 import Notification from "@components/notification/NotificationContainer";
-import { breakpoints } from "@utils/commonUtils";
 import { useAuth } from "@error/authError";
+import { API_PATHS } from "@utils/apiMap";
 
 const ProfilePage = () => {
   useAuth();
-  const apiLogout = "/api/auth/logout";
-  const apiDeleteAccount = "/api/me/";
 
-  const { postData: postLogout } = usePostRequest(apiLogout);
-  const { deleteData: deleteAccount } = useDeleteRequest(apiDeleteAccount);
+  const { postData: postLogout } = usePostRequest(API_PATHS.LOGOUT);
+  const { deleteData: deleteAccount } = useDeleteRequest(API_PATHS.REMOVE_USER);
   const { notification, setNotification } = useNotification();
 
   const navigate = useNavigate();

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { API_PATHS } from "@utils/apiMap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
@@ -36,7 +37,7 @@ const LoginPage = () => {
     }
   }, [combined]);
 
-  const { postData } = usePostRequest("/api/auth/login");
+  const { postData } = usePostRequest(API_PATHS.LOGIN);
 
   const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
@@ -58,7 +59,7 @@ const LoginPage = () => {
 
     updateProfileData(response, remember, dispatch);
 
-    if (response.message == "로그인 성공!") {
+    if (response.message === "로그인 성공!") {
       await delay(1000);
       navigate("/home");
     }
