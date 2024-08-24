@@ -15,6 +15,7 @@ const usePostRequest = (url) => {
       return response.data;
     } catch (error) {
       console.error(error.cause);
+      throw error;
     }
   };
 
