@@ -60,7 +60,7 @@ export const DesktopDeviceList = ({
     <MainLayout>
       <UserCard />
       <Box sx={{ flex: "1 1 100px", aspectRatio: "1/1" }}>
-        <Typography textAlign="center" sx={{ mb: 2 }}>
+        <Typography variant="subtitle1" sx={{ mb: 2 }}>
           {userName}님의 디바이스 목록
         </Typography>
         <Grid container spacing={3}>

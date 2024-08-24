@@ -10,7 +10,6 @@ export const BlueRoundedButton = styled(Button)({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)",
   "&:hover": {
     backgroundColor: "#57A5E6",
   },

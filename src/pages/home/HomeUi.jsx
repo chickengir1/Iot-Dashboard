@@ -1,7 +1,7 @@
 import { mainContentConfig } from "@styles/layoutConfig";
 import Sidebar from "@components/sidebar/SidebarContainer";
 import UserCard from "@components/usercard/UserCardContainer";
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Weather from "@components/weather/WeatherContainer";
 import Newsletter from "@components/newsletter/NewsletterContainer";
 import TodoList from "@components/todolist/TodoListContainer";
@@ -31,20 +31,20 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
           setNotification={setNotification}
         />
       </Modal>
-
       <Layout>
         <Sidebar />
         <MainLayout>
-          <UserCard />
-          <Card>
-            <CardContent>
-              <Typography variant="subtitle1">
-                나중에 팀 이미지로 대체
-              </Typography>
-            </CardContent>
-          </Card>
-          <Weather />
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              flexGrow: 1,
+              justifyContent: "space-between",
+            }}
+          >
+            <UserCard />
+            <Typography variant="subtitle1">오늘 날씨</Typography>
+            <Weather />
             <Box
               sx={{
                 display: "flex",
@@ -53,7 +53,7 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
                 marginBottom: 2,
               }}
             >
-              <Typography>Todo list</Typography>
+              <Typography>투두 리스트</Typography>
               <BlueRoundedButton
                 variant="contained"
                 endIcon={<AddCircleOutlineOutlined />}
@@ -67,9 +67,7 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
         </MainLayout>
         {isDesktop && (
           <Box sx={styles.serveContentStyle}>
-            <Typography variant="subtitle1">Today Weather</Typography>
-            <Weather />
-            <Typography variant="subtitle1">News Letter</Typography>
+            <Typography variant="subtitle1">실시간 뉴스 정보</Typography>
             <Newsletter />
           </Box>
         )}
