@@ -43,10 +43,13 @@ const ButtonGroup = ({ sensors, onChange }) => (
   </Box>
 );
 
-const ChartUI = ({ selectedSensor, device, colors, onChange }) => {
-  const sensorValue = device.sensors[selectedSensor];
-  const sensorColor = colors[selectedSensor];
-
+const ChartUI = ({
+  selectedSensor,
+  device,
+  onChange,
+  sensorValue,
+  sensorColor,
+}) => {
   return (
     <DesktopLayout>
       <Sidebar />

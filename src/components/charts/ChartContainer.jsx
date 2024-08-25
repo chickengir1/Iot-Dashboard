@@ -27,6 +27,9 @@ const colors = {
 const ChartContainer = () => {
   const [selectedSensor, setSelectedSensor] = useState("조도");
 
+  const sensorValue = device.sensors[selectedSensor];
+  const sensorColor = colors[selectedSensor];
+
   const handleChange = (sensorName) => {
     setSelectedSensor(sensorName);
   };
@@ -34,6 +37,8 @@ const ChartContainer = () => {
   return (
     <ChartUI
       selectedSensor={selectedSensor}
+      sensorValue={sensorValue}
+      sensorColor={sensorColor}
       device={device}
       colors={colors}
       onChange={handleChange}
