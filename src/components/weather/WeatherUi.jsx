@@ -1,30 +1,6 @@
 import { Box, Typography, Card, CardContent } from "@mui/material";
-import { getUserLocation } from "@services/getUserLocation";
-import { weatherApi } from "@services/weatherApi";
-import { extractWeatherData } from "@utils/weatherUtils";
-import { useEffect, useState } from "react";
 
-const WeatherUi = () => {
-  const [weatherData, setWeatherData] = useState(null);
-
-  useEffect(() => {
-    const fetchLocation = async () => {
-      try {
-        const { latitude, longitude } = await getUserLocation();
-
-        const weatherResponse = await weatherApi(latitude, longitude);
-        // setWeatherData(weatherResponse.data);
-        console.log(weatherResponse);
-        setWeatherData(extractWeatherData(weatherResponse));
-        console.log(weatherData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchLocation();
-  }, []);
-
+const WeatherUi = ({ weatherData }) => {
   return (
     <Box sx={{ mb: 2, minHeight: "20vh" }}>
       <Card sx={{ mt: 2, minHeight: "20vh" }}>

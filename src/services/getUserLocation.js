@@ -7,13 +7,12 @@ export const getUserLocation = () => {
           resolve({ latitude, longitude });
         },
         (error) => {
-          // display an error if we cant get the users position
-          console.error("Error getting user location:", error);
+          console.error(error);
           reject(error);
         }
       );
     } else {
-      console.error("Geolocation is not supported by this browser.");
+      console.error("이 브라우저에서 geolocation이 지원되지 않습니다.");
     }
   });
 };
