@@ -26,7 +26,7 @@ const TodoComponent = ({
   </Box>
 );
 
-const TodoListUi = ({ todos, onToggle, onDelete, height = "60vh" }) => {
+const TodoListUi = ({ todos, onToggle, onDelete, height }) => {
   return (
     <Box
       sx={{
