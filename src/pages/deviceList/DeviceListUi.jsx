@@ -76,7 +76,7 @@ export const DesktopDeviceList = ({
         endIcon={<AddCircleOutlineIcon />}
         onClick={handleNavigate}
       >
-        디바이스 추가하기
+        디바이스 등록하러 가기
       </BlueRoundedButton>
     </MainLayout>
     <ServeContent />
