@@ -76,5 +76,6 @@ export const weatherDescKo = [
 // 인터넷 정리 폴더 기반으로 약어 사용
 
 export const getDescription = (code) => {
-  return weatherDescKo[code] ? weatherDescKo[code] : "알 수 없는 날씨";
+  const entry = weatherDescKo.find((item) => Object.keys(item)[0] == code);
+  return entry ? entry[code] : "알 수 없는 날씨";
 };
