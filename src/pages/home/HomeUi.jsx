@@ -24,13 +24,11 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
   return (
     <>
-      <Modal>
-        <TodoModal
-          todos={todos}
-          setTodos={setTodos}
-          setNotification={setNotification}
-        />
-      </Modal>
+      <TodoModal
+        todos={todos}
+        setTodos={setTodos}
+        setNotification={setNotification}
+      />
       <Layout>
         <Sidebar />
         <MainLayout>

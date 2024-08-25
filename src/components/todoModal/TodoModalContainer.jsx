@@ -1,7 +1,7 @@
 import TodoModalUi from "./todoModalUi";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { setModalType } from "@redux/actions/modalAction";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal, setModalType } from "@redux/actions/modalAction";
 import { get, save } from "@utils/localStorage";
 import { todoFields as fields } from "@utils/formFields";
 import { getResponseMessage } from "@error/getResponseMessage";
@@ -11,6 +11,12 @@ import { getFormattedDate } from "@utils/dateUtils";
 const TodoModalContainer = ({ setNotification, todos, setTodos }) => {
   const dispatch = useDispatch();
   const combined = useForm();
+
+  const openModal = useSelector((state) => state.modal.openModal);
+
+  const handleClose = () => {
+    dispatch(closeModal());
+  };
 
   const onSubmit = (formValues) => {
     const formData = {
@@ -49,7 +55,13 @@ const TodoModalContainer = ({ setNotification, todos, setTodos }) => {
     }
   };
   return (
-    <TodoModalUi formFields={fields} onSubmit={onSubmit} combined={combined} />
+    <TodoModalUi
+      formFields={fields}
+      onSubmit={onSubmit}
+      combined={combined}
+      open={!!openModal}
+      onClose={handleClose}
+    />
   );
 };
 
