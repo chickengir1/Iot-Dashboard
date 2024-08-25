@@ -7,7 +7,6 @@ import Newsletter from "@components/newsletter/NewsletterContainer";
 import TodoList from "@components/todolist/TodoListContainer";
 import { BlueRoundedButton } from "@styles";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import Modal from "@components/modal/ModalContainer";
 import TodoModal from "@components/todoModal/todoModalContainer";
 
 const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
@@ -24,13 +23,11 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
   return (
     <>
-      <Modal>
-        <TodoModal
-          todos={todos}
-          setTodos={setTodos}
-          setNotification={setNotification}
-        />
-      </Modal>
+      <TodoModal
+        todos={todos}
+        setTodos={setTodos}
+        setNotification={setNotification}
+      />
       <Layout>
         <Sidebar />
         <MainLayout>

@@ -4,28 +4,18 @@ import { BlueRoundedButton, ServeContent } from "@styles";
 import UserCard from "@components/usercard/UserCardContainer";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
 import Sidebar from "@components/sidebar/SidebarContainer";
-import Modal from "@components/modal/ModalContainer";
 import TodoListContainer from "@components/todolist/TodoListContainer";
 import TodoModal from "@components/todoModal/todoModalContainer";
 
-const TodoUi = ({
-  isDesktop,
-  onOpen,
-  onClose,
-  setNotification,
-  todos,
-  setTodos,
-}) => {
+const TodoUi = ({ isDesktop, setNotification, todos, setTodos, onOpen }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
   return (
-    <div>
-      <Modal onClose={onClose}>
-        <TodoModal
-          setNotification={setNotification}
-          todos={todos}
-          setTodos={setTodos}
-        />
-      </Modal>
+    <>
+      <TodoModal
+        setNotification={setNotification}
+        todos={todos}
+        setTodos={setTodos}
+      />
 
       <Layout>
         <Sidebar />
@@ -46,7 +36,7 @@ const TodoUi = ({
         </MainLayout>
         {isDesktop && <ServeContent />}
       </Layout>
-    </div>
+    </>
   );
 };
 
