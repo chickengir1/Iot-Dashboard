@@ -8,7 +8,7 @@ const NewsletterContainer = () => {
   useEffect(() => {
     const fetchLocation = async () => {
       try {
-        const response = await getNewsletterData(20240801, 20240831);
+        const response = await getNewsletterData(20240826, 20240826);
         console.log(response.response.body.items.item);
         setNewsData(response.response.body.items.item);
       } catch (error) {
@@ -18,11 +18,7 @@ const NewsletterContainer = () => {
     fetchLocation();
   }, []);
 
-  return (
-    <>
-      <NewsletterUi newsData={newsData} />
-    </>
-  );
+  return <NewsletterUi newsData={newsData} />;
 };
 
 export default NewsletterContainer;

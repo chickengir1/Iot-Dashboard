@@ -4,7 +4,7 @@ export const getNewsletterData = async (
   startDate,
   endDate,
   page = 1,
-  rowsPerPage = 10
+  rowsPerPage = 5
 ) => {
   try {
     const serviceKey = import.meta.env.VITE_NEWS_API_KEY;
@@ -21,7 +21,6 @@ export const getNewsletterData = async (
 
     return response.data;
   } catch (error) {
-    console.error("Failed to fetch newsletter data:", error);
-    throw error;
+    console.error(error);
   }
 };
