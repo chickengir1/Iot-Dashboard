@@ -41,6 +41,28 @@ export const generateFormFields = (field, register, errors, watch) => {
     };
   }
 
+  if (field.name === "deviceId") {
+    validation = {
+      required: `${field.label}을 입력하세요.`,
+      minLength: {
+        value: 5,
+        message: "5글자 이하로 입력해주세요.",
+      },
+    };
+  }
+
+  if (field.name === "deviceName") {
+    validation = {
+      required: `${field.label}을 입력하세요.`,
+    };
+  }
+
+  if (field.name === "description") {
+    validation = {
+      required: `${field.label}을 입력하세요.`,
+    };
+  }
+
   return (
     <Box key={field.name}>
       <TextField
