@@ -41,7 +41,7 @@ const ButtonGroup = ({ sensors, onChange }) => (
   </Box>
 );
 
-const ChartUI = ({ selectedSensor, device, onChange, sensorValue, svgRef }) => {
+const ChartUI = ({ device, onChange, svgRef }) => {
   return (
     <DesktopLayout>
       <Sidebar />
@@ -49,9 +49,6 @@ const ChartUI = ({ selectedSensor, device, onChange, sensorValue, svgRef }) => {
         <UserCard />
         <Typography variant="h6" gutterBottom>
           {device.name}의 현재 정보
-        </Typography>
-        <Typography variant="body1">
-          현재 선택된 센서: {selectedSensor} ({sensorValue})
         </Typography>
         <Box sx={styles.charts}>
           <svg ref={svgRef}></svg>

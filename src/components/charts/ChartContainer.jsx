@@ -30,8 +30,8 @@ const ChartContainer = () => {
   const sensorColor = colors[selectedSensor];
 
   useEffect(() => {
-    drawCompassChart(sensorValue, svgRef, sensorColor);
-  }, [sensorValue, sensorColor]);
+    drawCompassChart(sensorValue, selectedSensor, svgRef, sensorColor);
+  }, [sensorValue, sensorColor, selectedSensor]);
 
   const handleChange = (sensorName) => {
     setSelectedSensor(sensorName);

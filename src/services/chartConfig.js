@@ -1,6 +1,11 @@
 import * as d3 from "d3";
 
-export const drawCompassChart = (sensorValue, svgRef, color) => {
+export const drawCompassChart = (
+  sensorValue,
+  selectedSensor,
+  svgRef,
+  color
+) => {
   d3.select(svgRef.current).selectAll("*").remove();
 
   const width = 250;
@@ -63,12 +68,24 @@ export const drawCompassChart = (sensorValue, svgRef, color) => {
     }
   }
 
+  const needlePath = d3
+    .line()
+    .x((d) => d[0])
+    .y((d) => d[1]);
+
+  const needlePoints = [
+    [0, 20],
+    [3, 15],
+    [0.5, -radius + 15],
+    [-0.5, -radius + 15],
+    [-3, 15],
+    [0, 20],
+  ];
+
   const needle = svg
-    .append("line")
-    .attr("x1", 0)
-    .attr("y1", 20)
-    .attr("x2", 0)
-    .attr("y2", -radius + 10)
+    .append("path")
+    .attr("d", needlePath(needlePoints))
+    .attr("fill", color)
     .attr("stroke", color)
     .attr("stroke-width", 2)
     .attr("transform", `rotate(-90)`);
@@ -90,9 +107,18 @@ export const drawCompassChart = (sensorValue, svgRef, color) => {
   svg
     .append("text")
     .attr("text-anchor", "middle")
-    .attr("dy", "3.5em")
-    .attr("font-size", "18px")
+    .attr("dy", "4.5em")
+    .attr("font-size", "16px")
     .attr("fill", color)
+    .attr("font-style", "default")
+    .text(`${selectedSensor}`);
+
+  svg
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("dy", "3em")
+    .attr("font-size", "14px")
+    .attr("fill", "#fff")
     .attr("font-style", "italic")
-    .text(`${sensorValue} %`);
+    .text(`${sensorValue}%`);
 };
