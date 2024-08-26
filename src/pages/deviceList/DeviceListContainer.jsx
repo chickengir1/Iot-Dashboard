@@ -15,8 +15,8 @@ const DeviceList = () => {
   const userEmail = "user@example.com";
   const dispatch = useDispatch();
 
-  const { deviceList } = useFetchData("./db.json");
-
+  const { deviceList } = useFetchData("/api/devices");
+  console.log(deviceList);
   const [devices, setDevices] = useState([]);
 
   const userName = getEmail(userEmail);
@@ -30,7 +30,7 @@ const DeviceList = () => {
       dispatch(startLoading());
       try {
         if (deviceList) {
-          const deviceArray = await deviceList.devices.map((device) => ({
+          const deviceArray = await deviceList.data.map((device) => ({
             ...device,
           }));
           setDevices(deviceArray);
