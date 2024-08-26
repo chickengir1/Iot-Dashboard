@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@error/authError";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 import { API_PATHS } from "@utils/apiMap";
+import { setDeviceIds } from "@redux/actions/deviceActions";
 
 const DeviceList = () => {
   useAuth();
@@ -15,7 +16,6 @@ const DeviceList = () => {
   const dispatch = useDispatch();
 
   const { deviceList } = useFetchData(API_PATHS.DEVICES);
-  console.log(deviceList);
   const [devices, setDevices] = useState([]);
 
   const handleNavigate = () => {
@@ -31,6 +31,11 @@ const DeviceList = () => {
             ...device,
           }));
           setDevices(deviceArray);
+
+          const deviceIds = await deviceList.data.map(
+            (device) => device.deviceId
+          );
+          dispatch(setDeviceIds(deviceIds));
         }
       } catch (error) {
         console.error(error.cause);
@@ -41,8 +46,6 @@ const DeviceList = () => {
 
     deviceListData();
   }, [deviceList, dispatch]);
-
-  console.log(devices);
 
   return (
     <DeviceUi
