@@ -8,19 +8,6 @@ import useFetchData from "@hooks/useFetchData";
 import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 
-const device = {
-  name: "빅토리 농장",
-  description: "Victory Farm",
-  userEmail: "user@example.com",
-  deviceId: 1,
-  sensors: {
-    조도: 85,
-    습도: 45,
-    온도: 22,
-    토양수분: 66,
-  },
-};
-
 const colors = {
   조도: "#FF6384",
   습도: "#36A2EB",
@@ -35,19 +22,23 @@ const ChartContainer = () => {
   const dispatch = useDispatch();
   const { deviceList, isLoading } = useFetchData(`api/devices/${deviceId}`);
 
-  const [selectedSensor, setSelectedSensor] = useState("조도");
-  const [deviceData, setDeviceData] = useState("");
-
+  const [selectedSensor, setSelectedSensor] = useState("온도");
+  const [sensorData, setSensorData] = useState(null);
   const svgRef = useRef();
-  const sensorValue = device.sensors[selectedSensor];
-  const sensorColor = colors[selectedSensor];
   const isDesktop = useMediaQuery(breakpoints.mainContent);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (deviceList) {
-          setDeviceData(deviceList.data);
+        if (deviceList?.data) {
+          const data = deviceList.data.sensor;
+
+          setSensorData({
+            온도: data?.temperature ?? null,
+            조도: data?.lux ?? null,
+            습도: data?.humid ?? null,
+            토양수분: data?.solid ?? null,
+          });
         }
       } catch (error) {
         console.error(error.cause);
@@ -58,34 +49,25 @@ const ChartContainer = () => {
   }, [deviceList]);
 
   useEffect(() => {
-    if (sensorValue) {
+    if (sensorData && sensorData[selectedSensor] !== null) {
+      const sensorValue = sensorData[selectedSensor];
+      const sensorColor = colors[selectedSensor];
       drawCompassChart(sensorValue, selectedSensor, svgRef, sensorColor);
     }
-  }, [sensorValue, selectedSensor, sensorColor]);
+  }, [sensorData, selectedSensor]);
 
   const handleChange = (sensorName) => {
     setSelectedSensor(sensorName);
   };
 
   useEffect(() => {
-    if (isLoading) {
-      dispatch(startLoading());
-    } else {
-      dispatch(stopLoading());
-    }
+    isLoading ? dispatch(startLoading()) : dispatch(stopLoading());
   }, [isLoading, dispatch]);
-
-  console.log("설명 :", deviceData.description);
-  console.log("이름 :", deviceData.deviceName);
-  console.log("아이디 :", deviceData.deviceId);
-  console.log("유저객체 :", deviceData.userId);
 
   return (
     <ChartUI
       selectedSensor={selectedSensor}
-      sensorValue={sensorValue}
-      sensorColor={sensorColor}
-      device={device}
+      sensors={sensorData}
       colors={colors}
       isDesktop={isDesktop}
       onChange={handleChange}

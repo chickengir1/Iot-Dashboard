@@ -26,7 +26,10 @@ const styles = {
 };
 
 const Selector = ({ sensors, selectedSensor, onChange }) => (
-  <FormControl sx={styles.select}>
+  <FormControl
+    sx={styles.select}
+    disabled={!sensors || Object.keys(sensors).length === 0}
+  >
     <InputLabel id="sensor-select-label">센서 선택</InputLabel>
     <Select
       labelId="sensor-select-label"
@@ -34,16 +37,22 @@ const Selector = ({ sensors, selectedSensor, onChange }) => (
       label="센서 선택"
       onChange={(event) => onChange(event.target.value)}
     >
-      {Object.keys(sensors).map((name) => (
-        <MenuItem key={name} value={name}>
-          {name}
+      {sensors && Object.keys(sensors).length > 0 ? (
+        Object.keys(sensors).map((name) => (
+          <MenuItem key={name} value={name}>
+            {name}
+          </MenuItem>
+        ))
+      ) : (
+        <MenuItem value="" disabled>
+          센서 데이터 없음
         </MenuItem>
-      ))}
+      )}
     </Select>
   </FormControl>
 );
 
-const ChartUI = ({ device, onChange, svgRef, isDesktop, selectedSensor }) => {
+const ChartUI = ({ sensors, onChange, svgRef, isDesktop, selectedSensor }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
 
   return (
@@ -53,10 +62,10 @@ const ChartUI = ({ device, onChange, svgRef, isDesktop, selectedSensor }) => {
         <UserCard />
         <Box sx={styles.title}>
           <Typography variant="h6" gutterBottom>
-            {device.name}
+            센서 데이터
           </Typography>
           <Selector
-            sensors={device.sensors}
+            sensors={sensors}
             selectedSensor={selectedSensor}
             onChange={onChange}
           />
