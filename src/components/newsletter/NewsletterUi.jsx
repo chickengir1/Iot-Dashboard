@@ -1,14 +1,37 @@
 import { Box, Typography, Card, CardContent } from "@mui/material";
 
-const NewsletterUi = () => {
+export const CardNews = ({ mscmnc, title, site, newsdate }) => {
+  return (
+    <Card sx={{ mb: 1 }}>
+      <CardContent>
+        <Box>
+          <Typography variant="body1">{mscmnc}</Typography>
+          <Typography variant="body2">
+            <a href={site}>{title}</a>
+          </Typography>
+        </Box>
+        <Typography variant="caption">{newsdate}</Typography>
+      </CardContent>
+    </Card>
+  );
+};
+
+const NewsletterUi = ({ newsData }) => {
+  if (!Array.isArray(newsData)) {
+    return <Typography variant="body2">로딩 중</Typography>;
+  }
+
   return (
     <Box sx={{ mb: 2 }}>
-      <Card sx={{ mb: 1 }}>
-        <CardContent>
-          <Typography variant="body2">Title</Typography>
-          <Typography variant="caption">상단 20글자까지 제한</Typography>
-        </CardContent>
-      </Card>
+      {newsData.map((news, idx) => (
+        <CardNews
+          key={idx}
+          mscmnc={news.mscmnc}
+          title={news.tit}
+          site={news.site}
+          newsdate={news.newsdate}
+        />
+      ))}
     </Box>
   );
 };

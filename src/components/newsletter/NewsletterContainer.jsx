@@ -1,12 +1,24 @@
-import React from "react";
 import NewsletterUi from "./NewsletterUi";
+import { getNewsletterData } from "@services/newsLetterApi";
+import { useEffect, useState } from "react";
 
 const NewsletterContainer = () => {
-  return (
-    <>
-      <NewsletterUi />
-    </>
-  );
+  const [newsData, setNewsData] = useState(null);
+
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        const response = await getNewsletterData(20240826, 20240826);
+        console.log(response.response.body.items.item);
+        setNewsData(response.response.body.items.item);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchLocation();
+  }, []);
+
+  return <NewsletterUi newsData={newsData} />;
 };
 
 export default NewsletterContainer;
