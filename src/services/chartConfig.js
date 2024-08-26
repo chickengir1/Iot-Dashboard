@@ -20,12 +20,12 @@ export const drawCompassChart = (
     .append("g")
     .attr(
       "transform",
-      `translate(${(width + padding * 2) / 2}, ${(height + padding * 2) / 2})`
+      `translate(${(width + padding * 2) / 2.2}, ${(height + padding * 2) / 2})`
     );
 
   const defs = svg.append("defs");
   const gradient = defs.append("radialGradient").attr("id", "grad");
-  gradient.append("stop").attr("offset", "0%").attr("stop-color", "#555");
+  gradient.append("stop").attr("offset", "50%").attr("stop-color", "#555");
   gradient.append("stop").attr("offset", "100%").attr("stop-color", "#222");
 
   svg
@@ -35,9 +35,10 @@ export const drawCompassChart = (
     .attr("stroke", "#ddd")
     .attr("stroke-width", 5);
 
-  for (let i = 0; i <= 100; i += 10) {
+  for (let i = 0; i <= 100; i += 5) {
     const angle = i * 2.3 - 115;
-    const tickLength = i % 10 === 0 ? 15 : 5;
+    const isMajorTick = i % 10 === 0;
+    const tickLength = isMajorTick ? 15 : 7;
     const tickRadius = radius - tickLength;
 
     svg
@@ -47,10 +48,10 @@ export const drawCompassChart = (
       .attr("x2", 0)
       .attr("y2", -tickRadius)
       .attr("stroke", "#fff")
-      .attr("stroke-width", i % 10 === 0 ? 3 : 1)
+      .attr("stroke-width", isMajorTick ? 3 : 1)
       .attr("transform", `rotate(${angle})`);
 
-    if (i % 10 === 0) {
+    if (isMajorTick) {
       const textRadius = radius - 30;
       svg
         .append("text")

@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import ChartUI from "./ChartUI";
 import { drawCompassChart } from "@services/chartConfig";
+import { breakpoints } from "@utils/commonUtils";
+import { useMediaQuery } from "@mui/material";
+import { useAuth } from "@error/authError";
 
 const device = {
   name: "빅토리 농장",
@@ -23,11 +26,14 @@ const colors = {
 };
 
 const ChartContainer = () => {
+  useAuth();
+
   const [selectedSensor, setSelectedSensor] = useState("조도");
 
   const svgRef = useRef();
   const sensorValue = device.sensors[selectedSensor];
   const sensorColor = colors[selectedSensor];
+  const isDesktop = useMediaQuery(breakpoints.mainContent);
 
   useEffect(() => {
     drawCompassChart(sensorValue, selectedSensor, svgRef, sensorColor);
@@ -44,6 +50,7 @@ const ChartContainer = () => {
       sensorColor={sensorColor}
       device={device}
       colors={colors}
+      isDesktop={isDesktop}
       onChange={handleChange}
       svgRef={svgRef}
     />
