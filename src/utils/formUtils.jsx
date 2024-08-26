@@ -46,7 +46,7 @@ export const generateFormFields = (field, register, errors, watch) => {
       required: `${field.label}을 입력하세요.`,
       minLength: {
         value: 5,
-        message: "5글자 이하로 입력해주세요.",
+        message: "5글자 이상으로 입력해주세요.",
       },
     };
   }
@@ -54,6 +54,9 @@ export const generateFormFields = (field, register, errors, watch) => {
   if (field.name === "deviceName") {
     validation = {
       required: `${field.label}을 입력하세요.`,
+      validate: (value) =>
+        value === watch("deviceId") ||
+        "디바이스 아이디와 이름이 일치하지 않습니다.",
     };
   }
 
