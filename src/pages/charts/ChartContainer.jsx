@@ -22,7 +22,7 @@ const ChartContainer = () => {
   const dispatch = useDispatch();
   const { deviceList, isLoading } = useFetchData(`api/devices/${deviceId}`);
 
-  const [selectedSensor, setSelectedSensor] = useState("온도");
+  const [selectedSensor, setSelectedSensor] = useState("조도");
   const [sensorData, setSensorData] = useState(null);
   const svgRef = useRef();
   const isDesktop = useMediaQuery(breakpoints.mainContent);
@@ -34,8 +34,8 @@ const ChartContainer = () => {
           const data = deviceList.data.sensor;
 
           setSensorData({
-            온도: data?.temperature ?? null,
             조도: data?.lux ?? null,
+            온도: data?.temperature ?? null,
             습도: data?.humid ?? null,
             토양수분: data?.solid ?? null,
           });
