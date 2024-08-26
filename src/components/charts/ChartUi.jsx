@@ -1,9 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import { Doughnut } from "react-chartjs-2";
 import { Box } from "@mui/material";
 import { DesktopLayout, MainLayout } from "@styles/index";
-import { chartConfig, chartOptions } from "@services/chartConfig";
 import Sidebar from "@components/sidebar/SidebarContainer";
 import UserCard from "@components/usercard/UserCardContainer";
 import { BlueRoundedButton } from "@styles/index";
@@ -43,13 +41,7 @@ const ButtonGroup = ({ sensors, onChange }) => (
   </Box>
 );
 
-const ChartUI = ({
-  selectedSensor,
-  device,
-  onChange,
-  sensorValue,
-  sensorColor,
-}) => {
+const ChartUI = ({ selectedSensor, device, onChange, sensorValue, svgRef }) => {
   return (
     <DesktopLayout>
       <Sidebar />
@@ -58,11 +50,11 @@ const ChartUI = ({
         <Typography variant="h6" gutterBottom>
           {device.name}의 현재 정보
         </Typography>
+        <Typography variant="body1">
+          현재 선택된 센서: {selectedSensor} ({sensorValue})
+        </Typography>
         <Box sx={styles.charts}>
-          <Doughnut
-            data={chartConfig(selectedSensor, sensorValue, sensorColor)}
-            options={chartOptions}
-          />
+          <svg ref={svgRef}></svg>
         </Box>
         <ButtonGroup sensors={device.sensors} onChange={onChange} />
       </MainLayout>

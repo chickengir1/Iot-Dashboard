@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ChartUI from "./ChartUI";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
+import { drawCompassChart } from "@services/chartConfig";
 
 const device = {
   name: "빅토리 농장",
@@ -27,8 +25,13 @@ const colors = {
 const ChartContainer = () => {
   const [selectedSensor, setSelectedSensor] = useState("조도");
 
+  const svgRef = useRef();
   const sensorValue = device.sensors[selectedSensor];
   const sensorColor = colors[selectedSensor];
+
+  useEffect(() => {
+    drawCompassChart(sensorValue, svgRef, sensorColor);
+  }, [sensorValue, sensorColor]);
 
   const handleChange = (sensorName) => {
     setSelectedSensor(sensorName);
@@ -42,6 +45,7 @@ const ChartContainer = () => {
       device={device}
       colors={colors}
       onChange={handleChange}
+      svgRef={svgRef}
     />
   );
 };
