@@ -16,7 +16,7 @@ export const DeviceItem = ({ name, description }) => (
   />
 );
 
-const DeviceUi = ({ isDesktop, devices, userName, handleNavigate }) => {
+const DeviceUi = ({ isDesktop, devices, handleNavigate }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
 
   return (
@@ -26,7 +26,7 @@ const DeviceUi = ({ isDesktop, devices, userName, handleNavigate }) => {
         <UserCard />
         <Box sx={{ flex: "1 1 100px", aspectRatio: "1/1" }}>
           <Typography variant="subtitle1" sx={{ mb: 2 }}>
-            {userName}님의 디바이스 목록
+            디바이스 목록
           </Typography>
           <Grid container spacing={3}>
             {devices.map((device) => (
