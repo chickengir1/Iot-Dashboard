@@ -85,8 +85,8 @@ export const drawCompassChart = (
   const needle = svg
     .append("path")
     .attr("d", needlePath(needlePoints))
-    .attr("fill", color)
-    .attr("stroke", color)
+    .attr("fill", "red")
+    .attr("stroke", "red")
     .attr("stroke-width", 2)
     .attr("transform", `rotate(-90)`);
 
@@ -104,14 +104,32 @@ export const drawCompassChart = (
     .attr("stroke", "#000")
     .attr("stroke-width", 2);
 
-  svg
+  const textPadding = 5;
+  const borderRadius = 3;
+
+  const textElement = svg
     .append("text")
     .attr("text-anchor", "middle")
     .attr("dy", "4.5em")
     .attr("font-size", "16px")
     .attr("fill", color)
-    .attr("font-style", "default")
+    .attr("font-weight", "bold")
     .text(`${selectedSensor}`);
+
+  const bbox = textElement.node().getBBox();
+  const rectWidth = bbox.width + textPadding * 6;
+  const rectHeight = bbox.height + textPadding * 1.5;
+
+  svg
+    .insert("rect", "text")
+    .attr("x", bbox.x - textPadding * 3)
+    .attr("y", bbox.y - textPadding + 1)
+    .attr("width", rectWidth)
+    .attr("height", rectHeight)
+    .attr("rx", borderRadius)
+    .attr("ry", borderRadius)
+    .attr("fill", "#fff")
+    .attr("stroke", "#fff");
 
   svg
     .append("text")
@@ -120,5 +138,6 @@ export const drawCompassChart = (
     .attr("font-size", "14px")
     .attr("fill", "#fff")
     .attr("font-style", "italic")
+    .attr("font-weight", "bold")
     .text(`${sensorValue}%`);
 };
