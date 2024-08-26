@@ -47,7 +47,6 @@ const SidebarContainer = () => {
 
       if (message === "성공적으로 로그아웃되었습니다.") {
         await delay(500);
-        sessionStorage.clear();
         navigate("/");
       }
     } catch (error) {
