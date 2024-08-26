@@ -7,8 +7,8 @@ export const generateFormFields = (field, register, errors, watch) => {
     validation = {
       required: `${field.label}을 입력하세요.`,
       minLength: {
-        value: 5,
-        message: "아이디는 최소 5글자 이상이어야 합니다.",
+        value: 3,
+        message: "아이디는 최소 3글자 이상이어야 합니다.",
       },
     };
   }
