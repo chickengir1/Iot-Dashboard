@@ -36,7 +36,7 @@ export const drawCompassChart = (
     .attr("stroke-width", 5);
 
   for (let i = 0; i <= 100; i += 10) {
-    const angle = i * 1.8 - 90;
+    const angle = i * 2.3 - 115;
     const tickLength = i % 10 === 0 ? 15 : 5;
     const tickRadius = radius - tickLength;
 
@@ -90,7 +90,7 @@ export const drawCompassChart = (
     .attr("stroke-width", 2)
     .attr("transform", `rotate(-90)`);
 
-  const rotationAngle = sensorValue * 1.8;
+  const rotationAngle = sensorValue * 2.3 - 25;
 
   needle
     .transition()
