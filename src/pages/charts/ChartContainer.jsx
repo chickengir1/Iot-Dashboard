@@ -8,7 +8,6 @@ import useFetchData from "@hooks/useFetchData";
 import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 
-// 센서 데이터로 가공해야함
 const device = {
   name: "빅토리 농장",
   description: "Victory Farm",
@@ -31,9 +30,9 @@ const colors = {
 
 const ChartContainer = () => {
   useAuth();
+
   const deviceId = useSelector((state) => state.device.deviceIds);
   const dispatch = useDispatch();
-
   const { deviceList, isLoading } = useFetchData(`api/devices/${deviceId}`);
 
   const [selectedSensor, setSelectedSensor] = useState("조도");
@@ -56,7 +55,7 @@ const ChartContainer = () => {
     };
 
     fetchData();
-  }, [deviceList, dispatch]);
+  }, [deviceList]);
 
   useEffect(() => {
     if (sensorValue) {
@@ -68,16 +67,18 @@ const ChartContainer = () => {
     setSelectedSensor(sensorName);
   };
 
+  useEffect(() => {
+    if (isLoading) {
+      dispatch(startLoading());
+    } else {
+      dispatch(stopLoading());
+    }
+  }, [isLoading, dispatch]);
+
   console.log("설명 :", deviceData.description);
   console.log("이름 :", deviceData.deviceName);
   console.log("아이디 :", deviceData.deviceId);
   console.log("유저객체 :", deviceData.userId);
-
-  if (isLoading) {
-    dispatch(startLoading());
-  } else {
-    dispatch(stopLoading());
-  }
 
   return (
     <ChartUI

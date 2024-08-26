@@ -11,6 +11,7 @@ import { setDeviceIds } from "@redux/actions/deviceActions";
 
 const DeviceList = () => {
   useAuth();
+
   const isDesktop = useMediaQuery("(min-width:1280px)");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,14 +27,12 @@ const DeviceList = () => {
     const deviceListData = async () => {
       try {
         if (deviceList) {
-          const deviceArray = await deviceList.data.map((device) => ({
+          const deviceArray = deviceList.data.map((device) => ({
             ...device,
           }));
           setDevices(deviceArray);
 
-          const deviceIds = await deviceList.data.map(
-            (device) => device.deviceId
-          );
+          const deviceIds = deviceList.data.map((device) => device.deviceId);
           dispatch(setDeviceIds(deviceIds));
         }
       } catch (error) {
@@ -44,11 +43,14 @@ const DeviceList = () => {
     deviceListData();
   }, [deviceList, dispatch]);
 
-  if (isLoading) {
-    dispatch(startLoading());
-  } else {
-    dispatch(stopLoading());
-  }
+  useEffect(() => {
+    if (isLoading) {
+      dispatch(startLoading());
+    } else {
+      dispatch(stopLoading());
+    }
+  }, [isLoading, dispatch]);
+
   return (
     <DeviceUi
       isDesktop={isDesktop}
