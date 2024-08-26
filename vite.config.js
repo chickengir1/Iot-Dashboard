@@ -16,6 +16,11 @@ export default defineConfig({
         target: "http://localhost:8000",
         changeOrigin: true,
       },
+      "/open-api": {
+        target: "http://apis.data.go.kr",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/open-api/, ""),
+      },
     },
   },
   resolve: {
