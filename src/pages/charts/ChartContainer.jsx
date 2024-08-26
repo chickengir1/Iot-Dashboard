@@ -6,6 +6,7 @@ import { useMediaQuery } from "@mui/material";
 import { useAuth } from "@error/authError";
 import useFetchData from "@hooks/useFetchData";
 import { useSelector, useDispatch } from "react-redux";
+import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 
 // 센서 데이터로 가공해야함
 const device = {
@@ -33,10 +34,10 @@ const ChartContainer = () => {
   const deviceId = useSelector((state) => state.device.deviceIds);
   const dispatch = useDispatch();
 
-  const { deviceList } = useFetchData(`api/devices/${deviceId}`);
+  const { deviceList, isLoading } = useFetchData(`api/devices/${deviceId}`);
 
   const [selectedSensor, setSelectedSensor] = useState("조도");
-  const [deviceData, setDeviceData] = useState(null);
+  const [deviceData, setDeviceData] = useState("");
 
   const svgRef = useRef();
   const sensorValue = device.sensors[selectedSensor];
@@ -67,10 +68,16 @@ const ChartContainer = () => {
     setSelectedSensor(sensorName);
   };
 
-  console.log("설명 :", deviceData?.description);
-  console.log("이름 :", deviceData?.deviceName);
-  console.log("아이디 :", deviceData?.deviceId);
-  console.log("유저객체 :", deviceData?.userId);
+  console.log("설명 :", deviceData.description);
+  console.log("이름 :", deviceData.deviceName);
+  console.log("아이디 :", deviceData.deviceId);
+  console.log("유저객체 :", deviceData.userId);
+
+  if (isLoading) {
+    dispatch(startLoading());
+  } else {
+    dispatch(stopLoading());
+  }
 
   return (
     <ChartUI

@@ -15,7 +15,7 @@ const DeviceList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { deviceList } = useFetchData(API_PATHS.DEVICES);
+  const { deviceList, isLoading } = useFetchData(API_PATHS.DEVICES);
   const [devices, setDevices] = useState([]);
 
   const handleNavigate = () => {
@@ -24,7 +24,6 @@ const DeviceList = () => {
 
   useEffect(() => {
     const deviceListData = async () => {
-      dispatch(startLoading());
       try {
         if (deviceList) {
           const deviceArray = await deviceList.data.map((device) => ({
@@ -39,14 +38,17 @@ const DeviceList = () => {
         }
       } catch (error) {
         console.error(error.cause);
-      } finally {
-        dispatch(stopLoading());
       }
     };
 
     deviceListData();
   }, [deviceList, dispatch]);
 
+  if (isLoading) {
+    dispatch(startLoading());
+  } else {
+    dispatch(stopLoading());
+  }
   return (
     <DeviceUi
       isDesktop={isDesktop}
