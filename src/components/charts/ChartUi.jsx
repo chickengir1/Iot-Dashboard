@@ -19,8 +19,8 @@ const styles = {
     marginTop: "24px",
   },
   charts: {
-    height: "200px",
-    maxWidth: "200px",
+    height: "260px",
+    maxWidth: "260px",
     margin: "0 auto",
     borderRadius: "50%",
   },
