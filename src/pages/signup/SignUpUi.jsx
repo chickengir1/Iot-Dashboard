@@ -12,25 +12,30 @@ const SignUpForm = ({
   errors,
   watch,
   formFields,
+  BackGround,
 }) => (
-  <Layout>
-    <MainLayout>
-      <Box>
-        <Image src={`/logo/smartfarm_banner_200.png`} alt="스마트팜 배너" />
-      </Box>
-      {generateFields({ formFields, onSubmit, register, errors, watch })}
-      <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
-    </MainLayout>
-  </Layout>
+  <>
+    <BackGround />
+    <Layout>
+      <MainLayout>
+        <Box>
+          <Image src={`/logo/smartfarm_banner_200.png`} alt="스마트팜 배너" />
+        </Box>
+        {generateFields({ formFields, onSubmit, register, errors, watch })}
+        <FooterLinks link1={"/"} text2={"로그인 하러 가기"} link2={"/"} />
+      </MainLayout>
+    </Layout>
+  </>
 );
 
 const SignUpUi = ({ isDesktop, formFields, onSubmit, combined }) => {
-  const { Layout, MainLayout } = layoutConfig(isDesktop);
+  const { Layout, MainLayout, BackGround } = layoutConfig(isDesktop);
 
   return (
     <SignUpForm
       Layout={Layout}
       MainLayout={MainLayout}
+      BackGround={BackGround}
       formFields={formFields}
       onSubmit={onSubmit}
       register={combined.register}

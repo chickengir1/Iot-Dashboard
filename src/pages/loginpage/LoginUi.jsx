@@ -24,36 +24,40 @@ const LoginForm = ({
   handleRemember,
   Layout,
   MainLayout,
+  BackGround,
 }) => (
-  <Layout>
-    <MainLayout>
-      <Box>
-        <Image
-          src={`/logo/smartfarm_banner_200.png`}
-          alt="스마트팜 배너"
-          style={{ maxWidth: "100%", maxHeight: "100%" }}
+  <>
+    <BackGround />
+    <Layout>
+      <MainLayout>
+        <Box>
+          <Image
+            src={`/logo/smartfarm_banner_200.png`}
+            alt="스마트팜 배너"
+            style={{ maxWidth: "100%", maxHeight: "100%" }}
+          />
+        </Box>
+        {generateFields({
+          formFields: fields,
+          onSubmit,
+          register,
+          errors,
+          watch,
+        })}
+        <RememberMe checked={remember} onChange={handleRemember} />
+        <Typography align="center" sx={{ marginY: "12px" }}>
+          다른 방법으로 로그인
+        </Typography>
+        <OAuth style={{ display: "flex", gap: "12px" }} />
+        <FooterLinks
+          text1="아이디/비밀번호 찾기"
+          link1="/find-account"
+          text2="가입하러 가기"
+          link2="/register"
         />
-      </Box>
-      {generateFields({
-        formFields: fields,
-        onSubmit,
-        register,
-        errors,
-        watch,
-      })}
-      <RememberMe checked={remember} onChange={handleRemember} />
-      <Typography align="center" sx={{ marginY: "12px" }}>
-        다른 방법으로 로그인
-      </Typography>
-      <OAuth style={{ display: "flex", gap: "12px" }} />
-      <FooterLinks
-        text1="아이디/비밀번호 찾기"
-        link1="/find-account"
-        text2="가입하러 가기"
-        link2="/register"
-      />
-    </MainLayout>
-  </Layout>
+      </MainLayout>
+    </Layout>
+  </>
 );
 
 const LoginUi = ({
@@ -66,7 +70,7 @@ const LoginUi = ({
   remember,
   handleRemember,
 }) => {
-  const { Layout, MainLayout } = layoutConfig(isDesktop);
+  const { Layout, MainLayout, BackGround } = layoutConfig(isDesktop);
 
   return (
     <FormProvider {...combined}>
@@ -84,6 +88,7 @@ const LoginUi = ({
         handleRemember={handleRemember}
         Layout={Layout}
         MainLayout={MainLayout}
+        BackGround={BackGround}
       />
     </FormProvider>
   );

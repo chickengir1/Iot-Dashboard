@@ -8,3 +8,4 @@ export { MobileEntryLayout } from "./layout/MobileEntryLayout";
 export { DesktopEntryLayout } from "./layout/DesktopEntryLayout";
 export { DesktopEntryMainLayout } from "./layout/DesktopEntryMainLayout";
 export { Image } from "./layout/Image";
+export { BackGround } from "./layout/BackGround";

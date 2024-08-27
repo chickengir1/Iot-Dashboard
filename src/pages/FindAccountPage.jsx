@@ -5,6 +5,7 @@ import {
   DesktopEntryLayout,
   DesktopEntryMainLayout,
   Image,
+  BackGround,
 } from "@styles/index";
 import FooterLinks from "@components/footerlinks/FooterLinksContainer";
 import { useNavigate } from "react-router-dom";
@@ -66,22 +67,25 @@ export const MobileLookup = ({ handleNavigation }) => {
   );
 };
 
-export const DesktopLookup = ({ handleNavigation }) => {
+export const DesktopLookup = ({ handleNavigation, BackGround }) => {
   return (
-    <DesktopEntryLayout>
-      <DesktopEntryMainLayout>
-        <Box>
-          <Image src={`logo/smartfarm_banner.png`} alt="스마트팜 배너" />
-        </Box>
-        <LookupButtonComponent handleNavigation={handleNavigation} />
-        <FooterLinks
-          text1={"아이디/비밀번호 찾기"}
-          link1={"/find-account"}
-          text2={"가입하러 가기"}
-          link2={"/register"}
-        />
-      </DesktopEntryMainLayout>
-    </DesktopEntryLayout>
+    <>
+      <BackGround />
+      <DesktopEntryLayout>
+        <DesktopEntryMainLayout>
+          <Box>
+            <Image src={`logo/smartfarm_banner.png`} alt="스마트팜 배너" />
+          </Box>
+          <LookupButtonComponent handleNavigation={handleNavigation} />
+          <FooterLinks
+            text1={"아이디/비밀번호 찾기"}
+            link1={"/find-account"}
+            text2={"가입하러 가기"}
+            link2={"/register"}
+          />
+        </DesktopEntryMainLayout>
+      </DesktopEntryLayout>
+    </>
   );
 };
 
@@ -99,7 +103,10 @@ const FindAccountPage = () => {
   const isDesktop = useMediaQuery("(min-width:600px)");
 
   return isDesktop ? (
-    <DesktopLookup handleNavigation={handleNavigation} />
+    <DesktopLookup
+      handleNavigation={handleNavigation}
+      BackGround={BackGround}
+    />
   ) : (
     <MobileLookup handleNavigation={handleNavigation} />
   );

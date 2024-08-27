@@ -5,8 +5,9 @@ import { layoutConfig } from "@styles/layoutConfig";
 import EmailSelectorContainer from "@components/emailSelector/EmailSelectorContainer";
 import FooterLinks from "@components/footerlinks/FooterLinksContainer";
 
-const FindIdForm = ({ Layout, MainLayout, onSubmit }) => (
+const FindIdForm = ({ Layout, MainLayout, onSubmit, BackGround }) => (
   <Box component="form" onSubmit={onSubmit}>
+    <BackGround />
     <Layout>
       <MainLayout>
         <Box>
@@ -28,12 +29,13 @@ const FindIdForm = ({ Layout, MainLayout, onSubmit }) => (
 );
 
 const FindIdUi = ({ isDesktop, formFields, onSubmit, combined }) => {
-  const { Layout, MainLayout } = layoutConfig(isDesktop);
+  const { Layout, MainLayout, BackGround } = layoutConfig(isDesktop);
 
   return (
     <FindIdForm
       Layout={Layout}
       MainLayout={MainLayout}
+      BackGround={BackGround}
       formFields={formFields}
       onSubmit={onSubmit}
       register={combined.register}
