@@ -1,7 +1,13 @@
 import NewsletterUi from "./NewsletterUi";
 import { getNewsletterData } from "@services/newsLetterApi";
 import { useEffect, useState } from "react";
-import { getFormattedDateWithoutHyphen } from "@utils/dateUtils";
+
+import { useDispatch } from "react-redux";
+import { startLoading, stopLoading } from "@redux/actions/loadingActions";
+import {
+  getFormattedDateWithoutHyphen,
+  getYesterDateWithoutHypen,
+} from "@utils/dateUtils";
 
 const NewsletterContainer = () => {
   const [newsData, setNewsData] = useState(null);
@@ -10,7 +16,7 @@ const NewsletterContainer = () => {
     const fetchLocation = async () => {
       try {
         const response = await getNewsletterData(
-          getFormattedDateWithoutHyphen() - 1,
+          getYesterDateWithoutHypen(),
           getFormattedDateWithoutHyphen()
         );
         setNewsData(response.response.body.items.item);
