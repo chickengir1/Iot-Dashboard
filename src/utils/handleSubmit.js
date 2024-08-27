@@ -1,4 +1,4 @@
-import { setFormData } from "../redux/actions/formAction";
+import { setFormData } from "@redux/actions/formAction";
 
 // 폼 제출을 위한 유틸리티 함수
 export const handleFormSubmit = async ({
