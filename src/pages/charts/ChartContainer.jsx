@@ -42,7 +42,6 @@ const ChartContainer = () => {
             온도: data?.temperature ?? null,
             습도: data?.humid ?? null,
             토양수분: data?.solid ?? null,
-            time: data?.time ?? null,
           });
         }
       } catch (error) {
