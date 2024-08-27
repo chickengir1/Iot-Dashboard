@@ -74,7 +74,7 @@ export const DesktopLookup = ({ handleNavigation, BackGround }) => {
       <DesktopEntryLayout>
         <DesktopEntryMainLayout>
           <Box>
-            <Image src={`logo/smartfarm_banner.png`} alt="스마트팜 배너" />
+            <Image src={`logo/smartfarm_banner.webp`} alt="스마트팜 배너" />
           </Box>
           <LookupButtonComponent handleNavigation={handleNavigation} />
           <FooterLinks
