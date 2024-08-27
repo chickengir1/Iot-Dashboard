@@ -1,70 +1,73 @@
 import { FmdGood } from "@mui/icons-material";
-import { Box, Typography, Card, CardContent, Divider } from "@mui/material";
+import { Box, Typography, Card, CardContent } from "@mui/material";
 
 const styles = {
   weatherLayout: {
-    mt: 2,
-    minHeight: "20vh",
-    paddingX: 4,
-    background: "linear-gradient(60deg, #84D3FF 0%,#05159E 120%)",
-    borderRadius: 2,
-    color: "#fff",
-  },
-  weatherInnerStyle: {
+    height: "20vh",
+    padding: 2,
+    backgroundColor: "#ffffff",
+    borderRadius: 4,
+    boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
+    textAlign: "center",
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  iconStyle: {
+    width: "120px",
+    height: "100px",
+    filter: "drop-shadow(0px 2px 8px rgba(0, 2, 4, 0.5))",
+    marginBottom: "2px",
+  },
+  tempStyle: {
+    fontSize: "24px",
+    fontWeight: "bold",
+    color: "#333",
+  },
+  weatherDescStyle: {
+    fontSize: "14px",
+    fontWeight: "500",
+    color: "#666",
+  },
+  locationStyle: {
+    display: "flex",
+    justifyContent: "center",
     alignItems: "center",
-    justifyContent: "space-between",
+    gap: "4px",
+    marginTop: "2px",
+    color: "#999",
+  },
+  dayStyle: {
+    fontSize: "12px",
+    color: "#999",
+    marginTop: "2px",
   },
 };
 
 const WeatherUi = ({ weatherData }) => {
   return (
-    <Box sx={{ mb: 2, minHeight: "20vh" }}>
+    <Box sx={{ mb: 2 }}>
       <Card sx={styles.weatherLayout}>
-        <CardContent>
+        <CardContent sx={{ padding: "8px" }}>
           {weatherData && (
-            <Box sx={styles.weatherInnerStyle}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <img
-                  src={weatherData.weatherIcon}
-                  alt="Weather Icon"
-                  style={{ width: "80px", height: "80px" }}
-                />
-                <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-                  {weatherData.weatherDesc}
+            <Box>
+              <img
+                src={weatherData.weatherIcon}
+                alt="Weather Icon"
+                style={styles.iconStyle}
+              />
+              <Typography sx={styles.tempStyle}>
+                {weatherData.currentTemp} °C
+              </Typography>
+              <Typography sx={styles.weatherDescStyle}>
+                {weatherData.weatherDesc}
+              </Typography>
+              <Typography sx={styles.dayStyle}>{weatherData.day}</Typography>
+              <Box sx={styles.locationStyle}>
+                <FmdGood sx={{ color: "#999", fontSize: "16px" }} />
+                <Typography sx={{ fontSize: "12px" }}>
+                  {weatherData.locationName}, {weatherData.country}
                 </Typography>
-              </Box>
-
-              <Divider orientation="vertical" variant="middle" flexItem />
-
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography>{weatherData.day}</Typography>
-                <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-                  {weatherData.currentTemp}°
-                </Typography>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: 1,
-                  }}
-                >
-                  <FmdGood />
-                  <Typography>
-                    {weatherData.locationName}, {weatherData.country}
-                  </Typography>
-                </Box>
               </Box>
             </Box>
           )}

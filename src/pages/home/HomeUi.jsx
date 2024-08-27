@@ -60,7 +60,7 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
                 할 일 추가하기
               </BlueRoundedButton>
             </Box>
-            <TodoList todos={todos} setTodos={setTodos} height="30vh" />
+            <TodoList todos={todos} setTodos={setTodos} height="33vh" />
           </Box>
         </MainLayout>
         {isDesktop && (
