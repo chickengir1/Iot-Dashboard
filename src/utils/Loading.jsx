@@ -29,7 +29,7 @@ const LoadingSpinner = () => {
         variant="h6"
         sx={{ marginTop: 2, color: "#3f51b5", fontWeight: "bold" }}
       >
-        로딩 중입니다. 잠시만 기다려주세요...
+        로딩 중입니다...
       </Typography>
     </Box>
   );
