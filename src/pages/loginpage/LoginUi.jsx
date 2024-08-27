@@ -4,6 +4,7 @@ import { layoutConfig } from "@styles/layoutConfig";
 import FooterLinks from "@components/footerlinks/FooterLinksContainer";
 import { generateFields } from "@utils/generateFields";
 import { OAuth } from "@components/OAuth";
+import { Image } from "@styles/layout/Image";
 import Notification from "@components/notification/NotificationContainer";
 
 const RememberMe = ({ checked, onChange }) => (
@@ -29,11 +30,10 @@ const LoginForm = ({
       <Box
         sx={{
           border: "solid 1px #ddd",
-          // minHeight: "150px",
           overflow: "hidden",
         }}
       >
-        <img
+        <Image
           src={`/logo/smartfarm_banner_200.png`}
           alt="스마트팜 배너"
           style={{ maxWidth: "100%", maxHeight: "100%" }}
