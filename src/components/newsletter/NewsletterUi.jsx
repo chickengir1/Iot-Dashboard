@@ -1,4 +1,5 @@
 import { Box, Typography, Card, CardContent } from "@mui/material";
+import LoadingSpinner from "@utils/Loading";
 
 export const CardNews = ({ mscmnc, title, site, newsdate }) => {
   return (
@@ -18,7 +19,7 @@ export const CardNews = ({ mscmnc, title, site, newsdate }) => {
 
 const NewsletterUi = ({ newsData }) => {
   if (!Array.isArray(newsData)) {
-    return <Typography variant="body2">로딩 중</Typography>;
+    return <LoadingSpinner />;
   }
 
   return (
