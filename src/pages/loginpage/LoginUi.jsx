@@ -26,8 +26,18 @@ const LoginForm = ({
 }) => (
   <Layout>
     <MainLayout>
-      <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
-        <img alt="이미지" />
+      <Box
+        sx={{
+          border: "solid 1px #ddd",
+          // minHeight: "150px",
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src={`/logo/smartfarm_banner_200.png`}
+          alt="스마트팜 배너"
+          style={{ maxWidth: "100%", maxHeight: "100%" }}
+        />
       </Box>
       {generateFields({
         formFields: fields,
