@@ -1,6 +1,5 @@
 import { Box, TextField } from "@mui/material";
 
-// 텍스트 필드를 동적으로 생성하는 유틸 함수 generateFormFields 로 변경 했는데 generateTextFields 로 바꿔야할듯
 export const generateFormFields = (field, register, errors, watch) => {
   let validation = {};
 
@@ -29,6 +28,16 @@ export const generateFormFields = (field, register, errors, watch) => {
       required: `${field.label}을 입력하세요.`,
       validate: (value) =>
         value === watch("password") || "비밀번호가 일치하지 않습니다.",
+    };
+  }
+
+  if (field.name === "todo") {
+    validation = {
+      required: `${field.label}을 입력하세요.`,
+      maxLength: {
+        value: 30,
+        message: "30글자 이하로 입력해주세요.",
+      },
     };
   }
 

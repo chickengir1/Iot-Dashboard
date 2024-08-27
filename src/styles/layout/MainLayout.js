@@ -9,5 +9,4 @@ export const MainLayout = styled(Box)({
   flexDirection: "column",
   border: "1px solid #ddd",
   borderRadius: "8px",
-  justifyContent: "center",
 });

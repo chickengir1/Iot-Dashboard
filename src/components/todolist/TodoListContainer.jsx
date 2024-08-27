@@ -1,20 +1,31 @@
 import TodoListUi from "./TodoListUi";
-import { useSelector } from "react-redux";
+import { save } from "@utils/localStorage";
 
-const TodoListContainer = () => {
-  const todos = useSelector((state) => state.todo.todos);
+const TodoListContainer = ({ todos, setTodos, height }) => {
+  const handleToggle = (id) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, isFinish: !todo.isFinish } : todo
+    );
+    setTodos(updatedTodos);
+    save("todos", updatedTodos);
+  };
 
-  // isFinish가 false이면서 투두 최대 4개까지 필터링
-  const maxTodos = 4;
-  const filteredTodos = todos
-    .filter((todo) => !todo.isFinish)
-    .slice(0, maxTodos);
+  const handleDelete = (id) => {
+    if (window.confirm("삭제하시겠습니까?")) {
+      const updatedTodos = todos.filter((todo) => todo.id !== id);
+      setTodos(updatedTodos);
+      save("todos", updatedTodos);
+    }
+  };
 
-  const blanks = Array(maxTodos - filteredTodos.length).fill(null);
-
-  const combinedTodos = [...filteredTodos, ...blanks];
-
-  return <TodoListUi todos={combinedTodos} />;
+  return (
+    <TodoListUi
+      todos={todos}
+      onToggle={handleToggle}
+      onDelete={handleDelete}
+      height={height}
+    />
+  );
 };
 
 export default TodoListContainer;

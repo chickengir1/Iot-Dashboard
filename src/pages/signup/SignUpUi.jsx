@@ -1,8 +1,7 @@
-import React from "react";
 import { Box } from "@mui/material";
-import FooterLinks from "../../components/footerlinks/FooterLinksContainer";
-import { layoutConfig } from "../../styles/layoutConfig";
-import { generateFields } from "../../utils/generateFields";
+import FooterLinks from "@components/footerlinks/FooterLinksContainer";
+import { layoutConfig } from "@styles/layoutConfig";
+import { generateFields } from "@utils/generateFields";
 
 const SignUpForm = ({
   Layout,

@@ -1,4 +1,3 @@
-import React from "react";
 import UserCardUi from "./UserCardUi";
 import { useSelector } from "react-redux";
 import {
@@ -23,14 +22,11 @@ const iconMap = {
 const UserCardContainer = () => {
   const profile = useSelector((state) => state.profile);
 
-  console.log(profile.userId);
-
   return (
     <UserCardUi
       userId={profile.userId}
       message={"Good Morning!"}
       icon={iconMap[1] || <AccountCircle />}
-      badgeCount={1}
     />
   );
 };
