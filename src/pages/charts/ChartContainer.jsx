@@ -7,6 +7,7 @@ import { useAuth } from "@error/authError";
 import useFetchData from "@hooks/useFetchData";
 import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
+import { API_PATHS } from "@utils/apiMap";
 
 const colors = {
   조도: "#FF6384",
@@ -20,7 +21,9 @@ const ChartContainer = () => {
 
   const deviceId = useSelector((state) => state.device.deviceIds);
   const dispatch = useDispatch();
-  const { deviceList, isLoading } = useFetchData(`api/devices/${deviceId}`);
+  const { deviceList, isLoading } = useFetchData(
+    API_PATHS.DEVICESDETAIL(deviceId)
+  );
 
   const [selectedSensor, setSelectedSensor] = useState("조도");
   const [sensorData, setSensorData] = useState(null);

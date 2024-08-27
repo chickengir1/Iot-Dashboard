@@ -64,7 +64,6 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
         </MainLayout>
         {isDesktop && (
           <Box sx={styles.serveContentStyle}>
-            <Typography variant="subtitle1">실시간 뉴스 정보</Typography>
             <Newsletter />
           </Box>
         )}

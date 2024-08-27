@@ -3,7 +3,7 @@ import LoadingSpinner from "@utils/Loading";
 
 export const CardNews = ({ mscmnc, title, site, newsdate }) => {
   return (
-    <Card sx={{ mb: 1 }}>
+    <Card sx={{ mb: 2 }}>
       <CardContent>
         <Box>
           <Typography variant="body1">{mscmnc}</Typography>
@@ -23,10 +23,13 @@ const NewsletterUi = ({ newsData }) => {
   }
 
   return (
-    <Box sx={{ mb: 2 }}>
-      {newsData.map((news, idx) => (
+    <Box>
+      <Typography variant="subtitle1" gutterBottom>
+        실시간 뉴스 정보
+      </Typography>
+      {newsData.map((news) => (
         <CardNews
-          key={idx}
+          key={news.tit}
           mscmnc={news.mscmnc}
           title={news.tit}
           site={news.site}
