@@ -9,6 +9,7 @@ const styles = {
     boxShadow: 1,
     bgcolor: "background.paper",
     gap: 2,
+    cursor: "pointer",
   },
   avatarStyle: {
     width: 56,
@@ -17,9 +18,9 @@ const styles = {
   },
 };
 
-const ListItemUi = ({ title, description, icon, avatar = false }) => {
+const ListItemUi = ({ title, description, icon, avatar = false, onClick }) => {
   return (
-    <Box sx={styles.deviceStyled}>
+    <Box sx={styles.deviceStyled} onClick={onClick}>
       {avatar && <Avatar variant="rounded" sx={styles.avatarStyle} />}
       <Box flexGrow={1}>
         <Typography variant="body1" fontWeight="bold">

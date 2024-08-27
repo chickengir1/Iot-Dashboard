@@ -1,10 +1,10 @@
-import React from "react";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 
 const styles = {
   bottomNav: {
     width: "100%",
     position: "fixed",
+    zIndex: "9999",
     bottom: 0,
     left: 0,
     right: 0,

@@ -1,40 +1,53 @@
-import React from "react";
 import { Box, Typography, Avatar, Card, CardContent } from "@mui/material";
-import Badge from "@mui/material/Badge";
-import MailIcon from "@mui/icons-material/Mail";
 
-const UserCardUi = ({ userId, message, icon, badgeCount }) => {
-  // 레이아웃 스타일
-  const userCardLayout = {
+const styles = {
+  card: {
+    mb: 2,
+    borderRadius: "12px",
+    overflow: "hidden",
+  },
+  userCardLayout: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-  };
+    minHeight: "70px",
+  },
+  avatar: {
+    padding: "4px",
+    width: 56,
+    height: 56,
+    backgroundColor: "#eee",
+    fontSize: "48px",
+    color: "#333",
+  },
+  userInfo: {
+    ml: 2,
+  },
+  userIdText: {
+    fontWeight: "bold",
+    color: "#333",
+  },
+  messageText: {
+    color: "#666",
+    mt: 0.5,
+  },
+};
 
-  const badgeContainerStyle = {
-    border: "1px solid #ddd",
-    padding: 1,
-    borderRadius: "50%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
-
+const UserCardUi = ({ userId, message, icon }) => {
   return (
-    <Card sx={{ mb: 2 }}>
+    <Card sx={styles.card}>
       <CardContent>
-        <Box sx={userCardLayout}>
+        <Box sx={styles.userCardLayout}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Avatar sx={{ padding: "4px" }}>{icon}</Avatar>
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="body1">{userId}님</Typography>
-              <Typography variant="body2">{message}</Typography>
+            <Avatar sx={styles.avatar}>{icon}</Avatar>
+            <Box sx={styles.userInfo}>
+              <Typography variant="h6" sx={styles.userIdText}>
+                {userId}님
+              </Typography>
+              <Typography variant="body1" sx={styles.messageText}>
+                {message}
+              </Typography>
             </Box>
-          </Box>
-          <Box sx={badgeContainerStyle}>
-            <Badge badgeContent={badgeCount} color="primary">
-              <MailIcon color="action" />
-            </Badge>
           </Box>
         </Box>
       </CardContent>

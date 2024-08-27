@@ -8,4 +8,7 @@ export const ServeContent = styled(Box)({
   border: "1px solid #ddd",
   padding: 16,
   borderRadius: 8,
+  backgroundImage: 'url("/logo/serverbanner.webp")',
+  backgroundSize: "cover",
+  backgroundPosition: "center",
 });

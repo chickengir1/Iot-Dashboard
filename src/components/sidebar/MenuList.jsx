@@ -1,4 +1,3 @@
-import React from "react";
 import { List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
 const MenuList = ({ items, currentRoute, onMenuClick, isMobile }) => (

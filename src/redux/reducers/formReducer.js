@@ -7,6 +7,11 @@ const initialState = {
   findId: { email: "" },
   findPassword: { id: "", email: "" },
   todo: { date: "", description: "", isFinish: "" },
+  addDevice: {
+    deviceId: "",
+    deviceName: "",
+    description: "",
+  },
 };
 
 export const formReducer = (state = initialState, action) => {
@@ -14,6 +19,7 @@ export const formReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_FORM_DATA:
+      console.log("리턴값", action.payload);
       return {
         ...state,
         [formType]: {
