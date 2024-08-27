@@ -64,6 +64,9 @@ const ChartContainer = () => {
     isLoading ? dispatch(startLoading()) : dispatch(stopLoading());
   }, [isLoading, dispatch]);
 
+  const isData =
+    sensorData && Object.values(sensorData).some((value) => value !== null);
+
   return (
     <ChartUI
       selectedSensor={selectedSensor}
@@ -72,6 +75,7 @@ const ChartContainer = () => {
       isDesktop={isDesktop}
       onChange={handleChange}
       svgRef={svgRef}
+      isData={isData}
     />
   );
 };

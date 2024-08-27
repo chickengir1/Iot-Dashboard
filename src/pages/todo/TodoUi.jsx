@@ -23,11 +23,7 @@ const TodoUi = ({ isDesktop, setNotification, todos, setTodos, onOpen }) => {
           <UserCard />
           <Box sx={{ flex: "1 1 100px", aspectRatio: "1/1" }}>
             <Typography variant="subtitle1">투두 리스트</Typography>
-            <TodoListContainer
-              todos={todos}
-              setTodos={setTodos}
-              height={"65vh"}
-            />
+            <TodoListContainer todos={todos} setTodos={setTodos} />
           </Box>
           <BlueRoundedButton
             variant="contained"

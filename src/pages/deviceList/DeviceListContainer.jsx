@@ -44,11 +44,7 @@ const DeviceList = () => {
   }, [deviceList, dispatch]);
 
   useEffect(() => {
-    if (isLoading) {
-      dispatch(startLoading());
-    } else {
-      dispatch(stopLoading());
-    }
+    isLoading ? dispatch(startLoading()) : dispatch(stopLoading());
   }, [isLoading, dispatch]);
 
   return (
