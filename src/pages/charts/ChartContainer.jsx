@@ -35,12 +35,14 @@ const ChartContainer = () => {
       try {
         if (deviceList?.data) {
           const data = deviceList.data.sensor;
+          console.log(data);
 
           setSensorData({
             조도: data?.lux ?? null,
             온도: data?.temperature ?? null,
             습도: data?.humid ?? null,
             토양수분: data?.solid ?? null,
+            time: data?.time ?? null,
           });
         }
       } catch (error) {

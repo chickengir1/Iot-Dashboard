@@ -86,6 +86,10 @@ const ChartUI = ({
               <Typography variant="h6" gutterBottom>
                 센서 데이터
               </Typography>
+              <Typography variant="subtitle1" gutterBottom>
+                {sensors.time}
+              </Typography>
+
               <Selector
                 sensors={sensors}
                 selectedSensor={selectedSensor}
