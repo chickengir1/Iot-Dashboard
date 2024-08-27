@@ -32,7 +32,7 @@ const SidebarDesktop = ({
   handleLogout,
 }) => (
   <Box sx={styles.sidebar}>
-    <Image src={`logo/smart-farm-logo.png`} alt="로고" />
+    <Image src={`logo/smart-farm-logo.webp`} alt="로고" />
     <MenuList
       items={menuItems}
       currentRoute={currentRoute}

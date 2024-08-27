@@ -19,7 +19,7 @@ export const FindPwForm = ({
     <Layout>
       <MainLayout>
         <Box>
-          <Image src={`logo/smartfarm_banner_500.png`} alt="스마트팜 배너" />
+          <Image src={`logo/smartfarm_banner.webp`} alt="스마트팜 배너" />
         </Box>
         {generateFields({ formFields, onSubmit, register, errors, watch })}
         <FooterLinks

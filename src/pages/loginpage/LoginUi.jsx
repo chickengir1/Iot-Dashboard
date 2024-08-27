@@ -32,7 +32,7 @@ const LoginForm = ({
       <MainLayout>
         <Box>
           <Image
-            src={`/logo/smartfarm_banner_200.png`}
+            src={`/logo/smartfarm_banner_200.webp`}
             alt="스마트팜 배너"
             style={{ maxWidth: "100%", maxHeight: "100%" }}
           />
