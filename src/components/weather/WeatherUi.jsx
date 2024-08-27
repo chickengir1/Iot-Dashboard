@@ -5,7 +5,7 @@ const WeatherUi = ({ weatherData }) => {
   console.log(weatherData);
   return (
     <Box sx={{ mb: 2, minHeight: "20vh" }}>
-      <Card sx={{ mt: 2, minHeight: "20vh" }}>
+      <Card>
         <CardContent>
           {weatherData && (
             <Box sx={{ display: "flex", flexDirection: "row" }}>

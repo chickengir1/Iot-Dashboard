@@ -23,7 +23,7 @@ const NewsletterUi = ({ newsData }) => {
   }
 
   return (
-    <Box>
+    <Box sx={{ height: "90vh", overflowY: "scroll" }}>
       <Typography variant="subtitle1" gutterBottom>
         실시간 뉴스 정보
       </Typography>

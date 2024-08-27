@@ -4,7 +4,7 @@ export const getNewsletterData = async (
   startDate,
   endDate,
   page = 1,
-  rowsPerPage = 5
+  rowsPerPage = 10
 ) => {
   try {
     const serviceKey = import.meta.env.VITE_NEWS_API_KEY;
