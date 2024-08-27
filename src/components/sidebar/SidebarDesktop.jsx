@@ -1,7 +1,7 @@
-import React from "react";
 import { Box, Typography, ListItem, Divider } from "@mui/material";
 import MenuList from "./MenuList";
 import { ExitToApp as ExitToAppIcon } from "@mui/icons-material";
+import { Image } from "@styles/index";
 
 const styles = {
   sidebar: {
@@ -13,15 +13,13 @@ const styles = {
     padding: "16px 8px",
     border: "1px solid #ddd",
     borderRadius: "8px",
-  },
-  logo: {
-    marginBottom: "32px",
-    textAlign: "start",
-    fontSize: "24px",
-    color: "#d23f57",
+    background: "#F8FAFB",
   },
   listItem: {
     borderRadius: "8px",
+    display: "flex",
+    padding: "16px 8px",
+    gap: 4,
     "&:hover": {
       backgroundColor: "#eef2f6",
     },
@@ -30,10 +28,14 @@ const styles = {
     backgroundColor: "#eef2f6",
   },
 };
-
-const SidebarDesktop = ({ menuItems, currentRoute, onMenuClick }) => (
+const SidebarDesktop = ({
+  menuItems,
+  currentRoute,
+  onMenuClick,
+  handleLogout,
+}) => (
   <Box sx={styles.sidebar}>
-    <Typography sx={styles.logo}>로고</Typography>
+    <Image src={`logo/smart-farm-logo.webp`} alt="로고" />
     <MenuList
       items={menuItems}
       currentRoute={currentRoute}
@@ -41,7 +43,7 @@ const SidebarDesktop = ({ menuItems, currentRoute, onMenuClick }) => (
       isMobile={false}
     />
     <Divider />
-    <ListItem button sx={styles.listItem}>
+    <ListItem button sx={styles.listItem} onClick={handleLogout}>
       <ExitToAppIcon />
       <Typography>Logout</Typography>
     </ListItem>
