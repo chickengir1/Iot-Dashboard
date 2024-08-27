@@ -3,3 +3,7 @@ export const getFormattedDate = () => {
   const koreanDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
   return koreanDate.toISOString().split("T")[0];
 };
+
+export const getFormattedDateWithoutHyphen = () => {
+  return getFormattedDate().replace(/-/g, "");
+};
