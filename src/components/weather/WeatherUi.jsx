@@ -1,14 +1,35 @@
-import { Box, Typography, Card, CardContent } from "@mui/material";
+import { FmdGood } from "@mui/icons-material";
+import { Box, Typography, Card, CardContent, Icon } from "@mui/material";
 
 const WeatherUi = ({ weatherData }) => {
+  console.log(weatherData);
   return (
     <Box sx={{ mb: 2, minHeight: "20vh" }}>
       <Card sx={{ mt: 2, minHeight: "20vh" }}>
         <CardContent>
-          <Typography variant="subtitle1">날씨 위젯 ui</Typography>
-          <Typography>
-            {weatherData ? JSON.stringify(weatherData) : "nn"}
-          </Typography>
+          {weatherData && (
+            <Box sx={{ display: "flex", flexDirection: "row" }}>
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography>{weatherData.weatherDesc}</Typography>
+                <img src={weatherData.weatherIcon} />
+              </Box>
+              <Icon>
+                <FmdGood />
+              </Icon>
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography variant="location">
+                  {weatherData.country},
+                </Typography>
+                <Typography variant="location">
+                  {weatherData.locationName}
+                </Typography>
+                <Typography>{weatherData.currentTemp}</Typography>
+                <Typography>
+                  {weatherData.minTemp}/{weatherData.maxTemp}
+                </Typography>
+              </Box>
+            </Box>
+          )}
         </CardContent>
       </Card>
     </Box>
