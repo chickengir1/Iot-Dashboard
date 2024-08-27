@@ -1,9 +1,6 @@
 import NewsletterUi from "./NewsletterUi";
 import { getNewsletterData } from "@services/newsLetterApi";
 import { useEffect, useState } from "react";
-
-import { useDispatch } from "react-redux";
-import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 import {
   getFormattedDateWithoutHyphen,
   getYesterDateWithoutHypen,

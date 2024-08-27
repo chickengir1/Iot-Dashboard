@@ -44,7 +44,7 @@ const UserCardUi = ({ userId, message, icon }) => {
               <Typography variant="h6" sx={styles.userIdText}>
                 {userId}님
               </Typography>
-              <Typography variant="body2" sx={styles.messageText}>
+              <Typography variant="body1" sx={styles.messageText}>
                 {message}
               </Typography>
             </Box>

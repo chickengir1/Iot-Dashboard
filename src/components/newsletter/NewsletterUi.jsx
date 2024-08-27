@@ -3,7 +3,10 @@ import LoadingSpinner from "@utils/Loading";
 
 const styles = {
   container: {
-    height: "90vh",
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.3)",
+    borderRadius: 1,
+    padding: 2,
+    height: "85vh",
     overflowY: "scroll",
     "&::-webkit-scrollbar": {
       display: "none",
