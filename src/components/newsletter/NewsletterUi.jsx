@@ -41,9 +41,6 @@ const NewsletterUi = ({ newsData }) => {
 
   return (
     <Box sx={styles.container}>
-      <Typography variant="subtitle1" sx={styles.title}>
-        실시간 뉴스 정보
-      </Typography>
       {newsData.map((news) => (
         <CardNews
           key={news.tit}

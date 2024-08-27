@@ -37,34 +37,29 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
               display: "flex",
               flexDirection: "column",
               flexGrow: 1,
-              justifyContent: "space-between",
+              justifyContent: "space-around",
             }}
           >
             <UserCard />
-            <Typography variant="subtitle1">오늘 날씨</Typography>
+            <Typography variant="subtitle1" fontWeight="bold">
+              오늘 날씨
+            </Typography>
             <Weather />
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: 2,
-              }}
-            >
-              <Typography>투두 리스트</Typography>
-              <BlueRoundedButton
-                variant="contained"
-                endIcon={<AddCircleOutlineOutlined />}
-                onClick={onOpen}
-              >
-                할 일 추가하기
-              </BlueRoundedButton>
-            </Box>
-            <TodoList todos={todos} setTodos={setTodos} height="33vh" />
+            <TodoList todos={todos} setTodos={setTodos} height="14rem" />
           </Box>
+          <BlueRoundedButton
+            variant="contained"
+            endIcon={<AddCircleOutlineOutlined />}
+            onClick={onOpen}
+          >
+            할 일 추가하기
+          </BlueRoundedButton>
         </MainLayout>
         {isDesktop && (
           <Box sx={styles.serveContentStyle}>
+            <Typography variant="subtitle1" fontWeight="bold">
+              실시간 뉴스 정보
+            </Typography>
             <Newsletter />
           </Box>
         )}

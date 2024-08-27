@@ -5,7 +5,7 @@ import { CheckBoxOutlineBlank, CheckBoxOutlined } from "@mui/icons-material";
 const todoListStyles = {
   container: (height) => ({
     height: height,
-    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
     padding: 2,
     borderRadius: "8px",
     overflowY: "auto",

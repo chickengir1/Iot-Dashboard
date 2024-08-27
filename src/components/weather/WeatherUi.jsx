@@ -7,7 +7,6 @@ const styles = {
     padding: 2,
     backgroundColor: "#ffffff",
     borderRadius: 4,
-    boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
     textAlign: "center",
     display: "flex",
     flexDirection: "column",
