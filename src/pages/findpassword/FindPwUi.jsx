@@ -15,9 +15,9 @@ export const FindPwForm = ({
   formFields,
 }) => (
   <>
+    <BackGround />
     <Layout>
       <MainLayout>
-        <BackGround />
         <Box>
           <Image src={`logo/smartfarm_banner.png`} alt="스마트팜 배너" />
         </Box>
