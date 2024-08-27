@@ -4,28 +4,33 @@ import {
   MobileEntryLayout,
   DesktopEntryLayout,
   DesktopEntryMainLayout,
+  Image,
 } from "@styles/index";
 import FooterLinks from "@components/footerlinks/FooterLinksContainer";
 import { useNavigate } from "react-router-dom";
 
 const styles = {
+  buttonContainer: {
+    display: "flex",
+    gap: 4,
+    margin: "0 auto",
+    width: "100%",
+  },
   findButtonStyle: {
-    border: "1px solid #000",
     backgroundColor: "#fff",
     color: "#000",
+    minHeight: "50px",
     borderRadius: 3,
-    height: "120px",
+    flexGrow: 1,
     "&:hover": {
       backgroundColor: "#F8FAFB",
     },
   },
-
-  imageLayout: { border: "solid 1px #ddd", height: "250px" },
 };
 
 const LookupButtonComponent = ({ handleNavigation }) => {
   return (
-    <>
+    <Box sx={styles.buttonContainer}>
       <Button
         variant="contained"
         sx={styles.findButtonStyle}
@@ -40,15 +45,15 @@ const LookupButtonComponent = ({ handleNavigation }) => {
       >
         비밀번호 찾기
       </Button>
-    </>
+    </Box>
   );
 };
 
 export const MobileLookup = ({ handleNavigation }) => {
   return (
     <MobileEntryLayout>
-      <Box sx={styles.imageLayout}>
-        <img alt="이미지" />
+      <Box>
+        <Image src={`logo/smartfarm_banner.png`} alt="스마트팜 배너" />
       </Box>
       <LookupButtonComponent handleNavigation={handleNavigation} />
       <FooterLinks
@@ -65,8 +70,8 @@ export const DesktopLookup = ({ handleNavigation }) => {
   return (
     <DesktopEntryLayout>
       <DesktopEntryMainLayout>
-        <Box sx={styles.imageLayout}>
-          <img alt="이미지" />
+        <Box>
+          <Image src={`logo/smartfarm_banner.png`} alt="스마트팜 배너" />
         </Box>
         <LookupButtonComponent handleNavigation={handleNavigation} />
         <FooterLinks

@@ -1,11 +1,8 @@
 import { Box } from "@mui/material";
 import FooterLinks from "@components/footerlinks/FooterLinksContainer";
 import { generateFields } from "@utils/generateFields";
+import { Image } from "@styles/index";
 import { layoutConfig } from "@styles/layoutConfig";
-
-const styles = {
-  imageLayout: { border: "solid 1px #ddd", minHeight: "150px" },
-};
 
 export const FindPwForm = ({
   Layout,
@@ -18,11 +15,8 @@ export const FindPwForm = ({
 }) => (
   <Layout>
     <MainLayout>
-      <Box sx={styles.imageLayout}>
-        <img alt="이미지" />
-      </Box>
-      <Box sx={styles.imageLayout}>
-        <img alt="이미지" />
+      <Box>
+        <Image src={`logo/smartfarm_banner.png`} alt="스마트팜 배너" />
       </Box>
       {generateFields({ formFields, onSubmit, register, errors, watch })}
       <FooterLinks

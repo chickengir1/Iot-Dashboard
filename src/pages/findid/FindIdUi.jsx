@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { BlueRoundedButton } from "@styles/index";
+import { BlueRoundedButton, Image } from "@styles/index";
 import { layoutConfig } from "@styles/layoutConfig";
 import EmailSelectorContainer from "@components/emailSelector/EmailSelectorContainer";
 import FooterLinks from "@components/footerlinks/FooterLinksContainer";
@@ -9,11 +9,8 @@ const FindIdForm = ({ Layout, MainLayout, onSubmit }) => (
   <Box component="form" onSubmit={onSubmit}>
     <Layout>
       <MainLayout>
-        <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
-          <img alt="이미지" />
-        </Box>
-        <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
-          <img alt="이미지" />
+        <Box>
+          <Image src={`logo/smartfarm_banner.png`} alt="스마트팜 배너" />
         </Box>
         <EmailSelectorContainer />
         <BlueRoundedButton

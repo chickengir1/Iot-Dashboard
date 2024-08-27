@@ -1,6 +1,7 @@
 import { Box, Typography, ListItem, Divider } from "@mui/material";
 import MenuList from "./MenuList";
 import { ExitToApp as ExitToAppIcon } from "@mui/icons-material";
+import { Image } from "@styles/index";
 
 const styles = {
   sidebar: {
@@ -13,14 +14,9 @@ const styles = {
     border: "1px solid #ddd",
     borderRadius: "8px",
   },
-  logo: {
-    marginBottom: "32px",
-    textAlign: "start",
-    fontSize: "24px",
-    color: "#d23f57",
-  },
   listItem: {
     borderRadius: "8px",
+    mb: 1,
     "&:hover": {
       backgroundColor: "#eef2f6",
     },
@@ -29,7 +25,6 @@ const styles = {
     backgroundColor: "#eef2f6",
   },
 };
-
 const SidebarDesktop = ({
   menuItems,
   currentRoute,
@@ -37,7 +32,7 @@ const SidebarDesktop = ({
   handleLogout,
 }) => (
   <Box sx={styles.sidebar}>
-    <Typography sx={styles.logo}>로고</Typography>
+    <Image src={`logo/smart-farm-logo.png`} alt="로고" />
     <MenuList
       items={menuItems}
       currentRoute={currentRoute}
