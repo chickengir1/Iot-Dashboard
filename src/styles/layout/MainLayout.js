@@ -6,6 +6,7 @@ export const MainLayout = styled(Box)({
   padding: "16px",
   display: "flex",
   marginLeft: "16px",
+  maxHeight: "96vh",
   flexDirection: "column",
   border: "1px solid #ddd",
   borderRadius: "8px",
