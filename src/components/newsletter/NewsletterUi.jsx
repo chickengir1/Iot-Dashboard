@@ -1,9 +1,26 @@
 import { Box, Typography, Card, CardContent } from "@mui/material";
 import LoadingSpinner from "@utils/Loading";
 
+const styles = {
+  container: {
+    height: "90vh",
+    overflowY: "scroll",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+    scrollbarWidth: "none",
+  },
+  card: {
+    mb: 2,
+  },
+  title: {
+    gutterBottom: true,
+  },
+};
+
 export const CardNews = ({ mscmnc, title, site, newsdate }) => {
   return (
-    <Card sx={{ mb: 2 }}>
+    <Card sx={styles.card}>
       <CardContent>
         <Box>
           <Typography variant="body1">{mscmnc}</Typography>
@@ -23,8 +40,8 @@ const NewsletterUi = ({ newsData }) => {
   }
 
   return (
-    <Box sx={{ height: "90vh", overflowY: "scroll" }}>
-      <Typography variant="subtitle1" gutterBottom>
+    <Box sx={styles.container}>
+      <Typography variant="subtitle1" sx={styles.title}>
         실시간 뉴스 정보
       </Typography>
       {newsData.map((news) => (

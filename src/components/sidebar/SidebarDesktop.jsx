@@ -13,6 +13,7 @@ const styles = {
     padding: "16px 8px",
     border: "1px solid #ddd",
     borderRadius: "8px",
+    background: "#F8FAFB",
   },
   listItem: {
     borderRadius: "8px",

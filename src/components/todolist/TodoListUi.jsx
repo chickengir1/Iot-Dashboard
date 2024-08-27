@@ -2,6 +2,24 @@ import { Box } from "@mui/material";
 import ListItem from "@components/listitem/ListItemContainer";
 import { CheckBoxOutlineBlank, CheckBoxOutlined } from "@mui/icons-material";
 
+const todoListStyles = {
+  container: (height) => ({
+    height: height,
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+    padding: 2,
+    borderRadius: "8px",
+    overflowY: "auto",
+    marginBottom: 2,
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+    scrollbarWidth: "none",
+  }),
+  todoItem: {
+    marginBottom: 2,
+  },
+};
+
 const TodoComponent = ({
   id,
   date,
@@ -16,7 +34,7 @@ const TodoComponent = ({
       e.preventDefault();
       onDelete(id);
     }}
-    marginBottom={2}
+    sx={todoListStyles.todoItem}
   >
     <ListItem
       title={date}
@@ -28,13 +46,7 @@ const TodoComponent = ({
 
 const TodoListUi = ({ todos, onToggle, onDelete, height }) => {
   return (
-    <Box
-      sx={{
-        height: height,
-        overflowY: "auto",
-        marginBottom: 2,
-      }}
-    >
+    <Box sx={todoListStyles.container(height)}>
       {todos.length > 0 &&
         todos.map((todo) => (
           <TodoComponent

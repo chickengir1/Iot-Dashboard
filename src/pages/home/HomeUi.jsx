@@ -17,6 +17,7 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
       border: "1px solid #ddd",
       padding: 2,
       borderRadius: 2,
+      background: "#F8FAFB",
     },
   };
 
