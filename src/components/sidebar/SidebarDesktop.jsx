@@ -18,8 +18,8 @@ const styles = {
   listItem: {
     borderRadius: "8px",
     display: "flex",
+    padding: "16px 8px",
     gap: 4,
-    mb: 1,
     "&:hover": {
       backgroundColor: "#eef2f6",
     },
