@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { API_PATHS } from "@utils/apiMap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
-import { loginFormFields as fields } from "../../utils/formFields";
-import usePostRequest from "../../hooks/usePostRequest";
-import { handleFormSubmit } from "../../utils/handleSubmit";
-import { updateProfileData } from "../../utils/saveProfile";
-import { getResponseMessage } from "../../error/getResponseMessage";
-import { get } from "../../utils/localStorage";
+import { loginFormFields as fields } from "@utils/formFields";
+import usePostRequest from "@hooks/usePostRequest";
+import { handleFormSubmit } from "@utils/handleSubmit";
+import { updateProfileData } from "@utils/saveProfile";
+import { getResponseMessage } from "@error/getResponseMessage";
+import { get } from "@utils/localStorage";
 import LoginUi from "./LoginUi";
-import { delay } from "../../utils/commonUtils";
+import { delay } from "@utils/commonUtils";
+import useNotification from "@hooks/useNotification";
+import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 
 const LoginPage = () => {
-  const [notification, setNotification] = useState({
-    message: null,
-    type: "",
-    open: false,
-  });
+  const { notification, setNotification } = useNotification();
   const [remember, setRemember] = useState(false);
 
   const dispatch = useDispatch();
@@ -39,7 +38,7 @@ const LoginPage = () => {
     }
   }, [combined]);
 
-  const { postData } = usePostRequest("/api/auth/login");
+  const { postData } = usePostRequest(API_PATHS.LOGIN);
 
   const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
@@ -49,20 +48,30 @@ const LoginPage = () => {
       email: completeEmail,
     };
 
-    const response = await handleFormSubmit({
-      formData,
-      postData,
-      setNotification,
-      dispatch,
-      actionType: "login",
-      successMessageHandler: getResponseMessage,
-      errorMessageHandler: (error) => getResponseMessage(null, error),
-    });
+    dispatch(startLoading());
 
-    updateProfileData(response, remember, dispatch);
+    try {
+      const response = await handleFormSubmit({
+        formData,
+        postData,
+        setNotification,
+        dispatch,
+        actionType: "login",
+        successMessageHandler: getResponseMessage,
+        errorMessageHandler: (error) => getResponseMessage(null, error),
+      });
 
-    await delay(1000);
-    navigate("/home");
+      updateProfileData(response, remember, dispatch);
+
+      if (response.message === "로그인 성공!") {
+        await delay(1000);
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error(error.cause);
+    } finally {
+      dispatch(stopLoading());
+    }
   };
 
   return (

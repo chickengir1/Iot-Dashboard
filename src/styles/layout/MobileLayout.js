@@ -6,6 +6,7 @@ export const MobileLayout = styled(Box)({
   margin: "0 auto",
   maxWidth: "412px",
   display: "flex",
+  justifyContent: "center",
   flexDirection: "column",
   paddingBottom: "80px",
   gap: 8,

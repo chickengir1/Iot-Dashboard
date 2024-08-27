@@ -1,6 +1,6 @@
-import { getEmail } from "../utils/commonUtils";
-import { save, remove } from "../utils/localStorage";
-import { setProfileData } from "../redux/actions/profileActions";
+import { getEmail } from "@utils/commonUtils";
+import { save, remove } from "@utils/localStorage";
+import { setProfileData } from "@redux/actions/profileActions";
 
 // 로그인 정보를 기억하는 유틸 파일
 export const updateProfileData = async (response, remember, dispatch) => {

@@ -4,9 +4,8 @@ import sessionStorage from "redux-persist/lib/storage/session";
 import navigateReducer from "./reducers/navigateReducer";
 import { formReducer } from "./reducers/formReducer";
 import profileReducer from "./reducers/profileReducer";
-import notificationReducer from "./reducers/notificationReducer";
-import todoReducer from "./reducers/todoReducer";
 import modalReducer from "./reducers/modalReducer";
+import loadingReducer from "./reducers/loadingReducer";
 
 const profilePersistConfig = {
   key: "profile",
@@ -17,9 +16,8 @@ const rootReducer = combineReducers({
   navigation: navigateReducer,
   form: formReducer,
   profile: persistReducer(profilePersistConfig, profileReducer),
-  notification: notificationReducer,
-  todo: todoReducer,
   modal: modalReducer,
+  loading: loadingReducer,
 });
 
 export default rootReducer;

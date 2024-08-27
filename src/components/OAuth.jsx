@@ -1,6 +1,5 @@
 import { Box, Button } from "@mui/material";
 
-// 임시로 추출한 코드입니다
 const oauthButtonStyle = {
   backgroundColor: "#fff",
   color: "#000",

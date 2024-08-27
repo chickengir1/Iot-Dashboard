@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import EmailSelectorUI from "./EmailSelectorUI";
-import { emailDomains } from "../../utils/formFields";
+import { emailDomains } from "@utils/formFields";
 
 const EmailSelectorContainer = () => {
   const {
