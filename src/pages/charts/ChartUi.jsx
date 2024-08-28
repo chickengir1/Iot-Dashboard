@@ -1,10 +1,19 @@
-import React from "react";
+import { useState } from "react";
 import Typography from "@mui/material/Typography";
-import { Box, MenuItem, Select, FormControl, InputLabel } from "@mui/material";
+import {
+  Box,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Grid,
+} from "@mui/material";
 import Sidebar from "@components/sidebar/SidebarContainer";
 import UserCard from "@components/usercard/UserCardContainer";
 import { ServeContent } from "@styles/index";
 import { mainContentConfig } from "@styles/layoutConfig";
+import SensorButton from "@components/sensorButton/SensorButtonContainer";
+import { useSelector } from "react-redux";
 
 const styles = {
   select: {
@@ -24,6 +33,7 @@ const styles = {
     alignItems: "center",
   },
 };
+
 const NotFound = () => {
   return (
     <Box sx={{ textAlign: "center", marginTop: "40px" }}>
@@ -44,6 +54,7 @@ const NotFound = () => {
     </Box>
   );
 };
+
 const Selector = ({ sensors, selectedSensor, onChange }) => (
   <FormControl
     sx={styles.select}
@@ -64,6 +75,55 @@ const Selector = ({ sensors, selectedSensor, onChange }) => (
     </Select>
   </FormControl>
 );
+
+const datas = [
+  { action: "led", label: "빛 조절" }, //불 키고 끄기
+  { action: "motor", label: "온도 조절" }, //온도 조절
+  { action: "/", label: "습도 조절" }, //습도 조절
+  { action: "/", label: "물 주기" }, //물 주기
+  { action: "/", label: "비료 주기" }, //비료 주기
+];
+
+const ButtonGroup = () => {
+  const deviceId = useSelector((state) => state.device.deviceIds);
+
+  return (
+    <Box sx={{ justifyContent: "center" }}>
+      <Box sx={styles.title}>
+        <Typography variant="h6" gutterBottom>
+          센서 조작 버튼
+        </Typography>
+      </Box>
+      <Grid container sx={{ justifyContent: "center" }}>
+        {datas.map((data) => (
+          <Grid item xs={4} sm={4} md={4} lg={2.4} key={data.label}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  mb: 2,
+                  padding: "8px 20px",
+                  fontWeight: "bold",
+                  borderRadius: 2,
+                  backgroundColor: "#fff",
+                  boxShadow: 1,
+                }}
+              >
+                {data.label}
+              </Typography>
+              <SensorButton deviceId={deviceId} action={data.action} />
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+};
 
 const ChartUI = ({
   sensors,
@@ -99,6 +159,7 @@ const ChartUI = ({
         ) : (
           <NotFound />
         )}
+        <ButtonGroup />
       </MainLayout>
       {isDesktop && <ServeContent />}
     </Layout>
