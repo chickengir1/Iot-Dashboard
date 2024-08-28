@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 
 const styles = {
   // 스타일 수정해야 함.
@@ -41,8 +41,8 @@ const styles = {
       background: "linear-gradient(to bottom, #e7e7e7, #f5f5f5)",
     },
     "&.active": {
-      width: "117px",
-      height: "117px",
+      // width: "117px",
+      // height: "117px",
       transformOrigin: "center",
       background:
         "linear-gradient(50deg, #ffca17 0%, #fe8800 31%, #ff5a24 52%, #f81e37 76%, #f61439 100%)",

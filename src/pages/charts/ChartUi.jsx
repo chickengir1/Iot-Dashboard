@@ -12,7 +12,8 @@ import Sidebar from "@components/sidebar/SidebarContainer";
 import UserCard from "@components/usercard/UserCardContainer";
 import { ServeContent } from "@styles/index";
 import { mainContentConfig } from "@styles/layoutConfig";
-import SensorButtonUi from "@components/sensorButton/SensorButtonUi";
+import SensorButton from "@components/sensorButton/SensorButtonContainer";
+import { useSelector } from "react-redux";
 
 const styles = {
   select: {
@@ -84,14 +85,7 @@ const datas = [
 ];
 
 const ButtonGroup = () => {
-  const [activeButtons, setActiveButtons] = useState({});
-
-  const handleClick = (label) => {
-    setActiveButtons((prev) => ({
-      ...prev,
-      [label]: !prev[label],
-    }));
-  };
+  const deviceId = useSelector((state) => state.device.deviceIds);
 
   return (
     <Box sx={{ justifyContent: "center" }}>
@@ -122,10 +116,7 @@ const ButtonGroup = () => {
               >
                 {data.label}
               </Typography>
-              <SensorButtonUi
-                isActive={!!activeButtons[data.label]}
-                onClick={() => handleClick(data.label)}
-              />
+              <SensorButton deviceId={deviceId} action={data.action} />
             </Box>
           </Grid>
         ))}
