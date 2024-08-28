@@ -46,7 +46,7 @@ const NewsletterUi = ({ newsData }) => {
     <Box sx={styles.container}>
       {newsData.map((news) => (
         <CardNews
-          key={news.tit}
+          key={news.site}
           mscmnc={news.mscmnc}
           title={news.tit}
           site={news.site}
