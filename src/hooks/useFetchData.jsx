@@ -13,7 +13,6 @@ const useFetchData = (url) => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
         });
 
         setData(response.data);
