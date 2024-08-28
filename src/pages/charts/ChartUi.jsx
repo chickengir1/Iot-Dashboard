@@ -5,6 +5,7 @@ import Sidebar from "@components/sidebar/SidebarContainer";
 import UserCard from "@components/usercard/UserCardContainer";
 import { ServeContent } from "@styles/index";
 import { mainContentConfig } from "@styles/layoutConfig";
+import SensorButtonUi from "@components/sensorButton/SensorButtonUi";
 
 const styles = {
   select: {
@@ -81,21 +82,33 @@ const ChartUI = ({
       <MainLayout>
         <UserCard />
         {isData ? (
-          <Box>
-            <Box sx={styles.title}>
-              <Typography variant="h6" gutterBottom>
-                센서 데이터
-              </Typography>
-              <Selector
-                sensors={sensors}
-                selectedSensor={selectedSensor}
-                onChange={onChange}
-              />
+          <>
+            <Box>
+              <Box sx={styles.title}>
+                <Typography variant="h6" gutterBottom>
+                  센서 데이터
+                </Typography>
+                <Selector
+                  sensors={sensors}
+                  selectedSensor={selectedSensor}
+                  onChange={onChange}
+                />
+              </Box>
+              <Box sx={styles.charts}>
+                <svg ref={svgRef}></svg>
+              </Box>
             </Box>
-            <Box sx={styles.charts}>
-              <svg ref={svgRef}></svg>
+            <Box>
+              <Box sx={styles.title}>
+                <Typography variant="h6" gutterBottom>
+                  센서 조작 버튼
+                </Typography>
+              </Box>
+              <Box sx={styles.charts}>
+                <SensorButtonUi />
+              </Box>
             </Box>
-          </Box>
+          </>
         ) : (
           <NotFound />
         )}
