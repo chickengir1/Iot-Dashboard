@@ -1,7 +1,7 @@
-import Button from "@mui/material/Button";
-import { useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
 
 const styles = {
+  // 스타일 수정해야 함.
   sensorButtonLayout: {
     transition: "all 0.1s ease-out",
     width: "97px",
@@ -11,6 +11,7 @@ const styles = {
     background: "linear-gradient(to top, #eeeeee, #e6e1df)",
     boxShadow: "inset 0 2px 3px rgba(91, 85, 86, 0.37)",
     cursor: "pointer",
+    position: "relative",
     "&:before": {
       position: "absolute",
       top: "50%",
@@ -42,10 +43,10 @@ const styles = {
     "&.active": {
       width: "117px",
       height: "117px",
+      transformOrigin: "center",
       background:
         "linear-gradient(50deg, #ffca17 0%, #fe8800 31%, #ff5a24 52%, #f81e37 76%, #f61439 100%)",
       boxShadow: "inset 0 0 7px rgba(87, 0, 10, 0.57)",
-      transformOrigin: "center",
       "&:before": {
         background: "linear-gradient(to bottom, #dbcfca, #fcf6f0)",
         boxShadow:
@@ -59,20 +60,14 @@ const styles = {
   },
 };
 
-function SensorButtonUi() {
-  const [isActive, setIsActive] = useState(false);
-
-  const handleClick = () => {
-    setIsActive(!isActive);
-  };
-
+const SensorButtonUi = ({ isActive, onClick }) => {
   return (
     <Button
-      onClick={handleClick}
+      onClick={onClick}
       sx={styles.sensorButtonLayout}
       className={isActive ? "active" : ""}
     />
   );
-}
+};
 
 export default SensorButtonUi;
