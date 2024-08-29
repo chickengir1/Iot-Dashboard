@@ -4,7 +4,7 @@ import { Box, Typography, Card, CardContent } from "@mui/material";
 const styles = {
   weatherLayout: {
     height: "20vh",
-    padding: 2,
+    padding: 3,
     backgroundColor: "#ffffff",
     borderRadius: 4,
     textAlign: "center",
@@ -14,9 +14,8 @@ const styles = {
   },
   iconStyle: {
     width: "120px",
-    height: "100px",
+    height: "120px",
     filter: "drop-shadow(0px 2px 8px rgba(0, 2, 4, 0.5))",
-    marginBottom: "2px",
   },
   tempStyle: {
     fontSize: "24px",
