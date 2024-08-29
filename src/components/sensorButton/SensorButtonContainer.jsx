@@ -24,7 +24,7 @@ const SensorButtonContainer = ({ deviceId, action }) => {
     };
 
     sendRequest();
-  }, [isActive]);
+  }, [isActive, postData]);
 
   return <SensorButtonUi isActive={isActive} onClick={handleSubmit} />;
 };

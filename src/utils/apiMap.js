@@ -10,5 +10,5 @@ export const API_PATHS = {
   DEVICES: `${API_BASE_URL}/devices/`,
   DEVICESDETAIL: (deviceId) => `${API_BASE_URL}/devices/${deviceId}`,
   DEVICECONTROL: (deviceId, action) =>
-    `${API_BASE_URL}/device/${deviceId}/${action}`,
+    `${API_BASE_URL}/control/device/${deviceId}/${action}`,
 };
