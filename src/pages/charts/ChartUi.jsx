@@ -79,7 +79,7 @@ const datas = [
   { action: "motor", label: "온도 조절" }, //온도 조절
   //디바이스에서 추가되는 대로 추가
   // { action: "/", label: "습도 조절" }, //습도 조절
-  // { action: "/", label: "물 주기" }, //물 주기
+  { action: "pump", label: "물 주기" }, //물 주기
   // { action: "/", label: "비료 주기" }, //비료 주기
 ];
 

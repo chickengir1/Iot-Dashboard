@@ -1,4 +1,5 @@
 import { Box, Typography, Card, CardContent } from "@mui/material";
+import { formatDate } from "@utils/dateUtils";
 import LoadingSpinner from "@utils/Loading";
 
 const styles = {
@@ -43,7 +44,7 @@ export const CardNews = ({ mscmnc, title, site, newsdate }) => {
           </Typography>
         </Box>
         <Typography variant="caption" sx={styles.newsDate}>
-          {newsdate}
+          {formatDate(newsdate.toString())}
         </Typography>
       </CardContent>
     </Card>
