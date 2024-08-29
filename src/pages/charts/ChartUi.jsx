@@ -1,6 +1,6 @@
-import Typography from "@mui/material/Typography";
 import {
   Box,
+  Typography,
   MenuItem,
   Select,
   FormControl,
@@ -12,7 +12,6 @@ import UserCard from "@components/usercard/UserCardContainer";
 import { ServeContent } from "@styles/index";
 import { mainContentConfig } from "@styles/layoutConfig";
 import SensorButton from "@components/sensorButton/SensorButtonContainer";
-import { useSelector } from "react-redux";
 
 const styles = {
   select: {
@@ -84,8 +83,6 @@ const datas = [
 ];
 
 const ButtonGroup = () => {
-  const deviceId = useSelector((state) => state.device.deviceIds);
-
   return (
     <Box sx={{ justifyContent: "center" }}>
       <Box sx={styles.title}>
@@ -115,7 +112,7 @@ const ButtonGroup = () => {
               >
                 {data.label}
               </Typography>
-              <SensorButton deviceId={deviceId} action={data.action} />
+              <SensorButton action={data.action} />
             </Box>
           </Grid>
         ))}

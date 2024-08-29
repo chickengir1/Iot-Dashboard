@@ -2,9 +2,12 @@ import usePostRequest from "@hooks/usePostRequest";
 import SensorButtonUi from "./SensorButtonUi";
 import { API_PATHS } from "@utils/apiMap";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-const SensorButtonContainer = ({ deviceId, action }) => {
+const SensorButtonContainer = ({ action }) => {
   const [isActive, setIsActive] = useState(false);
+  const deviceId = useSelector((state) => state.device.deviceIds);
+
   const { postData } = usePostRequest(
     API_PATHS.DEVICECONTROL(deviceId, action)
   );
