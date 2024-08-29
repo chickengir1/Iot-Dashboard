@@ -77,9 +77,10 @@ const Selector = ({ sensors, selectedSensor, onChange }) => (
 const datas = [
   { action: "led", label: "빛 조절" }, //불 키고 끄기
   { action: "motor", label: "온도 조절" }, //온도 조절
-  { action: "/", label: "습도 조절" }, //습도 조절
-  { action: "/", label: "물 주기" }, //물 주기
-  { action: "/", label: "비료 주기" }, //비료 주기
+  //디바이스에서 추가되는 대로 추가
+  // { action: "/", label: "습도 조절" }, //습도 조절
+  // { action: "/", label: "물 주기" }, //물 주기
+  // { action: "/", label: "비료 주기" }, //비료 주기
 ];
 
 const ButtonGroup = () => {

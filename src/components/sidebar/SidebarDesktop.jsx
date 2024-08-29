@@ -1,9 +1,9 @@
 import {
   Box,
-  Typography,
   ListItem,
   Divider,
   ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import MenuList from "./MenuList";
 import { ExitToApp as ExitToAppIcon } from "@mui/icons-material";
@@ -24,8 +24,6 @@ const styles = {
   listItem: {
     borderRadius: "8px",
     display: "flex",
-    padding: "16px 0 16px 16px",
-    // gap: 4,
     "&:hover": {
       backgroundColor: "#eef2f6",
     },
@@ -53,7 +51,7 @@ const SidebarDesktop = ({
       <ListItemIcon>
         <ExitToAppIcon />
       </ListItemIcon>
-      <Typography>Logout</Typography>
+      <ListItemText>Logout</ListItemText>
     </ListItem>
   </Box>
 );
