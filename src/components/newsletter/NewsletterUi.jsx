@@ -19,19 +19,32 @@ const styles = {
   title: {
     gutterBottom: true,
   },
+  cardContent: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  newsInfo: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  newsDate: {
+    marginLeft: "auto",
+  },
 };
 
 export const CardNews = ({ mscmnc, title, site, newsdate }) => {
   return (
     <Card sx={styles.card}>
-      <CardContent>
-        <Box>
+      <CardContent sx={styles.cardContent}>
+        <Box sx={styles.newsInfo}>
           <Typography variant="body1">{mscmnc}</Typography>
           <Typography variant="body2">
             <a href={site}>{title}</a>
           </Typography>
         </Box>
-        <Typography variant="caption">{newsdate}</Typography>
+        <Typography variant="caption" sx={styles.newsDate}>
+          {newsdate}
+        </Typography>
       </CardContent>
     </Card>
   );
