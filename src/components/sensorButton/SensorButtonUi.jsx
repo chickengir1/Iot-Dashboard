@@ -4,8 +4,8 @@ const styles = {
   // 스타일 수정해야 함.
   sensorButtonLayout: {
     transition: "all 0.1s ease-out",
-    width: "97px",
-    height: "97px",
+    width: "70px",
+    height: "70px",
     zIndex: 1,
     borderRadius: "50%",
     background: "linear-gradient(to top, #eeeeee, #e6e1df)",
@@ -18,8 +18,8 @@ const styles = {
       left: "50%",
       transform: "translate(-50%, -50%)",
       content: '""',
-      width: "88px",
-      height: "88px",
+      width: "59px",
+      height: "59px",
       zIndex: 2,
       background: "linear-gradient(to bottom, #f5f5f5, #e7e7e7)",
       borderRadius: "50%",

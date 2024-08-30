@@ -9,9 +9,11 @@ import {
 } from "@mui/material";
 import Sidebar from "@components/sidebar/SidebarContainer";
 import UserCard from "@components/usercard/UserCardContainer";
-import { ServeContent } from "@styles/index";
+// import { ServeContent } from "@styles/index";
 import { mainContentConfig } from "@styles/layoutConfig";
 import SensorButton from "@components/sensorButton/SensorButtonContainer";
+import { useEffect, useRef } from "react";
+import { drawCompassChart } from "@services/chartConfig";
 
 const styles = {
   select: {
@@ -75,12 +77,9 @@ const Selector = ({ sensors, selectedSensor, onChange }) => (
 );
 
 const datas = [
-  { action: "led", label: "빛 조절" }, //불 키고 끄기
-  { action: "motor", label: "온도 조절" }, //온도 조절
-  //디바이스에서 추가되는 대로 추가
-  // { action: "/", label: "습도 조절" }, //습도 조절
-  { action: "pump", label: "물 주기" }, //물 주기
-  // { action: "/", label: "비료 주기" }, //비료 주기
+  { action: "led", label: "빛 조절" },
+  { action: "motor", label: "온도 조절" },
+  { action: "pump", label: "물 주기" },
 ];
 
 const ButtonGroup = () => {
@@ -104,7 +103,7 @@ const ButtonGroup = () => {
               <Typography
                 sx={{
                   mb: 2,
-                  padding: "8px 20px",
+                  padding: "8px 10px",
                   fontWeight: "bold",
                   borderRadius: 2,
                   backgroundColor: "#fff",
@@ -118,6 +117,86 @@ const ButtonGroup = () => {
           </Grid>
         ))}
       </Grid>
+    </Box>
+  );
+};
+
+const ChartDesktop = ({ sensors }) => {
+  const svgRef1 = useRef();
+  const svgRef2 = useRef();
+  const svgRef3 = useRef();
+  const svgRef4 = useRef();
+  useEffect(() => {
+    try {
+      if (sensors["조도"] !== undefined) {
+        drawCompassChart(sensors["조도"], "조도", svgRef1, "blue");
+      } else {
+        console.error("조도 센서 데이터가 없습니다.");
+      }
+
+      if (sensors["온도"] !== undefined) {
+        drawCompassChart(sensors["온도"], "온도", svgRef2, "red");
+      } else {
+        console.error("온도 센서 데이터가 없습니다.");
+      }
+
+      if (sensors["습도"] !== undefined) {
+        drawCompassChart(sensors["습도"], "습도", svgRef3, "green");
+      } else {
+        console.error("습도 센서 데이터가 없습니다.");
+      }
+
+      if (sensors["토양수분"] !== undefined) {
+        drawCompassChart(sensors["토양수분"], "토양수분", svgRef4, "orange");
+      } else {
+        console.error("토양수분 센서 데이터가 없습니다.");
+      }
+    } catch (error) {
+      console.error("센서 데이터를 처리하는 동안 에러가 발생했습니다:", error);
+    }
+  }, [sensors]);
+
+  return (
+    <Box sx={{ justifyContent: "center" }}>
+      <Box sx={styles.title}>
+        <Typography variant="h6" gutterBottom>
+          센서 데이터
+        </Typography>
+      </Box>
+      <Grid container sx={{ justifyContent: "center" }}>
+        <Grid item xs={6} md={3}>
+          <svg ref={svgRef1}></svg>
+        </Grid>
+        <Grid item xs={6} md={3}>
+          <svg ref={svgRef2}></svg>
+        </Grid>
+        <Grid item xs={6} md={3}>
+          <svg ref={svgRef3}></svg>
+        </Grid>
+        <Grid item xs={6} md={3}>
+          <svg ref={svgRef4}></svg>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
+
+const ChartMobile = ({ sensors, selectedSensor, onChange, svgRef }) => {
+  return (
+    <Box>
+      <Box sx={styles.title}>
+        <Typography variant="h6" gutterBottom>
+          센서 데이터
+        </Typography>
+        <Selector
+          sensors={sensors}
+          selectedSensor={selectedSensor}
+          onChange={onChange}
+        />
+      </Box>
+      <Box sx={styles.charts}>
+        <svg ref={svgRef}></svg>
+      </Box>
     </Box>
   );
 };
@@ -138,27 +217,23 @@ const ChartUI = ({
       <MainLayout>
         <UserCard />
         {isData ? (
-          <Box>
-            <Box sx={styles.title}>
-              <Typography variant="h6" gutterBottom>
-                센서 데이터
-              </Typography>
-              <Selector
-                sensors={sensors}
-                selectedSensor={selectedSensor}
-                onChange={onChange}
-              />
-            </Box>
-            <Box sx={styles.charts}>
-              <svg ref={svgRef}></svg>
-            </Box>
-          </Box>
+          isDesktop ? (
+            <ChartDesktop sensors={sensors} />
+          ) : (
+            <ChartMobile
+              sensors={sensors}
+              selectedSensor={selectedSensor}
+              onChange={onChange}
+              svgRef={svgRef}
+            />
+          )
         ) : (
           <NotFound />
         )}
         <ButtonGroup />
       </MainLayout>
-      {isDesktop && <ServeContent />}
+      {/* 이 페이지 광고 뺍시다 */}
+      {/* {isDesktop && <ServeContent />} */}
     </Layout>
   );
 };

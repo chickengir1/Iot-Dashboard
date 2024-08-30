@@ -117,20 +117,38 @@ export const drawCompassChart = (
     .attr("font-weight", "bold")
     .text(`${selectedSensor}`);
 
-  const bbox = textElement.node().getBBox();
-  const rectWidth = bbox.width + textPadding * 6;
-  const rectHeight = bbox.height + textPadding * 1.5;
+  const bbox = textElement.node()?.getBBox();
+  // const rectWidth = bbox.width + textPadding * 6;
+  // const rectHeight = bbox.height + textPadding * 1.5;
 
-  svg
-    .insert("rect", "text")
-    .attr("x", bbox.x - textPadding * 3)
-    .attr("y", bbox.y - textPadding + 1)
-    .attr("width", rectWidth)
-    .attr("height", rectHeight)
-    .attr("rx", borderRadius)
-    .attr("ry", borderRadius)
-    .attr("fill", "#fff")
-    .attr("stroke", "#fff");
+  // svg
+  //   .insert("rect", "text")
+  //   .attr("x", bbox.x - textPadding * 3)
+  //   .attr("y", bbox.y - textPadding + 1)
+  //   .attr("width", rectWidth)
+  //   .attr("height", rectHeight)
+  //   .attr("rx", borderRadius)
+  //   .attr("ry", borderRadius)
+  //   .attr("fill", "#fff")
+  //   .attr("stroke", "#fff");
+  if (bbox) {
+    // bbox가 null이 아닌 경우에만 이후 코드 실행
+    const rectWidth = bbox.width + textPadding * 6;
+    const rectHeight = bbox.height + textPadding * 1.5;
+
+    svg
+      .insert("rect", "text")
+      .attr("x", bbox.x - textPadding * 3)
+      .attr("y", bbox.y - textPadding + 1)
+      .attr("width", rectWidth)
+      .attr("height", rectHeight)
+      .attr("rx", borderRadius)
+      .attr("ry", borderRadius)
+      .attr("fill", "#fff")
+      .attr("stroke", "#fff");
+  } else {
+    console.error("텍스트 요소의 BBox를 가져올 수 없습니다.");
+  }
 
   svg
     .append("text")
