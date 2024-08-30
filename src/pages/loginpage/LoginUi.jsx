@@ -1,4 +1,4 @@
-import { Box, Typography, Checkbox } from "@mui/material";
+import { Box, Typography, Checkbox, FormControlLabel } from "@mui/material";
 import { FormProvider } from "react-hook-form";
 import { layoutConfig } from "@styles/layoutConfig";
 import FooterLinks from "@components/footerlinks/FooterLinksContainer";
@@ -9,8 +9,11 @@ import Notification from "@components/notification/NotificationContainer";
 
 const RememberMe = ({ checked, onChange }) => (
   <Box sx={{ display: "flex", alignItems: "center", marginTop: "12px" }}>
-    <Checkbox sx={{ padding: 0 }} checked={checked} onChange={onChange} />
-    <Typography>로그인 정보 기억하기</Typography>
+    <FormControlLabel
+      control={<Checkbox checked={checked} onChange={onChange} />}
+      label="로그인 정보 기억하기"
+      labelPlacement="end"
+    />
   </Box>
 );
 
