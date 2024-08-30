@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ChartUI from "./ChartUI";
 import { drawCompassChart } from "@services/chartConfig";
 import { breakpoints } from "@utils/commonUtils";
-import { useMediaQuery } from "@mui/material";
+import { IconButton, useMediaQuery } from "@mui/material";
 import { useAuth } from "@error/authError";
 import useFetchData from "@hooks/useFetchData";
 import { useSelector, useDispatch } from "react-redux";
@@ -50,6 +50,9 @@ const ChartContainer = () => {
     };
 
     fetchData();
+
+    const intervalId = setInterval(fetchData, 600000);
+    return () => clearInterval(intervalId);
   }, [deviceList]);
 
   useEffect(() => {

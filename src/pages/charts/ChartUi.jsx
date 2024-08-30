@@ -129,10 +129,10 @@ const ChartDesktop = ({ sensors }) => {
 
   useEffect(() => {
     if (sensors) {
-      drawCompassChart(sensors["조도"], "조도", svgRef1, "blue");
-      drawCompassChart(sensors["온도"], "온도", svgRef2, "red");
-      drawCompassChart(sensors["습도"], "습도", svgRef3, "green");
-      drawCompassChart(sensors["토양수분"], "토양수분", svgRef4, "orange");
+      drawCompassChart(sensors["조도"], "조도", svgRef1, "#FF6384");
+      drawCompassChart(sensors["온도"], "온도", svgRef2, "#36A2EB");
+      drawCompassChart(sensors["습도"], "습도", svgRef3, "#FFCE56");
+      drawCompassChart(sensors["토양수분"], "토양수분", svgRef4, "#4BC0C0");
     }
   }, [sensors]);
 

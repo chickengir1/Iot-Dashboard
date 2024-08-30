@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
-import { Home, Settings, Person, CheckBox, Devices } from "@mui/icons-material";
+import { Home, Person, CheckBox, Devices } from "@mui/icons-material";
 import SidebarDesktop from "./SidebarDesktop";
 import SidebarMobile from "./SidebarMobile";
 import Notification from "@components/notification/NotificationContainer";
