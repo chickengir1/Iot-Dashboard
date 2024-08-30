@@ -126,39 +126,19 @@ const ChartDesktop = ({ sensors }) => {
   const svgRef2 = useRef();
   const svgRef3 = useRef();
   const svgRef4 = useRef();
+
   useEffect(() => {
-    try {
-      if (sensors["조도"] !== undefined) {
-        drawCompassChart(sensors["조도"], "조도", svgRef1, "blue");
-      } else {
-        console.error("조도 센서 데이터가 없습니다.");
-      }
-
-      if (sensors["온도"] !== undefined) {
-        drawCompassChart(sensors["온도"], "온도", svgRef2, "red");
-      } else {
-        console.error("온도 센서 데이터가 없습니다.");
-      }
-
-      if (sensors["습도"] !== undefined) {
-        drawCompassChart(sensors["습도"], "습도", svgRef3, "green");
-      } else {
-        console.error("습도 센서 데이터가 없습니다.");
-      }
-
-      if (sensors["토양수분"] !== undefined) {
-        drawCompassChart(sensors["토양수분"], "토양수분", svgRef4, "orange");
-      } else {
-        console.error("토양수분 센서 데이터가 없습니다.");
-      }
-    } catch (error) {
-      console.error("센서 데이터를 처리하는 동안 에러가 발생했습니다:", error);
+    if (sensors) {
+      drawCompassChart(sensors["조도"], "조도", svgRef1, "blue");
+      drawCompassChart(sensors["온도"], "온도", svgRef2, "red");
+      drawCompassChart(sensors["습도"], "습도", svgRef3, "green");
+      drawCompassChart(sensors["토양수분"], "토양수분", svgRef4, "orange");
     }
   }, [sensors]);
 
   return (
     <Box sx={{ justifyContent: "center" }}>
-      <Box sx={styles.title}>
+      <Box>
         <Typography variant="h6" gutterBottom>
           센서 데이터
         </Typography>
