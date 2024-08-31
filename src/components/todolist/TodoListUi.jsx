@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import ListItem from "@components/listitem/ListItemContainer";
 import { CheckBoxOutlineBlank, CheckBoxOutlined } from "@mui/icons-material";
+import { isEmpty } from "@utils/isEmpty";
 
 const todoListStyles = {
   container: (height) => ({
@@ -47,7 +48,7 @@ const TodoComponent = ({
 const TodoListUi = ({ todos, onToggle, onDelete, height }) => {
   return (
     <Box sx={todoListStyles.container(height)}>
-      {todos.length > 0 &&
+      {!isEmpty(todos) &&
         todos.map((todo) => (
           <TodoComponent
             key={todo.id}
