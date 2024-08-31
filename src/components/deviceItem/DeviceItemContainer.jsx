@@ -7,6 +7,7 @@ import Notification from "@components/notification/NotificationContainer";
 import { useState } from "react";
 import useDeleteRequest from "@hooks/useDeleteRequest";
 import { API_PATHS } from "@utils/apiMap";
+import { generatePath } from "react-router-dom";
 
 const DeviceItemContainer = ({ name, description }) => {
   const navigate = useNavigate();
@@ -41,7 +42,9 @@ const DeviceItemContainer = ({ name, description }) => {
     setAnchorEl(null);
   };
 
-  const { deleteData } = useDeleteRequest(API_PATHS.DEVICESDETAIL(name));
+  const { deleteData } = useDeleteRequest(
+    generatePath(API_PATHS.DEVICESDETAIL, { deviceId: name })
+  );
 
   const handleDelete = async (event) => {
     event.stopPropagation();
