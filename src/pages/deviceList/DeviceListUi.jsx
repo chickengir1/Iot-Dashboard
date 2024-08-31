@@ -1,6 +1,5 @@
 import { Typography, Grid, Box } from "@mui/material";
 import { BlueRoundedButton, ServeContent } from "@styles/index";
-import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import UserCard from "@components/usercard/UserCardContainer";
 import Sidebar from "@components/sidebar/SidebarContainer";

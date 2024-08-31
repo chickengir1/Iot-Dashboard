@@ -27,14 +27,16 @@ const styles = {
   },
 };
 
-const DeviceItemUi = ({ name, description, onDelete }) => {
+const DeviceItemUi = ({ name, description, onClick, onDelete }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuOpen = (event) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
+  const handleMenuClose = (event) => {
+    event.stopPropagation();
     setAnchorEl(null);
   };
 
@@ -42,13 +44,11 @@ const DeviceItemUi = ({ name, description, onDelete }) => {
     handleMenuClose();
     onDelete();
   };
+
   const menuId = "device-item-menu";
 
   return (
-    <Box
-      sx={styles.deviceStyled}
-      // onClick={onClick}
-    >
+    <Box sx={styles.deviceStyled} onClick={onClick}>
       <Avatar variant="rounded" sx={styles.avatarStyle} />
       <Box flexGrow={1}>
         <Typography variant="body1" fontWeight="bold">
@@ -65,7 +65,7 @@ const DeviceItemUi = ({ name, description, onDelete }) => {
         aria-haspopup="true"
         onClick={handleMenuOpen}
       >
-        <Settings fontSize="small" />
+        <Settings />
       </IconButton>
       <Menu
         id={menuId}
@@ -74,7 +74,9 @@ const DeviceItemUi = ({ name, description, onDelete }) => {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={onDelete}>기기 삭제</MenuItem>
+        <MenuItem onClick={onDelete} disableRipple>
+          기기 삭제
+        </MenuItem>
       </Menu>
     </Box>
   );
