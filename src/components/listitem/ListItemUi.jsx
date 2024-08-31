@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Checkbox, Typography } from "@mui/material";
 
 const styles = {
   deviceStyled: {
@@ -18,20 +18,20 @@ const styles = {
   },
 };
 
-const ListItemUi = ({ title, description, icon, onClick }) => {
+const ListItemUi = ({ date, description, isFinish }) => {
+  console.log(date, isFinish);
+  console.log(typeof isFinish);
   return (
-    <Box sx={styles.deviceStyled} onClick={onClick}>
+    <Box sx={styles.deviceStyled}>
       <Box flexGrow={1}>
         <Typography variant="body1" fontWeight="bold">
-          {title}
+          {date}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {description}
         </Typography>
       </Box>
-      <IconButton edge="end" aria-label="settings">
-        {icon}
-      </IconButton>
+      <Checkbox checked={isFinish} />
     </Box>
   );
 };

@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import ListItem from "@components/listitem/ListItemContainer";
-import { CheckBoxOutlineBlank, CheckBoxOutlined } from "@mui/icons-material";
 import { isEmpty } from "@utils/isEmpty";
 
 const todoListStyles = {
@@ -37,11 +36,7 @@ const TodoComponent = ({
     }}
     sx={todoListStyles.todoItem}
   >
-    <ListItem
-      title={date}
-      description={description}
-      icon={isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}
-    />
+    <ListItem date={date} description={description} isFinish={isFinish} />
   </Box>
 );
 
