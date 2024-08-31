@@ -10,7 +10,6 @@ const useDeleteRequest = (url) => {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true,
       });
       setData(response.data);
       return response.data;

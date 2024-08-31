@@ -7,7 +7,6 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 
 const styles = {
   deviceStyled: {
@@ -27,26 +26,15 @@ const styles = {
   },
 };
 
-const DeviceItemUi = ({ name, description, onClick, onDelete }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleMenuOpen = (event) => {
-    event.stopPropagation();
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = (event) => {
-    event.stopPropagation();
-    setAnchorEl(null);
-  };
-
-  const handleDelete = () => {
-    handleMenuClose();
-    onDelete();
-  };
-
-  const menuId = "device-item-menu";
-
+const DeviceItemUi = ({
+  name,
+  description,
+  onClick,
+  onDelete,
+  anchorEl,
+  onOpen,
+  onClose,
+}) => {
   return (
     <Box sx={styles.deviceStyled} onClick={onClick}>
       <Avatar variant="rounded" sx={styles.avatarStyle} />
@@ -58,25 +46,20 @@ const DeviceItemUi = ({ name, description, onClick, onDelete }) => {
           {description}
         </Typography>
       </Box>
-      <IconButton
-        edge="end"
-        aria-label="more"
-        aria-controls={menuId}
-        aria-haspopup="true"
-        onClick={handleMenuOpen}
-      >
+      <IconButton edge="start" onClick={onOpen}>
         <Settings />
       </IconButton>
       <Menu
-        id={menuId}
         anchorEl={anchorEl}
         keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
+        open={anchorEl}
+        onClose={onClose}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
       >
-        <MenuItem onClick={onDelete} disableRipple>
-          기기 삭제
-        </MenuItem>
+        <MenuItem onClick={onDelete}>기기 삭제</MenuItem>
       </Menu>
     </Box>
   );
