@@ -19,8 +19,6 @@ const styles = {
 };
 
 const ListItemUi = ({ date, description, isFinish }) => {
-  console.log(date, isFinish);
-  console.log(typeof isFinish);
   return (
     <Box sx={styles.deviceStyled}>
       <Box flexGrow={1}>
