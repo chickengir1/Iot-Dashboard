@@ -1,19 +1,17 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { BlueRoundedButton } from "@styles/index";
+import { BlueRoundedButton, Image } from "@styles/index";
 import { layoutConfig } from "@styles/layoutConfig";
 import EmailSelectorContainer from "@components/emailSelector/EmailSelectorContainer";
 import FooterLinks from "@components/footerlinks/FooterLinksContainer";
 
-const FindIdForm = ({ Layout, MainLayout, onSubmit }) => (
+const FindIdForm = ({ Layout, MainLayout, onSubmit, BackGround }) => (
   <Box component="form" onSubmit={onSubmit}>
+    <BackGround />
     <Layout>
       <MainLayout>
-        <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
-          <img alt="이미지" />
-        </Box>
-        <Box sx={{ border: "solid 1px #ddd", minHeight: "150px" }}>
-          <img alt="이미지" />
+        <Box>
+          <Image src={`logo/smartfarm_banner.webp`} alt="스마트팜 배너" />
         </Box>
         <EmailSelectorContainer />
         <BlueRoundedButton
@@ -31,12 +29,13 @@ const FindIdForm = ({ Layout, MainLayout, onSubmit }) => (
 );
 
 const FindIdUi = ({ isDesktop, formFields, onSubmit, combined }) => {
-  const { Layout, MainLayout } = layoutConfig(isDesktop);
+  const { Layout, MainLayout, BackGround } = layoutConfig(isDesktop);
 
   return (
     <FindIdForm
       Layout={Layout}
       MainLayout={MainLayout}
+      BackGround={BackGround}
       formFields={formFields}
       onSubmit={onSubmit}
       register={combined.register}

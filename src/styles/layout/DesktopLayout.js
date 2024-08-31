@@ -7,4 +7,5 @@ export const DesktopLayout = styled(Box)({
   display: "flex",
   flexDirection: "row",
   height: "96vh",
+  background: "#F1F4FD",
 });

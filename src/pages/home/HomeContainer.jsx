@@ -12,7 +12,10 @@ import useNotification from "@hooks/useNotification";
 
 const HomeContainer = () => {
   const { notification, setNotification } = useNotification();
-  const [todos, setTodos] = useState(get("todos") || []);
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = get("todos") || [];
+    return savedTodos.reverse();
+  });
 
   const isDesktop = useMediaQuery(breakpoints.mainContent);
   const combined = useForm();

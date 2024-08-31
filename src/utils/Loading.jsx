@@ -15,6 +15,11 @@ const LoadingSpinner = () => {
       justifyContent="center"
       alignItems="center"
       height="100vh"
+      width="100vw"
+      position="fixed"
+      top={0}
+      left={0}
+      zIndex={9999}
       sx={{
         backgroundColor: "#f0f4f8",
         animation: "fade-in 1s ease-in-out",
@@ -29,7 +34,7 @@ const LoadingSpinner = () => {
         variant="h6"
         sx={{ marginTop: 2, color: "#3f51b5", fontWeight: "bold" }}
       >
-        로딩 중입니다. 잠시만 기다려주세요...
+        로딩 중입니다...
       </Typography>
     </Box>
   );

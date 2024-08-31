@@ -13,8 +13,13 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: "http://localhost:8000",
         changeOrigin: true,
+      },
+      "/open-api": {
+        target: "http://apis.data.go.kr",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/open-api/, ""),
       },
     },
   },

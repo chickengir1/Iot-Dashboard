@@ -31,7 +31,6 @@ const ProfilePage = () => {
 
       if (actionType === "logout") {
         response = await postLogout();
-        sessionStorage.clear();
         handleSuccess(response.message, "/");
         return;
       }

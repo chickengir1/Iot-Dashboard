@@ -11,6 +11,7 @@ import HomeContainer from "@pages/home/HomeContainer";
 import ProfilePage from "@pages/profile/ProfileContainer";
 import DeviceList from "@pages/deviceList/DeviceListContainer";
 import LoadingSpinner from "@utils/Loading";
+import ChartContainer from "@pages/charts/ChartContainer";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/adddevices" element={<DeviceAdd />} />
           <Route path="/find-account" element={<FindAccount />} />
           <Route path="/todolist" element={<TodoContainer />} />
+          <Route path="/devicesinfo" element={<ChartContainer />} />
         </Routes>
       </Router>
     </ErrorBoundary>

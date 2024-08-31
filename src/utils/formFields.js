@@ -25,4 +25,11 @@ export const findPasswordFormFields = [
 // 투두 입력하기
 export const todoFields = { label: "오늘 할 일", name: "todo", type: "text" };
 
+// 디바이스 등록하기
+export const deviceFields = [
+  { label: "디바이스 아이디", name: "deviceId", type: "text" },
+  { label: "디바이스 이름", name: "deviceName", type: "text" },
+  { label: "디바이스 설명", name: "description", type: "text" },
+];
+
 export const emailDomains = ["gmail.com", "naver.com", "daum.net"];
