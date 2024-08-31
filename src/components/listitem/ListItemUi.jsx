@@ -1,4 +1,4 @@
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 
 const styles = {
   deviceStyled: {
@@ -18,10 +18,9 @@ const styles = {
   },
 };
 
-const ListItemUi = ({ title, description, icon, avatar = false, onClick }) => {
+const ListItemUi = ({ title, description, icon, onClick }) => {
   return (
     <Box sx={styles.deviceStyled} onClick={onClick}>
-      {avatar && <Avatar variant="rounded" sx={styles.avatarStyle} />}
       <Box flexGrow={1}>
         <Typography variant="body1" fontWeight="bold">
           {title}

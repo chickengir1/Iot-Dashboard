@@ -52,7 +52,7 @@ const DeviceItemUi = ({
       <Menu
         anchorEl={anchorEl}
         keepMounted
-        open={anchorEl}
+        open={Boolean(anchorEl)}
         onClose={onClose}
         transformOrigin={{
           vertical: "top",

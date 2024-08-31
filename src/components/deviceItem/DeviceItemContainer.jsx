@@ -48,7 +48,7 @@ const DeviceItemContainer = ({ name, description }) => {
 
     // 기기삭제 confirm 로직 넣기
     try {
-      const result = await deleteData();
+      await deleteData();
 
       setNotification({
         message: "디바이스가 성공적으로 삭제되었습니다.",
@@ -57,6 +57,7 @@ const DeviceItemContainer = ({ name, description }) => {
       });
       setAnchorEl(null);
     } catch (error) {
+      console.error(error);
       setNotification({
         message: "디바이스 삭제에 실패했습니다.",
         type: "error",
