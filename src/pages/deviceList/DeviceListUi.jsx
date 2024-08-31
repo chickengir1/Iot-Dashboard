@@ -4,17 +4,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import UserCard from "@components/usercard/UserCardContainer";
 import Sidebar from "@components/sidebar/SidebarContainer";
-import ListItem from "@components/listitem/ListItemContainer";
+import DeviceItem from "@components/deviceItem/DeviceItemContainer";
 import { mainContentConfig } from "@styles/layoutConfig";
-
-export const DeviceItem = ({ name, description }) => (
-  <ListItem
-    title={name}
-    description={description}
-    icon={<SettingsIcon />}
-    avatar={true}
-  />
-);
 
 const DeviceUi = ({ isDesktop, devices, handleNavigate }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
