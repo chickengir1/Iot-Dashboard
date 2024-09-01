@@ -23,8 +23,7 @@ const SensorButtonContainer = ({ action }) => {
   useEffect(() => {
     const sendRequest = async () => {
       try {
-        const response = await postData({ state: isActive ? "on" : "off" });
-        console.log(response);
+        await postData({ state: isActive ? "on" : "off" });
       } catch (error) {
         console.error(error);
       }
