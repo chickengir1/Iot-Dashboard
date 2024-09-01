@@ -6,6 +6,7 @@ import {
   FormControl,
   InputLabel,
   Grid,
+  IconButton,
 } from "@mui/material";
 import Sidebar from "@components/sidebar/SidebarContainer";
 import UserCard from "@components/usercard/UserCardContainer";
@@ -14,6 +15,7 @@ import { mainContentConfig } from "@styles/layoutConfig";
 import SensorButton from "@components/sensorButton/SensorButtonContainer";
 import { useEffect, useRef } from "react";
 import { drawCompassChart } from "@services/chartConfig";
+import { Refresh } from "@mui/icons-material";
 
 const styles = {
   select: {
@@ -121,7 +123,7 @@ const ButtonGroup = () => {
   );
 };
 
-const ChartDesktop = ({ sensors }) => {
+const ChartDesktop = ({ sensors, onRefresh, lastUpdated }) => {
   const svgRef1 = useRef();
   const svgRef2 = useRef();
   const svgRef3 = useRef();
@@ -138,10 +140,16 @@ const ChartDesktop = ({ sensors }) => {
 
   return (
     <Box sx={{ justifyContent: "center" }}>
-      <Box>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography variant="h6" gutterBottom>
           센서 데이터
         </Typography>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography>{lastUpdated}</Typography>
+          <IconButton onClick={onRefresh}>
+            <Refresh />
+          </IconButton>
+        </Box>
       </Box>
       <Grid container sx={{ justifyContent: "center" }}>
         <Grid item xs={6} md={3}>
@@ -188,6 +196,8 @@ const ChartUI = ({
   isDesktop,
   selectedSensor,
   isData,
+  lastUpdated,
+  onRefresh,
 }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
 
@@ -198,7 +208,11 @@ const ChartUI = ({
         <UserCard />
         {isData ? (
           isDesktop ? (
-            <ChartDesktop sensors={sensors} />
+            <ChartDesktop
+              sensors={sensors}
+              onRefresh={onRefresh}
+              lastUpdated={lastUpdated}
+            />
           ) : (
             <ChartMobile
               sensors={sensors}

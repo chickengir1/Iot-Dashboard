@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import ChartUI from "./ChartUI";
 import { drawCompassChart } from "@services/chartConfig";
 import { breakpoints } from "@utils/commonUtils";
@@ -28,33 +28,35 @@ const ChartContainer = () => {
 
   const [selectedSensor, setSelectedSensor] = useState("조도");
   const [sensorData, setSensorData] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
   const svgRef = useRef();
   const isDesktop = useMediaQuery(breakpoints.mainContent);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (deviceList?.data) {
-          const data = deviceList.data.sensor;
-          console.log(data);
+  const fetchData = useCallback(async () => {
+    try {
+      if (deviceList?.data) {
+        const data = deviceList.data.sensor;
+        console.log(data);
 
-          setSensorData({
-            조도: data?.lux ?? null,
-            온도: data?.temperature ?? null,
-            습도: data?.humid ?? null,
-            토양수분: data?.solid ?? null,
-          });
-        }
-      } catch (error) {
-        console.error(error.cause);
+        setSensorData({
+          조도: data?.lux ?? null,
+          온도: data?.temperature ?? null,
+          습도: data?.humid ?? null,
+          토양수분: data?.solid ?? null,
+        });
+        setLastUpdated(data?.createdAt ?? null);
       }
-    };
+    } catch (error) {
+      console.error(error.cause);
+    }
+  }, [deviceList]);
 
+  useEffect(() => {
     fetchData();
 
     const intervalId = setInterval(fetchData, 600000);
     return () => clearInterval(intervalId);
-  }, [deviceList]);
+  }, [fetchData]);
 
   useEffect(() => {
     if (sensorData && sensorData[selectedSensor] !== null) {
@@ -84,6 +86,8 @@ const ChartContainer = () => {
       onChange={handleChange}
       svgRef={svgRef}
       isData={isData}
+      lastUpdated={lastUpdated}
+      onRefresh={fetchData}
     />
   );
 };
