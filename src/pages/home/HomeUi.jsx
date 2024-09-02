@@ -7,7 +7,7 @@ import Newsletter from "@components/newsletter/NewsletterContainer";
 import TodoList from "@components/todolist/TodoListContainer";
 import { BlueRoundedButton } from "@styles";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import TodoModal from "@components/todoModal/todoModalContainer";
+import TodoModal from "@components/todoModal/TodoModalContainer";
 
 const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
   const styles = {
