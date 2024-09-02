@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useMediaQuery } from "@mui/material";
 import { generatePath } from "react-router-dom";
-import ChartUI from "./ChartUI";
+import ChartUI from "@pages/charts/ChartUi";
 import { drawCompassChart } from "@services/chartConfig";
 import { breakpoints } from "@utils/commonUtils";
 import { useAuth } from "@error/authError";
