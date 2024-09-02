@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 import { API_PATHS } from "@utils/apiMap";
 import { generatePath } from "react-router-dom";
+import { getKoreanTimeFromUTC } from "@utils/dateUtils";
 
 const colors = {
   조도: "#FF6384",
@@ -44,7 +45,7 @@ const ChartContainer = () => {
           습도: data?.humid ?? null,
           토양수분: data?.solid ?? null,
         });
-        setLastUpdated(data?.createdAt ?? null);
+        setLastUpdated(getKoreanTimeFromUTC(data?.createdAt ?? null));
       }
     } catch (error) {
       console.error(error.cause);
