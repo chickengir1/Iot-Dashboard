@@ -1,4 +1,4 @@
-import TodoModalUi from "./todoModalUi";
+import TodoModalUi from "./TodoModalUi";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal, setModalType } from "@redux/actions/modalAction";
