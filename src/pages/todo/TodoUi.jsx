@@ -5,7 +5,7 @@ import UserCard from "@components/usercard/UserCardContainer";
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
 import Sidebar from "@components/sidebar/SidebarContainer";
 import TodoListContainer from "@components/todolist/TodoListContainer";
-import TodoModal from "@components/todoModal/todoModalContainer";
+import TodoModal from "@components/todoModal/TodoModalContainer";
 
 const TodoUi = ({ isDesktop, setNotification, todos, setTodos, onOpen }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
