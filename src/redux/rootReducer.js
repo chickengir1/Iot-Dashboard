@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
-import sessionStorage from "redux-persist/lib/storage/session";
+import cookieStorage from "@utils/cookie";
 import navigateReducer from "./reducers/navigateReducer";
 import { formReducer } from "./reducers/formReducer";
 import profileReducer from "./reducers/profileReducer";
@@ -10,12 +10,12 @@ import deviceReducer from "./reducers/deviceReducer";
 
 const profilePersistConfig = {
   key: "profile",
-  storage: sessionStorage,
+  storage: cookieStorage,
 };
 
 const devicePersistConfig = {
   key: "device",
-  storage: sessionStorage,
+  storage: cookieStorage,
 };
 
 const rootReducer = combineReducers({

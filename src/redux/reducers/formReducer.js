@@ -19,7 +19,6 @@ export const formReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_FORM_DATA:
-      console.log("리턴값", action.payload);
       return {
         ...state,
         [formType]: {
