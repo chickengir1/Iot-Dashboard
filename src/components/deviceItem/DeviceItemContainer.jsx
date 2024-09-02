@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import useNotification from "@hooks/useNotification";
 import { setDeviceIds } from "@redux/actions/deviceActions";
 import Notification from "@components/notification/NotificationContainer";
-import { useState } from "react";
 import useDeleteRequest from "@hooks/useDeleteRequest";
 import { API_PATHS } from "@utils/apiMap";
 import { generatePath } from "react-router-dom";
+import useAnchorEl from "@hooks/useAnchorEl";
 
 const DeviceItemContainer = ({ name, description }) => {
   const navigate = useNavigate();
@@ -30,17 +30,7 @@ const DeviceItemContainer = ({ name, description }) => {
     }
   };
 
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleMenuOpen = (event) => {
-    event.stopPropagation();
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = (event) => {
-    event.stopPropagation();
-    setAnchorEl(null);
-  };
+  const { anchorEl, handleMenuOpen, handleMenuClose } = useAnchorEl();
 
   const { deleteData } = useDeleteRequest(
     generatePath(API_PATHS.DEVICESDETAIL, { deviceId: name })
@@ -58,7 +48,7 @@ const DeviceItemContainer = ({ name, description }) => {
         type: "success",
         open: true,
       });
-      setAnchorEl(null);
+      handleMenuClose();
     } catch (error) {
       console.error(error);
       setNotification({

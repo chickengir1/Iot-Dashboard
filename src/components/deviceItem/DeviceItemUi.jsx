@@ -54,9 +54,13 @@ const DeviceItemUi = ({
         keepMounted
         open={Boolean(anchorEl)}
         onClose={onClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
         transformOrigin={{
           vertical: "top",
-          horizontal: "center",
+          horizontal: "right",
         }}
       >
         <MenuItem
