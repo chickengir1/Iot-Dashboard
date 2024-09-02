@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import DeviceItemUi from "./deviceItemUi";
+import DeviceItemUi from "./DeviceItemUi";
 import { useDispatch, useSelector } from "react-redux";
 import useNotification from "@hooks/useNotification";
 import { setDeviceIds } from "@redux/actions/deviceActions";
