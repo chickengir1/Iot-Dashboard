@@ -1,6 +1,24 @@
 import { Box } from "@mui/material";
 import ListItem from "@components/listitem/ListItemContainer";
-import { CheckBoxOutlineBlank, CheckBoxOutlined } from "@mui/icons-material";
+import { isEmpty } from "@utils/isEmpty";
+
+const todoListStyles = {
+  container: (height) => ({
+    height: height,
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
+    padding: 2,
+    borderRadius: "8px",
+    overflowY: "auto",
+    marginBottom: 2,
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+    scrollbarWidth: "none",
+  }),
+  todoItem: {
+    marginBottom: 2,
+  },
+};
 
 const TodoComponent = ({
   id,
@@ -16,26 +34,16 @@ const TodoComponent = ({
       e.preventDefault();
       onDelete(id);
     }}
-    marginBottom={2}
+    sx={todoListStyles.todoItem}
   >
-    <ListItem
-      title={date}
-      description={description}
-      icon={isFinish ? <CheckBoxOutlined /> : <CheckBoxOutlineBlank />}
-    />
+    <ListItem date={date} description={description} isFinish={isFinish} />
   </Box>
 );
 
-const TodoListUi = ({ todos, onToggle, onDelete, height = "60vh" }) => {
+const TodoListUi = ({ todos, onToggle, onDelete, height }) => {
   return (
-    <Box
-      sx={{
-        height: height,
-        overflowY: "auto",
-        marginBottom: 2,
-      }}
-    >
-      {todos.length > 0 &&
+    <Box sx={todoListStyles.container(height)}>
+      {!isEmpty(todos) &&
         todos.map((todo) => (
           <TodoComponent
             key={todo.id}

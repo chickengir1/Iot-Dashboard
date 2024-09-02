@@ -12,7 +12,7 @@ export const DesktopEntryLayout = styled(Box)({
   boxSizing: "border-box",
   maxHeight: "800px",
   justifyContent: "center",
-  backgroundColor: "rgba(255,255,255,0.5)",
+  backgroundColor: "rgba(255,255,255,0.8)",
   position: "absolute",
   top: "50%",
   left: "50%",

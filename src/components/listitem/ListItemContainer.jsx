@@ -1,12 +1,9 @@
 import ListItemUi from "./ListItemUi";
 
-const ListItemContainer = ({ title, description, icon, avatar = false }) => (
-  <ListItemUi
-    title={title}
-    description={description}
-    icon={icon}
-    avatar={avatar}
-  />
-);
+const ListItemContainer = ({ date, description, isFinish }) => {
+  return (
+    <ListItemUi date={date} description={description} isFinish={isFinish} />
+  );
+};
 
 export default ListItemContainer;

@@ -2,24 +2,22 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "@mui/material";
 import { useDispatch } from "react-redux";
 import useFetchData from "@hooks/useFetchData";
-import { getEmail } from "@utils/commonUtils";
 import DeviceUi from "./DeviceListUi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@error/authError";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
+import { API_PATHS } from "@utils/apiMap";
+import { setDeviceIds } from "@redux/actions/deviceActions";
 
 const DeviceList = () => {
   useAuth();
+
   const isDesktop = useMediaQuery("(min-width:1280px)");
   const navigate = useNavigate();
-  const userEmail = "user@example.com";
   const dispatch = useDispatch();
 
-  const { deviceList } = useFetchData("./db.json");
-
+  const { deviceList, isLoading } = useFetchData(API_PATHS.DEVICES);
   const [devices, setDevices] = useState([]);
-
-  const userName = getEmail(userEmail);
 
   const handleNavigate = () => {
     navigate(`/adddevices`);
@@ -27,31 +25,32 @@ const DeviceList = () => {
 
   useEffect(() => {
     const deviceListData = async () => {
-      dispatch(startLoading());
       try {
         if (deviceList) {
-          const deviceArray = await deviceList.devices.map((device) => ({
+          const deviceArray = deviceList.data.map((device) => ({
             ...device,
           }));
           setDevices(deviceArray);
+
+          const deviceIds = deviceList.data.map((device) => device.deviceId);
+          dispatch(setDeviceIds(deviceIds));
         }
       } catch (error) {
         console.error(error.cause);
-      } finally {
-        dispatch(stopLoading());
       }
     };
 
     deviceListData();
   }, [deviceList, dispatch]);
 
-  console.log(devices);
+  useEffect(() => {
+    isLoading ? dispatch(startLoading()) : dispatch(stopLoading());
+  }, [isLoading, dispatch]);
 
   return (
     <DeviceUi
       isDesktop={isDesktop}
       devices={devices}
-      userName={userName}
       handleNavigate={handleNavigate}
     />
   );

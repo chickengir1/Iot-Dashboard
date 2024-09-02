@@ -11,7 +11,7 @@ import Notification from "@components/notification/NotificationContainer";
 import { findPasswordFormFields as fields } from "@utils/formFields";
 import FindPwUi from "./FindPwUi";
 import { handleFormSubmit } from "@utils/handleSubmit";
-import { startLoading, stopLoading } from "@redux/actions/loadingActions"; // 전역 로딩 액션
+import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 
 const FindPasswordPage = () => {
   const { notification, setNotification } = useNotification();
@@ -19,7 +19,7 @@ const FindPasswordPage = () => {
   const dispatch = useDispatch();
   const combined = useForm();
   const navigate = useNavigate();
-  const { postData } = usePostRequest(API_PATHS.FINDPW); // 로딩 상태 제거
+  const { postData } = usePostRequest(API_PATHS.FINDPW);
 
   const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
@@ -28,7 +28,6 @@ const FindPasswordPage = () => {
       email: completeEmail,
     };
 
-    // 전역 로딩 상태 시작
     dispatch(startLoading());
 
     try {

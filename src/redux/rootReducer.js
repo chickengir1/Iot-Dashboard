@@ -6,9 +6,15 @@ import { formReducer } from "./reducers/formReducer";
 import profileReducer from "./reducers/profileReducer";
 import modalReducer from "./reducers/modalReducer";
 import loadingReducer from "./reducers/loadingReducer";
+import deviceReducer from "./reducers/deviceReducer";
 
 const profilePersistConfig = {
   key: "profile",
+  storage: sessionStorage,
+};
+
+const devicePersistConfig = {
+  key: "device",
   storage: sessionStorage,
 };
 
@@ -18,6 +24,7 @@ const rootReducer = combineReducers({
   profile: persistReducer(profilePersistConfig, profileReducer),
   modal: modalReducer,
   loading: loadingReducer,
+  device: persistReducer(devicePersistConfig, deviceReducer),
 });
 
 export default rootReducer;

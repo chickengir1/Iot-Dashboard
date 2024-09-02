@@ -10,7 +10,7 @@ import { getFormattedDate } from "@utils/dateUtils";
 
 const TodoModalContainer = ({ setNotification, todos, setTodos }) => {
   const dispatch = useDispatch();
-  const combined = useForm();
+  const { reset, ...combined } = useForm();
 
   const openModal = useSelector((state) => state.modal.openModal);
 
@@ -52,6 +52,7 @@ const TodoModalContainer = ({ setNotification, todos, setTodos }) => {
       setTodos(updatedTodos);
       save("todos", updatedTodos);
       dispatch(setModalType());
+      reset();
     }
   };
   return (

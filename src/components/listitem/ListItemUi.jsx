@@ -1,4 +1,4 @@
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { Box, Checkbox, Typography } from "@mui/material";
 
 const styles = {
   deviceStyled: {
@@ -9,6 +9,7 @@ const styles = {
     boxShadow: 1,
     bgcolor: "background.paper",
     gap: 2,
+    cursor: "pointer",
   },
   avatarStyle: {
     width: 56,
@@ -17,21 +18,18 @@ const styles = {
   },
 };
 
-const ListItemUi = ({ title, description, icon, avatar = false }) => {
+const ListItemUi = ({ date, description, isFinish }) => {
   return (
     <Box sx={styles.deviceStyled}>
-      {avatar && <Avatar variant="rounded" sx={styles.avatarStyle} />}
       <Box flexGrow={1}>
         <Typography variant="body1" fontWeight="bold">
-          {title}
+          {date}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {description}
         </Typography>
       </Box>
-      <IconButton edge="end" aria-label="settings">
-        {icon}
-      </IconButton>
+      <Checkbox checked={isFinish} />
     </Box>
   );
 };
