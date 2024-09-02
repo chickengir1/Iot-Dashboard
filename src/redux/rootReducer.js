@@ -13,13 +13,18 @@ const profilePersistConfig = {
   storage: sessionStorage,
 };
 
+const devicePersistConfig = {
+  key: "device",
+  storage: sessionStorage,
+};
+
 const rootReducer = combineReducers({
   navigation: navigateReducer,
   form: formReducer,
   profile: persistReducer(profilePersistConfig, profileReducer),
   modal: modalReducer,
   loading: loadingReducer,
-  device: deviceReducer,
+  device: persistReducer(devicePersistConfig, deviceReducer),
 });
 
 export default rootReducer;

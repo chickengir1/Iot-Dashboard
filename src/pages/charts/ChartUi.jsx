@@ -16,19 +16,13 @@ import UserCard from "@components/usercard/UserCardContainer";
 import { mainContentConfig } from "@styles/layoutConfig";
 
 const styles = {
-  select: {
-    width: "100%",
-    marginBottom: "16px",
-    marginTop: "24px",
-  },
   charts: {
-    height: "260px",
-    maxWidth: "260px",
     margin: "0 auto",
     borderRadius: "50%",
   },
   title: {
     display: "flex",
+    width: "100%",
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -46,7 +40,8 @@ const styles = {
     alignItems: "center",
   },
   chartGrid: {
-    justifyContent: "center",
+    justifyContent: "space-between",
+    margin: "0 auto",
   },
   buttonBox: {
     display: "flex",
@@ -74,9 +69,6 @@ const NotFound = () => (
 
 const SensorButtonGroup = () => (
   <Box>
-    <Typography variant="body1" textAlign={"center"} sx={{ mb: 4 }}>
-      버튼 조작
-    </Typography>
     <Grid container sx={styles.chartGrid}>
       {datas.map((data) => (
         <Grid item xs={4} sm={4} md={4} lg={2.4} key={data.label}>
@@ -120,15 +112,15 @@ const ChartUI = ({
                 </IconButton>
               </Box>
             )}
-            <Grid container sx={styles.chartGrid}>
+            <Grid container>
               {isDesktop ? (
                 Object.keys(svgRefs).map((sensor) => (
-                  <Grid item xs={6} md={3} key={sensor}>
+                  <Grid key={sensor} sx={{ margin: "0 auto" }}>
                     <svg ref={svgRefs[sensor]}></svg>
                   </Grid>
                 ))
               ) : (
-                <Box>
+                <Layout>
                   <Box sx={styles.chartHeader}>
                     <Typography variant="subtitle1">{lastUpdated}</Typography>
                     <IconButton onClick={onRefresh}>
@@ -136,7 +128,6 @@ const ChartUI = ({
                     </IconButton>
                   </Box>
                   <FormControl
-                    sx={styles.select}
                     disabled={!sensors || Object.keys(sensors).length === 0}
                   >
                     <InputLabel id="sensor-select-label">센서 선택</InputLabel>
@@ -156,7 +147,7 @@ const ChartUI = ({
                   <Box sx={styles.charts}>
                     <svg ref={svgRef}></svg>
                   </Box>
-                </Box>
+                </Layout>
               )}
             </Grid>
             <SensorButtonGroup />

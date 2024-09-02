@@ -9,7 +9,6 @@ import { useAuth } from "@error/authError";
 import useFetchData from "@hooks/useFetchData";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 import { API_PATHS } from "@utils/apiMap";
-import { getKoreanTimeFromUTC } from "@utils/dateUtils";
 
 const colors = {
   조도: "#FF6384",
@@ -30,7 +29,7 @@ const ChartContainer = () => {
 
   const [selectedSensor, setSelectedSensor] = useState("조도");
   const [sensorData, setSensorData] = useState(null);
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(0);
 
   const svgRef = useRef();
   const svgRefs = useRef({
@@ -53,7 +52,7 @@ const ChartContainer = () => {
           습도: data?.humid ?? null,
           토양수분: data?.solid ?? null,
         });
-        setLastUpdated(getKoreanTimeFromUTC(data?.createdAt ?? null));
+        setLastUpdated(new Date().toLocaleString("ko-KR"));
       }
     } catch (error) {
       console.error(error.cause);
@@ -72,7 +71,8 @@ const ChartContainer = () => {
 
   useEffect(() => {
     fetchData();
-    const intervalId = setInterval(fetchData, 600000);
+    const intervalId = setInterval(fetchData, 60000);
+    setLastUpdated(new Date().toLocaleString("ko-KR"));
     return () => clearInterval(intervalId);
   }, [fetchData]);
 

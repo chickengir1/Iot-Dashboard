@@ -20,7 +20,7 @@ export const drawCompassChart = (
     .append("g")
     .attr(
       "transform",
-      `translate(${(width + padding * 2) / 2.2}, ${(height + padding * 2) / 2})`
+      `translate(${(width + padding * 2) / 2}, ${(height + padding * 2) / 2})`
     );
 
   const defs = svg.append("defs");
