@@ -64,7 +64,7 @@ const ProfilePage = () => {
   };
 
   const anotherProduct = () => {
-    window.open("http://34.64.173.146/", "_blank");
+    window.open("https://www.instagram.com/purundal_flower", "_blank");
   };
 
   return (
