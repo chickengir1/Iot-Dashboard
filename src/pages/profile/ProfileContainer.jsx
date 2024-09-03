@@ -10,6 +10,8 @@ import Notification from "@components/notification/NotificationContainer";
 import { useAuth } from "@error/authError";
 import { API_PATHS } from "@utils/apiMap";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
+import { setModalType } from "@redux/actions/modalAction";
+import { FormProvider, useForm } from "react-hook-form";
 
 const ProfilePage = () => {
   useAuth();
@@ -23,6 +25,7 @@ const ProfilePage = () => {
 
   const navigate = useNavigate();
   const isDesktop = useMediaQuery(breakpoints.mainContent);
+  const combined = useForm();
 
   const handleAction = async (actionType) => {
     dispatch(startLoading());
@@ -67,8 +70,12 @@ const ProfilePage = () => {
     window.open("https://www.instagram.com/purundal_flower", "_blank");
   };
 
+  const handleProfileUpdate = () => {
+    dispatch(setModalType("profileUpdate"));
+  };
+
   return (
-    <>
+    <FormProvider {...combined}>
       <Notification
         notification={notification}
         setNotification={setNotification}
@@ -78,8 +85,11 @@ const ProfilePage = () => {
         onDeleteAccount={() => handleAction("deleteAccount")}
         onPageMove={anotherProduct}
         isDesktop={isDesktop}
+        onOpen={handleProfileUpdate}
+        combined={combined}
+        setNotification={setNotification}
       />
-    </>
+    </FormProvider>
   );
 };
 
