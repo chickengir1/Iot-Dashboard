@@ -1,6 +1,6 @@
 import { closeModal } from "@redux/actions/modalAction";
 import { useDispatch, useSelector } from "react-redux";
-import ProfileModalUi from "./profileModalUi";
+import ProfileModalUi from "./ProfileModalUi";
 import { profileUpdateFormFields as fields } from "@utils/formFields";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 import { handleFormSubmit } from "@utils/handleSubmit";
