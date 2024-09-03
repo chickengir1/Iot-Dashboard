@@ -20,6 +20,7 @@ const styles = {
 const ProfileModalUi = ({ open, onClose, combined, formFields, onSubmit }) => {
   const {
     register,
+    // handleSubmit,
     formState: { errors },
     watch,
   } = combined;
@@ -29,7 +30,13 @@ const ProfileModalUi = ({ open, onClose, combined, formFields, onSubmit }) => {
       <Box sx={styles.modalLayout}>
         <DialogTitle>프로필 정보 수정</DialogTitle>
         <DialogContent>
-          {generateFields({ formFields, onSubmit, register, errors, watch })}
+          {generateFields({
+            formFields,
+            onSubmit: combined.handleSubmit(onSubmit),
+            register,
+            errors,
+            watch,
+          })}
         </DialogContent>
       </Box>
     </Modal>

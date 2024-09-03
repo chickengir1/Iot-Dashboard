@@ -86,6 +86,8 @@ const ProfilePage = () => {
         onPageMove={anotherProduct}
         isDesktop={isDesktop}
         onOpen={handleProfileUpdate}
+        combined={combined}
+        setNotification={setNotification}
       />
     </FormProvider>
   );

@@ -9,13 +9,11 @@ import { API_PATHS } from "@utils/apiMap";
 import { getResponseMessage } from "@error/getResponseMessage";
 import { delay } from "@utils/commonUtils";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 
-const ProfileModalContainer = ({ setNotification }) => {
+const ProfileModalContainer = ({ setNotification, combined }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const combined = useForm();
-
+  const { reset } = combined;
   const openModal = useSelector((state) => state.modal.openModal);
   const { putData } = usePutRequest(API_PATHS.REMOVE_USER);
 
@@ -26,7 +24,6 @@ const ProfileModalContainer = ({ setNotification }) => {
   const onSubmit = async (formValues) => {
     const completeEmail = `${formValues.email}@${formValues.domain}`;
     const formData = {
-      id: formValues.id,
       password: formValues.password,
       email: completeEmail,
     };
@@ -44,10 +41,13 @@ const ProfileModalContainer = ({ setNotification }) => {
         errorMessageHandler: (error) => getResponseMessage(null, error),
       });
 
-      console.log(response);
-
-      if (response.message === "Success") {
+      if (
+        response &&
+        response.message === "사용자 정보가 업데이트되었습니다."
+      ) {
         await delay(1000);
+        reset();
+        handleClose();
         navigate("/");
       }
     } catch (error) {

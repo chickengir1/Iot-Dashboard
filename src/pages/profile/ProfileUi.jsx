@@ -71,12 +71,14 @@ const ProfileUI = ({
   onPageMove,
   onDeleteAccount,
   onOpen,
+  combined,
+  setNotification,
 }) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
 
   return (
     <>
-      <ProfileModal />
+      <ProfileModal combined={combined} setNotification={setNotification} />
       <Layout>
         <Sidebar />
         <MainLayout>

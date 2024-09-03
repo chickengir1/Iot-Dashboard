@@ -13,7 +13,7 @@ export const signupFormFields = [
 
 // 프로필 업데이트
 export const profileUpdateFormFields = [
-  { label: "아이디", name: "id", type: "text" },
+  // { label: "아이디", name: "id", type: "text" },
   { label: "비밀번호 변경", name: "password", type: "password" },
 ];
 

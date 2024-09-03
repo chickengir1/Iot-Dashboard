@@ -3,7 +3,7 @@ import { SET_FORM_DATA } from "../actions/formAction";
 const initialState = {
   login: { email: "", id: "", password: "" },
   signup: { id: "", password: "", email: "", confirmPassword: "" },
-  profileUpdate: { id: "", password: "" },
+  profileUpdate: { email: "", password: "" },
   findId: { email: "" },
   findPassword: { id: "", email: "" },
   todo: { date: "", description: "", isFinish: "" },
