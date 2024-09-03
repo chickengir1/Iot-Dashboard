@@ -7,6 +7,7 @@ const useSensorControl = () => {
     { action: "led", label: "빛 조절" },
     { action: "motor", label: "온도 조절" },
     { action: "pump", label: "물 주기" },
+    { action: "servo", label: "비료 주기" },
   ];
 
   const SensorButtonGroup = () => (
@@ -16,7 +17,7 @@ const useSensorControl = () => {
         sx={{ justifyContent: "space-between", margin: "0 auto" }}
       >
         {sensorControls.map((data) => (
-          <Grid item xs={4} sm={4} md={4} lg={2.4} key={data.label}>
+          <Grid item xs={6} sm={6} md={6} lg={3} key={data.label}>
             <Box
               sx={{
                 display: "flex",
