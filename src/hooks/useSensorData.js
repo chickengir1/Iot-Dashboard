@@ -3,9 +3,8 @@ import { useState, useCallback } from "react";
 const useSensorData = (deviceList, setLastUpdated) => {
   const [sensorData, setSensorData] = useState(null);
 
-  const fetchData = useCallback(() => {
-    if (deviceList?.data) {
-      const data = deviceList.data.sensor;
+  const updateSensorData = useCallback(
+    (data) => {
       setSensorData({
         조도: data?.lux ?? null,
         온도: data?.temperature ?? null,
@@ -13,8 +12,16 @@ const useSensorData = (deviceList, setLastUpdated) => {
         토양수분: data?.solid ?? null,
       });
       setLastUpdated(new Date().toLocaleString("ko-KR"));
+    },
+    [setLastUpdated]
+  );
+
+  const fetchData = useCallback(() => {
+    const data = deviceList?.data?.sensor;
+    if (data) {
+      updateSensorData(data);
     }
-  }, [deviceList, setLastUpdated]);
+  }, [deviceList, updateSensorData]);
 
   const isData =
     sensorData && Object.values(sensorData).some((value) => value !== null);

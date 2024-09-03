@@ -137,7 +137,7 @@ export const drawCompassChart = (
   svg
     .append("text")
     .attr("text-anchor", "middle")
-    .attr("dy", "2em")
+    .attr("dy", "3em")
     .attr("font-size", "14px")
     .attr("fill", "#fff")
     .attr("font-style", "italic")

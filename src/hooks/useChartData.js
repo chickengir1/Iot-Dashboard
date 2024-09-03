@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { drawCompassChart } from "@services/chartConfig";
 
 const useChartData = (
@@ -19,29 +19,26 @@ const useChartData = (
     []
   );
 
-  useEffect(() => {
-    if (isData) {
-      if (isDesktop) {
-        Object.keys(sensors).forEach((sensor) => {
-          if (sensors[sensor] !== null) {
-            drawCompassChart(
-              sensors[sensor],
-              sensor,
-              svgRefs[sensor],
-              colors[sensor]
-            );
-          }
-        });
-      } else if (sensors[selectedSensor] !== null) {
-        drawCompassChart(
-          sensors[selectedSensor],
-          selectedSensor,
-          svgRef,
-          colors[selectedSensor]
-        );
+  const drawChart = useCallback(
+    (sensor, svgElement) => {
+      if (sensors[sensor] !== null) {
+        drawCompassChart(sensors[sensor], sensor, svgElement, colors[sensor]);
       }
+    },
+    [colors, sensors]
+  );
+
+  useEffect(() => {
+    if (!isData) return;
+
+    if (isDesktop) {
+      Object.keys(sensors).forEach((sensor) => {
+        drawChart(sensor, svgRefs[sensor]);
+      });
+    } else {
+      drawChart(selectedSensor, svgRef);
     }
-  }, [isDesktop, sensors, selectedSensor, svgRef, svgRefs, isData, colors]);
+  }, [isDesktop, sensors, selectedSensor, svgRef, svgRefs, isData, drawChart]);
 
   return { colors };
 };

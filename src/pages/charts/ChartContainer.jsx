@@ -9,18 +9,6 @@ import { API_PATHS } from "@utils/apiMap";
 import useSensorData from "@hooks/useSensorData";
 import { useMediaQuery } from "@mui/material";
 import { breakpoints } from "@utils/commonUtils";
-import { Box, Typography } from "@mui/material";
-
-const NotFound = () => (
-  <Box sx={{ textAlign: "center", marginTop: "40px" }}>
-    <Typography variant="h4" gutterBottom color="error">
-      센서 데이터를 찾을 수 없습니다
-    </Typography>
-    <Typography variant="body1" gutterBottom>
-      연결된 센서 데이터가 없거나 오류가 발생했습니다. 나중에 다시 시도해주세요.
-    </Typography>
-  </Box>
-);
 
 const ChartContainer = () => {
   useAuth();
@@ -63,9 +51,9 @@ const ChartContainer = () => {
     return () => clearInterval(intervalId);
   }, [fetchCallBack]);
 
-  const handleChange = (sensorName) => {
+  const handleChange = useCallback((sensorName) => {
     setSelectedSensor(sensorName);
-  };
+  }, []);
 
   return (
     <ChartUI
@@ -78,7 +66,6 @@ const ChartContainer = () => {
       onRefresh={fetchCallBack}
       onChange={handleChange}
       isDesktop={isDesktop}
-      NotFound={NotFound}
     />
   );
 };
