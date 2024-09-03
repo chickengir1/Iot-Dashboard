@@ -1,4 +1,4 @@
-import { Box, DialogContent, DialogTitle, Modal } from "@mui/material";
+import { Box, DialogContent, Modal, Typography } from "@mui/material";
 import { generateFields } from "@utils/generateFields";
 const styles = {
   modalBackdrop: {
@@ -10,17 +10,17 @@ const styles = {
     backgroundColor: "#fff",
     display: "flex",
     flexDirection: "column",
-    minWidth: "300px",
+    minWidth: "350px",
     width: "30%",
-    padding: 2,
+    padding: 1,
     borderRadius: 2,
+    overflow: "hidden",
   },
 };
 
 const ProfileModalUi = ({ open, onClose, combined, formFields, onSubmit }) => {
   const {
     register,
-    // handleSubmit,
     formState: { errors },
     watch,
   } = combined;
@@ -28,8 +28,10 @@ const ProfileModalUi = ({ open, onClose, combined, formFields, onSubmit }) => {
   return (
     <Modal open={open} onClose={onClose} sx={styles.modalBackdrop}>
       <Box sx={styles.modalLayout}>
-        <DialogTitle>프로필 정보 수정</DialogTitle>
-        <DialogContent>
+        <Typography sx={{ padding: "20px 24px", fontWeight: "bold" }}>
+          프로필 정보 수정
+        </Typography>
+        <DialogContent sx={{ paddingTop: 2 }}>
           {generateFields({
             formFields,
             onSubmit: combined.handleSubmit(onSubmit),
