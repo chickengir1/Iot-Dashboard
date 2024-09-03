@@ -19,7 +19,7 @@ import { mainContentConfig } from "@styles/layoutConfig";
 import { ServeContent } from "@styles";
 import Sidebar from "@components/sidebar/SidebarContainer";
 import UserCard from "@components/usercard/UserCardContainer";
-import ProfileModal from "@components/profileModal/profileModalContainer";
+import ProfileModal from "@components/profileModal/ProfileModalContainer";
 
 const listItems = [
   { text: "프로필 정보 수정", icon: <EditIcon />, action: "openModal" },
