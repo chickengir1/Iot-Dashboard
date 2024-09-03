@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useMediaQuery } from "@mui/material";
 import { generatePath } from "react-router-dom";
 import ChartUI from "@pages/charts/ChartUi";
-import { breakpoints } from "@utils/commonUtils";
 import { useAuth } from "@error/authError";
 import useFetchData from "@hooks/useFetchData";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 import { API_PATHS } from "@utils/apiMap";
-import useChartData from "@hooks/useChartData"; // 커스텀 훅 import
+import useSensorData from "@hooks/useSensorData";
+import { useMediaQuery } from "@mui/material";
+import { breakpoints } from "@utils/commonUtils";
 
 const ChartContainer = () => {
   useAuth();
@@ -21,7 +21,6 @@ const ChartContainer = () => {
   );
 
   const [selectedSensor, setSelectedSensor] = useState("조도");
-  const [sensorData, setSensorData] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
 
   const svgRef = useRef();
@@ -32,20 +31,11 @@ const ChartContainer = () => {
     토양수분: useRef(),
   }).current;
 
-  const isDesktop = useMediaQuery(breakpoints.mainContent);
-
-  const fetchData = useCallback(() => {
-    if (deviceList?.data) {
-      const data = deviceList.data.sensor;
-      setSensorData({
-        조도: data?.lux ?? null,
-        온도: data?.temperature ?? null,
-        습도: data?.humid ?? null,
-        토양수분: data?.solid ?? null,
-      });
-      setLastUpdated(new Date().toLocaleString("ko-KR"));
-    }
-  }, [deviceList]);
+  const isDesktop = useMediaQuery(breakpoints.sensorContent);
+  const { sensorData, fetchData, isData } = useSensorData(
+    deviceList,
+    setLastUpdated
+  );
 
   useEffect(() => {
     fetchData();
@@ -65,29 +55,17 @@ const ChartContainer = () => {
     setSelectedSensor(sensorName);
   };
 
-  const isData =
-    sensorData && Object.values(sensorData).some((value) => value !== null);
-
-  const chart = useChartData(
-    sensorData,
-    selectedSensor,
-    svgRef,
-    svgRefs,
-    isDesktop,
-    isData
-  );
-
   return (
     <ChartUI
       selectedSensor={selectedSensor}
       sensors={sensorData}
-      isDesktop={isDesktop}
-      onChange={handleChange}
       svgRef={svgRef}
       svgRefs={svgRefs}
       isData={isData}
       lastUpdated={lastUpdated}
       onRefresh={fetchData}
+      onChange={handleChange}
+      isDesktop={isDesktop}
     />
   );
 };
