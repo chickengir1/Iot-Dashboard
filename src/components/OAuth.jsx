@@ -18,6 +18,7 @@ export const OAuthButton = ({ imgSrc, altText, provider }) => (
     variant="contained"
     fullWidth
     sx={oauthButtonStyle}
+    href={`/api/auth/${provider.toLowerCase()}`}
   >
     {provider}
   </Button>
