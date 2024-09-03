@@ -25,17 +25,6 @@ const styles = {
   },
 };
 
-const NotFound = () => (
-  <Box sx={{ textAlign: "center", marginTop: "40px" }}>
-    <Typography variant="h4" gutterBottom color="error">
-      센서 데이터를 찾을 수 없습니다
-    </Typography>
-    <Typography variant="body1" gutterBottom>
-      연결된 센서 데이터가 없거나 오류가 발생했습니다. 나중에 다시 시도해주세요.
-    </Typography>
-  </Box>
-);
-
 const ChartUI = ({
   sensors,
   svgRef,
@@ -46,6 +35,7 @@ const ChartUI = ({
   onRefresh,
   isDesktop,
   onChange,
+  NotFound,
 }) => {
   useChartData(sensors, selectedSensor, svgRef, svgRefs, isDesktop, isData);
 
@@ -63,7 +53,7 @@ const ChartUI = ({
             {isDesktop && (
               <Box sx={styles.chartHeader}>
                 <Typography variant="subtitle1">
-                  센서 데이터- {lastUpdated}
+                  센서 데이터 - {lastUpdated}
                 </Typography>
                 <IconButton onClick={onRefresh}>
                   <Refresh />
