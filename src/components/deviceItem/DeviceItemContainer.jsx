@@ -39,23 +39,27 @@ const DeviceItemContainer = ({ name, description }) => {
   const handleDelete = async (event) => {
     event.stopPropagation();
 
-    // 기기삭제 confirm 로직 넣기
     try {
-      await deleteData();
+      const response = await deleteData();
 
-      setNotification({
-        message: "디바이스가 성공적으로 삭제되었습니다.",
-        type: "success",
-        open: true,
-      });
-      handleMenuClose();
+      if (response.data) {
+        setNotification({
+          message: response.message,
+          type: "success",
+          open: true,
+        });
+        handleMenuClose();
+      } else {
+        setNotification({
+          message: response.message,
+          type: "error",
+          open: true,
+        });
+      }
     } catch (error) {
       console.error(error);
-      setNotification({
-        message: "디바이스 삭제에 실패했습니다.",
-        type: "error",
-        open: true,
-      });
+    } finally {
+      window.location.reload();
     }
   };
 
