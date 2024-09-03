@@ -8,9 +8,9 @@ export const drawCompassChart = (
 ) => {
   d3.select(svgRef.current).selectAll("*").remove();
 
-  const width = 250;
-  const height = 250;
-  const padding = 20;
+  const width = 190;
+  const height = 190;
+  const padding = 10;
   const radius = Math.min(width, height) / 2 - padding;
 
   const svg = d3
@@ -137,7 +137,7 @@ export const drawCompassChart = (
   svg
     .append("text")
     .attr("text-anchor", "middle")
-    .attr("dy", "3em")
+    .attr("dy", "2em")
     .attr("font-size", "14px")
     .attr("fill", "#fff")
     .attr("font-style", "italic")

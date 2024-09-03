@@ -20,20 +20,6 @@ const styles = {
     margin: "0 auto",
     borderRadius: "50%",
   },
-  title: {
-    display: "flex",
-    width: "100%",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  buttonLabel: {
-    mb: 2,
-    padding: "8px 10px",
-    fontWeight: "bold",
-    borderRadius: 2,
-    backgroundColor: "#fff",
-    boxShadow: 1,
-  },
   chartHeader: {
     display: "flex",
     justifyContent: "center",
@@ -47,6 +33,14 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+  },
+  buttonLabel: {
+    mb: 2,
+    padding: "8px 10px",
+    fontWeight: "bold",
+    borderRadius: 2,
+    backgroundColor: "#fff",
+    boxShadow: 1,
   },
 };
 
@@ -115,7 +109,7 @@ const ChartUI = ({
             <Grid container>
               {isDesktop ? (
                 Object.keys(svgRefs).map((sensor) => (
-                  <Grid key={sensor} sx={{ margin: "0 auto" }}>
+                  <Grid key={sensor} sx={{ margin: "0 auto", mb: 6 }}>
                     <svg ref={svgRefs[sensor]}></svg>
                   </Grid>
                 ))
