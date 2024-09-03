@@ -31,9 +31,9 @@ export const OAuth = ({ style }) => (
       provider="Google"
     />
     <OAuthButton
-      imgSrc="/icons/apple-logo.svg"
-      altText="Apple Logo"
-      provider="Apple"
+      imgSrc="/icons/discord-logo.svg"
+      altText="Discord Logo"
+      provider="Discord"
     />
   </Box>
 );
