@@ -14,7 +14,6 @@ export const handleFormSubmit = async ({
 
   try {
     const response = await postData(formData);
-
     const successMessage = successMessageHandler(response);
     setNotification({ message: successMessage, type: "success", open: true });
 
@@ -22,7 +21,6 @@ export const handleFormSubmit = async ({
   } catch (error) {
     const errorMessage = errorMessageHandler(error);
     setNotification({ message: errorMessage, type: "error", open: true });
-
     return null;
   }
 };
