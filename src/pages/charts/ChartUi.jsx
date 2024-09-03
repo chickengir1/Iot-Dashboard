@@ -27,7 +27,7 @@ const styles = {
 
 const ChartHeader = ({ lastUpdated, onRefresh }) => (
   <Box sx={styles.chartHeader}>
-    <Typography variant="subtitle1">센서 데이터 - {lastUpdated}</Typography>
+    <Typography variant="subtitle1">{lastUpdated}</Typography>
     <IconButton onClick={onRefresh}>
       <Refresh />
     </IconButton>
@@ -44,34 +44,44 @@ const DesktopCharts = ({ svgRefs }) => (
   </Grid>
 );
 
-const MobileCharts = ({ sensors, selectedSensor, svgRef, onChange }) => (
-  <>
-    <FormControl sx={{ margin: 2, minWidth: 120, width: "100%" }}>
-      <InputLabel id="sensor-select-label">센서 선택</InputLabel>
-      <Select
-        labelId="sensor-select-label"
-        value={selectedSensor}
-        label="센서 선택"
-        onChange={(event) => onChange(event.target.value)}
-      >
-        {Object.keys(sensors).map((name) => (
-          <MenuItem key={name} value={name}>
-            {name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-    <Box sx={styles.chartHeader}>
-      <svg ref={svgRef}></svg>
-    </Box>
-  </>
-);
+const MobileCharts = ({
+  sensors = {},
+  selectedSensor = "",
+  svgRef,
+  onChange,
+}) => {
+  const sensorKeys =
+    sensors && Object.keys(sensors).length > 0 ? Object.keys(sensors) : [];
+
+  return (
+    <>
+      <FormControl sx={{ margin: "0 auto", mb: 6, width: "100%" }}>
+        <InputLabel id="sensor-select-label">센서 선택</InputLabel>
+        <Select
+          labelId="sensor-select-label"
+          value={selectedSensor}
+          label="센서 선택"
+          onChange={(event) => onChange(event.target.value)}
+        >
+          {sensorKeys.map((name) => (
+            <MenuItem key={name} value={name}>
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <Box sx={styles.chartHeader}>
+        <svg ref={svgRef}></svg>
+      </Box>
+    </>
+  );
+};
 
 const ChartUI = ({
-  sensors,
+  sensors = {},
   svgRef,
   svgRefs,
-  selectedSensor,
+  selectedSensor = "",
   isData,
   lastUpdated,
   onRefresh,
