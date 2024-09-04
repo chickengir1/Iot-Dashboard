@@ -37,6 +37,7 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
             sx={{
               display: "flex",
               flexDirection: "column",
+              flexGrow: 1,
               justifyContent: "space-between",
             }}
           >
@@ -45,15 +46,15 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
               오늘 날씨
             </Typography>
             <Weather />
-            <TodoList todos={todos} setTodos={setTodos} height="17em" />
+            <TodoList todos={todos} setTodos={setTodos} height="15rem" />
+            <BlueRoundedButton
+              variant="contained"
+              endIcon={<AddCircleOutlineOutlined />}
+              onClick={onOpen}
+            >
+              할 일 추가하기
+            </BlueRoundedButton>
           </Box>
-          <BlueRoundedButton
-            variant="contained"
-            endIcon={<AddCircleOutlineOutlined />}
-            onClick={onOpen}
-          >
-            할 일 추가하기
-          </BlueRoundedButton>
         </MainLayout>
         {isDesktop && (
           <Box sx={styles.serveContentStyle}>
