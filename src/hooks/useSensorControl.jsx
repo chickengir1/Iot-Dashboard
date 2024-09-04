@@ -23,6 +23,7 @@ const useSensorControl = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                mb: 2,
               }}
             >
               <Typography
