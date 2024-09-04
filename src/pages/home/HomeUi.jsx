@@ -45,7 +45,7 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
               오늘 날씨
             </Typography>
             <Weather />
-            <TodoList todos={todos} setTodos={setTodos} height="21rem" />
+            <TodoList todos={todos} setTodos={setTodos} height="17em" />
           </Box>
           <BlueRoundedButton
             variant="contained"
