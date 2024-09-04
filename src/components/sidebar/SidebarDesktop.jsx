@@ -17,13 +17,16 @@ const styles = {
     flexDirection: "column",
     justifyContent: "space-between",
     padding: "16px 8px",
-    border: "1px solid #ddd",
+    border: "3px solid rgba(176, 190, 197, 0.5)",
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.3)",
     borderRadius: "8px",
     background: "#F8FAFB",
   },
   listItem: {
     borderRadius: "8px",
     display: "flex",
+    border: "2px solid rgba(176, 190, 197, 0.2)",
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
     "&:hover": {
       backgroundColor: "#eef2f6",
     },

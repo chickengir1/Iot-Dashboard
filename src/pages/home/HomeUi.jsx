@@ -14,9 +14,10 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
     serveContentStyle: {
       width: "400px",
       marginLeft: 2,
-      border: "1px solid #ddd",
+      border: "3px solid rgba(176, 190, 197, 0.5)",
       padding: 2,
       borderRadius: 2,
+      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.3)",
       background: "#F8FAFB",
     },
   };
@@ -36,8 +37,7 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              flexGrow: 1,
-              justifyContent: "space-around",
+              justifyContent: "space-between",
             }}
           >
             <UserCard />
@@ -45,7 +45,7 @@ const HomeUi = ({ isDesktop, onOpen, todos, setTodos, setNotification }) => {
               오늘 날씨
             </Typography>
             <Weather />
-            <TodoList todos={todos} setTodos={setTodos} height="14rem" />
+            <TodoList todos={todos} setTodos={setTodos} height="21rem" />
           </Box>
           <BlueRoundedButton
             variant="contained"
