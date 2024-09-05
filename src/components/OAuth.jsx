@@ -11,7 +11,7 @@ const oauthButtonStyle = {
 };
 
 const handleOAuthLogin = (provider) => {
-  const url = `/api/auth/${provider.toLowerCase()}`;
+  const url = `/api/auth/${provider.toLowerCase()}/redirect`;
   window.open(url, "_self");
 };
 
