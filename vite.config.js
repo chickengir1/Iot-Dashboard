@@ -17,7 +17,7 @@ export default defineConfig({
         changeOrigin: true,
       },
       "/open-api": {
-        target: "https://apis.data.go.kr",
+        target: "http://apis.data.go.kr",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/open-api/, ""),
       },
