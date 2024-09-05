@@ -47,7 +47,7 @@ const ChartContainer = () => {
   useEffect(() => {
     fetchCallBack();
 
-    const intervalId = setInterval(fetchCallBack, 60000);
+    const intervalId = setInterval(fetchCallBack, 600000);
     return () => clearInterval(intervalId);
   }, [fetchCallBack]);
 
