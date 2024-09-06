@@ -7,6 +7,7 @@ const styles = {
     padding: 3,
     backgroundColor: "#ffffff",
     borderRadius: 4,
+    border: "1px solid rgba(168, 213, 186, 0.7)",
     textAlign: "center",
     display: "flex",
     flexDirection: "column",
@@ -42,29 +43,29 @@ const styles = {
   },
 };
 
-const WeatherUi = ({ weatherData }) => {
+const WeatherUi = ({ weather }) => {
   return (
     <Box sx={{ mb: 2 }}>
       <Card sx={styles.weatherLayout}>
         <CardContent sx={{ padding: "8px" }}>
-          {weatherData && (
+          {weather && (
             <Box>
               <img
-                src={weatherData.weatherIcon}
+                src={weather.weatherIcon}
                 alt="Weather Icon"
                 style={styles.iconStyle}
               />
               <Typography sx={styles.tempStyle}>
-                {weatherData.currentTemp} °C
+                {weather.currentTemp} °C
               </Typography>
               <Typography sx={styles.weatherDescStyle}>
-                {weatherData.weatherDesc}
+                {weather.weatherDesc}
               </Typography>
-              <Typography sx={styles.dayStyle}>{weatherData.day}</Typography>
+              <Typography sx={styles.dayStyle}>{weather.day}</Typography>
               <Box sx={styles.locationStyle}>
                 <FmdGood sx={{ color: "#999", fontSize: "16px" }} />
                 <Typography sx={{ fontSize: "12px" }}>
-                  {weatherData.locationName}, {weatherData.country}
+                  {weather.locationName}, {weather.country}
                 </Typography>
               </Box>
             </Box>

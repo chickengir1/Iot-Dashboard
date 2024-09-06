@@ -10,6 +10,11 @@ const oauthButtonStyle = {
   },
 };
 
+const handleOAuthLogin = (provider) => {
+  const url = `/api/auth/${provider.toLowerCase()}/redirect`;
+  window.open(url, "_self");
+};
+
 export const OAuthButton = ({ imgSrc, altText, provider }) => (
   <Button
     startIcon={
@@ -18,6 +23,7 @@ export const OAuthButton = ({ imgSrc, altText, provider }) => (
     variant="contained"
     fullWidth
     sx={oauthButtonStyle}
+    onClick={() => handleOAuthLogin(provider)}
   >
     {provider}
   </Button>
@@ -31,9 +37,9 @@ export const OAuth = ({ style }) => (
       provider="Google"
     />
     <OAuthButton
-      imgSrc="/icons/apple-logo.svg"
-      altText="Apple Logo"
-      provider="Apple"
+      imgSrc="/icons/discord-logo.svg"
+      altText="Discord Logo"
+      provider="Discord"
     />
   </Box>
 );

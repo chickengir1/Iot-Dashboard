@@ -15,10 +15,7 @@ const TodoContainer = () => {
   useAuth();
   const { notification, setNotification } = useNotification();
 
-  const [todos, setTodos] = useState(() => {
-    const savedTodos = get("todos") || [];
-    return savedTodos.reverse();
-  });
+  const [todos, setTodos] = useState(get("todos") || []);
 
   const isDesktop = useMediaQuery(breakpoints.mainContent);
   const dispatch = useDispatch();

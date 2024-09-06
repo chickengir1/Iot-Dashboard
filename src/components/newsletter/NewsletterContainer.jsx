@@ -7,7 +7,7 @@ import {
 } from "@utils/dateUtils";
 
 const NewsletterContainer = () => {
-  const [newsData, setNewsData] = useState(null);
+  const [news, setNews] = useState(null);
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -16,7 +16,7 @@ const NewsletterContainer = () => {
           getYesterDateWithoutHypen(),
           getFormattedDateWithoutHyphen()
         );
-        setNewsData(response.response.body.items.item);
+        setNews(response.response.body.items.item);
       } catch (error) {
         console.error(error);
       }
@@ -24,7 +24,7 @@ const NewsletterContainer = () => {
     fetchLocation();
   }, []);
 
-  return <NewsletterUi newsData={newsData} />;
+  return <NewsletterUi news={news} />;
 };
 
 export default NewsletterContainer;

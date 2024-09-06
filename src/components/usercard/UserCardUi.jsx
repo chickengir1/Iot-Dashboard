@@ -5,6 +5,7 @@ const styles = {
     mb: 2,
     borderRadius: "12px",
     overflow: "hidden",
+    border: "1px solid rgba(168, 213, 186, 0.7)",
   },
   userCardLayout: {
     display: "flex",

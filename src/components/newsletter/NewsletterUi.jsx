@@ -51,20 +51,20 @@ export const CardNews = ({ mscmnc, title, site, newsdate }) => {
   );
 };
 
-const NewsletterUi = ({ newsData }) => {
-  if (!Array.isArray(newsData)) {
+const NewsletterUi = ({ news }) => {
+  if (!Array.isArray(news)) {
     return <LoadingSpinner />;
   }
 
   return (
     <Box sx={styles.container}>
-      {newsData.map((news) => (
+      {news.map((item) => (
         <CardNews
-          key={news.site}
-          mscmnc={news.mscmnc}
-          title={news.tit}
-          site={news.site}
-          newsdate={news.newsdate}
+          key={item.site}
+          mscmnc={item.mscmnc}
+          title={item.tit}
+          site={item.site}
+          newsdate={item.newsdate}
         />
       ))}
     </Box>

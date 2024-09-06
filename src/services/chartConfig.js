@@ -8,9 +8,9 @@ export const drawCompassChart = (
 ) => {
   d3.select(svgRef.current).selectAll("*").remove();
 
-  const width = 250;
-  const height = 250;
-  const padding = 20;
+  const width = 190;
+  const height = 190;
+  const padding = 10;
   const radius = Math.min(width, height) / 2 - padding;
 
   const svg = d3
@@ -20,7 +20,7 @@ export const drawCompassChart = (
     .append("g")
     .attr(
       "transform",
-      `translate(${(width + padding * 2) / 2.2}, ${(height + padding * 2) / 2})`
+      `translate(${(width + padding * 2) / 2}, ${(height + padding * 2) / 2})`
     );
 
   const defs = svg.append("defs");
@@ -118,21 +118,7 @@ export const drawCompassChart = (
     .text(`${selectedSensor}`);
 
   const bbox = textElement.node()?.getBBox();
-  // const rectWidth = bbox.width + textPadding * 6;
-  // const rectHeight = bbox.height + textPadding * 1.5;
-
-  // svg
-  //   .insert("rect", "text")
-  //   .attr("x", bbox.x - textPadding * 3)
-  //   .attr("y", bbox.y - textPadding + 1)
-  //   .attr("width", rectWidth)
-  //   .attr("height", rectHeight)
-  //   .attr("rx", borderRadius)
-  //   .attr("ry", borderRadius)
-  //   .attr("fill", "#fff")
-  //   .attr("stroke", "#fff");
   if (bbox) {
-    // bbox가 null이 아닌 경우에만 이후 코드 실행
     const rectWidth = bbox.width + textPadding * 6;
     const rectHeight = bbox.height + textPadding * 1.5;
 
@@ -146,8 +132,6 @@ export const drawCompassChart = (
       .attr("ry", borderRadius)
       .attr("fill", "#fff")
       .attr("stroke", "#fff");
-  } else {
-    console.error("텍스트 요소의 BBox를 가져올 수 없습니다.");
   }
 
   svg

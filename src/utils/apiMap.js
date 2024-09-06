@@ -8,7 +8,6 @@ export const API_PATHS = {
   LOGOUT: `${API_BASE_URL}/auth/logout`,
   REMOVE_USER: `${API_BASE_URL}/me/`,
   DEVICES: `${API_BASE_URL}/devices/`,
-  DEVICESDETAIL: (deviceId) => `${API_BASE_URL}/devices/${deviceId}`,
-  DEVICECONTROL: (deviceId, action) =>
-    `${API_BASE_URL}/control/device/${deviceId}/${action}`,
+  DEVICESDETAIL: `${API_BASE_URL}/devices/:deviceId`,
+  DEVICECONTROL: `${API_BASE_URL}/control/device/:deviceId/:action`,
 };
