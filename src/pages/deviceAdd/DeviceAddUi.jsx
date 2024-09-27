@@ -2,8 +2,7 @@ import React from "react";
 import { mainContentConfig } from "@styles/layoutConfig";
 import Sidebar from "@components/sidebar/SidebarContainer";
 import { ServeContent } from "@styles";
-import { Card, CardContent } from "@mui/material";
-
+import { Box, Typography, List, ListItem, ListItemText } from "@mui/material";
 import UserCard from "@components/usercard/UserCardContainer";
 import { generateTextFields } from "@utils/generateFields";
 
@@ -31,7 +30,9 @@ const styles = {
   },
   addButtonStyle: {
     minHeight: "75px",
-    marginTop: 2,
+    borderRadius: 4,
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    padding: "16px",
   },
 };
 
@@ -50,6 +51,25 @@ const AddDeviceForm = ({
       <Sidebar />
       <MainLayout>
         <UserCard />
+        <Box sx={styles.addButtonStyle}>
+          <Typography variant="h6" textAlign={"center"} gutterBottom>
+            ** 장치 등록 주의사항 **
+          </Typography>
+          <List>
+            <ListItem>
+              <ListItemText primary="디바이스 아이디와 디바이스 이름은 일치해야 합니다." />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="디바이스 설명은 30자 이내로 입력하세요." />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="모든 필드는 필수 입력 사항입니다." />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="디바이스는 등록 후 수정이 불가능하니 신중히 입력하세요." />
+            </ListItem>
+          </List>
+        </Box>
         {generateTextFields({
           formFields,
           onSubmit,
@@ -57,9 +77,6 @@ const AddDeviceForm = ({
           errors,
           watch,
         })}
-        <Card sx={styles.addButtonStyle}>
-          <CardContent>장치 등록 주의사항</CardContent>
-        </Card>
       </MainLayout>
       {isDesktop && <ServeContent />}
     </Layout>

@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import DeviceItemUi from "./deviceItemUi";
+import DeviceItemUi from "./DeviceItemUi";
 import { useDispatch, useSelector } from "react-redux";
 import useNotification from "@hooks/useNotification";
 import { setDeviceIds } from "@redux/actions/deviceActions";
 import Notification from "@components/notification/NotificationContainer";
-import { useState } from "react";
 import useDeleteRequest from "@hooks/useDeleteRequest";
 import { API_PATHS } from "@utils/apiMap";
+import { generatePath } from "react-router-dom";
+import useAnchorEl from "@hooks/useAnchorEl";
 
 const DeviceItemContainer = ({ name, description }) => {
   const navigate = useNavigate();
@@ -29,40 +30,36 @@ const DeviceItemContainer = ({ name, description }) => {
     }
   };
 
-  const [anchorEl, setAnchorEl] = useState(null);
+  const { anchorEl, handleMenuOpen, handleMenuClose } = useAnchorEl();
 
-  const handleMenuOpen = (event) => {
-    event.stopPropagation();
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = (event) => {
-    event.stopPropagation();
-    setAnchorEl(null);
-  };
-
-  const { deleteData } = useDeleteRequest(API_PATHS.DEVICESDETAIL(name));
+  const { deleteData } = useDeleteRequest(
+    generatePath(API_PATHS.DEVICESDETAIL, { deviceId: name })
+  );
 
   const handleDelete = async (event) => {
     event.stopPropagation();
 
-    // 기기삭제 confirm 로직 넣기
     try {
-      await deleteData();
+      const response = await deleteData();
 
-      setNotification({
-        message: "디바이스가 성공적으로 삭제되었습니다.",
-        type: "success",
-        open: true,
-      });
-      setAnchorEl(null);
+      if (response.data) {
+        setNotification({
+          message: response.message,
+          type: "success",
+          open: true,
+        });
+        handleMenuClose();
+      } else {
+        setNotification({
+          message: response.message,
+          type: "error",
+          open: true,
+        });
+      }
     } catch (error) {
       console.error(error);
-      setNotification({
-        message: "디바이스 삭제에 실패했습니다.",
-        type: "error",
-        open: true,
-      });
+    } finally {
+      window.location.reload();
     }
   };
 

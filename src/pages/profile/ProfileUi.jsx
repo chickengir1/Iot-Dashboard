@@ -19,13 +19,14 @@ import { mainContentConfig } from "@styles/layoutConfig";
 import { ServeContent } from "@styles";
 import Sidebar from "@components/sidebar/SidebarContainer";
 import UserCard from "@components/usercard/UserCardContainer";
+import ProfileModal from "@components/profileModal/ProfileModalContainer";
 
 const listItems = [
-  { text: "프로필 정보 수정", icon: <EditIcon />, action: null },
+  { text: "프로필 정보 수정", icon: <EditIcon />, action: "openModal" },
   { text: "더 많은 제품 보기", icon: <VisibilityIcon />, action: "pageMove" },
 ];
 
-const ListComponents = ({ onPageMove }) =>
+const ListComponents = ({ onPageMove, onOpen }) =>
   listItems.map((item) => (
     <Card sx={{ mb: 4 }} key={item.text}>
       <ListItem
@@ -33,6 +34,7 @@ const ListComponents = ({ onPageMove }) =>
         sx={{ minHeight: "65px" }}
         onClick={() => {
           if (item.action === "pageMove") onPageMove();
+          if (item.action === "openModal") onOpen();
         }}
       >
         <ListItemIcon>{item.icon}</ListItemIcon>
@@ -63,27 +65,38 @@ const ButtonComponents = ({ onLogout, onDeleteAccount }) => (
   </Box>
 );
 
-const ProfileUI = ({ onLogout, isDesktop, onPageMove, onDeleteAccount }) => {
+const ProfileUI = ({
+  onLogout,
+  isDesktop,
+  onPageMove,
+  onDeleteAccount,
+  onOpen,
+  combined,
+  setNotification,
+}) => {
   const { Layout, MainLayout } = mainContentConfig(isDesktop);
 
   return (
-    <Layout>
-      <Sidebar />
-      <MainLayout>
-        <UserCard />
-        <Typography variant="subtitle1">계정 설정</Typography>
-        <Box sx={{ flex: "1 1 100px", aspectRatio: "1/1" }}>
-          <List>
-            <ListComponents onPageMove={onPageMove} />
-          </List>
-        </Box>
-        <ButtonComponents
-          onLogout={onLogout}
-          onDeleteAccount={onDeleteAccount}
-        />
-      </MainLayout>
-      {isDesktop && <ServeContent />}
-    </Layout>
+    <>
+      <ProfileModal combined={combined} setNotification={setNotification} />
+      <Layout>
+        <Sidebar />
+        <MainLayout>
+          <UserCard />
+          <Typography variant="subtitle1">계정 설정</Typography>
+          <Box sx={{ flex: "1 1 100px", aspectRatio: "1/1" }}>
+            <List>
+              <ListComponents onPageMove={onPageMove} onOpen={onOpen} />
+            </List>
+          </Box>
+          <ButtonComponents
+            onLogout={onLogout}
+            onDeleteAccount={onDeleteAccount}
+          />
+        </MainLayout>
+        {isDesktop && <ServeContent />}
+      </Layout>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import { NAVIGATE } from "../actions/navigateAction";
 
 const initialState = {
-  currentRoute: "/home",
+  currentRoute: null,
 };
 
 const navigateReducer = (state = initialState, action) => {

@@ -1,4 +1,4 @@
-import TodoModalUi from "./todoModalUi";
+import TodoModalUi from "./TodoModalUi";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal, setModalType } from "@redux/actions/modalAction";
@@ -29,7 +29,7 @@ const TodoModalContainer = ({ setNotification, todos, setTodos }) => {
     const postData = async (data) => {
       try {
         const currentTodos = get("todos") || [];
-        const updatedTodos = [...currentTodos, data];
+        const updatedTodos = [data, ...currentTodos];
         save("todos", updatedTodos);
         return { message: "할일 추가 완료!" };
       } catch (error) {
@@ -48,13 +48,14 @@ const TodoModalContainer = ({ setNotification, todos, setTodos }) => {
     });
 
     if (todoresponse) {
-      const updatedTodos = [...todos, formData];
+      const updatedTodos = [formData, ...todos];
       setTodos(updatedTodos);
       save("todos", updatedTodos);
       dispatch(setModalType());
       reset();
     }
   };
+
   return (
     <TodoModalUi
       formFields={fields}

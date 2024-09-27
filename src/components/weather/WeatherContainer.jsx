@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 
 const WeatherContainer = () => {
-  const [weatherData, setWeatherData] = useState(null);
+  const [weather, setWeather] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const WeatherContainer = () => {
         const { latitude, longitude } = await getUserLocation();
 
         const weatherResponse = await weatherApi(latitude, longitude);
-        setWeatherData(extractWeatherData(weatherResponse));
+        setWeather(extractWeatherData(weatherResponse));
       } catch (error) {
         console.error(error);
       } finally {
@@ -28,11 +28,7 @@ const WeatherContainer = () => {
     fetchLocation();
   }, [dispatch]);
 
-  return (
-    <>
-      <WeatherUi weatherData={weatherData} />
-    </>
-  );
+  return <WeatherUi weather={weather} />;
 };
 
 export default WeatherContainer;

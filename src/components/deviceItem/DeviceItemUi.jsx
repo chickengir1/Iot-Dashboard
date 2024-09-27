@@ -1,4 +1,4 @@
-import { Settings } from "@mui/icons-material";
+import { DeleteOutline, Settings } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -54,12 +54,22 @@ const DeviceItemUi = ({
         keepMounted
         open={Boolean(anchorEl)}
         onClose={onClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
         transformOrigin={{
           vertical: "top",
-          horizontal: "center",
+          horizontal: "right",
         }}
       >
-        <MenuItem onClick={onDelete}>기기 삭제</MenuItem>
+        <MenuItem
+          onClick={onDelete}
+          sx={{ color: "#FF3333", alignItems: "center" }}
+        >
+          <DeleteOutline />
+          <Typography>기기 삭제</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );

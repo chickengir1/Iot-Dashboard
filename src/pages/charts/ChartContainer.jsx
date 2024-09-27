@@ -1,88 +1,71 @@
-import React, { useState, useEffect, useRef } from "react";
-import ChartUI from "./ChartUI";
-import { drawCompassChart } from "@services/chartConfig";
-import { breakpoints } from "@utils/commonUtils";
-import { useMediaQuery } from "@mui/material";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { generatePath } from "react-router-dom";
+import ChartUI from "@pages/charts/ChartUi";
 import { useAuth } from "@error/authError";
 import useFetchData from "@hooks/useFetchData";
-import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "@redux/actions/loadingActions";
 import { API_PATHS } from "@utils/apiMap";
-
-const colors = {
-  조도: "#FF6384",
-  습도: "#36A2EB",
-  온도: "#FFCE56",
-  토양수분: "#4BC0C0",
-};
+import useSensorData from "@hooks/useSensorData";
+import { useMediaQuery } from "@mui/material";
+import { breakpoints } from "@utils/commonUtils";
 
 const ChartContainer = () => {
   useAuth();
 
   const deviceId = useSelector((state) => state.device.deviceIds);
   const dispatch = useDispatch();
-  const { deviceList, isLoading } = useFetchData(
-    API_PATHS.DEVICESDETAIL(deviceId)
-  );
 
   const [selectedSensor, setSelectedSensor] = useState("조도");
-  const [sensorData, setSensorData] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
+
+  const { deviceList } = useFetchData(
+    generatePath(API_PATHS.DEVICESDETAIL, { deviceId })
+  );
+
+  const { sensorData, fetchData, isData } = useSensorData(
+    deviceList,
+    setLastUpdated
+  );
+
   const svgRef = useRef();
-  const isDesktop = useMediaQuery(breakpoints.mainContent);
+  const svgRefs = useRef({
+    조도: useRef(),
+    온도: useRef(),
+    습도: useRef(),
+    토양수분: useRef(),
+  }).current;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (deviceList?.data) {
-          const data = deviceList.data.sensor;
-          console.log(data);
+  const isDesktop = useMediaQuery(breakpoints.sensorContent);
 
-          setSensorData({
-            조도: data?.lux ?? null,
-            온도: data?.temperature ?? null,
-            습도: data?.humid ?? null,
-            토양수분: data?.solid ?? null,
-          });
-        }
-      } catch (error) {
-        console.error(error.cause);
-      }
-    };
-
+  const fetchCallBack = useCallback(() => {
+    dispatch(startLoading());
     fetchData();
+    dispatch(stopLoading());
+  }, [fetchData, dispatch]);
 
-    const intervalId = setInterval(fetchData, 600000);
+  useEffect(() => {
+    fetchCallBack();
+
+    const intervalId = setInterval(fetchCallBack, 600000);
     return () => clearInterval(intervalId);
-  }, [deviceList]);
+  }, [fetchCallBack]);
 
-  useEffect(() => {
-    if (sensorData && sensorData[selectedSensor] !== null) {
-      const sensorValue = sensorData[selectedSensor];
-      const sensorColor = colors[selectedSensor];
-      drawCompassChart(sensorValue, selectedSensor, svgRef, sensorColor);
-    }
-  }, [sensorData, selectedSensor]);
-
-  const handleChange = (sensorName) => {
+  const handleChange = useCallback((sensorName) => {
     setSelectedSensor(sensorName);
-  };
-
-  useEffect(() => {
-    isLoading ? dispatch(startLoading()) : dispatch(stopLoading());
-  }, [isLoading, dispatch]);
-
-  const isData =
-    sensorData && Object.values(sensorData).some((value) => value !== null);
+  }, []);
 
   return (
     <ChartUI
       selectedSensor={selectedSensor}
       sensors={sensorData}
-      colors={colors}
-      isDesktop={isDesktop}
-      onChange={handleChange}
       svgRef={svgRef}
+      svgRefs={svgRefs}
       isData={isData}
+      lastUpdated={lastUpdated}
+      onRefresh={fetchCallBack}
+      onChange={handleChange}
+      isDesktop={isDesktop}
     />
   );
 };
